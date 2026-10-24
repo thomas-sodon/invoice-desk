@@ -9,10 +9,11 @@
   pipeline's step markers make the re-run resume where the dead worker stopped.
 * SIGTERM / SIGINT stop claiming, let in-flight jobs finish, then exit (graceful shutdown).
 
-Offline mode never calls a paid API: the LLM is ``wiring.llm_client`` (replay), optionally with
-a fallback client named by ``INVOICEDESK_LLM_FALLBACK=module:factory`` (e.g. the data
-component's oracle for the offline demo), loaded by import path so this package does not
-depend on it.
+Offline mode never calls a paid API: the LLM is ``wiring.llm_client`` (replay), with a fallback
+client named by ``INVOICEDESK_LLM_FALLBACK=module:factory``, loaded by import path so this
+package does not depend on it. Unset, offline mode uses the data component's gold-backed oracle
+(:data:`DEFAULT_OFFLINE_FALLBACK`) when that package is installed; ``none`` disables it (replay
+misses then fail the job).
 """
 
 from __future__ import annotations
@@ -46,6 +47,7 @@ from invoicedesk.pipeline.services import PipelineServices
 from invoicedesk.status import Actor, IllegalTransition
 
 __all__ = [
+    "DEFAULT_OFFLINE_FALLBACK",
     "JOB_KINDS",
     "NonRetryable",
     "Worker",
@@ -65,6 +67,9 @@ JOB_KINDS: tuple[str, ...] = (
 )
 FOLLOWUP_WEBHOOK_ENV = "N8N_FOLLOWUP_WEBHOOK_URL"
 LLM_FALLBACK_ENV = "INVOICEDESK_LLM_FALLBACK"
+#: Offline default for :data:`LLM_FALLBACK_ENV`: the gold-backed oracle (unknown documents get
+#: an empty extraction, so R9 holds them for a human).
+DEFAULT_OFFLINE_FALLBACK = "invoicedesk_data.oracle:OracleLLM.from_gold"
 
 Handler = Callable[[Job], None]
 
@@ -345,9 +350,15 @@ def build_llm(settings: Settings, *, llm: LLMClient | None = None) -> LLMClient:
     if llm is not None:
         return llm
     fallback: LLMClient | None = None
-    path = os.environ.get(LLM_FALLBACK_ENV)
-    if path and settings.mode == "offline":
-        fallback = _load_factory(path)()
+    if settings.mode == "offline":
+        path = os.environ.get(LLM_FALLBACK_ENV)
+        if path is None:
+            try:
+                fallback = _load_factory(DEFAULT_OFFLINE_FALLBACK)()
+            except ImportError:
+                log.warning("offline without %s: replay misses will fail", LLM_FALLBACK_ENV)
+        elif path.strip().lower() not in ("", "none"):
+            fallback = _load_factory(path)()
     return wiring.llm_client(settings, fallback=fallback)
 
 

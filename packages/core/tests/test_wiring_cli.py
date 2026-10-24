@@ -41,6 +41,15 @@ def test_cli_help_and_unknown(capsys: pytest.CaptureFixture[str]) -> None:
     assert cli.main(["nope"]) == 2
 
 
-def test_cli_missing_component_module() -> None:
-    # The stub packages exist but their cli modules are not built yet.
-    assert cli.main(["validate"]) == 3
+def test_cli_missing_component_module(monkeypatch: pytest.MonkeyPatch) -> None:
+    # A registered command whose module is not installed exits 3 ("not available yet").
+    monkeypatch.setitem(cli.COMMANDS, "ghost", ("invoicedesk.not_built.cli:main", "unbuilt"))
+    assert cli.main(["ghost"]) == 3
+
+
+def test_every_registered_command_is_built() -> None:
+    import importlib
+
+    for name, (target, _) in cli.COMMANDS.items():
+        mod, _, fn = target.partition(":")
+        assert callable(getattr(importlib.import_module(mod), fn)), name

@@ -89,7 +89,7 @@ quote-style = "double"
 [tool.pyright]
 pythonVersion = "3.12"
 typeCheckingMode = "standard"
-include = ["packages/core", "apps/api", "services", "evals", "data", "scripts"]
+include = ["packages/core", "apps/api", "services", "evals", "data", "scripts", "integrations", "tests"]
 exclude = ["**/node_modules", "**/__pycache__", "apps/web", ".venv", "data/public/cache"]
 venvPath = "."
 venv = ".venv"
@@ -107,6 +107,8 @@ testpaths = [
   "services/mcp-server/tests",
   "evals/tests",
   "data/tests",
+  "integrations/tests",
+  "tests/e2e",
 ]
 markers = [
   "postgres: needs a throwaway Postgres cluster (skips if binaries are unavailable)",
