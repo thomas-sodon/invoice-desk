@@ -110,6 +110,11 @@ def _bearer(request: Request) -> str | None:
 
 
 def client_ip(request: Request, rt: Runtime) -> str:
+    header = rt.api.client_ip_header
+    if header:
+        value = request.headers.get(header, "").strip()
+        if value and "," not in value:
+            return value
     if rt.api.trust_forwarded_for:
         fwd = request.headers.get("x-forwarded-for")
         if fwd:

@@ -1,2 +1,8 @@
 packages:
   - "apps/web"
+# native/postinstall builds the web toolchain needs (pnpm 10 ignores build scripts otherwise)
+onlyBuiltDependencies:
+  - "@tailwindcss/oxide"
+  - esbuild
+  - sharp
+  - unrs-resolver

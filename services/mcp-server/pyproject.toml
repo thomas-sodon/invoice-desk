@@ -5,7 +5,7 @@ description = "InvoiceDesk remote MCP server (3 tools, stateless, Streamable HTT
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "invoicedesk",
-  "mcp>=1.20",
+  "mcp>=2.3",  # MRTR input_required, tools/list cache hints, 2026-07-28 transport
   "httpx>=0.28",
   "pyjwt[crypto]>=2.10",
   "starlette>=0.41",

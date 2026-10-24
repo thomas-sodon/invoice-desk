@@ -5,6 +5,10 @@ description = "InvoiceDesk FastAPI gateway"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "invoicedesk",
+  # demo files, OracleLLM and seed_database (imported lazily for the offline demo)
+  "invoicedesk-data",
+  "httpx>=0.28",
+  "pymupdf>=1.25",
   "fastapi>=0.115",
   "uvicorn[standard]>=0.32",
   "python-multipart>=0.0.18",
@@ -16,6 +20,7 @@ dependencies = [
 
 [tool.uv.sources]
 invoicedesk = { workspace = true }
+invoicedesk-data = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]

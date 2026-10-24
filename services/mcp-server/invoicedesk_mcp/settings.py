@@ -19,6 +19,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 __all__ = ["McpSettings", "get_mcp_settings"]
 
 
+#: HS256 needs a key at least as long as the hash output (RFC 7518 §3.2).
+MIN_AGENT_SECRET_LEN = 32
+
+
 class McpSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", populate_by_name=True)
 
@@ -66,6 +70,18 @@ class McpSettings(BaseSettings):
     #: Unset: a per-process key, which is fine for one replica. Set it when running several.
     request_state_keys: SecretStr | None = Field(None, alias="MCP_REQUEST_STATE_KEYS")
     request_state_ttl_s: float = Field(900.0, alias="MCP_REQUEST_STATE_TTL_S", gt=0)
+
+    @field_validator("agent_jwt_secret", mode="before")
+    @classmethod
+    def _agent_secret(cls, v: object) -> object:
+        """Blank means "not configured" (an empty line copied from .env.example must never
+        become an HS256 key); a configured secret must be at least 32 characters."""
+        raw = v.get_secret_value() if isinstance(v, SecretStr) else v
+        if raw is None or (isinstance(raw, str) and not raw.strip()):
+            return None
+        if isinstance(raw, str) and len(raw) < MIN_AGENT_SECRET_LEN:
+            raise ValueError(f"AGENT_JWT_SECRET must be at least {MIN_AGENT_SECRET_LEN} characters")
+        return v
 
     @field_validator("resource_url")
     @classmethod

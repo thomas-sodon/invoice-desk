@@ -11,6 +11,7 @@ dependencies = [
   "sqlalchemy>=2.0",
   "anthropic>=2.3",
   "httpx>=0.28",
+  "httpx2>=2.16",  # the anthropic SDK transport; llm/anthropic_client.py imports it
   "pymupdf>=1.25",
   "pillow>=11.0",
   "pillow-heif>=0.21",
@@ -33,6 +34,8 @@ dependencies = [
 [project.optional-dependencies]
 doctr = ["python-doctr[torch]>=0.10"]
 azure = ["azure-ai-documentintelligence>=1.0"]
+# calibrate.metrics.plot_reliability (imported lazily)
+plots = ["matplotlib>=3.9"]
 
 [project.scripts]
 invoicedesk = "invoicedesk.cli:main"

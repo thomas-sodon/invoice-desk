@@ -820,6 +820,7 @@ source = { editable = "packages/core" }
 dependencies = [
     { name = "anthropic" },
     { name = "httpx" },
+    { name = "httpx2" },
     { name = "imagehash" },
     { name = "jinja2" },
     { name = "langgraph" },
@@ -851,16 +852,21 @@ azure = [
 doctr = [
     { name = "python-doctr" },
 ]
+plots = [
+    { name = "matplotlib" },
+]
 
 [package.metadata]
 requires-dist = [
     { name = "anthropic", specifier = ">=2.3" },
     { name = "azure-ai-documentintelligence", marker = "extra == 'azure'", specifier = ">=1.0" },
     { name = "httpx", specifier = ">=0.28" },
+    { name = "httpx2", specifier = ">=2.16" },
     { name = "imagehash", specifier = ">=4.3" },
     { name = "jinja2", specifier = ">=3.1" },
     { name = "langgraph", specifier = ">=1.0" },
     { name = "langgraph-checkpoint-postgres", specifier = ">=3.0" },
+    { name = "matplotlib", marker = "extra == 'plots'", specifier = ">=3.9" },
     { name = "numpy", specifier = ">=2.0" },
     { name = "opencv-python-headless", specifier = ">=4.10" },
     { name = "opentelemetry-api", specifier = ">=1.29" },
@@ -881,7 +887,7 @@ requires-dist = [
     { name = "sqlalchemy", specifier = ">=2.0" },
     { name = "tenacity", specifier = ">=9.0" },
 ]
-provides-extras = ["doctr", "azure"]
+provides-extras = ["doctr", "azure", "plots"]
 
 [[package]]
 name = "invoicedesk-api"
@@ -890,9 +896,12 @@ source = { editable = "apps/api" }
 dependencies = [
     { name = "email-validator" },
     { name = "fastapi" },
+    { name = "httpx" },
     { name = "invoicedesk" },
+    { name = "invoicedesk-data" },
     { name = "itsdangerous" },
     { name = "pyjwt", extra = ["crypto"] },
+    { name = "pymupdf" },
     { name = "python-multipart" },
     { name = "sse-starlette" },
     { name = "uvicorn", extra = ["standard"] },
@@ -902,9 +911,12 @@ dependencies = [
 requires-dist = [
     { name = "email-validator", specifier = ">=2.2" },
     { name = "fastapi", specifier = ">=0.115" },
+    { name = "httpx", specifier = ">=0.28" },
     { name = "invoicedesk", editable = "packages/core" },
+    { name = "invoicedesk-data", editable = "data" },
     { name = "itsdangerous", specifier = ">=2.2" },
     { name = "pyjwt", extras = ["crypto"], specifier = ">=2.10" },
+    { name = "pymupdf", specifier = ">=1.25" },
     { name = "python-multipart", specifier = ">=0.0.18" },
     { name = "sse-starlette", specifier = ">=2.1" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.32" },
@@ -986,7 +998,7 @@ dependencies = [
 requires-dist = [
     { name = "httpx", specifier = ">=0.28" },
     { name = "invoicedesk", editable = "packages/core" },
-    { name = "mcp", specifier = ">=1.20" },
+    { name = "mcp", specifier = ">=2.3" },
     { name = "pyjwt", extras = ["crypto"], specifier = ">=2.10" },
     { name = "starlette", specifier = ">=0.41" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.32" },
@@ -1063,11 +1075,15 @@ name = "invoicedesk-worker"
 version = "0.1.0"
 source = { editable = "services/worker" }
 dependencies = [
+    { name = "httpx" },
     { name = "invoicedesk" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "invoicedesk", editable = "packages/core" }]
+requires-dist = [
+    { name = "httpx", specifier = ">=0.28" },
+    { name = "invoicedesk", editable = "packages/core" },
+]
 
 [[package]]
 name = "isodate"

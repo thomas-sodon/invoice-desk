@@ -35,19 +35,39 @@ services:
     <<: *python
     command: ["uvicorn", "invoicedesk_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
     ports: ["8000:8000"]
+    environment:
+      DATABASE_URL: postgresql://invoicedesk:invoicedesk@db:5432/invoicedesk
+      STORAGE_LOCAL_DIR: /data/storage
+      N8N_FOLLOWUP_WEBHOOK_URL: ${N8N_FOLLOWUP_WEBHOOK_URL:-http://n8n:5678/webhook/invoicedesk-followup}
     depends_on:
       migrate: { condition: service_completed_successfully }
 
   worker:
     <<: *python
     command: ["invoicedesk-worker"]
+    environment:
+      DATABASE_URL: postgresql://invoicedesk:invoicedesk@db:5432/invoicedesk
+      STORAGE_LOCAL_DIR: /data/storage
+      N8N_FOLLOWUP_WEBHOOK_URL: ${N8N_FOLLOWUP_WEBHOOK_URL:-http://n8n:5678/webhook/invoicedesk-followup}
     depends_on:
       migrate: { condition: service_completed_successfully }
 
+  # Offline dev auth: run `make mcp-devtoken` on the host first (writes var/mcp-dev/jwks.json and
+  # prints a bearer token); live mode sets MCP_AUTH_ISSUER to the hosted OAuth issuer instead.
   mcp:
     <<: *python
     command: ["invoicedesk-mcp"]
     ports: ["8100:8100"]
+    environment:
+      DATABASE_URL: postgresql://invoicedesk:invoicedesk@db:5432/invoicedesk
+      MCP_HOST: 0.0.0.0
+      MCP_API_BASE_URL: http://api:8000/api/v1
+      MCP_RESOURCE_URL: ${MCP_RESOURCE_URL:-http://localhost:8100/mcp}
+      MCP_ALLOWED_HOSTS: ${MCP_ALLOWED_HOSTS:-localhost:8100,mcp:8100}
+      MCP_AUTH_ISSUER: ${MCP_AUTH_ISSUER:-http://localhost:8100/dev-issuer}
+      MCP_AUTH_JWKS_FILE: ${MCP_AUTH_JWKS_FILE:-/app/var/mcp-dev/jwks.json}
+    volumes:
+      - ./var/mcp-dev:/app/var/mcp-dev:ro
     depends_on:
       migrate: { condition: service_completed_successfully }
 
@@ -57,6 +77,12 @@ services:
     environment:
       N8N_SECURE_COOKIE: "false"
       INVOICEDESK_API: http://api:8000
+      # email-ingest.json signs each delivery with HMAC in a Code node
+      INGEST_WEBHOOK_SECRET: ${INGEST_WEBHOOK_SECRET:-change-me}
+      NODE_FUNCTION_ALLOW_BUILTIN: crypto
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+      FOLLOWUP_FROM_ADDRESS: ${FOLLOWUP_FROM_ADDRESS:-ap@maplerow.example}
+      FOLLOWUP_ALLOWED_RECIPIENT_DOMAINS: ${FOLLOWUP_ALLOWED_RECIPIENT_DOMAINS:-}
     volumes:
       - n8n:/home/node/.n8n
       - ./integrations/n8n/workflows:/workflows:ro

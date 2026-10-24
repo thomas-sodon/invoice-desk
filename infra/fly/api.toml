@@ -32,6 +32,9 @@ kill_timeout = "30s"
   # below must NOT run with `--forwarded-allow-ips *`, because uvicorn then copies the
   # client-controlled left-most X-Forwarded-For hop into request.client.host.
   TRUST_FORWARDED_FOR = "false"
+  # Fly's proxy sets (and overwrites) Fly-Client-IP on every request, so per-visitor IP limits
+  # use it instead of the shared proxy address.
+  CLIENT_IP_HEADER = "Fly-Client-IP"
   PUBLIC_DAILY_SPEND_CAP_USD = "3.00"
   WORKER_CONCURRENCY = "8"
   N8N_FOLLOWUP_WEBHOOK_URL = "http://invoicedesk-n8n.internal:5678/webhook/invoicedesk-followup"

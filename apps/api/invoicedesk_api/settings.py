@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Literal
 
 from invoicedesk.config.settings import REPO_ROOT
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 __all__ = ["TRYIT_BANNER", "ApiSettings", "get_api_settings"]
@@ -19,6 +19,10 @@ TRYIT_BANNER = (
     "Please upload a redacted invoice: black out bank and account numbers and any personal "
     "details first. Uploads are deleted after 24 hours and are never posted to accounting."
 )
+
+
+#: HS256 needs a key at least as long as the hash output (RFC 7518 §3.2).
+MIN_AGENT_SECRET_LEN = 32
 
 
 class ApiSettings(BaseSettings):
@@ -55,12 +59,28 @@ class ApiSettings(BaseSettings):
     cookie_secure: bool = Field(False, alias="COOKIE_SECURE")
     #: Trust the left-most ``X-Forwarded-For`` hop (set behind Fly.io / a proxy only).
     trust_forwarded_for: bool = Field(False, alias="TRUST_FORWARDED_FOR")
+    #: A single-value client-IP header that the edge proxy sets and overwrites, e.g.
+    #: ``Fly-Client-IP`` on Fly.io. Takes precedence over X-Forwarded-For. Only set this when
+    #: every request reaches the app through that proxy (clients could otherwise forge it).
+    client_ip_header: str | None = Field(None, alias="CLIENT_IP_HEADER")
 
     # -- misc
-    report_card_dir: Path = Field(REPO_ROOT / "evals" / "out", alias="REPORT_CARD_DIR")
+    report_card_dir: Path = Field(REPO_ROOT / "docs" / "report-card", alias="REPORT_CARD_DIR")
     sse_keepalive_s: float = Field(15.0, alias="SSE_KEEPALIVE_S", gt=0)
     web_origins: str = Field("http://localhost:3000", alias="WEB_ORIGINS")
     supabase_storage_bucket: str = Field("invoices", alias="SUPABASE_STORAGE_BUCKET")
+
+    @field_validator("agent_jwt_secret", mode="before")
+    @classmethod
+    def _agent_secret(cls, v: object) -> object:
+        """Blank means "not configured" (an empty line copied from .env.example must never
+        become an HS256 key); a configured secret must be at least 32 characters."""
+        raw = v.get_secret_value() if isinstance(v, SecretStr) else v
+        if raw is None or (isinstance(raw, str) and not raw.strip()):
+            return None
+        if isinstance(raw, str) and len(raw) < MIN_AGENT_SECRET_LEN:
+            raise ValueError(f"AGENT_JWT_SECRET must be at least {MIN_AGENT_SECRET_LEN} characters")
+        return v
 
 
 @lru_cache(maxsize=1)

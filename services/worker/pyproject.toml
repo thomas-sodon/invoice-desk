@@ -3,7 +3,7 @@ name = "invoicedesk-worker"
 version = "0.1.0"
 description = "InvoiceDesk worker: runs the LangGraph document pipeline off the Postgres job queue"
 requires-python = ">=3.12,<3.13"
-dependencies = ["invoicedesk"]
+dependencies = ["invoicedesk", "httpx>=0.28"]
 
 [project.scripts]
 invoicedesk-worker = "invoicedesk_worker.main:main"

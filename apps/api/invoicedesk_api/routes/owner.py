@@ -25,6 +25,9 @@ from invoicedesk_api.views import iso, rules_config, usd
 router = APIRouter()
 
 LABEL = "benchmark on synthetic data"
+#: Label for a scorecard built from an offline (gold-backed oracle) run: it measures the
+#: harness and the deterministic rules, never a model.
+OFFLINE_LABEL = "benchmark on synthetic data (offline harness run, not a live model measurement)"
 _HELD = ("NeedsReview", "Flagged", "Rejected", "Quarantined")
 
 
@@ -214,11 +217,14 @@ def _metric(v: Any) -> Any:
 
 @router.get("/scorecard/latest", response_model=sc.Scorecard)
 def scorecard(rt: RuntimeDep) -> sc.Scorecard:
-    """The latest finished ``eval_runs`` row (public: the portfolio scorecard page)."""
+    """The scorecard row (public: the portfolio scorecard page): the latest finished live run
+    of config D when one exists, else the latest live run, else the latest offline run, which
+    is labelled as an offline harness run so oracle numbers are never shown as a benchmark."""
     with rt.db.tx() as conn:
         row = conn.execute(
-            "select id, git_sha, config, finished_at, totals_json from eval_runs"
-            " where finished_at is not null order by finished_at desc, started_at desc limit 1"
+            "select id, git_sha, config, mode, finished_at, totals_json from eval_runs"
+            " where finished_at is not null order by (mode = 'live') desc, (config = 'D') desc,"
+            " finished_at desc, started_at desc limit 1"
         ).fetchone()
     if row is None:
         raise ApiError(404, "not_found", "No eval run has finished yet.")
@@ -236,7 +242,7 @@ def scorecard(rt: RuntimeDep) -> sc.Scorecard:
         config=row["config"],
         finished_at=iso(row["finished_at"]) or "",
         metrics={k: _metric(v) for k, v in metrics.items()},
-        label=LABEL,
+        label=LABEL if row["mode"] == "live" else OFFLINE_LABEL,
         reliability=reliability if isinstance(reliability, list) else None,
     )
 

@@ -217,9 +217,11 @@ def test_scorecard_and_report_card(env_factory, tmp_path) -> None:
     assert r.status_code == 404 and r.json()["error"]["code"] == "not_found"
     with env.db.tx() as conn:
         conn.execute(
-            "insert into eval_runs (git_sha, config, finished_at, totals_json) values"
-            " ('abc123', 'D', now() - interval '1 day', %s), ('def456', 'D', now(), %s),"
-            " ('zzz', 'A', null, '{}')",
+            "insert into eval_runs (git_sha, config, mode, finished_at, totals_json) values"
+            " ('abc123', 'D', 'live', now() - interval '1 day', %s),"
+            " ('def456', 'D', 'live', now(), %s), ('zzz', 'A', 'live', null, '{}'),"
+            " ('smoke', 'D', 'offline', now() + interval '1 hour', '{}'),"
+            " ('later-a', 'A', 'live', now() + interval '1 hour', '{}')",
             (
                 json.dumps({"metrics": {"field_f1": {"value": 0.9, "ci": [0.88, 0.92]}}}),
                 json.dumps(
@@ -248,6 +250,11 @@ def test_scorecard_and_report_card(env_factory, tmp_path) -> None:
         "label",
         "reliability",
     }
+    # with no live run, the latest offline run is shown, labelled as an offline harness run
+    with env.db.tx() as conn:
+        conn.execute("delete from eval_runs where mode = 'live'")
+    off = env.client.get("/api/v1/scorecard/latest").json()
+    assert off["git_sha"] == "smoke" and "offline harness run" in off["label"]
     assert env.client.get("/api/v1/report-card.pdf").status_code == 404
     out_dir.mkdir()
     (out_dir / "report-card-old.pdf").write_bytes(b"%PDF-old")
@@ -401,3 +408,46 @@ def test_embedded_job_threads_process_uploads(env) -> None:
             time.sleep(0.05)
         assert job_status() == "done"
     assert env.rt.runner is None  # stopped with the app
+
+
+def test_blank_or_short_agent_secret_is_never_a_key(monkeypatch) -> None:
+    """An empty ``AGENT_JWT_SECRET=`` copied from .env.example means "agent facade off", never
+    an empty HS256 key; a short secret is refused at startup."""
+    from invoicedesk_api.settings import ApiSettings
+    from pydantic import ValidationError
+
+    monkeypatch.setenv("AGENT_JWT_SECRET", "")
+    assert ApiSettings().agent_jwt_secret is None  # pyright: ignore[reportCallIssue]
+    monkeypatch.setenv("AGENT_JWT_SECRET", "   ")
+    assert ApiSettings().agent_jwt_secret is None  # pyright: ignore[reportCallIssue]
+    monkeypatch.setenv("AGENT_JWT_SECRET", "short")
+    with pytest.raises(ValidationError):
+        ApiSettings()  # pyright: ignore[reportCallIssue]
+    monkeypatch.setenv("AGENT_JWT_SECRET", "x" * 32)
+    secret = ApiSettings().agent_jwt_secret  # pyright: ignore[reportCallIssue]
+    assert secret is not None and secret.get_secret_value() == "x" * 32
+
+
+def test_client_ip_prefers_the_proxy_header_then_forwarded_for() -> None:
+    from types import SimpleNamespace
+    from typing import Any, cast
+
+    from invoicedesk_api.auth import client_ip
+
+    def req(headers: dict[str, str]) -> Any:
+        return SimpleNamespace(headers=headers, client=SimpleNamespace(host="10.0.0.1"))
+
+    def rt(header: str | None, trust: bool) -> Any:
+        return SimpleNamespace(
+            api=SimpleNamespace(client_ip_header=header, trust_forwarded_for=trust)
+        )
+
+    spoof = {"x-forwarded-for": "6.6.6.6, 1.2.3.4"}
+    assert client_ip(req(spoof), cast(Any, rt(None, False))) == "10.0.0.1"
+    assert client_ip(req(spoof), cast(Any, rt(None, True))) == "6.6.6.6"
+    fly = {**spoof, "Fly-Client-IP": "1.2.3.4"}
+    assert client_ip(req(fly), cast(Any, rt("Fly-Client-IP", False))) == "1.2.3.4"
+    # a missing or list-valued header falls back to the socket address
+    assert client_ip(req(spoof), cast(Any, rt("Fly-Client-IP", False))) == "10.0.0.1"
+    bad = {"Fly-Client-IP": "1.2.3.4, 5.6.7.8"}
+    assert client_ip(req(bad), cast(Any, rt("Fly-Client-IP", False))) == "10.0.0.1"
