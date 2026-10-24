@@ -1,0 +1,42 @@
+# Weekly public-benchmark track (M18, DESIGN §5.6): SROIE Task 3 + CORD v1 test (100).
+# Images are downloaded into the runner's gitignored cache and never committed or uploaded;
+# only the scored JSON report is kept. Runs live only (~$5/week); skipped without the key.
+name: public-benchmark
+on:
+  schedule:
+    - cron: "41 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      INVOICEDESK_MODE: live
+    steps:
+      - name: no API key configured; public track skipped
+        if: env.HAS_KEY != 'true'
+        run: echo "ANTHROPIC_API_KEY secret not set; public benchmark skipped." >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/checkout@v4
+        if: env.HAS_KEY == 'true'
+      - uses: astral-sh/setup-uv@v6
+        if: env.HAS_KEY == 'true'
+        with: { python-version: "3.12" }
+      - if: env.HAS_KEY == 'true'
+        run: uv sync --frozen
+      - name: download SROIE + CORD into the gitignored cache
+        if: env.HAS_KEY == 'true'
+        run: uv run invoicedesk-data public sroie && uv run invoicedesk-data public cord
+      - name: score (live)
+        if: env.HAS_KEY == 'true'
+        run: >-
+          uv run invoicedesk-eval public --live --i-know-this-costs-money --source all
+          --out-dir eval-out
+      - uses: actions/upload-artifact@v4
+        if: always() && env.HAS_KEY == 'true'
+        with: { name: public-benchmark, path: eval-out/*.json }

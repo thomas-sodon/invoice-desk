@@ -1,0 +1,103 @@
+# PR eval gate (DESIGN §5.6, CLAUDE.md "CI gates on PRs", M19).
+#
+# offline-gate (always, $0): the smoke set (30 stratified dev docs + the 30 adversarial cases)
+#   through the real pipeline with the gold-backed OracleLLM, gated against main's committed
+#   baseline (evals/baselines/smoke-offline.json). This catches pipeline, screening, rules and
+#   routing regressions; it cannot see prompt quality (the oracle ignores prompts).
+# live-smoke (only when the ANTHROPIC_API_KEY secret exists; ~$0.70): the same smoke set
+#   against Claude, gated against main's evals/baselines/smoke-live.json.
+# Gates: field F1 drop <= 1.0 pt vs main, false-STP <= 1%, zero adversarial misses,
+#   $/doc rise <= 20%.
+name: eval-gate
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eval-gate-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_PASSWORD: postgres }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 2s --health-retries 30
+    env:
+      INVOICEDESK_MODE: offline
+      EVAL_DSN: postgresql://postgres:postgres@localhost:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: astral-sh/setup-uv@v6
+        with: { python-version: "3.12" }
+      - run: uv sync --frozen
+      - name: evals unit tests (metrics, bootstrap, gate)
+        run: uv run pytest evals/tests -q -m "not slow and not live"
+      - name: render synthetic docs (binaries are gitignored; rebuilt deterministically)
+        run: uv run playwright install --with-deps chromium && uv run invoicedesk-data generate && uv run invoicedesk-data adversarial
+      - name: offline smoke run (OracleLLM, $0)
+        run: >-
+          uv run invoicedesk-eval run --offline --config D --split smoke --repeats 1
+          --dsn "$EVAL_DSN" --out-dir eval-out --stem smoke-offline
+      - name: baseline from main
+        run: |
+          mkdir -p base
+          git show "origin/${{ github.base_ref }}:evals/baselines/smoke-offline.json" > base/smoke-offline.json 2>/dev/null || rm -f base/smoke-offline.json
+      - name: gate
+        run: >-
+          uv run invoicedesk-eval gate --config D --current eval-out/smoke-offline.json
+          --baseline base/smoke-offline.json --baseline-missing-ok
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: eval-offline, path: eval-out }
+
+  live-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: offline-gate
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_PASSWORD: postgres }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 2s --health-retries 30
+    env:
+      HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      INVOICEDESK_MODE: live
+      EVAL_DSN: postgresql://postgres:postgres@localhost:5432/postgres
+    steps:
+      - name: no API key configured; live smoke skipped
+        if: env.HAS_KEY != 'true'
+        run: echo "ANTHROPIC_API_KEY secret not set; only the offline gate ran." >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/checkout@v4
+        if: env.HAS_KEY == 'true'
+        with: { fetch-depth: 0 }
+      - uses: astral-sh/setup-uv@v6
+        if: env.HAS_KEY == 'true'
+        with: { python-version: "3.12" }
+      - if: env.HAS_KEY == 'true'
+        run: uv sync --frozen && uv run playwright install --with-deps chromium && uv run invoicedesk-data generate && uv run invoicedesk-data adversarial
+      - name: live smoke run (~$0.70)
+        if: env.HAS_KEY == 'true'
+        run: >-
+          uv run invoicedesk-eval run --live --i-know-this-costs-money --config D --split smoke
+          --repeats 1 --root-cause-offline --dsn "$EVAL_DSN" --out-dir eval-out --stem smoke-live
+      - name: gate vs main
+        if: env.HAS_KEY == 'true'
+        run: |
+          mkdir -p base
+          git show "origin/${{ github.base_ref }}:evals/baselines/smoke-live.json" > base/smoke-live.json 2>/dev/null || rm -f base/smoke-live.json
+          uv run invoicedesk-eval gate --config D --current eval-out/smoke-live.json --baseline base/smoke-live.json --baseline-missing-ok
+      - uses: actions/upload-artifact@v4
+        if: always() && env.HAS_KEY == 'true'
+        with: { name: eval-live, path: eval-out }

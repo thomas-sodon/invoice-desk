@@ -354,3 +354,59 @@ don't delete entries. Mark them **closed** when resolved.
   few cents.
 - **No real deployment.** The purge script (`make purge`) was not scheduled anywhere. Fly.io
   and Vercel were not deployed.
+
+## Evals: harness, metrics, matrix, CI gates, root cause, Report Card (2026-10-24)
+
+- **No live numbers were measured.** Every eval run in this environment used the offline
+  gold-backed `OracleLLM` (no `ANTHROPIC_API_KEY`). The committed reports in `evals/reports/`,
+  `badge.json` and `docs/report-card/AP-Automation-Report-Card.pdf` come from an offline run and
+  say so on every page: they exercise the harness, the real preprocessor/OCR, screening, rules
+  and routing, but field accuracy, cost and the LLM share of latency come from the oracle (gold
+  answers with synthetic per-tier noise, synthetic token counts priced with the real table,
+  simulated per-tier call times). *Close by:* `INVOICEDESK_MODE=live make eval CONFIG=D
+  SPLIT=smoke REPEATS=1 EVAL_FLAGS=--i-know-this-costs-money` (~$0.67 by the §7.3 budgets, plus
+  ~$0.27 if Opus labels the root causes), then
+  the nightly C/D run; ask the owner before `CONFIG=all --full-matrix` (~$40).
+- **Repeats are identical offline.** The oracle is deterministic, so n=3 repeats give the same
+  answers and the bootstrap CIs reflect document sampling only, not run-to-run model noise.
+- **Offline latency is not a product latency.** It is the measured wall-clock of the real
+  pipeline on this 4-CPU container (RapidOCR dominates; preprocessing is cached by file hash
+  across repeats/configs and its original time is added back) plus the oracle's simulated
+  per-call latency (Haiku ~1.1 s, Sonnet ~2.6 s, Opus ~5.2 s). Documents run one at a time by
+  default; running them in parallel inflates latency without adding throughput here.
+- **Offline finding (needs the calibration owner): the confidence gate holds about half of the
+  correctly read clean invoices.** With the default `heuristic-v1` calibrator and
+  `tau_field=0.90`, offline D reads every header field right (field F1 1.000) but R9 holds
+  ~50% of clean documents (STP ~0.50, ECE ~0.096, ~54% of extracted documents escalate to Opus, so
+  $/doc is ~$0.019 against the $0.015 budget). This is driven by the oracle's confidence
+  distributions, so it says nothing final about Claude, but it shows the calibrator must be
+  fitted on dev before STP can be judged. `invoicedesk-eval fit-thresholds --split dev` works
+  (offline it returns `tau_field=0.50` because the oracle never misreads a required field on
+  dev, so that fit is meaningless and was not promoted). *Close by:* fitting the calibrator on
+  live dev runs (`invoicedesk.calibrate.fit_calibrator`) and re-fitting the thresholds.
+- **A "deliberately broken prompt" PR failing the gate (§8 day 17) cannot be shown offline:**
+  the oracle ignores prompts. The gate's failure path is tested with deliberately broken
+  baselines and regressed reports (`evals/tests/test_eval_gate.py`). The offline PR gate catches
+  pipeline, screening, rule and routing regressions only. *Close by:* the live smoke job.
+- **GitHub Actions workflows were not executed** (no Actions runner here). `eval-gate.yml`,
+  `nightly-eval.yml` and `public-benchmark.yml` rebuild the gitignored renders with
+  `invoicedesk-data generate`/`adversarial` and install Chromium with `playwright install`
+  inside CI only.
+- **Root causes: heuristic only, no human spot check.** The Opus Batch API labeler is
+  implemented (via `AnthropicLLMClient.submit_batch`/`collect_batch`) and tested with fakes;
+  offline runs use the heuristic labeler. The spot-check CSVs have empty `human_label` columns.
+- **Public track (SROIE/CORD) not run.** It needs the downloaded cache and live answers (the
+  oracle does not know those receipts). Tested with a fake cache and FakeLLM only. CORD totals
+  are rupiah while the schema says USD cents; the comparison is integer-to-integer and may need
+  a prompt note for non-USD receipts.
+- **Azure DI arm (G) untested against the service.** `AzureInvoiceExtractor` follows the
+  documented prebuilt-invoice REST flow (API 2024-11-30) and is tested with an
+  `httpx.MockTransport`; field mapping choices (PurchaseOrder -> WO#, ServiceAddress -> unit,
+  RemittanceAddress -> remit-to) are unverified on real output. Skipped without
+  `AZURE_DI_ENDPOINT`/`AZURE_DI_KEY` and offline.
+- **Langfuse dataset push tested against a mock only** (`/api/public/datasets`,
+  `dataset-items`, `ingestion`, `dataset-run-items`).
+- **Label gap found by the harness:** `core-117` (dev) also fails R5 and R7 with ideal extraction
+  but its label lists only R9; `invoicedesk-data verify` checks the routed status and missing
+  planted rules, not extra rules. Counted as rule false positives until the label is fixed.
+- **The test split was never run here.** Only dev, adversarial and smoke were evaluated.

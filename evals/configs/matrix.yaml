@@ -1,0 +1,62 @@
+# Experiment matrix (DESIGN §5.6, §7.3). Each config runs n=3 repeats (evals are
+# non-deterministic: no sampling parameters exist on Claude 5.5 models).
+#
+#   pipeline   invoicedesk = the real LangGraph pipeline (screen -> extract -> rules), in-process
+#              naive       = invoicedesk.pipeline.naive: one Haiku prompt, no rules, posts all
+#   extractor  claude (TieredExtractor) | azure_di (prebuilt-invoice, optional arm)
+#   tiers      the tiers the extractor may use. One tier = that model only (no escalation);
+#              [haiku, sonnet, opus] = production routing.
+#   caching    keep the frozen-prefix cache breakpoints (false strips them: config D')
+#   images     send page images (false = OCR / text-layer words only)
+#   media      restrict the example set (F runs on native PDFs only)
+#   est_usd_per_doc  §7.3 budget estimate, used for the cost estimate printed before a live run
+#
+# Thresholds (tau_field, tau_hi) come from tenants/maple_row/rules.yaml or a dev-fitted
+# thresholds JSON (`invoicedesk-eval fit-thresholds --split dev`), never from the test split.
+version: 1
+default_repeats: 3
+default_split: test
+configs:
+  A:
+    description: Opus 5.5 only (single strong model), with caching
+    tiers: [opus]
+    est_usd_per_doc: "0.0652"
+  B:
+    description: Sonnet 5.5 only
+    tiers: [sonnet]
+    est_usd_per_doc: "0.0232"
+  C:
+    description: Haiku 5.5 only
+    tiers: [haiku]
+    est_usd_per_doc: "0.0011"
+  D:
+    description: Routed Haiku -> Sonnet -> Opus (production), with caching
+    tiers: [haiku, sonnet, opus]
+    est_usd_per_doc: "0.0112"
+  "D'":
+    description: D without prompt caching (isolates the caching saving)
+    tiers: [haiku, sonnet, opus]
+    caching: false
+    est_usd_per_doc: "0.0137"
+  E:
+    description: OCR text only + Haiku (no image)
+    tiers: [haiku]
+    images: false
+    est_usd_per_doc: "0.0006"
+  F:
+    description: Native-PDF text-layer path (native PDFs only; text-layer words, no image)
+    tiers: [haiku, sonnet, opus]
+    images: false
+    media: [native]
+    est_usd_per_doc: "0.0060"
+  G:
+    description: Azure DI prebuilt-invoice alone (commercial baseline; optional)
+    extractor: azure_di
+    tiers: []
+    requires_env: [AZURE_DI_ENDPOINT, AZURE_DI_KEY]
+    est_usd_per_doc: "0.0102"
+  N:
+    description: Naive baseline - one prompt, no rules, auto-post everything (comparison mode)
+    pipeline: naive
+    tiers: [haiku]
+    est_usd_per_doc: "0.0009"

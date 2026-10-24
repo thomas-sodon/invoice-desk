@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AP Automation Report Card</title>
+<style>
+  @page { size: Letter; margin: 0.45in 0.5in; }
+  :root {
+    --ink: #1d2733; --muted: #5b6776; --line: #d9dee5; --soft: #f4f6f9;
+    --good: #1f7a45; --warn: #a86400; --bad: #b3261e; --accent: #1f4e79;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; color: var(--ink);
+         font-size: 10.5pt; line-height: 1.35; background: #fff; }
+  header { display: flex; justify-content: space-between; align-items: flex-end;
+           border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-bottom: 10px; }
+  h1 { font-size: 21pt; margin: 0; letter-spacing: -0.3px; }
+  .sub { color: var(--muted); font-size: 9.5pt; }
+  .label { display: inline-block; border: 1px solid var(--accent); color: var(--accent);
+           border-radius: 3px; padding: 1px 6px; font-size: 8.5pt; font-weight: 600;
+           text-transform: uppercase; letter-spacing: 0.4px; }
+  .banner { background: #fff4e5; border: 1px solid #f0c27b; color: #6b3f00; padding: 6px 9px;
+            border-radius: 4px; font-size: 9pt; margin-bottom: 10px; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+  .tile { background: var(--soft); border: 1px solid var(--line); border-radius: 5px;
+          padding: 8px 9px; }
+  .tile .k { font-size: 8.5pt; color: var(--muted); text-transform: uppercase;
+             letter-spacing: 0.3px; }
+  .tile .v { font-size: 19pt; font-weight: 700; margin: 2px 0 1px; }
+  .tile .n { font-size: 8.5pt; color: var(--muted); }
+  .good { color: var(--good); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+  h2 { font-size: 11.5pt; margin: 10px 0 5px; color: var(--accent); }
+  table { border-collapse: collapse; width: 100%; font-size: 9pt; }
+  th, td { border-bottom: 1px solid var(--line); padding: 3px 5px; text-align: left; }
+  th { color: var(--muted); font-weight: 600; font-size: 8.5pt; text-transform: uppercase; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .cols { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; }
+  .muted { color: var(--muted); }
+  footer { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 6px;
+           font-size: 8pt; color: var(--muted); }
+  svg text { font-family: inherit; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>AP Automation Report Card</h1>
+    <div class="sub">InvoiceDesk · AI accounts-payable clerk for property managers · works with QuickBooks Online</div>
+  </div>
+  <div style="text-align:right">
+    <span class="label">{{ label }}</span>
+    <div class="sub" style="margin-top:4px">{{ run.finished_at }} · config {{ run.config }} · {{ run.split }} split · {{ run.n_docs }} invoices × {{ run.n_repeats }} run{{ 's' if run.n_repeats != 1 else '' }}</div>
+  </div>
+</header>
+
+{% if run.mode != "live" %}
+<div class="banner"><strong>Offline harness run.</strong> {{ offline_note }}</div>
+{% endif %}
+
+<div class="tiles">
+  {% for t in tiles %}
+  <div class="tile">
+    <div class="k">{{ t.title }}</div>
+    <div class="v {{ t.tone }}">{{ t.value }}</div>
+    <div class="n">{{ t.note }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="cols">
+  <div>
+    <h2>What the checks caught</h2>
+    <table>
+      <tr><th>Check</th><th class="num">Result</th><th class="num">95% range</th><th class="num">Goal</th></tr>
+      {% for r in checks %}
+      <tr><td>{{ r.name }}</td><td class="num {{ r.tone }}">{{ r.value }}</td><td class="num muted">{{ r.ci }}</td><td class="num muted">{{ r.goal }}</td></tr>
+      {% endfor %}
+    </table>
+
+    {% if matrix %}
+    <h2>Cost and accuracy by setup</h2>
+    <table>
+      <tr><th>Setup</th><th class="num">Accuracy</th><th class="num">Hands-free</th><th class="num">Wrong auto-posts</th><th class="num">Cost / invoice</th></tr>
+      {% for m in matrix %}
+      <tr><td>{{ m.config }} · {{ m.description }}</td><td class="num">{{ m.f1 }}</td><td class="num">{{ m.stp }}</td><td class="num">{{ m.false_stp }}</td><td class="num">{{ m.usd }}</td></tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+  <div>
+    <h2>Does the confidence mean what it says?</h2>
+    <svg width="100%" viewBox="0 0 300 190" role="img" aria-label="Reliability diagram">
+      <rect x="35" y="10" width="250" height="150" fill="#f4f6f9" stroke="#d9dee5"/>
+      <line x1="35" y1="160" x2="285" y2="10" stroke="#9aa5b1" stroke-dasharray="4 3"/>
+      {% for b in reliability %}
+      <rect x="{{ b.x }}" y="{{ b.y }}" width="{{ b.w }}" height="{{ b.h }}" fill="#1f4e79" opacity="0.85"/>
+      <circle cx="{{ b.cx }}" cy="{{ b.cy }}" r="2.6" fill="#d9822b"/>
+      {% endfor %}
+      <text x="35" y="175" font-size="8" fill="#5b6776">0</text>
+      <text x="275" y="175" font-size="8" fill="#5b6776">1.0</text>
+      <text x="100" y="186" font-size="8" fill="#5b6776">stated confidence (bars: share actually right)</text>
+      <text x="5" y="14" font-size="8" fill="#5b6776">1.0</text>
+      <text x="12" y="160" font-size="8" fill="#5b6776">0</text>
+    </svg>
+    <div class="sub">Calibration error {{ ece }} (goal ≤ 0.05). Low-confidence fields go to a person instead of being posted.</div>
+
+    <h2>Time and money</h2>
+    <table>
+      <tr><td>Hours saved per 100 invoices</td><td class="num">{{ money.hours_per_100 }}</td></tr>
+      <tr><td>AI cost per invoice</td><td class="num">{{ money.usd_per_doc }}</td></tr>
+      <tr><td>Manual benchmark per invoice</td><td class="num">{{ money.manual }}</td></tr>
+      <tr><td>Typical / slow processing time</td><td class="num">{{ money.latency }}</td></tr>
+    </table>
+    <div class="sub" style="margin-top:4px">Assumes {{ money.minutes }} minutes of manual keying per invoice (stated assumption, not a client measurement).</div>
+  </div>
+</div>
+
+<footer>
+  {{ label | capitalize }}: {{ run.n_docs }} fictional documents for Maple Row Property Management (native PDFs, scans, simulated phone photos and handwriting){% if run.n_cases %}, including {{ run.n_cases }} scripted attack cases{% endif %}.
+  All companies, people and bank details are fictional. No client results are claimed. Ranges are 95% bootstrap intervals over documents and repeated runs.
+  Generated from eval run {{ run.run_id }} (git {{ run.git_sha }}).
+</footer>
+</body>
+</html>

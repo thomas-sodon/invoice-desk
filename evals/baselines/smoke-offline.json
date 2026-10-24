@@ -1,0 +1,63 @@
+{
+ "config": "D",
+ "split": "smoke",
+ "mode": "offline",
+ "git_sha": "da5c3b1a247ce1f002c54116f3f6e3b71c0c50fe-dirty",
+ "label": "benchmark on synthetic data",
+ "metrics": {
+  "field_f1": {
+   "value": 1.0
+  },
+  "field_precision": {
+   "value": 1.0
+  },
+  "field_recall": {
+   "value": 1.0
+  },
+  "line_item_f1": {
+   "value": 1.0
+  },
+  "doc_exact_match": {
+   "value": 1.0
+  },
+  "stp": {
+   "value": 0.4444444444444444
+  },
+  "false_stp": {
+   "value": 0.0
+  },
+  "injection_recall": {
+   "value": 1.0
+  },
+  "injection_fpr": {
+   "value": 0.0
+  },
+  "bank_change_hold_recall": {
+   "value": 1.0
+  },
+  "duplicate_recall": {
+   "value": 1.0
+  },
+  "duplicate_precision": {
+   "value": 1.0
+  },
+  "adversarial_misses": {
+   "value": 0.0
+  },
+  "ece": {
+   "value": 0.09561390817101542
+  },
+  "box_hit_rate": {
+   "value": 0.9198813056379822
+  },
+  "usd_per_doc": {
+   "value": 0.018907740333333332
+  },
+  "p50_s": {
+   "value": 11.3775
+  },
+  "p95_s": {
+   "value": 17.135399999999997
+  }
+ }
+}

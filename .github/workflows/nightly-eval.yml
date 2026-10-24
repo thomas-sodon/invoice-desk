@@ -1,0 +1,70 @@
+# Nightly eval (DESIGN §5.6): the full synthetic set (120 docs: dev + test, scored only; nothing
+# is tuned here) plus the adversarial set, matrix configs C and D, n=3 repeats. Results are
+# pushed to Langfuse datasets when configured, and badge.json plus the dated reports, the
+# Report Card PDF and the live smoke baseline are committed to main.
+#
+# Without the ANTHROPIC_API_KEY secret it runs the offline (oracle) harness only and commits
+# nothing: offline numbers are never published as measurements.
+name: nightly-eval
+on:
+  schedule:
+    - cron: "17 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  nightly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_PASSWORD: postgres }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 2s --health-retries 30
+    env:
+      HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      LANGFUSE_HOST: ${{ secrets.LANGFUSE_HOST }}
+      LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+      LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+      EVAL_DSN: postgresql://postgres:postgres@localhost:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: { python-version: "3.12" }
+      - run: uv sync --frozen
+      - run: uv run playwright install --with-deps chromium
+      - run: uv run invoicedesk-data generate && uv run invoicedesk-data adversarial
+      - name: offline harness check (no key)
+        if: env.HAS_KEY != 'true'
+        run: >-
+          uv run invoicedesk-eval run --offline --config C,D --split all --repeats 1
+          --dsn "$EVAL_DSN" --out-dir eval-out
+      - name: live nightly C + D (n=3)
+        if: env.HAS_KEY == 'true'
+        env: { INVOICEDESK_MODE: live }
+        run: >-
+          uv run invoicedesk-eval run --live --i-know-this-costs-money --config C,D --split all
+          --repeats 3 --dsn "$EVAL_DSN" --badge --langfuse
+          --report-card docs/report-card/AP-Automation-Report-Card.pdf
+      - name: live smoke baseline for PR gates
+        if: env.HAS_KEY == 'true'
+        env: { INVOICEDESK_MODE: live }
+        run: |
+          uv run invoicedesk-eval run --live --i-know-this-costs-money --config D --split smoke --repeats 1 --root-cause-offline --dsn "$EVAL_DSN" --out-dir eval-out --stem smoke-live
+          uv run invoicedesk-eval baseline --report eval-out/smoke-live.json --config D --out evals/baselines/smoke-live.json
+      - name: commit badge, reports, report card and baseline
+        if: env.HAS_KEY == 'true'
+        run: |
+          git config user.name "invoicedesk-eval-bot"
+          git config user.email "invoicedesk-eval-bot@users.noreply.github.com"
+          git add evals/reports evals/baselines docs/report-card/AP-Automation-Report-Card.pdf
+          git diff --cached --quiet || git commit -m "nightly eval: badge, reports, report card"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: nightly-eval, path: "eval-out\nevals/reports" }
