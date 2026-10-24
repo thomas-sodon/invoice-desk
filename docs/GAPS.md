@@ -245,3 +245,34 @@ don't delete entries. Mark them **closed** when resolved.
 ### Web app review (apps/web)
 - The core state machine lets two approvers release a *quarantined* document (no fields read) from Flagged to ReadyToPay. The mock now refuses to post a document that has no vendor or total; the real API/core has no such guard yet (raised to the API/core owners).
 - Page renders can still show printed bank numbers until the API returns `redactions` or serves pre-redacted renders; the UI now keeps the image hidden until the redaction boxes are painted, but it can only cover regions the API reports.
+
+## Guardrail screening, M8 (2026-10-24)
+
+- **The classifier has never seen real Haiku 5.5 output.** `InjectionClassifier` goes through the
+  `LLMClient` Protocol only. Its tests use `FakeLLM`, with a keyword responder, refusals, malformed
+  output and transport errors. Offline runs use the replay/offline stand-in or the gold oracle.
+  The §5.6 targets (injection recall 100% on adversarial, FPR ≤ 3% on clean) are therefore
+  measured only for the deterministic detectors plus a keyword stand-in:
+  - local generated fixtures: 6/6 detected, 0/4 clean flagged;
+  - the committed `adversarial` set plus the `synthetic-core` **dev** split, through the real
+    preprocessor with Storage: 0 detector mismatches on 38 + 60 documents; the test split was
+    not used.
+  *Close by:* recording real classifier replays (`RecordingLLM`) on the adversarial and dev
+  sets and running the smoke eval.
+- **Classifier prompt caching is unverified.** The frozen system prompt is about 3,100
+  characters, which should clear Haiku's 512-token cache minimum. Whether it is actually cached
+  needs `usage.cache_read_input_tokens` from a live call.
+- **The detectors need page renders to be precise.** On the dev and adversarial sets, RapidOCR
+  missed some whole visible lines, such as a remit-to line inside a dashed frame. The CLAHE pass
+  also read handwriting that the normal pass missed. Without the stored renders, that produces
+  hidden-text false positives on 3 adversarial-set documents and faint-text false positives on
+  2 of the 15 handwritten dev documents. With Storage, `PageInk` checks whether the box holds
+  high-contrast ink, and all of these clear. `build_screeners(llm, storage=...)` takes Storage
+  optionally, so callers that omit it still work, but they fail toward flagging.
+  *Close by:* the pipeline, and `invoicedesk extract`, passing their Storage.
+- **The ink threshold (luma deviation 60) is tuned on synthetic renders.** Simulated faint
+  photo text measured 9 to 31, with outliers to 53 where a box overlapped other ink. Dark
+  handwriting measured 65 to 168. Real phone photos with uneven lighting are untested.
+- **Known detector limit.** Dark text placed under an opaque picture passes the ink check, so
+  it is not flagged as hidden. The classifier still reads it, in the `unseen_text_layer`
+  section.
