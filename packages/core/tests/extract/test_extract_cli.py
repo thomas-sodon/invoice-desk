@@ -82,7 +82,7 @@ def test_cli_refuses_to_run_unscreened(
 ) -> None:
     import invoicedesk.guardrails as guardrails
 
-    def missing(llm: object) -> list[object]:
+    def missing(llm: object, storage: object = None) -> list[object]:
         raise NotImplementedError("guardrails component not built yet")
 
     monkeypatch.setattr(guardrails, "build_screeners", missing)
@@ -101,7 +101,7 @@ def test_cli_uses_guardrails_when_available(
         seen["email_body"] = email_body
         return clean_screening()
 
-    monkeypatch.setattr(guardrails, "build_screeners", lambda llm: [])
+    monkeypatch.setattr(guardrails, "build_screeners", lambda llm, storage=None: [])
     monkeypatch.setattr(guardrails, "run_screening", run)
     (workdir / "mail.txt").write_text("see attached", encoding="utf-8")
     assert cli.main(_run(workdir, "--email-body", str(workdir / "mail.txt"))) == 0

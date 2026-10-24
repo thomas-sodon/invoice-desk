@@ -39,6 +39,10 @@ __all__ = [
 _DOC_NUMBER_RE = re.compile(r"[^A-Za-z0-9\-_/.#]")
 
 
+#: Originals the accounting system will not take as an attachment (the page render is sent).
+_UNATTACHABLE_MIMES = frozenset({"image/heic", "image/heif"})
+
+
 class PostingError(ValueError):
     """The document cannot be turned into a bill (missing vendor mapping, total, date...)."""
 
@@ -194,6 +198,19 @@ def post_document(
                 status="pending",
             )
         storage_path, filename, mime = doc.storage_path, doc.filename, doc.mime
+        if mime in _UNATTACHABLE_MIMES:
+            # QBO does not take HEIC: attach the normalized page render the reviewer saw.
+            render = conn.execute(
+                "select output_json->'doc'->'pages'->0->>'storage_key' as key"
+                " from pipeline_steps where document_id = %s and step = 'preprocess'"
+                " order by round desc limit 1",
+                (document_id,),
+            ).fetchone()
+            if render is None or not render["key"]:
+                raise PostingError("HEIC original has no page render to attach")
+            storage_path, mime = str(render["key"]), "image/png"
+            stem = (filename or "invoice").rsplit(".", 1)[0]
+            filename = f"{stem}.png"
 
     # Network calls happen outside any transaction; the idempotency keys make retries safe.
     try:

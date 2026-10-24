@@ -82,13 +82,19 @@ def _preprocess(path: Path, storage: Storage) -> PreprocessedDocument:
 
 
 def _screen(
-    doc: PreprocessedDocument, llm: LLMClient, email_body: str | None, screening: Path | None
+    doc: PreprocessedDocument,
+    llm: LLMClient,
+    email_body: str | None,
+    screening: Path | None,
+    storage: Storage | None = None,
 ) -> ScreeningOutcome:
     if screening is not None:
         return ScreeningOutcome.model_validate_json(screening.read_text(encoding="utf-8"))
     from invoicedesk.guardrails import build_screeners, run_screening
 
-    return run_screening(doc, build_screeners(llm), email_body=email_body)
+    # With Storage the hidden/faint-text detectors check ink on the page renders, so OCR
+    # missing a visible line cannot quarantine a clean invoice.
+    return run_screening(doc, build_screeners(llm, storage=storage), email_body=email_body)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -123,7 +129,7 @@ def main(argv: list[str] | None = None) -> int:
         return _err({"error": f"preprocessor unavailable: {exc}"}, 3)
 
     try:
-        screening = _screen(doc, llm, email_body, args.screening)
+        screening = _screen(doc, llm, email_body, args.screening, storage)
     except (NotImplementedError, ImportError) as exc:
         return _err(
             {

@@ -45,3 +45,24 @@ def test_mask_payload_nested() -> None:
     assert out["flag"] is True
     assert out["account_short"] == "12"
     assert mask_payload(b"acct 1234567890") == "acct ••••••7890"
+
+
+def test_amounts_are_not_masked_but_accounts_still_are() -> None:
+    assert mask_text("cost 0.00012345 USD") == "cost 0.00012345 USD"
+    assert mask_text("rate 3,1234567") == "rate 3,1234567"
+    assert mask_text("Acct.000123456789") == "Acct.••••••••6789"
+    assert mask_text("Routing 021000021. Account 000123456789.") == (
+        "Routing •••••0021. Account ••••••••6789."
+    )
+    out = mask_payload(
+        {"total_cents": "124000", "cost_usd": "0.00012345", "note": "pay 000123456789"}
+    )
+    assert out == {"total_cents": "124000", "cost_usd": "0.00012345", "note": "pay ••••••••6789"}
+    # a bank key is masked whatever its name ends with, and a non-amount under an amount key is
+    # still scrubbed
+    assert mask_payload({"bank_account_usd": "000123456789"}) == {
+        "bank_account_usd": "••••••••6789"
+    }
+    assert mask_payload({"total_cents": "acct 000123456789"}) == {
+        "total_cents": "acct ••••••••6789"
+    }

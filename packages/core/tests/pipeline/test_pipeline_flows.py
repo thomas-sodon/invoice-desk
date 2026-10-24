@@ -430,3 +430,18 @@ def test_email_body_is_screened_and_passed_to_extraction(
     assert runner.process(doc)["status"] == "Flagged"  # R6 via the classifier category
     calls = world.extraction_calls(doc)
     assert any("email_body" in getattr(b, "text", "") for b in calls[0].user)
+
+
+def test_heic_original_is_attached_as_its_page_render(
+    world: Any, runner: PipelineRunner, services: PipelineServices
+) -> None:
+    """QBO refuses HEIC attachments: the bill carries the normalized PNG render instead."""
+    doc = world.add_document(clean(), filename="phone-photo.heic")
+    with world.db.tx() as conn:
+        conn.execute("update documents set mime = 'image/heic' where id = %s", (doc,))
+    assert runner.process(doc)["status"] == "ReadyToPay"
+    services.post_document(doc)
+    assert world.status(doc) == "Posted"
+    [(bill_id, filename, size)] = world.accounting.attachments.values()
+    assert filename == "phone-photo.png" and size > 0
+    assert bill_id in world.accounting.bills

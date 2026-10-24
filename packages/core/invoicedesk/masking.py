@@ -21,8 +21,14 @@ SENSITIVE_KEY_RE = re.compile(
 )
 
 # A run of 6+ digits, optionally separated by spaces or dashes (account/routing numbers, IBAN
-# bodies). Dates (YYYY-MM-DD), money (1,240.00) and short invoice numbers stay untouched.
-_DIGIT_RUN_RE = re.compile(r"(?<![\w-])(?:[A-Z]{2}\d{2}[ ]?)?\d(?:[ -]?\d){5,}(?![\w-])")
+# bodies). Dates (YYYY-MM-DD), money (1,240.00), decimal fractions (a cost of 0.00012345) and
+# short invoice numbers stay untouched. Runs glued to letters ("ACCT123456789") are not
+# matched here because hashes and ids pass through this function; bank fields are masked by
+# key in :func:`mask_payload` whatever their shape.
+_DIGIT_RUN_RE = re.compile(r"(?<![\w-])(?<!\d[.,])(?:[A-Z]{2}\d{2}[ ]?)?\d(?:[ -]?\d){5,}(?![\w-])")
+#: Keys whose string values are amounts, not account numbers (integer cents, USD cost).
+_AMOUNT_KEY_RE = re.compile(r"(_cents|_usd)$", re.IGNORECASE)
+_AMOUNT_VALUE_RE = re.compile(r"^-?\d+(?:\.\d+)?$")
 
 
 def last4(value: str) -> str:
@@ -67,6 +73,14 @@ def mask_payload(obj: Any, *, _key: str | None = None) -> Any:
     shape; every other string is passed through :func:`mask_text`.
     """
     sensitive = _key is not None and bool(SENSITIVE_KEY_RE.search(_key))
+    if (
+        not sensitive
+        and _key is not None
+        and isinstance(obj, str)
+        and _AMOUNT_KEY_RE.search(_key)
+        and _AMOUNT_VALUE_RE.match(obj)
+    ):
+        return obj  # "124000" cents / "0.00012345" USD: an amount, never an account number
     if isinstance(obj, Mapping):
         return {k: mask_payload(v, _key=str(k)) for k, v in obj.items()}
     if isinstance(obj, (str, bytes)):
