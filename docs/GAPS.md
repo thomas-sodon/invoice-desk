@@ -410,6 +410,11 @@ don't delete entries. Mark them **closed** when resolved.
   but its label lists only R9; `invoicedesk-data verify` checks the routed status and missing
   planted rules, not extra rules. Counted as rule false positives until the label is fixed.
 - **The test split was never run here.** Only dev, adversarial and smoke were evaluated.
+- **Evals review (adversarial pass):** calibrator artifacts (`--calibrator`) carry no record of
+  the split they were fitted on, so the harness cannot refuse a test-fitted calibrator the way
+  it refuses test-fitted thresholds; `fit_calibrator` itself refuses non-dev splits. Needs a
+  `split` field in the artifact (calibration owner). The committed offline report was
+  regenerated after the review fixes; it is still an oracle run, not a model measurement.
 
 ## MCP server (M16)
 

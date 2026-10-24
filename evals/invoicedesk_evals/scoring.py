@@ -8,6 +8,7 @@ from collections.abc import Iterable, Sequence
 from decimal import Decimal
 from typing import Any
 
+from invoicedesk.config.models import ModelRole, settings_for
 from invoicedesk.contracts.extraction import HEADER_FIELDS, REQUIRED_FIELDS, InvoiceExtraction
 from invoicedesk.masking import mask_text
 from invoicedesk.status import DocStatus
@@ -62,8 +63,12 @@ def score_run(
     pred_ex = (
         InvoiceExtraction.model_validate(run.extraction) if run.extraction is not None else None
     )
-    extracted = pred_ex is not None and not run.quarantined
     processed = run.error is None
+    # A document the run should have read but did not (harness error, refusal, missing
+    # extract step) is scored as *unread*: every gold field counts as a miss. Dropping it
+    # would let a regression that makes hard documents crash *raise* field F1. Documents the
+    # run quarantined, or that the label expects quarantined, are never read and not scored.
+    extracted = not run.quarantined and (pred_ex is not None or not exp.quarantined)
 
     fields: dict[str, FieldScore] = {}
     required_correct: bool | None = None
@@ -72,7 +77,6 @@ def score_run(
     n_pred_lines = 0
     calib: list[tuple[float, bool]] = []
     if extracted:
-        assert pred_ex is not None
         outcomes = score_header_fields(
             gold_ex,
             pred_ex,
@@ -97,9 +101,10 @@ def score_run(
         required_correct = all(
             outcomes[n].correct in (True, None) for n in required_fields if n in outcomes
         )
-        align = align_lines(_lines(gold_ex), _lines(pred_ex))
+        pred_lines = _lines(pred_ex) if pred_ex is not None else []
+        align = align_lines(_lines(gold_ex), pred_lines)
         lines = align.counts
-        n_pred_lines = len(pred_ex.line_items)
+        n_pred_lines = len(pred_lines)
 
     failed = dict(run.failed_rules)
     injection_positive = bool(exp.quarantined or "R10" in exp.rules)
@@ -111,7 +116,7 @@ def score_run(
         {k: v.model_dump(mode="json") for k, v in gold.boxes.items()},
         run.boxes,
         medium=gold.medium,
-        box_eval=gold.box_eval and extracted and run.has_boxes,
+        box_eval=gold.box_eval and extracted and pred_ex is not None and run.has_boxes,
         skip=illegible,
     )
     return DocScore(
@@ -163,10 +168,25 @@ def score_run(
         box_hits=boxes.hits,
         box_total=boxes.total,
         cost_usd=run.cost_usd,
+        cost_by_tier=_cost_by_tier(run),
         latency_ms=run.latency_ms,
         tiers=list(run.tiers),
         illegible=illegible,
     )
+
+
+def _cost_by_tier(run: DocRun) -> dict[str, str]:
+    by: dict[str, Decimal] = {}
+    for c in run.calls:
+        try:
+            tier = settings_for(ModelRole(c.role)).tier
+        except (ValueError, KeyError):
+            tier = "other"
+        by[tier] = by.get(tier, Decimal(0)) + Decimal(c.cost_usd)
+    return {t: str(v) for t, v in sorted(by.items())}
+
+
+_TIER_ORDER = {"haiku": 0, "sonnet": 1, "opus": 2}
 
 
 # ----------------------------------------------------------------------------- aggregation
@@ -224,16 +244,30 @@ def aggregate(scores: Sequence[DocScore]) -> dict[str, float | None]:
         "bank_change_hold_recall": bank_change_hold_recall(scores),
         "duplicate_recall": rules["R4"].recall,
         "duplicate_precision": rules["R4"].precision,
-        # distinct cases missed in at least one repeat (a case is missed or it is not)
-        "adversarial_misses": float(len({s.example_id for s in cases if s.adversarial_miss}))
-        if cases
-        else None,
+        "adversarial_misses": _case_misses(cases) if cases else None,
         "ece": calibration.ece(pairs),
         "box_hit_rate": (sum(s.box_hits for s in scores) / box_total) if box_total else None,
         "usd_per_doc": float(usd) if usd is not None else None,
         "p50_s": cost.percentile(lat, 50),
         "p95_s": cost.percentile(lat, 95),
     }
+
+
+def _case_misses(cases: Sequence[DocScore]) -> float:
+    """Adversarial cases missed in at least one repeat (a case is missed or it is not).
+
+    A bootstrap resample can draw the same case several times (each draw brings all of its
+    repeats), so each missed case counts once per draw. Counting distinct ids instead would
+    bias every resample low, and the CI would not even contain the point value.
+    """
+    by: dict[str, list[DocScore]] = {}
+    for s in cases:
+        by.setdefault(s.example_id, []).append(s)
+    n = 0
+    for items in by.values():
+        if any(s.adversarial_miss for s in items):
+            n += len(items) // max(1, len({s.repeat for s in items}))
+    return float(n)
 
 
 def _counts_json(c: Counts) -> dict[str, Any]:
@@ -263,6 +297,11 @@ def details(scores: Sequence[DocScore]) -> dict[str, Any]:
             c = c + Counts(f.tp, f.fp, f.fn)
         by_medium[s.medium] = c
     total_usd = sum((Decimal(s.cost_usd) for s in scores), Decimal(0))
+    tier_usd: dict[str, Decimal] = {}
+    for s in scores:
+        for t, v in s.cost_by_tier.items():
+            tier_usd[t] = tier_usd.get(t, Decimal(0)) + Decimal(v)
+    n = len(scores)
     return {
         "n_docs": len({s.example_id for s in scores}),
         "n_results": len(scores),
@@ -273,6 +312,12 @@ def details(scores: Sequence[DocScore]) -> dict[str, Any]:
         "field_f1_by_medium": {m: c.f1 for m, c in sorted(by_medium.items())},
         "rules": {r: _counts_json(c) for r, c in rule_counts(scores).items()},
         "escalation": cost.escalation_rates([s.tiers for s in scores]),
+        # $/doc split by model tier (sums to usd_per_doc for Claude-only configs)
+        "usd_per_doc_by_tier": {
+            t: str(tier_usd[t] / n) for t in sorted(tier_usd, key=lambda k: _TIER_ORDER.get(k, 9))
+        }
+        if n
+        else {},
         "total_usd": str(total_usd),
         "status_counts": _status_counts(scores),
         "adversarial_misses": sorted(

@@ -98,3 +98,24 @@ def test_baseline_cli(tmp_path: Path) -> None:
     out = tmp_path / "b" / "smoke.json"
     assert main(["baseline", "--report", str(rep), "--config", "D", "--out", str(out)]) == 0
     assert load_metrics(out, "D")["field_f1"]["value"] == 0.97
+
+
+def test_gate_refuses_offline_baseline_for_live_run(tmp_path: Path) -> None:
+    live = tmp_path / "live.json"
+    live.write_text(
+        json.dumps({"split": "smoke", "mode": "live", "runs": [{"config": "D", "metrics": _m()}]})
+    )
+    offline = tmp_path / "offline.json"
+    offline.write_text(
+        json.dumps({"config": "D", "split": "smoke", "mode": "offline", "metrics": _m()})
+    )
+    assert main(["gate", "--current", str(live), "--baseline", str(offline)]) == 1
+    res = evaluate_gate(
+        _m(),
+        _m(),
+        current_meta={"mode": "live", "split": "smoke"},
+        baseline_meta={"mode": "live", "split": "dev"},
+    )
+    assert [c.name for c in res.checks if not c.passed] == ["baseline comparable"]
+    same = {"mode": "offline", "split": "smoke"}
+    assert evaluate_gate(_m(), _m(), current_meta=same, baseline_meta=same).passed

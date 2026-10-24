@@ -279,6 +279,14 @@ def render_markdown(report: Mapping[str, Any]) -> str:  # noqa: PLR0915
             f"{_pct(d['escalation'].get('sonnet'))}, Opus {_pct(d['escalation'].get('opus'))}."
         )
         lines.append("")
+        by_tier = d.get("usd_per_doc_by_tier") or {}
+        if by_tier:
+            lines.append(
+                "$/doc by tier: "
+                + ", ".join(f"{t} ${float(v):.4f}" for t, v in by_tier.items())
+                + "."
+            )
+            lines.append("")
         lines.append("| Metric | Value | 95% CI | Target | Meets |")
         lines.append("|---|---|---|---|---|")
         for m, v in r["metrics"].items():

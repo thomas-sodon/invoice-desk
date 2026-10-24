@@ -28,6 +28,7 @@ __all__ = [
     "GateResult",
     "compact_baseline",
     "evaluate_gate",
+    "load_meta",
     "load_metrics",
 ]
 
@@ -82,6 +83,12 @@ def load_metrics(path: Path, config: str) -> dict[str, Any]:
     return dict(data["metrics"])
 
 
+def load_meta(path: Path) -> dict[str, Any]:
+    """``{"mode", "split"}`` of a report or compact baseline (``None`` when not recorded)."""
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return {"mode": data.get("mode"), "split": data.get("split")}
+
+
 def compact_baseline(report: Mapping[str, Any], config: str) -> dict[str, Any]:
     for r in report["runs"]:
         if r.get("config") == config and not r.get("skipped"):
@@ -97,9 +104,31 @@ def compact_baseline(report: Mapping[str, Any], config: str) -> dict[str, Any]:
 
 
 def evaluate_gate(
-    current: Mapping[str, Any], baseline: Mapping[str, Any], *, config: str = "D"
+    current: Mapping[str, Any],
+    baseline: Mapping[str, Any],
+    *,
+    config: str = "D",
+    current_meta: Mapping[str, Any] | None = None,
+    baseline_meta: Mapping[str, Any] | None = None,
 ) -> GateResult:
     res = GateResult(config=config)
+    if current_meta is not None and baseline_meta is not None:
+        # An offline (oracle) baseline vs a live run, or a different split, makes the
+        # relative F1 and $/doc checks meaningless; fail rather than compare them.
+        diff = [
+            f"{k} {current_meta.get(k)!r} vs {baseline_meta.get(k)!r}"
+            for k in ("mode", "split")
+            if current_meta.get(k) is not None
+            and baseline_meta.get(k) is not None
+            and current_meta.get(k) != baseline_meta.get(k)
+        ]
+        res.checks.append(
+            Check(
+                "baseline comparable",
+                not diff,
+                "; ".join(diff) if diff else "same mode and split",
+            )
+        )
     f1_now, f1_base = _value(current, "field_f1"), _value(baseline, "field_f1")
     if f1_now is None or f1_base is None:
         res.checks.append(Check("field F1 vs main", False, "field F1 missing"))

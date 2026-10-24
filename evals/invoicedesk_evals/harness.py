@@ -55,6 +55,7 @@ from invoicedesk.contracts.preprocess import PreprocessedDocument, Preprocessor
 from invoicedesk.db import repo
 from invoicedesk.db.connection import Database
 from invoicedesk.db.migrate import apply_migrations
+from invoicedesk.masking import mask_text
 from invoicedesk.status import DocStatus
 from invoicedesk.storage import InMemoryStorage
 from invoicedesk_data.gold import GoldRecord
@@ -294,11 +295,9 @@ class Harness:
                     if self.spec.pipeline == "naive"
                     else self._run_pipeline(ex, repeat)
                 )
-            except LLMCallError as exc:
-                run = self._error_run(ex, repeat, f"llm:{exc.kind}")
             except Exception as exc:
                 log.exception("eval of %s failed", ex.id)
-                run = self._error_run(ex, repeat, f"{type(exc).__name__}: {str(exc)[:200]}")
+                run = self._error_run(ex, repeat, _error_text(exc))
             if on_done is not None:
                 on_done(run)
             return run
@@ -446,7 +445,16 @@ class Harness:
             data = ex.file().read_bytes()
             doc_id = self._insert(db, ex.gold, data, f"{tag}-{ex.gold.id}")
             t0 = time.perf_counter()
-            runner.process(doc_id, max_tier=self.spec.max_tier)
+            try:
+                runner.process(doc_id, max_tier=self.spec.max_tier)
+            except Exception as exc:
+                # Keep what the failed run spent: dropping it would understate $/doc exactly
+                # when a change makes documents fail.
+                wall = int((time.perf_counter() - t0) * 1000)
+                log.exception("eval of %s failed", ex.id)
+                run = self._error_run(ex, repeat, _error_text(exc))
+                self._cleanup_storage(doc_id)
+                return self._finish_costs(run, doc_id, wall)
             wall = int((time.perf_counter() - t0) * 1000)
             run = collect_run(db, doc_id, example_id=ex.id, config=self.spec.name, repeat=repeat)
             self._cleanup_storage(doc_id)
@@ -461,6 +469,13 @@ class Harness:
     def _cleanup_storage(self, doc_id: str) -> None:
         for key in self.storage.list(f"{TENANT_ID}/renders/{doc_id}"):
             self.storage.delete(key)
+
+
+def _error_text(exc: BaseException) -> str:
+    if isinstance(exc, LLMCallError):
+        return f"llm:{exc.kind}"
+    # Exception text can quote document values: mask account numbers (invariant 9).
+    return f"{type(exc).__name__}: {(mask_text(str(exc)) or '')[:200]}"
 
 
 def ex_file(rec: GoldRecord) -> Any:

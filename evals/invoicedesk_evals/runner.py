@@ -71,6 +71,10 @@ RESULTS_DB = "invoicedesk_eval_results"
 ROOT_CAUSE_USD_PER_FAILURE = Decimal("0.015")
 ROOT_CAUSE_FAILURE_SHARE = Decimal("0.30")
 FULL_MATRIX = ("A", "B", "C", "D", "D'", "E", "F", "G", "N")
+#: A live run estimated above this needs the same explicit owner confirmation as the full
+#: matrix (``--full-matrix``), so a near-full subset (e.g. every config but N) cannot slip
+#: past the "ask before the ~$40 run" rule. The nightly C+D run (~$8) stays below it.
+LARGE_RUN_USD = Decimal("15")
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -171,9 +175,11 @@ def check_money_guard(
         raise MoneyGuardError(
             "refusing a live run without --i-know-this-costs-money (estimate above)"
         )
-    if _is_full_matrix(specs) and not full_matrix:
+    if (_is_full_matrix(specs) or usd > LARGE_RUN_USD) and not full_matrix:
         raise MoneyGuardError(
-            "the full matrix is ~$40: re-run with --full-matrix after confirming with the owner"
+            f"this run is ~${usd:.2f} (the full matrix is ~$40; anything over "
+            f"${LARGE_RUN_USD} needs the same confirmation): re-run with --full-matrix after "
+            "confirming with the owner"
         )
     return usd
 
@@ -656,6 +662,11 @@ def _v(m: dict[str, Any], k: str) -> str:
 
 def _cmd_fit_thresholds(args: argparse.Namespace) -> int:
     assert_not_test(args.split, "fit thresholds")  # before anything runs
+    if args.split.strip() != "dev":
+        # choose_thresholds only accepts "dev"; refuse now rather than after a (paid) run.
+        raise PermissionError(
+            f"refusing to fit thresholds on split {args.split!r}: tune on 'dev' only"
+        )
     s = get_settings()
     specs = parse_configs(args.config)
     if len(specs) != 1:
@@ -710,9 +721,11 @@ def _cmd_fit_thresholds(args: argparse.Namespace) -> int:
 
 
 def _cmd_gate(args: argparse.Namespace) -> int:
-    from invoicedesk_evals.gate import evaluate_gate, load_metrics, write_step_summary
+    from invoicedesk_evals.gate import evaluate_gate, load_meta, load_metrics, write_step_summary
 
     current = load_metrics(args.current, args.config)
+    cur_meta = load_meta(args.current)
+    base_meta: dict[str, Any] | None = None
     if args.baseline is None or not Path(args.baseline).exists():
         if not args.baseline_missing_ok:
             print(f"baseline {args.baseline} not found", file=sys.stderr)
@@ -724,7 +737,14 @@ def _cmd_gate(args: argparse.Namespace) -> int:
         baseline = current
     else:
         baseline = load_metrics(args.baseline, args.config)
-    res = evaluate_gate(current, baseline, config=args.config)
+        base_meta = load_meta(args.baseline)
+    res = evaluate_gate(
+        current,
+        baseline,
+        config=args.config,
+        current_meta=cur_meta,
+        baseline_meta=base_meta,
+    )
     text = res.markdown()
     print(text)
     write_step_summary(text)

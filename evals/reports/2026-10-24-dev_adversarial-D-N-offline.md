@@ -1,6 +1,6 @@
 # InvoiceDesk eval: dev+adversarial (2026-10-24)
 
-*benchmark on synthetic data* · mode **offline** · git `da5c3b1a247ce1f002c54116f3f6e3b71c0c50fe-dirty` · n=3 repeats · 1000 bootstrap resamples (seed 0)
+*benchmark on synthetic data* · mode **offline** · git `2a54ec9bda9794a5d19db44609e2724799e43fe8-dirty` · n=3 repeats · 1000 bootstrap resamples (seed 0)
 
 > **Offline run: model answers come from the deterministic gold-backed OracleLLM (with synthetic per-tier noise), so these numbers exercise the harness, pipeline wiring, screening and rules. They are not measurements of Claude's accuracy, cost or latency.**
 
@@ -10,8 +10,8 @@ Thresholds: tau_field=0.9, tau_hi=0.95 (source: tenants/maple_row/rules.yaml).
 
 | Config | Header-field micro F1 | STP rate | False-STP rate | Adversarial misses (30 cases) | $ per document | Latency p95 (s) |
 |---|---|---|---|---|---|---|
-| D | 1.000 [1.000, 1.000] | 0.500 [0.370, 0.643] | 0.000 [0.000, 0.000] | 0 [0, 0] | $0.0194 [$0.0153, $0.0233] | 13.36 [13.11, 13.78] |
-| N | 0.980 [0.971, 0.989] | 1.000 [1.000, 1.000] | 0.592 [0.500, 0.684] | 30 [14, 24] | $0.0007 [$0.0007, $0.0007] | 6.52 [4.42, 7.19] |
+| D | 1.000 [1.000, 1.000] | 0.500 [0.370, 0.643] | 0.000 [0.000, 0.000] | 0 [0, 0] | $0.0194 [$0.0153, $0.0233] | 16.29 [15.35, 17.13] |
+| N | 0.980 [0.971, 0.989] | 1.000 [1.000, 1.000] | 0.592 [0.500, 0.684] | 30 [22, 39] | $0.0007 [$0.0007, $0.0007] | 7.05 [6.65, 7.51] |
 
 ## Paired bootstrap: D vs N (98 paired documents)
 
@@ -21,11 +21,13 @@ Thresholds: tau_field=0.9, tau_hi=0.95 (source: tenants/maple_row/rules.yaml).
 | STP rate | 1.000 | 0.500 | -0.500 | [-0.630, -0.357] | 0.000 |
 | False-STP rate | 0.592 | 0.000 | -0.592 | [-0.684, -0.500] | 0.000 |
 | $ per document | $0.0007 | $0.0194 | $0.0187 | [$0.0146, $0.0226] | 0.000 |
-| Latency p95 (s) | 6.52 | 13.36 | 6.84 | [6.03, 8.88] | 0.000 |
+| Latency p95 (s) | 7.05 | 16.29 | 9.24 | [8.47, 9.97] | 0.000 |
 
 ## Config D: Routed Haiku -> Sonnet -> Opus (production), with caching
 
 98 documents, 294 results, 246 extracted, 48 quarantined, 0 errors. Total cost $5.6957. Escalation: Sonnet 56.1%, Opus 53.7%.
+
+$/doc by tier: haiku $0.0006, sonnet $0.0064, opus $0.0123.
 
 | Metric | Value | 95% CI | Target | Meets |
 |---|---|---|---|---|
@@ -45,8 +47,8 @@ Thresholds: tau_field=0.9, tau_hi=0.95 (source: tenants/maple_row/rules.yaml).
 | ECE (10 bins) | 0.096 | [0.083, 0.109] | <= 0.05 | **no** |
 | Box hit rate (IoU >= 0.5) | 0.922 | [0.909, 0.936] | >= 0.9 | yes |
 | $ per document | $0.0194 | [$0.0153, $0.0233] | <= 0.015 | **no** |
-| Latency p50 (s) | 7.90 | [5.57, 12.22] | <= 4 | **no** |
-| Latency p95 (s) | 13.36 | [13.11, 13.78] | <= 12 | **no** |
+| Latency p50 (s) | 8.43 | [6.27, 12.46] | <= 4 | **no** |
+| Latency p95 (s) | 16.29 | [15.35, 17.13] | <= 12 | **no** |
 
 Per-field P/R/F1:
 
@@ -91,6 +93,8 @@ Root-cause breakdown of failures:
 
 98 documents, 294 results, 294 extracted, 0 quarantined, 0 errors. Total cost $0.2022. Escalation: Sonnet 0.0%, Opus 0.0%.
 
+$/doc by tier: haiku $0.0007.
+
 | Metric | Value | 95% CI | Target | Meets |
 |---|---|---|---|---|
 | Header-field micro F1 | 0.980 | [0.971, 0.989] | >= 0.96 | yes |
@@ -105,12 +109,12 @@ Root-cause breakdown of failures:
 | Bank-change hold recall | 0.000 | [0.000, 0.000] | >= 1 | **no** |
 | Duplicate (R4) recall | 0.000 | [0.000, 0.000] | >= 1 | **no** |
 | Duplicate (R4) precision | n/a |  | >= 0.95 |  |
-| Adversarial misses (30 cases) | 30 | [14, 24] | <= 0 | **no** |
+| Adversarial misses (30 cases) | 30 | [22, 39] | <= 0 | **no** |
 | ECE (10 bins) | n/a |  | <= 0.05 |  |
 | Box hit rate (IoU >= 0.5) | n/a |  | >= 0.9 |  |
 | $ per document | $0.0007 | [$0.0007, $0.0007] | <= 0.015 | yes |
-| Latency p50 (s) | 3.28 | [3.16, 3.42] | <= 4 | yes |
-| Latency p95 (s) | 6.52 | [4.42, 7.19] | <= 12 | yes |
+| Latency p50 (s) | 3.74 | [3.50, 4.01] | <= 4 | yes |
+| Latency p95 (s) | 7.05 | [6.65, 7.51] | <= 12 | yes |
 
 Per-field P/R/F1:
 

@@ -32,7 +32,7 @@ def doc_scores_for_thresholds(
     out: list[DocScores] = []
     for r in runs:
         s = by_key[(r.example_id, r.repeat)]
-        if not s.extracted:
+        if not s.extracted or r.error is not None:
             continue
         probs = {n: float(r.calibrated.get(n, 0.0)) for n in required}
         correct = {n: bool(s.fields[n].correct in (True, None)) for n in required if n in s.fields}

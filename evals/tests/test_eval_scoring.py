@@ -173,3 +173,77 @@ def test_adversarial_misses_count_distinct_cases(make_score) -> None:
     assert aggregate(scores)["adversarial_misses"] == 1.0
     assert aggregate(scores[2:])["adversarial_misses"] == 0.0
     assert aggregate([make_score()])["adversarial_misses"] is None  # no cases scored
+
+
+def test_errored_read_counts_as_unread_not_dropped() -> None:
+    """A run that crashed (or never stored an extraction) must lower field F1, not vanish."""
+    ex = _example("synthetic-core", "core-003")
+    ok = score_run(_perfect_run(ex), ex.gold, ex.example)
+    err = score_run(
+        DocRun(
+            example_id=ex.id,
+            config="D",
+            repeat=1,
+            status="Error",
+            auto_posted=False,
+            error="llm:rate_limit",
+        ),
+        ex.gold,
+        ex.example,
+    )
+    assert err.extracted and err.required_correct is False
+    assert sum(f.fn for f in err.fields.values()) > 0
+    assert sum(f.tp for f in err.fields.values()) == 0
+    assert err.lines_fn == len(ex.gold.truth.lines) and err.box_total == 0
+    m_ok, m_both = aggregate([ok]), aggregate([ok, err])
+    assert m_ok["field_f1"] == 1.0
+    assert m_both["field_f1"] is not None and m_both["field_f1"] < 1.0
+    assert m_both["doc_exact_match"] == 0.5
+
+
+def test_errored_quarantine_case_is_not_field_scored() -> None:
+    ex = _example("adversarial", "adv-001")  # label expects quarantine: never read
+    s = score_run(
+        DocRun(
+            example_id=ex.id, config="D", repeat=0, status="Error", auto_posted=False, error="boom"
+        ),
+        ex.gold,
+        ex.example,
+    )
+    assert not s.extracted and not s.fields
+    assert s.adversarial_miss  # an errored attack case still counts as missed
+
+
+def test_adversarial_miss_ci_contains_point(make_score) -> None:
+    from invoicedesk_evals.stats import bootstrap_ci
+
+    miss = {"adversarial_case": True, "adversarial_miss": True, "clean_truth": False}
+    scores = [
+        make_score(example_id=f"adversarial/a{i}", repeat=r, **miss)
+        for i in range(30)
+        for r in range(3)
+    ]
+    point = aggregate(scores)["adversarial_misses"]
+    assert point == 30.0
+    ci = bootstrap_ci(scores, aggregate, key=lambda s: s.example_id, n_resamples=200)
+    band = ci["adversarial_misses"]
+    assert band is not None and point is not None
+    assert band[0] <= point <= band[1]
+
+
+def test_cost_is_broken_out_per_tier() -> None:
+    from invoicedesk_evals.model import LLMCall
+
+    ex = _example("synthetic-core", "core-003")
+    calls = [
+        LLMCall(role="injection_classifier", model_id="h", cost_usd="0.0002", latency_ms=1),
+        LLMCall(role="extract_t1", model_id="h", cost_usd="0.0009", latency_ms=1),
+        LLMCall(role="extract_t2", model_id="s", cost_usd="0.023", latency_ms=1),
+        LLMCall(role="adjudicate_t3", model_id="o", cost_usd="0.064", latency_ms=1),
+    ]
+    s = score_run(_perfect_run(ex, calls=calls, cost_usd="0.0881"), ex.gold, ex.example)
+    assert s.cost_by_tier == {"haiku": "0.0011", "opus": "0.064", "sonnet": "0.023"}
+    d = details([s, s.model_copy(update={"repeat": 1, "cost_by_tier": {"haiku": "0.0011"}})])
+    assert list(d["usd_per_doc_by_tier"]) == ["haiku", "sonnet", "opus"]
+    assert d["usd_per_doc_by_tier"]["haiku"] == "0.0011"
+    assert d["usd_per_doc_by_tier"]["opus"] == "0.032"

@@ -76,6 +76,9 @@ def test_test_split_is_never_tuned_on() -> None:
     # The CLI refuses before running anything.
     assert main(["fit-thresholds", "--split", "test", "--offline"]) == 4
     assert main(["fit-thresholds", "--split", "dev+test", "--offline"]) == 4
+    # choose_thresholds accepts "dev" only: other splits are refused before any run too.
+    assert main(["fit-thresholds", "--split", "adversarial", "--offline"]) == 4
+    assert main(["fit-thresholds", "--split", "dev+adversarial", "--offline"]) == 4
 
 
 def test_money_guard() -> None:
@@ -128,6 +131,29 @@ def test_money_guard() -> None:
         )
     total, _ = estimate_usd(full, load_split("test"), repeats=3)
     assert 20 < float(total) < 60  # the "about $40" full matrix (DESIGN §7.3)
+    # Every config but N is nearly the full matrix: it needs the same confirmation.
+    near_full = parse_configs("A,B,C,D,D',E,F")
+    with pytest.raises(MoneyGuardError, match="full-matrix"):
+        check_money_guard(
+            live=True,
+            specs=near_full,
+            examples=load_split("test"),
+            repeats=3,
+            i_know=True,
+            full_matrix=False,
+            root_cause_live=False,
+        )
+    # The nightly C + D run (all 158 docs, n=3, Opus root causes) stays below the bar.
+    nightly = check_money_guard(
+        live=True,
+        specs=parse_configs("C,D"),
+        examples=load_split("all"),
+        repeats=3,
+        i_know=True,
+        full_matrix=False,
+        root_cause_live=True,
+    )
+    assert 0 < nightly < 15
 
 
 def test_live_cli_refuses_without_flag(

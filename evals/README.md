@@ -30,8 +30,8 @@ make report-card                     # re-render the PDF from the latest run
   latency is wall-clock plus the oracle's simulated per-tier call times.
 * **Live**: `INVOICEDESK_MODE=live` (or `--live`) uses `wiring.llm_client`. The runner prints
   a cost estimate (DESIGN §7.3 budgets per config) and refuses to start without
-  `--i-know-this-costs-money`. The full matrix (~$40) also needs `--full-matrix`, after
-  asking the owner (CLAUDE.md).
+  `--i-know-this-costs-money`. The full matrix (~$40), and any live run estimated above $15
+  (e.g. every config but N), also needs `--full-matrix`, after asking the owner (CLAUDE.md).
 
 ## How a run works
 
@@ -75,7 +75,7 @@ repeats; seeded). D vs A (and D vs N) use a paired bootstrap over shared documen
 ## Splits and the test-split rule
 
 `dev` / `test` are the frozen 60/60 halves of synthetic-core. **Tuning happens on dev only**:
-`invoicedesk-eval fit-thresholds` refuses any split spec containing `test` before running, and
+`invoicedesk-eval fit-thresholds` refuses any split other than exactly `dev` before running, and
 delegates to `invoicedesk.calibrate.choose_thresholds` (which refuses non-dev splits too). Its
 JSON can be applied to a run with `--thresholds`, which refuses files not fitted on dev. The
 matrix itself is *scored* on `test`. `smoke` = 30 stratified dev documents (by medium, mixing
@@ -83,6 +83,10 @@ clean and held labels; deterministic) + the 30 adversarial cases. The demo batch
 
 ## CI
 
+* Scoring of failures: a document the run should have read but did not (harness error,
+  refusal, missing extraction) counts as *unread* (every gold field a miss), and the LLM spend
+  of a failed run is kept, so a change that makes documents crash cannot raise F1 or lower
+  $/doc. The gate also fails when the baseline's mode or split differs from the current run.
 * `eval-gate.yml` (PRs): unit tests, then the offline smoke run gated against main's
   `evals/baselines/smoke-offline.json`; the live smoke (~$0.70) runs only when the
   `ANTHROPIC_API_KEY` secret exists, gated against `evals/baselines/smoke-live.json`.

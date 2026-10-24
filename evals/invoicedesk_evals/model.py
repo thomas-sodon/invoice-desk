@@ -127,6 +127,9 @@ class DocScore(_M):
     box_total: int = 0
 
     cost_usd: str = "0"
+    #: USD per model tier (haiku / sonnet / opus) from this document's calls (DESIGN §5.6
+    #: "$/doc ... per tier"); a non-LLM reader's per-page bill (config G) is not included.
+    cost_by_tier: dict[str, str] = Field(default_factory=dict)
     latency_ms: int = 0
     tiers: list[str] = Field(default_factory=list)
     illegible: list[str] = Field(default_factory=list)
