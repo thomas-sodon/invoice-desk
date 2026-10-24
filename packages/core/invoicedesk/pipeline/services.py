@@ -7,9 +7,15 @@ thread. The resume payload is informational: the graph re-reads the status from 
 
 Release rules (CLAUDE.md invariant 3; docs/foundation.md decisions 1-2):
 
-* ``Flagged -> ReadyToPay`` only with two distinct *user* approvers, neither the uploader, with
-  a callback attestation (``status._check_approvals``; bank-change approvals also need
-  ``callback_attested`` on every row, enforced by the DB). No system or MCP actor can do it.
+* ``Flagged -> ReadyToPay`` only with two distinct *user* approvers (staff role ``approver`` or
+  ``owner`` of the document's tenant), neither the uploader, with a callback attestation
+  (``status._check_approvals``; bank-change approvals also need ``callback_attested`` on every
+  row, enforced by the DB). No system or MCP actor can do it.
+* Only votes cast *during the current hold* count (after the document entered Flagged, ordered
+  by the serialized audit chain), so an approval recorded earlier in NeedsReview cannot be
+  reused as the "second person". When R6 failed in the latest evaluation, only ``bank_change``
+  approvals count: an unrelated ``other`` / ``over_cap`` vote never stands in for the
+  bank-change attestation. Any reject vote on the document vetoes release (fail closed).
 * ``NeedsReview`` over-cap / new-vendor holds clear by re-validation: an ``approve`` of kind
   ``over_cap`` or ``new_vendor`` moves the document back to Validating and R7 / R1 read it.
 * A quarantined document was never extracted, so it can be rejected but not released: there is
@@ -57,6 +63,7 @@ __all__ = [
     "ApprovalResult",
     "CorrectionResult",
     "DuplicateVote",
+    "NotAnApprover",
     "PipelineServices",
     "SelfApproval",
 ]
@@ -72,6 +79,10 @@ REVALIDATING_KINDS: frozenset[str] = frozenset({"over_cap", "new_vendor"})
 
 class SelfApproval(IllegalTransition):
     """The uploader tried to approve their own document (API: 403 ``self_approval``)."""
+
+
+class NotAnApprover(IllegalTransition):
+    """The voter is not a staff approver/owner of the document's tenant (API: 403)."""
 
 
 class DuplicateVote(ValueError):
@@ -220,7 +231,12 @@ class PipelineServices:
         return CorrectionResult(document_id, self._status(document_id), tuple(review_ids))
 
     def _write_correction_example(self, conn: Conn, doc: repo.DocumentRow, reviewer: str) -> None:
-        """Trace-to-eval loop: the corrected extraction becomes a labeled example."""
+        """Trace-to-eval loop: the corrected extraction becomes a labeled example.
+
+        Never for try-it visitor uploads (they are purged after 24h; an eval row would outlive
+        them) or the demo seed batch (excluded from every eval split)."""
+        if doc.session_id is not None or doc.source == "seed":
+            return
         stored = load_step_conn(conn, doc.id, "extract")
         if stored is None:
             return
@@ -279,6 +295,7 @@ class PipelineServices:
                 raise IllegalTransition(f"nothing to approve: document is {doc.status}")
             if doc.uploaded_by is not None and doc.uploaded_by == actor.id:
                 raise SelfApproval("the uploader cannot approve their own document")
+            _require_approver_role(conn, doc, actor)
             try:
                 with conn.transaction():  # savepoint: keep the outer tx usable on a conflict
                     repo.record_approval(
@@ -298,12 +315,7 @@ class PipelineServices:
 
             if doc.status is S.FLAGGED and decision == "approve":
                 extracted = load_step_conn(conn, document_id, "extract") is not None
-                evidence = ApprovalEvidence(
-                    votes=tuple(
-                        ApprovalVote(a.approver_id, a.decision, a.callback_attested, a.kind)
-                        for a in approvals
-                    )
-                )
+                evidence = ApprovalEvidence(votes=_release_votes(conn, document_id, approvals))
                 if extracted and _two_person_rule_met(doc, actor, evidence):
                     repo.set_status(
                         conn,
@@ -407,6 +419,63 @@ class PipelineServices:
         from invoicedesk.pipeline.naive import compare_batch
 
         return compare_batch(self.db, batch_id, truth=truth)
+
+
+def _require_approver_role(conn: Conn, doc: repo.DocumentRow, actor: Actor) -> None:
+    """Clerks upload, correct and reject; only approvers and owners vote (api-contract roles)."""
+    row = conn.execute(
+        "select role::text as role from staff_users where id::text = %s and tenant_id = %s",
+        (actor.id, doc.tenant_id),
+    ).fetchone()
+    if row is None or row["role"] not in ("approver", "owner"):
+        raise NotAnApprover("only an approver or owner of this tenant can vote on a hold")
+
+
+def _hold_started_audit_id(conn: Conn, document_id: str) -> int:
+    row = conn.execute(
+        "select coalesce(max(id), 0) as id from audit_log where document_id = %s"
+        " and action = 'status.changed' and after_json->>'status' = 'Flagged'",
+        (document_id,),
+    ).fetchone()
+    return 0 if row is None else int(row["id"])
+
+
+def _r6_failed(conn: Conn, document_id: str) -> bool:
+    row = conn.execute(
+        "select 1 from rule_results where document_id = %s and rule_id = 'R6' and not passed"
+        " and evaluation = (select max(evaluation) from rule_results where document_id = %s)",
+        (document_id, document_id),
+    ).fetchone()
+    return row is not None
+
+
+def _release_votes(
+    conn: Conn, document_id: str, approvals: Sequence[ApprovalRecord]
+) -> tuple[ApprovalVote, ...]:
+    """The votes that may release a Flagged document (see module docstring).
+
+    ``approvals`` has one row per (kind, approver); its audit row (``approval.<decision>``,
+    actor ``user:<id>``, ``after.kind``) tells when it was cast relative to the Flagged
+    transition, because audit appends are serialized and their ids are commit-ordered.
+    """
+    start = _hold_started_audit_id(conn, document_id)
+    in_hold = {
+        (r["actor"].partition(":")[2], r["kind"])
+        for r in conn.execute(
+            "select actor, after_json->>'kind' as kind from audit_log where document_id = %s"
+            " and action in ('approval.approve', 'approval.reject') and id > %s",
+            (document_id, start),
+        ).fetchall()
+    }
+    bank_only = _r6_failed(conn, document_id)
+    votes: list[ApprovalVote] = []
+    for a in approvals:
+        vote = ApprovalVote(a.approver_id, a.decision, a.callback_attested, a.kind)
+        if a.decision == "reject":
+            votes.append(vote)  # any reject vetoes, whenever it was cast (fail closed)
+        elif (a.approver_id, a.kind) in in_hold and (not bank_only or a.kind == "bank_change"):
+            votes.append(vote)
+    return tuple(votes)
 
 
 def _two_person_rule_met(doc: repo.DocumentRow, actor: Actor, evidence: ApprovalEvidence) -> bool:

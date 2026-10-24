@@ -148,3 +148,36 @@ def test_concurrent_copies_of_one_invoice_are_caught(world: Any, runner: Pipelin
     assert "Flagged" in statuses  # at least the second copy is a duplicate
     flagged = a if world.status(a) == "Flagged" else b
     assert "R4" in world.failed_rules(flagged)
+
+
+def test_validation_waits_for_the_tenant_validation_lock(
+    world: Any, runner: PipelineRunner, pg_dsn: str
+) -> None:
+    """Proves the serialization the R4 race relies on: while another session holds the
+    tenant's validation lock, validate cannot evaluate rules (the timing test above can pass
+    by luck)."""
+    import threading
+
+    import psycopg
+
+    doc = world.add_document(make_extraction(invoice_number=text("INV-9101")))
+    done = threading.Event()
+
+    def run() -> None:
+        runner.process(doc)
+        done.set()
+
+    with psycopg.connect(pg_dsn, autocommit=True) as holder:
+        holder.execute("select pg_advisory_lock(hashtext(%s))", ("invoicedesk.validate:maple_row",))
+        t = threading.Thread(target=run)
+        t.start()
+        try:
+            assert not done.wait(2.0)  # blocked on the lock
+            assert world.count("rule_results", doc) == 0
+        finally:
+            holder.execute(
+                "select pg_advisory_unlock(hashtext(%s))", ("invoicedesk.validate:maple_row",)
+            )
+        t.join(60)
+    assert done.is_set()
+    assert world.status(doc) == "ReadyToPay"

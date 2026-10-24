@@ -263,9 +263,26 @@ def _naive_grade(
     return "correct", f"Posted {money}"
 
 
-def _invoicedesk_grade(status: DocStatus, labels: set[str], reason: str) -> tuple[str, str, str]:
+def _released_by_humans(conn: Conn, document_id: str) -> bool:
+    """True when the document reached ReadyToPay through the two-person release (Flagged ->
+    ReadyToPay by a user), i.e. InvoiceDesk held it and people decided to pay it."""
+    row = conn.execute(
+        "select 1 from audit_log where document_id = %s and action = 'status.changed'"
+        " and before_json->>'status' = 'Flagged' and after_json->>'status' = 'ReadyToPay'"
+        " and actor like 'user:%%' limit 1",
+        (document_id,),
+    ).fetchone()
+    return row is not None
+
+
+def _invoicedesk_grade(
+    status: DocStatus, labels: set[str], reason: str, *, human_released: bool = False
+) -> tuple[str, str, str]:
     if status in (S.POSTED, S.READY_TO_PAY):
         outcome = "posted" if status is S.POSTED else "ready_to_pay"
+        if human_released:
+            # InvoiceDesk held it; two people with a callback chose to release it.
+            return outcome, "correct", "Held, then released by two-person approval"
         if labels & MONEY_RISK_LABELS:
             return outcome, "wrong", "Let a money-risk invoice through"
         return outcome, "correct", "All checks passed"
@@ -327,7 +344,10 @@ def compare_batch(
                 }
             else:
                 outcome, verdict, reason = _invoicedesk_grade(
-                    status, labels, _held_reason(conn, doc_id, status)
+                    status,
+                    labels,
+                    _held_reason(conn, doc_id, status),
+                    human_released=_released_by_humans(conn, doc_id),
                 )
                 _upsert(
                     conn,
