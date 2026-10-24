@@ -120,6 +120,7 @@ class JwksSource:
         http: httpx.AsyncClient | None = None,
         ttl_s: float = 600.0,
         min_refetch_s: float = 30.0,
+        max_stale_s: float = 86_400.0,
         clock: Callable[[], float] = time.monotonic,
     ) -> None:
         if (url is None) == (file is None):
@@ -129,10 +130,14 @@ class JwksSource:
         self._http = http
         self._ttl = ttl_s
         self._min_refetch = min_refetch_s
+        self._max_stale = max_stale_s
         self._clock = clock
         self._keys: dict[str, jwt.PyJWK] = {}
         self._anonymous: list[jwt.PyJWK] = []
         self._fetched_at: float | None = None
+        #: Last fetch *attempt* (success or not): every refetch, including the first one and
+        #: TTL refreshes while the issuer is down, is spaced by ``min_refetch_s``.
+        self._attempted_at: float | None = None
         self._lock = anyio.Lock()
 
     async def _load(self) -> dict[str, Any]:
@@ -173,14 +178,19 @@ class JwksSource:
             now = self._clock()
             stale = self._fetched_at is None or now - self._fetched_at > self._ttl
             missing = kid is not None and kid not in self._keys
-            can_refetch = self._fetched_at is None or now - self._fetched_at >= self._min_refetch
-            if stale or (missing and can_refetch):
+            can_attempt = (
+                self._attempted_at is None or now - self._attempted_at >= self._min_refetch
+            )
+            if (stale or missing) and can_attempt:
+                self._attempted_at = now
                 try:
                     await self._refresh()
                 except (httpx.HTTPError, OSError, ValueError) as exc:
                     logger.warning("JWKS fetch failed: %s", type(exc).__name__)
-                    if self._fetched_at is None:
-                        return []
+            # Fail closed: no keys ever fetched, or the cached set is too old to trust.
+            if self._fetched_at is None or now - self._fetched_at > self._max_stale:
+                self._keys, self._anonymous = {}, []
+                return []
             if kid is not None:
                 return [self._keys[kid]] if kid in self._keys else []
             return [*self._keys.values(), *self._anonymous]

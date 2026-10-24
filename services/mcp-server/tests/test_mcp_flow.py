@@ -276,6 +276,7 @@ async def test_bad_arguments_are_tool_errors(env, keys) -> None:
             )
             neither = await c.call_tool("extract_invoice", {})
             ftp = await c.call_tool("extract_invoice", {"file_url": "ftp://x.example/a.pdf"})
+            plain = await c.call_tool("extract_invoice", {"file_url": "http://x.example/a.pdf"})
             foreign = await c.call_tool(
                 "extract_invoice", {"upload_handle": "maple_row/originals/x/y.pdf"}
             )
@@ -284,7 +285,11 @@ async def test_bad_arguments_are_tool_errors(env, keys) -> None:
                 "validate_invoice", {"document_id": "00000000-0000-4000-8000-000000000000"}
             )
         assert "exactly one" in _error_text(both) and "exactly one" in _error_text(neither)
-        assert "https" in _error_text(ftp)
+        assert "https" in _error_text(ftp) and "https" in _error_text(plain)
+        assert all(
+            not r["path"].endswith("/agent/extract") or "file_url" not in r["json"]
+            for r in h.api.requests
+        )  # neither URL was forwarded to the facade
         assert "No such document" in _error_text(foreign)
         assert "UUID" in _error_text(bad_id)
         assert "No such document" in _error_text(unknown)

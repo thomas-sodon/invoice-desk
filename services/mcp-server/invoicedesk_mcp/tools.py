@@ -19,6 +19,8 @@ import logging
 import re
 from typing import Annotated, Literal
 
+from invoicedesk.contracts.extraction import MONEY_FIELDS
+from invoicedesk.masking import SENSITIVE_KEY_RE, mask_text
 from invoicedesk.money import MoneyParseError, format_cents, parse_money_to_cents
 from mcp.server.elicitation import (
     AcceptedElicitation,
@@ -33,7 +35,7 @@ from mcp_types import ToolAnnotations
 from mcp_types.version import is_version_at_least
 from pydantic import BaseModel, ConfigDict, Field
 
-from invoicedesk_mcp.api_client import AgentApi, AgentApiError, ApiValidation
+from invoicedesk_mcp.api_client import AgentApi, AgentApiError, ApiExtract, ApiValidation
 from invoicedesk_mcp.auth import TOOL_SCOPES, Principal, current_principal
 
 __all__ = [
@@ -43,6 +45,7 @@ __all__ = [
     "PostBillResult",
     "RuleResultOut",
     "ValidateInvoiceResult",
+    "agent_fields",
     "register_tools",
 ]
 
@@ -199,6 +202,33 @@ def _refusal(status: str) -> ToolError | None:
     return None
 
 
+#: Never handed to an MCP client, whatever the facade sends (invariants 2 and 9).
+_WITHHELD_FIELDS = frozenset({"vendor_id", "remit_to_bank_details"})
+
+
+def _masked(text: str | None) -> str | None:
+    return mask_text(text)
+
+
+def agent_fields(
+    out: ApiExtract,
+) -> tuple[dict[str, str | None], dict[str, float | None]]:
+    """Field values and confidences for the MCP client, masked at this boundary as well.
+
+    The facade already drops bank fields and masks digit runs; this is defense in depth so a
+    facade regression cannot put a bank or account number in front of an agent (invariant 9).
+    """
+    values: dict[str, str | None] = {}
+    confidence: dict[str, float | None] = {}
+    for name, f in out.fields.items():
+        if name in _WITHHELD_FIELDS or SENSITIVE_KEY_RE.search(name):
+            continue
+        is_cents = name in MONEY_FIELDS and (f.value or "").lstrip("-").isdigit()
+        values[name] = f.value if is_cents else _masked(f.value)
+        confidence[name] = f.calibrated_confidence
+    return values, confidence
+
+
 def _total_from_rules(v: ApiValidation) -> int | None:
     for r in v.rule_results:
         if r.rule_id == "R7":
@@ -244,17 +274,18 @@ def _register_extract(server: MCPServer, api: AgentApi) -> None:
         _log_routing(ctx, "extract_invoice", principal)
         if (file_url is None) == (upload_handle is None):
             raise ToolError("Give exactly one of file_url or upload_handle.")
-        if file_url is not None and not file_url.lower().startswith(("https://", "http://")):
+        if file_url is not None and not file_url.lower().startswith("https://"):
             raise ToolError("file_url must be an https URL.")
         try:
             out = await api.extract(principal, file_url=file_url, upload_handle=upload_handle)
         except AgentApiError as exc:
             raise _api_failure(exc, what="Extraction") from exc
+        values, confidence = agent_fields(out)
         return ExtractInvoiceResult(
             document_id=out.document_id,
             status=out.status,
-            fields={k: f.value for k, f in out.fields.items()},
-            calibrated_confidence={k: f.calibrated_confidence for k, f in out.fields.items()},
+            fields=values,
+            calibrated_confidence=confidence,
             flags=list(out.flags),
             embedded_instruction_count=out.embedded_instructions,
         )
@@ -286,12 +317,12 @@ def _register_validate(server: MCPServer, api: AgentApi) -> None:
                     name=r.name,
                     passed=r.passed,
                     severity=r.severity,
-                    message=r.message,
+                    message=_masked(r.message) or "",
                     fields=list(r.fields),
                 )
                 for r in v.rule_results
             ],
-            variance_explanations=list(v.variance_explanations),
+            variance_explanations=[_masked(x) or "" for x in v.variance_explanations],
         )
 
 

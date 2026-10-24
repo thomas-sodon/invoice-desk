@@ -9,8 +9,9 @@
 * ``GET /healthz``.
 
 ``tools/list`` results carry ``ttlMs``/``cacheScope`` hints. ``post_bill`` asks the human to
-confirm through an MRTR ``input_required`` round-trip (the SDK's elicitation resolver; on
-pre-2026 clients it uses a classic elicitation request where the transport allows one).
+confirm through an MRTR ``input_required`` round-trip (the SDK's elicitation resolver). A
+pre-2026-07-28 client has no back-channel on this stateless server, so ``post_bill`` refuses it
+rather than post without a human confirmation.
 """
 
 from __future__ import annotations

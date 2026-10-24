@@ -79,7 +79,9 @@ class McpSettings(BaseSettings):
 
     @property
     def mcp_path(self) -> str:
-        return urlsplit(self.resource_url).path or "/mcp"
+        # The endpoint is served exactly at the resource URL, so the RFC 8707 audience and the
+        # PRM ``resource`` always name the URL clients connect to.
+        return urlsplit(self.resource_url).path or "/"
 
     @property
     def resource_netloc(self) -> str:

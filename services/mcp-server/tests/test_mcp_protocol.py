@@ -176,3 +176,32 @@ async def test_legacy_stateless_client_cannot_be_asked_so_post_bill_refuses(
         assert "2026-07-28" in " ".join(getattr(x, "text", "") for x in res.content)
         assert env.status(doc_id) == "ReadyToPay" and env.accounting.bills == {}
         assert all(not r["path"].endswith("/post-bill") for r in h.api.requests)
+
+
+async def test_agent_fields_masks_and_withholds_bank_details_defensively() -> None:
+    """Even if the facade regressed and sent bank details, the MCP client never sees them."""
+    from invoicedesk_mcp.api_client import ApiExtract
+    from invoicedesk_mcp.tools import agent_fields
+
+    out = ApiExtract.model_validate(
+        {
+            "document_id": "00000000-0000-4000-8000-000000000000",
+            "status": "ReadyToPay",
+            "fields": {
+                "vendor_name": {
+                    "value": "Copperleaf acct 000555077001",
+                    "calibrated_confidence": 0.9,
+                },
+                "remit_to_bank_details": {"value": "routing 021000021 acct 000555077001"},
+                "vendor_id": {"value": "5f0c"},
+                "bank_account": {"value": "000555077001"},
+                "total": {"value": "124000", "calibrated_confidence": 0.99},
+                "invoice_date": {"value": "2026-10-20"},
+            },
+        }
+    )
+    values, confidence = agent_fields(out)
+    assert set(values) == set(confidence) == {"vendor_name", "total", "invoice_date"}
+    assert values["vendor_name"] is not None and "000555077001" not in values["vendor_name"]
+    assert values["vendor_name"].endswith("7001")
+    assert values["total"] == "124000" and values["invoice_date"] == "2026-10-20"

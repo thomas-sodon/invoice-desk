@@ -216,6 +216,41 @@ async def test_scopes_from_scp_and_jwks_outage() -> None:
     assert await v2.verify_token(k.token()) is None  # fail closed
 
 
+async def test_jwks_outage_is_rate_limited_and_stale_keys_expire(keys: Keys) -> None:
+    clock = [1000.0]
+    up = [True]
+    calls: list[int] = []
+
+    def handler(_r: httpx.Request) -> httpx.Response:
+        calls.append(1)
+        return httpx.Response(200, json=keys.jwks) if up[0] else httpx.Response(503)
+
+    src = JwksSource(
+        url=JWKS_URL,
+        http=httpx.AsyncClient(transport=httpx.MockTransport(handler)),
+        ttl_s=600,
+        min_refetch_s=30,
+        max_stale_s=3600,
+        clock=lambda: clock[0],
+    )
+    v = JwtTokenVerifier(jwks=src, issuer=ISSUER, resource_url=RESOURCE, algorithms=["RS256"])
+    up[0] = False
+    for _ in range(5):  # issuer down from the start: fail closed, one attempt per back-off
+        assert await v.verify_token(keys.token()) is None
+    assert len(calls) == 1
+    clock[0] += 31
+    up[0] = True
+    assert await v.verify_token(keys.token()) is not None
+    assert len(calls) == 2
+    up[0] = False
+    clock[0] += 700  # TTL expired and the issuer is down: stale keys still verify ...
+    for _ in range(5):
+        assert await v.verify_token(keys.token()) is not None
+    assert len(calls) == 3  # ... but the dead issuer is not hammered on every request
+    clock[0] += 3600  # past max staleness: fail closed
+    assert await v.verify_token(keys.token()) is None
+
+
 async def test_jwks_file_source_offline_only(tmp_path, keys: Keys) -> None:
     f = tmp_path / "jwks.json"
     f.write_text(json.dumps(keys.jwks))
