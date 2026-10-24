@@ -95,3 +95,31 @@ don't delete entries. Mark them **closed** when resolved.
 - **Langfuse export is untested against a real Langfuse.** `setup_tracing` builds an
   OTLP/HTTP exporter to `<LANGFUSE_HOST>/api/public/otel/v1/traces` with basic auth, only when
   `INVOICEDESK_MODE=live`. Tests check the configuration and use in-memory exporters.
+
+## Accounting: QBO sandbox adapter (2026-10-24)
+
+- **No real QuickBooks sandbox credentials.** `QuickBooksAdapter`, the OAuth token manager, the
+  bootstrap script and the demo-only sandbox deleter are tested only against
+  `invoicedesk.accounting.fake_server` (respx, with Intuit's documented JSON shapes for Bill,
+  Attachable, Fault, query and `operation=delete`). No bill has been posted to a real sandbox,
+  and no live test exists yet. *Close by:* creating an Intuit developer app, running
+  `make qbo-bootstrap`, setting `INVOICEDESK_MODE=live`, then posting one demo invoice and
+  checking that the Bill, the attachment and a retried post (same `requestid`) appear once.
+- **Unverified API details.** These come from docs and memory, not from live calls:
+  - the pinned `minorversion=75`;
+  - the 50-character `requestid` limit. Longer keys map to a deterministic UUIDv5, so retries
+    stay idempotent either way;
+  - how long QBO caches a `requestid`. A retry after the cache expires is still caught: the
+    6140 duplicate-DocNumber fault triggers a lookup that matches the `InvoiceDesk ref <key>`
+    marker in `PrivateNote`. That needs the sandbox's duplicate-number warning to be on.
+  - Replay detection reports `already_exists` by comparing `MetaData.CreateTime` with a 60 s
+    allowance for clock skew. If a crashed post is retried within seconds, it reports `created`,
+    but with the same Bill id, so nothing is double-posted.
+- **Attachment types.** `attach_file` allows PDF, JPEG, PNG, GIF, TIFF and plain text. HEIC phone
+  photos are refused, so the pipeline must attach the normalized render (PNG/PDF) instead of a
+  HEIC original.
+- **Demo reset scope.** It clears demo batches' rows in the shared tables (jobs, bills,
+  comparison_results, documents with their cascades, and batches). It does not clear LangGraph
+  checkpoint tables or any table another component adds later without `on delete cascade`. In
+  that case the transaction fails cleanly and nothing is deleted. QBO deletion uses
+  `POST /bill?operation=delete` with `Id` and `SyncToken`, which is QBO's form of DELETE.
