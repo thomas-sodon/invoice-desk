@@ -151,13 +151,43 @@ def test_readme_results_come_from_the_latest_report() -> None:
             if cfg == "D" or name == "false_stp":
                 lo, hi = m["ci"]
                 expect.append(f"[{_fmt(lo)}, {_fmt(hi)}]")
-        miss = _metric(report, cfg, "adversarial_misses")
-        lo, hi = miss["ci"]
-        expect.append(f"[{lo:.0f}, {hi:.0f}]")
+        # The misses row is a count of distinct attack cases, quoted without the bootstrap
+        # interval (which resamples the pooled dev+attack set and can exceed 30).
+        missed, total = _attack_misses(report, cfg)
+        assert total == 30
+        expect.append(f"{missed} of {total}")
         for name in ("bank_change_hold_recall", "duplicate_recall"):
             expect.append(_fmt(_metric(report, cfg, name)["value"]))
     for s in expect:
         assert s in results, f"{s} not found in README results (from {rel})"
+
+
+def _adversarial_gold() -> dict[str, str]:
+    """``adversarial/<id>`` -> attack category, for the 30 planted cases (priors excluded)."""
+    out: dict[str, str] = {}
+    for p in (ROOT / "data" / "gold" / "adversarial").glob("adv-*.json"):
+        g = json.loads(p.read_text(encoding="utf-8"))
+        if g["category"] != "prior":
+            out[f"adversarial/{g['id']}"] = g["category"]
+    return out
+
+
+def _attack_misses(report: dict[str, Any], config: str) -> tuple[int, int]:
+    cases = _adversarial_gold()
+    (run,) = [r for r in report["runs"] if r["config"] == config]
+    missed = {x["example_id"] for x in run["results"] if x["adversarial_miss"]} & cases.keys()
+    return len(missed), len(cases)
+
+
+def test_readme_quotes_no_interval_for_the_attack_count() -> None:
+    _, report = latest_report()
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    results = readme.split("## Results", 1)[1].split("\n## ", 1)[0]
+    row = next(line for line in results.splitlines() if line.startswith("| Planted attacks"))
+    for cfg in ("D", "N"):
+        ci = _metric(report, cfg, "adversarial_misses")["ci"]
+        if ci and ci[0] != ci[1]:
+            assert f"[{ci[0]:.0f}, {ci[1]:.0f}]" not in row
 
 
 def test_no_placeholder_design_figures_are_presented_as_results() -> None:
@@ -195,6 +225,49 @@ def test_security_adversarial_table_matches_the_report() -> None:
         assert expected_misses in security
 
 
+SECURITY_ROWS = {
+    "White text in a PDF": "white_text",
+    "2 pt text in a PDF": "two_pt_text",
+    "Tiny-font text": "tiny_font",
+    "Off-page text": "offpage_text",
+    "Faint text in a photo": "faint_photo",
+    "Injection in the email body": "email_injection",
+    "Lookalike letterhead": "lookalike_letterhead",
+    "Legitimate-looking bank-change letter": "bank_change_letter",
+    "Duplicate, re-photographed": "duplicate_rephoto",
+    "Duplicate, tweaked amount": "duplicate_tweaked",
+    "Duplicate, new invoice number": "duplicate_new_number",
+    "Split invoice under the cap": "split_under_cap",
+}
+
+
+def test_security_attack_rows_match_the_report_per_category() -> None:
+    _, report = latest_report()
+    gold = _adversarial_gold()
+    assert set(SECURITY_ROWS.values()) == set(gold.values())
+    runs = {r["config"]: r for r in report["runs"]}
+    security = (ROOT / "SECURITY.md").read_text(encoding="utf-8")
+    row_re = re.compile(
+        r"^\| (?P<label>[^|(]+?) \((?P<n>\d+)\) \| (?P<d>\d+) / (?P<dn>\d+)[^|]*"
+        r"\| (?P<p>\d+) / (?P<pn>\d+)[^|]*\|$",
+        re.M,
+    )
+    rows = {m["label"]: m for m in row_re.finditer(security)}
+    assert set(rows) == set(SECURITY_ROWS), set(rows) ^ set(SECURITY_ROWS)
+    for label, cat in SECURITY_ROWS.items():
+        ids = {k for k, v in gold.items() if v == cat}
+        m = rows[label]
+        assert int(m["n"]) == int(m["dn"]) == int(m["pn"]) == len(ids), label
+        for cfg, col, ok in (("D", "d", "Flagged"), ("N", "p", "Posted")):
+            # every repeat must agree for the case to count
+            good = {
+                i
+                for i in ids
+                if all(x["status"] == ok for x in runs[cfg]["results"] if x["example_id"] == i)
+            }
+            assert int(m[col]) == len(good), (label, cfg)
+
+
 def test_no_mcp_or_owasp_jargon_in_readme_top_section() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "## Technical appendix" in readme
@@ -209,3 +282,17 @@ def test_readme_uses_works_with_wording_only() -> None:
     assert "intuit-logo" not in readme.lower() and "xero-logo" not in readme.lower()
     for img in re.findall(r"!\[[^\]]*\]\(([^)]+)\)", readme):
         assert "quickbooks" not in img.lower() and "intuit" not in img.lower()
+
+
+def test_architecture_state_diagram_matches_the_code() -> None:
+    from invoicedesk.status import TRANSITIONS
+
+    text = (ROOT / "docs" / "architecture.md").read_text(encoding="utf-8")
+    block = text.split("stateDiagram-v2", 1)[1].split("```", 1)[0]
+    drawn = {
+        (m.group(1), m.group(2))
+        for m in re.finditer(r"^\s*(\w+) --> (\w+)", block, re.M)
+        if "*" not in m.group(0)
+    }
+    code = {(str(src), str(dst)) for src, dsts in TRANSITIONS.items() for dst in dsts}
+    assert drawn == code, {"only in diagram": drawn - code, "only in code": code - drawn}

@@ -195,8 +195,11 @@ bank-change hold recall and duplicate recall were both 1.000.
   without a signature. Keep n8n on a private network (the Fly config exposes no public service
   for it) until the API signs that call.
 - **Client IP for rate limits.** With `TRUST_FORWARDED_FOR=true` the API trusts the left-most
-  `X-Forwarded-For` hop, which a client can set itself. Behind Fly.io, `Fly-Client-IP` is the
-  trustworthy header.
+  `X-Forwarded-For` hop, which a client can set itself. Running uvicorn with
+  `--forwarded-allow-ips *` has the same flaw (uvicorn copies that left-most hop into the client
+  address). The Fly config therefore keeps `TRUST_FORWARDED_FOR=false` and runs uvicorn with
+  `--no-proxy-headers`, so per-IP limits key on the Fly proxy address: one shared, stricter
+  bucket. Behind Fly.io, `Fly-Client-IP` is the trustworthy header; the API does not read it yet.
 - **Hosted identity is untested.** Supabase Auth, Turnstile and the hosted OAuth issuer for MCP
   have been tested against mocks only.
 

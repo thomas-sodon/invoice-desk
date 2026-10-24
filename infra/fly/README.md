@@ -32,6 +32,13 @@ fly deploy . --config infra/fly/mcp.toml
 fly deploy --config infra/fly/n8n.toml
 ```
 
+> **Before the first deploy, add a root `.dockerignore`.** The shared Dockerfile ends with
+> `COPY . .` and the build context is the repo root. The repo has no `.dockerignore` yet, so a
+> local `.env` (every secret listed below), `node_modules`, `.venv` and generated data would be
+> copied into the image and pushed to Fly's registry. Exclude at least `.env`, `.env.*` (keep
+> `.env.example`), `.git`, `.venv`, `node_modules`, `apps/web/.next`, `var/` and
+> `data/public/cache` ([GAPS.md](../../docs/GAPS.md)).
+
 The services reach each other over Fly's private network (`<app>.internal`, IPv6). That is why
 the API and n8n listen on `::`.
 
@@ -93,8 +100,8 @@ Fly scheduled machine on the deployed API image can do this. Take the image refe
 `fly image show -a invoicedesk-api`. This command is untested here.
 
 ```bash
-fly machine run registry.fly.io/invoicedesk-api:<deployment-tag> \
-  python scripts/purge_visitor_uploads.py --schedule hourly -a invoicedesk-api
+fly machine run --schedule hourly -a invoicedesk-api \
+  registry.fly.io/invoicedesk-api:<deployment-tag> python scripts/purge_visitor_uploads.py
 ```
 
 ## Tests
@@ -102,6 +109,7 @@ fly machine run registry.fly.io/invoicedesk-api:<deployment-tag> \
 `uv run pytest integrations/tests` parses these configs with `tomllib` and checks that:
 
 - every Python app builds from the shared Dockerfile;
-- the API runs migrations on release;
+- the API runs migrations on release, and uvicorn never trusts client-supplied
+  `X-Forwarded-For` (`--no-proxy-headers`, `TRUST_FORWARDED_FOR=false`);
 - n8n has no public service;
 - no secret-looking key appears in any `[env]` table.

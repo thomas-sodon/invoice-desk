@@ -410,6 +410,12 @@ def test_api_runs_migrations_and_health_checks() -> None:
     assert cfg["http_service"]["checks"][0]["path"] == "/healthz"
     assert "invoicedesk_api.main:app" in cfg["processes"]["app"]
     assert cfg["env"]["TRUST_FORWARDED_FOR"] == "false"
+    # uvicorn with --forwarded-allow-ips '*' copies the client-controlled left-most
+    # X-Forwarded-For hop into request.client.host, defeating TRUST_FORWARDED_FOR=false.
+    argv = shlex.split(cfg["processes"]["app"])
+    assert "--no-proxy-headers" in argv
+    assert not any(a.startswith("--forwarded-allow-ips") for a in argv)
+    assert "--proxy-headers" not in argv
 
 
 def test_mcp_resource_url_matches_its_public_host() -> None:

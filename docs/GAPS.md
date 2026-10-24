@@ -498,3 +498,15 @@ don't delete entries. Mark them **closed** when resolved.
 - **OWASP LLM Top 10 (2026) numbering is secondhand.** SECURITY.md maps controls to the risk
   numbers DESIGN §5.5 took from Cloud Security Alliance summaries (#1, #3, #6, #8). These were not
   checked against the primary OWASP list here.
+- **No root `.dockerignore` (docs/integrations review).** `infra/docker/python.Dockerfile` ends
+  with `COPY . .` from the repo root, so a local `.env`, `.venv`, `node_modules` and generated
+  data would be baked into every image `fly deploy` builds and pushes. Raised for the owners of
+  the repo root; `infra/fly/README.md` warns before the first deploy. *Close by:* adding a root
+  `.dockerignore` that excludes `.env`/`.env.*` (not `.env.example`), `.git`, `.venv`,
+  `node_modules`, `apps/web/.next`, `var/` and `data/public/cache`.
+- **Per-IP limits behind Fly are one shared bucket.** `infra/fly/api.toml` used to run uvicorn
+  with `--proxy-headers --forwarded-allow-ips *`, which copies the client-controlled left-most
+  `X-Forwarded-For` hop into `request.client.host` and let a visitor pick a fresh "IP" per
+  request, bypassing the per-IP try-it limits despite `TRUST_FORWARDED_FOR=false`. It now runs
+  with `--no-proxy-headers`, so every visitor shares the Fly proxy's address (stricter, not
+  looser). *Close by:* the API reading `Fly-Client-IP` (raised for apps/api).

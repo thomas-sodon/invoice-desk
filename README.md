@@ -90,13 +90,16 @@ each, with 95% bootstrap intervals. Source:
 
 | Safety check (offline harness run) | InvoiceDesk (config D) | Basic "read it and post it" script (config N) |
 |---|---|---|
-| Planted attacks missed, of 30 | **0** [0, 0] | 30 [22, 39] |
-| Bills that would have auto-posted wrongly | **0.000** [0.000, 0.000] | 0.592 [0.500, 0.684] |
+| Planted attacks missed (in any repeat) | **0 of 30** | 30 of 30 |
+| Share of auto-posted bills that should have been held | **0.000** [0.000, 0.000] | 0.592 [0.500, 0.684] |
 | Bank-change requests held for a person | **1.000** | 0.000 |
 | Duplicates caught | **1.000** | 0.000 |
 | Clean invoices posted with no human touch | 0.500 [0.370, 0.643] (target 0.70: **missed**) | 1.000 (it posts everything) |
 
-The last row is a real finding. Even when every field is read correctly, the confidence check
+The attack row is a plain count, so it carries no interval: the report's bootstrap interval for
+that count resamples the whole development-plus-attack pool, so it measures how many attack cases
+a resample happens to draw, not uncertainty about whether they were caught. The last row is a
+real finding. Even when every field is read correctly, the confidence check
 holds about half of the clean invoices, because the confidence scorer has not been fitted on
 real model output yet. Fixing that needs a live run on the development set
 ([GAPS.md](docs/GAPS.md), Evals section).
@@ -115,9 +118,12 @@ In plain English:
 - **The AI reads; it never decides.** The model that looks at an invoice can only fill in a form.
   It can't post, pay, approve or change anything. Whether a bill is paid is decided by ordinary,
   tested code that applies your rules.
-- **Hidden text is caught before the AI reads anything.** White-on-white text, microscopic fonts,
-  text off the edge of the page, and faint grey print in a photo are all detected first. Such an
-  invoice is quarantined and shown to a person with the hidden text boxed in red.
+- **Hidden text is checked for before the AI reads anything.** White-on-white text, microscopic
+  fonts, text off the edge of the page, and faint grey print in a photo are screened for first.
+  A flagged invoice is quarantined and shown to a person with the hidden text boxed in red. The
+  checks are not perfect (very faint print is only partly recovered; see
+  [known failure modes](#known-failure-modes)), which is why the bank-change rule below does not
+  depend on them.
 - **Bank changes always go to people.** Any new bank or remit-to detail, whether from the invoice,
   the email or hidden text, needs two different approvers, neither of them the person who
   uploaded it, plus a confirmed call-back to the vendor's number on file. No setting turns this
