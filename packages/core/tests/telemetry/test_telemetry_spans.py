@@ -196,3 +196,30 @@ def test_setup_tracing_with_explicit_exporter(monkeypatch: pytest.MonkeyPatch) -
         assert [s.name for s in exporter.get_finished_spans()] == ["x"]
     finally:
         shutdown_tracing()
+
+
+def test_exception_text_never_reaches_span_status(spans: InMemorySpanExporter) -> None:
+    """OTel's default status-on-exception would copy raw exception text (e.g. a pydantic
+    ``input_value`` holding a bank number) over the masked status (invariant 9)."""
+
+    def failing_call() -> None:
+        with llm_span(ModelRole.EXTRACT_T1, HAIKU) as span:
+            span.error("validation", "Acct 000123456789 did not parse")
+            raise ValueError("input_value='Acct 000123456789'")
+
+    def failing_document() -> None:
+        with document_span("extract_and_score"):
+            raise KeyError("Routing 021000021 Acct 000123456789")
+
+    with pytest.raises(ValueError):
+        failing_call()
+    with pytest.raises(KeyError):
+        failing_document()
+    first, second = spans.get_finished_spans()
+    for sp in (first, second):
+        assert sp.status.description is not None
+        assert "000123456789" not in sp.status.description
+        assert "021000021" not in sp.status.description
+        assert not sp.events
+    assert first.attributes is not None and first.attributes["error.type"] == "validation"
+    assert second.status.description == "KeyError"

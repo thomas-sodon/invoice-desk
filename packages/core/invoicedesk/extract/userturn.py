@@ -18,7 +18,9 @@ from invoicedesk.contracts.screening import ScreeningOutcome
 
 __all__ = ["build_user_turn", "neutralize_tags", "ocr_words_text"]
 
-_TAG_RE = re.compile(r"<\s*(/?)\s*(email_body|flagged_text|few_shot_examples|schema_notes)", re.I)
+_TAG_RE = re.compile(
+    r"<\s*(/?)\s*(email_body|flagged_text|few_shot_examples|schema_notes|sentence|issues)", re.I
+)
 
 
 def neutralize_tags(text: str) -> str:

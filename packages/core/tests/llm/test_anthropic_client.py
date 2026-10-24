@@ -6,6 +6,8 @@ The SDK uses ``httpx2``, which ``respx`` cannot patch, so tests inject ``httpx2.
 from __future__ import annotations
 
 import json
+import threading
+import time
 from collections.abc import Callable
 from decimal import Decimal
 from typing import Any
@@ -34,6 +36,7 @@ from invoicedesk.llm.anthropic_client import (
     AnthropicLLMClient,
     build_request_kwargs,
 )
+from invoicedesk.llm.errors import StructuredOutputError
 from invoicedesk.testing.builders import make_extraction
 from pydantic import BaseModel, ConfigDict
 
@@ -259,10 +262,31 @@ def test_refusal_with_empty_content() -> None:
 
 # ---------------------------------------------------------------- errors
 def test_invalid_structured_output_is_validation_error() -> None:
-    client, _ = _client(_echo('{"x": "not an int"}'))
+    client, _ = _client(_echo('{"x": "Acct 000123456789"}'))
     with pytest.raises(LLMCallError) as ei:
         client.parse(_req(ModelRole.EXTRACT_T1), Out)
     assert ei.value.kind == "validation"
+    # the billed call keeps its usage and cost
+    assert isinstance(ei.value, StructuredOutputError)
+    assert ei.value.response is not None
+    assert ei.value.response.cost_usd == _cost(HAIKU)
+    assert ei.value.response.parsed is None
+    # the message names the failing location but never quotes the model's input values
+    assert "x" in str(ei.value)
+    assert "000123456789" not in str(ei.value)
+    assert ei.value.__cause__ is None
+
+
+def test_truncated_output_at_max_tokens_keeps_cost() -> None:
+    def h(req: httpx2.Request) -> httpx2.Response:
+        return httpx2.Response(200, json=_message(SONNET, '{"x": 1', stop="max_tokens"))
+
+    client, _ = _client(h)
+    with pytest.raises(StructuredOutputError) as ei:
+        client.parse(_req(ModelRole.EXTRACT_T2), Out)
+    assert ei.value.response is not None
+    assert ei.value.response.stop_reason == "max_tokens"
+    assert ei.value.response.cost_usd == _cost(SONNET)
 
 
 def test_end_turn_without_text_is_validation_error() -> None:
@@ -273,6 +297,9 @@ def test_end_turn_without_text_is_validation_error() -> None:
     with pytest.raises(LLMCallError) as ei:
         client.parse(_req(ModelRole.EXTRACT_T1), Out)
     assert ei.value.kind == "validation"
+    assert isinstance(ei.value, StructuredOutputError)
+    assert ei.value.response is not None
+    assert ei.value.response.cost_usd == _cost(HAIKU)
 
 
 def _status(code: int, etype: str) -> Callable[[httpx2.Request], httpx2.Response]:
@@ -358,6 +385,37 @@ def test_per_tier_semaphores() -> None:
     assert client._sems["haiku"]._value == 8  # type: ignore[attr-defined]
 
 
+def test_per_tier_semaphore_limits_in_flight_calls() -> None:
+    lock = threading.Lock()
+    state = {"now": 0, "peak": 0}
+    echo = _echo()
+
+    def slow(req: httpx2.Request) -> httpx2.Response:
+        with lock:
+            state["now"] += 1
+            state["peak"] = max(state["peak"], state["now"])
+        time.sleep(0.05)
+        with lock:
+            state["now"] -= 1
+        return echo(req)
+
+    client = AnthropicLLMClient(
+        api_key="k",
+        max_retries=0,
+        max_concurrency={"opus": 2},
+        transport=httpx2.MockTransport(slow),
+    )
+    threads = [
+        threading.Thread(target=client.parse, args=(_req(ModelRole.ADJUDICATE_T3), Out))
+        for _ in range(6)
+    ]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert state["peak"] == 2
+
+
 # ---------------------------------------------------------------- batch (root cause)
 def test_batch_submit_and_collect() -> None:
     state: dict[str, Any] = {}
@@ -388,6 +446,13 @@ def test_batch_submit_and_collect() -> None:
                         "error": {"type": "error", "error": {"type": "api_error", "message": "x"}},
                     },
                 },
+                {
+                    "custom_id": "ex-3",
+                    "result": {
+                        "type": "succeeded",
+                        "message": _message(OPUS, '{"x": "Acct 000123456789"}'),
+                    },
+                },
             ]
             return httpx2.Response(200, content="\n".join(json.dumps(x) for x in lines).encode())
         raise AssertionError(f"unexpected {req.method} {path}")
@@ -409,6 +474,11 @@ def test_batch_submit_and_collect() -> None:
     assert ok.parsed == {"x": 9}
     assert ok.cost_usd == _cost(OPUS, batch=True)
     assert isinstance(results["ex-2"], LLMCallError)
+    bad = results["ex-3"]
+    assert isinstance(bad, StructuredOutputError)
+    assert bad.response is not None
+    assert bad.response.cost_usd == _cost(OPUS, batch=True)
+    assert "000123456789" not in str(bad)
 
 
 def test_batch_validation() -> None:

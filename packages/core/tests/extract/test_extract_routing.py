@@ -198,9 +198,15 @@ def test_max_tier_caps_escalation(
 def test_every_tier_refuses_raises_with_costs(
     doc: PreprocessedDocument, storage: InMemoryStorage
 ) -> None:
-    llm = FakeLLM(refuse_roles={"extract_t1", "extract_t2"})
+    llm = FakeLLM(refuse_roles={"extract_t1", "extract_t2", "adjudicate_t3"})
     with pytest.raises(ExtractionFailed) as ei:
         _extractor(llm, storage).extract(doc, screening=clean_screening())
+    assert [t.tier for t in ei.value.tiers] == ["haiku", "sonnet", "opus"]
+    assert all(Decimal(t.cost_usd) > 0 for t in ei.value.tiers)
+
+    llm = FakeLLM(refuse_roles={"extract_t1", "extract_t2"})
+    with pytest.raises(ExtractionFailed) as ei:
+        _extractor(llm, storage).extract(doc, screening=clean_screening(), max_tier="sonnet")
     assert [t.tier for t in ei.value.tiers] == ["haiku", "sonnet"]
 
     llm = FakeLLM(refuse_roles={"extract_t1"})
@@ -343,3 +349,51 @@ def test_system_prefix_is_identical_and_cached_across_tiers_and_docs(
     assert today.isoformat() not in prefix
     # metadata (not prompt) carries the document id
     assert {c.metadata["document_id"] for c in llm.calls} == {d.document_id for d in docs}
+
+
+def test_haiku_and_sonnet_refuse_then_opus_adjudicates(
+    doc: PreprocessedDocument, storage: InMemoryStorage, clean: Clean
+) -> None:
+    """No valid reading after Sonnet means min required confidence is 0 < tau_hi: go to Opus."""
+    llm = FakeLLM(
+        by_role=_by_role(adjudicate_t3=clean()), refuse_roles={"extract_t1", "extract_t2"}
+    )
+    out = _extractor(llm, storage).extract(doc, screening=clean_screening())
+    assert _roles(llm) == ["extract_t1", "extract_t2", "adjudicate_t3"]
+    assert out.escalated_to == "opus"
+    assert out.final.invoice_number.value == "INV-2231"
+    assert [t.refused for t in out.tiers] == [True, True, False]
+
+
+def test_invalid_output_cost_is_recorded(
+    doc: PreprocessedDocument, storage: InMemoryStorage, clean: Clean
+) -> None:
+    """A schema-invalid answer is still billed: its usage/cost reach the TierRun."""
+    from invoicedesk.contracts.llm import LLMResponse, Usage
+    from invoicedesk.llm.errors import StructuredOutputError
+
+    good = clean().model_dump(mode="json")
+    billed = LLMResponse(
+        role=ModelRole.EXTRACT_T1,
+        model_id="claude-haiku-5-5",
+        stop_reason="max_tokens",
+        parsed=None,
+        usage=Usage(input_tokens=5000, output_tokens=4096),
+        cost_usd=Decimal("0.002548"),
+        latency_ms=812,
+        trace_id="t" * 32,
+    )
+
+    def responder(req: LLMRequest) -> dict[str, Any]:
+        if req.role == ModelRole.EXTRACT_T1:
+            raise StructuredOutputError("truncated", response=billed)
+        return good
+
+    out = _extractor(FakeLLM(responder), storage).extract(doc, screening=clean_screening())
+    t1 = out.tiers[0]
+    assert t1.output is None
+    assert t1.cost_usd == "0.002548"
+    assert t1.usage.output_tokens == 4096
+    assert t1.latency_ms == 812
+    assert t1.trace_id == "t" * 32
+    assert Decimal(out.total_cost_usd) == sum(Decimal(t.cost_usd) for t in out.tiers)

@@ -42,6 +42,7 @@ from invoicedesk.contracts.llm import (
     TextBlock,
     Usage,
 )
+from invoicedesk.llm.errors import StructuredOutputError
 from invoicedesk.telemetry import llm_span
 
 __all__ = [
@@ -191,12 +192,18 @@ class AnthropicLLMClient:
             except pydantic.ValidationError as exc:
                 latency = _ms(t0)
                 body = self._last.body
-                if body is not None and body.get("stop_reason") == "refusal":
-                    resp = self._from_body(request, rs, body, latency, span.trace_id)
-                    span.record(resp)
-                    return resp
+                billed: LLMResponse | None = None
+                if body is not None:
+                    billed = self._from_body(request, rs, body, latency, span.trace_id)
+                    span.record(billed)
+                    if billed.refused:
+                        return billed
                 span.error("validation", "structured output did not match the schema")
-                raise LLMCallError("validation", f"{output_model.__name__}: {exc}") from exc
+                # Never put the pydantic message in the error: it quotes input values (document
+                # text, bank numbers) and error text ends up in logs and traces.
+                raise StructuredOutputError(
+                    f"{output_model.__name__}: {_schema_errors(exc)}", response=billed
+                ) from None
             except anthropic.APIError as exc:
                 err = _map_error(exc)
                 span.error(err.kind, str(exc))
@@ -204,6 +211,11 @@ class AnthropicLLMClient:
             latency = _ms(t0)
             resp = self._from_message(request, rs, msg, latency, span.trace_id)
             span.record(resp)
+            if resp.parsed is None and not resp.refused:
+                span.error("validation", "no structured output")
+                raise StructuredOutputError(
+                    f"no structured output (stop_reason={resp.stop_reason})", response=resp
+                )
             return resp
 
     # ------------------------------------------------------------------ helpers
@@ -216,9 +228,7 @@ class AnthropicLLMClient:
         parsed: dict[str, Any] | None = None
         if stop != "refusal":  # check the refusal BEFORE touching content
             out = msg.parsed_output
-            if out is None:
-                raise LLMCallError("validation", f"no structured output (stop_reason={stop})")
-            parsed = out.model_dump(mode="json")
+            parsed = None if out is None else out.model_dump(mode="json")
         return LLMResponse(
             role=request.role,
             model_id=model_id,
@@ -250,7 +260,7 @@ class AnthropicLLMClient:
         return LLMResponse(
             role=request.role,
             model_id=model_id,
-            stop_reason="refusal",
+            stop_reason=str(body.get("stop_reason") or "end_turn"),
             parsed=None,
             usage=usage,
             cost_usd=_cost(model_id, rs, usage),
@@ -318,24 +328,27 @@ class AnthropicLLMClient:
                 usage = _usage(msg.usage)
                 model_id = str(msg.model or rs.model)
                 stop = str(msg.stop_reason or "end_turn")
-                parsed: dict[str, Any] | None = None
-                if stop != "refusal":
-                    text = "".join(b.text for b in msg.content if b.type == "text")
-                    try:
-                        parsed = output_model.model_validate_json(text).model_dump(mode="json")
-                    except pydantic.ValidationError as exc:
-                        out[item.custom_id] = LLMCallError("validation", str(exc))
-                        continue
-                out[item.custom_id] = LLMResponse(
+                resp = LLMResponse(
                     role=role,
                     model_id=model_id,
                     stop_reason=stop,
-                    parsed=parsed,
+                    parsed=None,
                     usage=usage,
                     cost_usd=_cost(model_id, rs, usage, batch=True),
                     latency_ms=0,
                     request_id=msg.id,
                 )
+                if stop != "refusal":  # refusal checked before content is read
+                    text = "".join(b.text for b in msg.content if b.type == "text")
+                    try:
+                        parsed = output_model.model_validate_json(text).model_dump(mode="json")
+                    except pydantic.ValidationError as exc:
+                        out[item.custom_id] = StructuredOutputError(
+                            f"{output_model.__name__}: {_schema_errors(exc)}", response=resp
+                        )
+                        continue
+                    resp = resp.model_copy(update={"parsed": parsed})
+                out[item.custom_id] = resp
         except anthropic.APIError as exc:
             raise _map_error(exc) from exc
         except anthropic.AnthropicError as exc:  # e.g. batch has no results_url yet
@@ -345,6 +358,13 @@ class AnthropicLLMClient:
 
 def _ms(t0: float) -> int:
     return int((time.perf_counter() - t0) * 1000)
+
+
+def _schema_errors(exc: pydantic.ValidationError) -> str:
+    """Error count and locations only (no input values, which may be document text)."""
+    locs = sorted({".".join(str(p) for p in e["loc"]) or "<root>" for e in exc.errors()})
+    shown = ", ".join(locs[:8]) + (", ..." if len(locs) > 8 else "")
+    return f"{exc.error_count()} schema error(s) at {shown}"
 
 
 def _usage(u: Any) -> Usage:

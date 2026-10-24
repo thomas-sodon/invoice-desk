@@ -9,6 +9,7 @@ from invoicedesk.contracts.extraction import InvoiceExtraction
 from invoicedesk.contracts.extractor import TierRun
 from invoicedesk.contracts.llm import ContentBlock, LLMCallError, LLMClient, LLMRequest, Usage
 from invoicedesk.extract.prompts import extraction_system_blocks
+from invoicedesk.llm.errors import StructuredOutputError
 
 __all__ = ["OUTPUT_SCHEMA", "build_tier_request", "run_tier"]
 
@@ -43,14 +44,28 @@ def run_tier(
     except LLMCallError as exc:
         if exc.kind != "validation":
             raise
+        # An invalid structured output is still a billed call: keep its usage and cost when
+        # the client reports them (StructuredOutputError), so the tier's spend is recorded.
+        billed = exc.response if isinstance(exc, StructuredOutputError) else None
+        if billed is None:
+            return TierRun(
+                tier=tier,
+                model_id=settings_for(req.role).model,
+                output=None,
+                refused=False,
+                usage=Usage(),
+                cost_usd="0",
+                latency_ms=0,
+            )
         return TierRun(
             tier=tier,
-            model_id=settings_for(req.role).model,
+            model_id=billed.model_id,
             output=None,
-            refused=False,
-            usage=Usage(),
-            cost_usd="0",
-            latency_ms=0,
+            refused=billed.refused,
+            usage=billed.usage,
+            cost_usd=str(billed.cost_usd),
+            latency_ms=billed.latency_ms,
+            trace_id=billed.trace_id,
         )
     output: InvoiceExtraction | None = None
     if not resp.refused and resp.parsed is not None:

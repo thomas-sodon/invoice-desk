@@ -4,7 +4,7 @@ Both are guarded by deterministic post-checks; on any failure (refusal, error, c
 they fall back to the deterministic template, so the model can only ever smooth wording:
 
 * :func:`polish_variance` rejects a rewrite whose numbers (as a multiset) differ from the
-  template's, or whose over/under direction flips.
+  template's, or whose over/under direction flips or is added.
 * :func:`draft_followup` takes the recipient from the **vendor master** only (never from the
   document), caps the body at 120 words, and rejects drafts containing links, e-mail addresses
   or phone numbers (a reply must never be steered to an attacker). Account-like digit runs are
@@ -101,8 +101,8 @@ def _polish_ok(template: str, candidate: str) -> bool:
         return False
     if not same_numbers(template, c):
         return False
-    td, cd = _direction(template), _direction(c)
-    return not (td and cd != td)
+    # The direction must match exactly: a rewrite may neither flip nor add an over/under claim.
+    return _direction(template) == _direction(c)
 
 
 def polish_variance(llm: LLMClient, sentence: str) -> str:

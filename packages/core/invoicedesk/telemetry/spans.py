@@ -53,6 +53,7 @@ class LLMSpan:
 
     def __init__(self, span: Span) -> None:
         self.span = span
+        self.errored = False
 
     @property
     def trace_id(self) -> str | None:
@@ -89,8 +90,27 @@ class LLMSpan:
             self.span.add_event("refusal", {"gen_ai.response.model": response.model_id})
 
     def error(self, kind: str, message: str) -> None:
+        self.errored = True
         self.span.set_attribute("error.type", kind)
         self.span.set_status(Status(StatusCode.ERROR, mask_text(message) or ""))
+
+
+@contextmanager
+def _guarded(span: Span) -> Iterator[LLMSpan]:
+    """Yield a handle; on an exception set an ERROR status naming only the exception type.
+
+    OpenTelemetry's default ``set_status_on_exception`` writes ``f"{type}: {exc}"`` into the
+    span status, overwriting a masked status: exception text can quote document text or bank
+    numbers (e.g. pydantic ``input_value=``), so it never reaches a trace (invariant 9).
+    """
+    handle = LLMSpan(span)
+    try:
+        yield handle
+    except Exception as exc:
+        if not handle.errored:
+            span.set_attribute("error.type", type(exc).__name__)
+            span.set_status(Status(StatusCode.ERROR, type(exc).__name__))
+        raise
 
 
 @contextmanager
@@ -105,23 +125,33 @@ def llm_span(role: str, model_id: str, **attributes: Any) -> Iterator[LLMSpan]:
         "invoicedesk.role": str(role),
         **attributes,
     }
-    with tracer.start_as_current_span(
-        f"chat {model_id}",
-        kind=trace.SpanKind.CLIENT,
-        attributes=safe_attributes(attrs),
-        record_exception=False,  # exception messages may quote document text
-    ) as span:
-        yield LLMSpan(span)
+    with (
+        tracer.start_as_current_span(
+            f"chat {model_id}",
+            kind=trace.SpanKind.CLIENT,
+            attributes=safe_attributes(attrs),
+            record_exception=False,  # exception messages may quote document text
+            set_status_on_exception=False,  # same reason; _guarded sets a safe status
+        ) as span,
+        _guarded(span) as handle,
+    ):
+        yield handle
 
 
 @contextmanager
 def document_span(name: str, **attributes: Any) -> Iterator[LLMSpan]:
     """An internal span (e.g. ``extract_and_score``) that parents the model-call spans."""
     tracer = trace.get_tracer(TRACER_NAME)
-    with tracer.start_as_current_span(
-        name, attributes=safe_attributes(attributes), record_exception=False
-    ) as span:
-        yield LLMSpan(span)
+    with (
+        tracer.start_as_current_span(
+            name,
+            attributes=safe_attributes(attributes),
+            record_exception=False,
+            set_status_on_exception=False,
+        ) as span,
+        _guarded(span) as handle,
+    ):
+        yield handle
 
 
 @contextmanager

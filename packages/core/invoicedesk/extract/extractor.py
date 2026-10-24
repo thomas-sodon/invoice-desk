@@ -254,13 +254,15 @@ class TieredExtractor:
                 cal2 = self._calibrate(result.merged, words_by_id, result.agreement or None)
                 required = set(self.confidence.required_fields)
                 disagree_required = any(f in required for f in result.disagreements)
-                if _ORDER[max_tier] >= _ORDER["opus"] and (
-                    disagree_required or self.min_required_conf(cal2) < self.confidence.tau_hi
-                ):
-                    t3 = call("opus")
-                    outs3 = [
-                        TierOutput(r.tier, r.output) for r in (t1, t2, t3) if r.output is not None
-                    ]
+                go_opus = disagree_required or self.min_required_conf(cal2) < self.confidence.tau_hi
+            else:
+                # Neither Haiku nor Sonnet produced a valid reading: the minimum required
+                # confidence is effectively 0 < tau_hi, so Opus adjudicates (§5.5).
+                go_opus = True
+            if go_opus and _ORDER[max_tier] >= _ORDER["opus"]:
+                t3 = call("opus")
+                outs3 = [TierOutput(r.tier, r.output) for r in (t1, t2, t3) if r.output is not None]
+                if outs3:
                     result = reconcile(outs3)
 
         if result is None:
