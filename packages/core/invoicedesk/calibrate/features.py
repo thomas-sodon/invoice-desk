@@ -81,6 +81,49 @@ def _date_candidates(iso: str) -> list[str]:
     return sorted(cands)
 
 
+#: Common OCR glyph confusions folded before the "same characters" check (O/0, I/l/1).
+_CONFUSABLE = str.maketrans({"o": "0", "i": "1", "l": "1"})
+#: Agreement when the cited text equals the value only after folding O/0 and I/l/1.
+CONFUSABLE_AGREEMENT = 0.97
+
+
+def _bounded_in(value: str, text: str) -> bool:
+    """``value`` occurs in ``text`` as a whole token run: OCR often glues a printed value to
+    its label (``Number:1043``, ``WorkorderWO-1180``, ``Re:Cedar Flats``). A boundary is the
+    text edge, a non-alphanumeric character, or a lower-to-upper case change; whitespace
+    between the value's tokens may be missing."""
+    toks = [re.escape(t) for t in value.split()]
+    if not toks or len(_alnum(value)) < 2:
+        return False
+    for m in re.finditer(r"\s*".join(toks), text, re.IGNORECASE):
+        s, e = m.span()
+        before = (
+            s == 0 or not text[s - 1].isalnum() or (text[s - 1].islower() and text[s].isupper())
+        )
+        after = (
+            e == len(text) or not text[e].isalnum() or (text[e - 1].islower() and text[e].isupper())
+        )
+        if before and after:
+            return True
+    return False
+
+
+def _date_in(cand: str, text: str) -> bool:
+    """A date candidate inside a longer alnum run (``invoicedateoctober182026``), not glued
+    to further digits."""
+    if len(cand) < 6:
+        return False
+    start = text.find(cand)
+    while start >= 0:
+        end = start + len(cand)
+        ok_before = start == 0 or not (cand[0].isdigit() and text[start - 1].isdigit())
+        ok_after = end == len(text) or not text[end].isdigit()
+        if ok_before and ok_after:
+            return True
+        start = text.find(cand, start + 1)
+    return False
+
+
 def ocr_agreement(f: FieldModel, cited: list[str]) -> float:
     """0..1 agreement between the extracted value and the text of the words it cites.
 
@@ -108,14 +151,19 @@ def ocr_agreement(f: FieldModel, cited: list[str]) -> float:
         if not f.value_iso:
             return 0.0
         text = _alnum(joined)
-        return max(fuzz.ratio(c, text) / 100.0 for c in _date_candidates(f.value_iso))
+        cands = _date_candidates(f.value_iso)
+        if any(_date_in(c, text) for c in cands):
+            return 1.0
+        return max(fuzz.ratio(c, text) / 100.0 for c in cands)
     if f.value is None:
         return 0.0
     a, b = _alnum(f.value), _alnum(joined)
     if not a or not b:
         return 0.0
-    if a == b:
+    if a == b or _bounded_in(f.value, joined):
         return 1.0
+    if a.translate(_CONFUSABLE) == b.translate(_CONFUSABLE):
+        return CONFUSABLE_AGREEMENT
     ratio = fuzz.ratio(a, b)
     tsr = fuzz.token_sort_ratio(f.value.casefold(), joined.casefold())
     # partial match only counts when the value is the bulk of the cited text

@@ -324,6 +324,50 @@ def _find_ids(words: list[tuple[int, str]], printed: str) -> list[int]:
     return []
 
 
+_WORD_BOX_LINE = re.compile(r'^\s*\[(\d+)\]\s+"(?:[^"\\]|\\.)*"\s+\((\d+),(\d+),(\d+),(\d+)\)')
+_PAGE_LINE = re.compile(r"^\s*---\s*page\s+(\d+)")
+
+
+def _parse_word_boxes(text: str) -> dict[int, tuple[int, tuple[int, int, int, int]]]:
+    """``id -> (page, box)`` from the extractor's ``[12] "INV-2231" (x0,y0,x1,y1)`` listing,
+    with pages taken from its ``--- page N ---`` markers (1-based there, 0-based here)."""
+    out: dict[int, tuple[int, tuple[int, int, int, int]]] = {}
+    page = 0
+    for line in text.splitlines():
+        mp = _PAGE_LINE.match(line)
+        if mp:
+            page = int(mp.group(1)) - 1
+            continue
+        m = _WORD_BOX_LINE.match(line)
+        if m:
+            x0, y0, x1, y1 = (int(m.group(k)) for k in range(2, 6))
+            out[int(m.group(1))] = (page, (x0, y0, x1, y1))
+    return out
+
+
+def _find_ids_by_box(
+    boxes: dict[int, tuple[int, tuple[int, int, int, int]]],
+    page: int,
+    gold: tuple[int, int, int, int],
+) -> list[int]:
+    """OCR words that sit on the gold value's line and overlap it horizontally: what a reader
+    cites when OCR merged the value with its label (``Number:1043``, ``WorkorderWO-1180``).
+    A word counts when its vertical overlap with the gold box is at least half the smaller of
+    the two heights."""
+    gx0, gy0, gx1, gy1 = gold
+    ids: list[int] = []
+    for wid, (wp, (x0, y0, x1, y1)) in sorted(boxes.items()):
+        if wp != page:
+            continue
+        if min(x1, gx1) - max(x0, gx0) <= 0:
+            continue
+        v = min(y1, gy1) - max(y0, gy0)
+        if v <= 0 or v < 0.5 * min(y1 - y0, gy1 - gy0):
+            continue
+        ids.append(wid)
+    return ids
+
+
 def _misread(value: Any, rng: random.Random) -> Any:
     if isinstance(value, int):
         delta = rng.choice((900, -900, 9_000, 100, -100, 18_000))
@@ -567,6 +611,7 @@ class OracleLLM:
         noise = self.noise.tier(tier)
         hard = record.medium in ("photo", "handwritten")
         words = _parse_words(text)
+        word_boxes = _parse_word_boxes(text)
         seed = int(hashlib.sha256(f"{record.id}:{tier}".encode()).hexdigest()[:16], 16)
         rng = random.Random(seed)  # noqa: S311 - deterministic noise, not security
         illegible = set(record.truth.illegible_fields)
@@ -577,6 +622,8 @@ class OracleLLM:
         def source(name: str) -> dict[str, Any]:
             b = record.boxes.get(name)
             ids = _find_ids(words, b.text) if b is not None else []
+            if not ids and b is not None:
+                ids = _find_ids_by_box(word_boxes, b.page, b.box)
             if ids:
                 return {"word_ids": ids, "fallback_box": None}
             return {"word_ids": [], "fallback_box": list(b.box) if b is not None else None}

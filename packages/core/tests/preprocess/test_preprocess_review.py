@@ -151,3 +151,47 @@ def test_huge_text_layer_rejected_not_truncated(storage, fx, monkeypatch):
     data = fx.make_pdf()  # 13 words on the page
     with pytest.raises(RejectedInput, match="large amount of text"):
         _pre(storage, fx.FakeOcr()).preprocess(data, mime="application/pdf", document_id="big")
+
+
+# ------------------------------------------------------------------ font-subset fragments
+
+
+def test_type3_font_switches_inside_a_word_do_not_split_it():
+    """Chromium-printed PDFs switch Type3 subset fonts every few glyphs ("B" "rus" "h" ...);
+    a word is split only on a visible style change (size, colour, visibility)."""
+    from pathlib import Path
+
+    from invoicedesk.preprocess.pdf import render_page, text_layer_words
+
+    pdf = Path(__file__).resolve().parents[4] / "data" / "demo" / "06-brushstroke-INV07400-pdf.pdf"
+    doc = pymupdf.open(pdf)
+    try:
+        page = doc[0]
+        texts = [w.span.text for w in text_layer_words(page, render_page(page))]
+    finally:
+        doc.close()
+    assert "Brushstroke" in texts and "Painting" in texts and "Studio" in texts
+    assert "rus" not in texts
+
+
+def test_colour_change_inside_a_word_still_splits_it(storage, fx):
+    """The hidden-text detector needs a white run inside a visible word as its own span."""
+    from invoicedesk.preprocess.pdf import render_page, text_layer_words
+
+    def mixed(_doc, page):
+        tw = pymupdf.TextWriter(page.rect, color=(0, 0, 0))
+        tw.append((72, 200), "Visible", fontsize=12)
+        tw.write_text(page)
+        end = tw.last_point
+        tw2 = pymupdf.TextWriter(page.rect, color=(1, 1, 1))
+        tw2.append(end, "HIDDEN", fontsize=12)
+        tw2.write_text(page)
+
+    data = fx.make_pdf([], extra=mixed)
+    doc = pymupdf.open(stream=data, filetype="pdf")
+    try:
+        page = doc[0]
+        texts = [w.span.text for w in text_layer_words(page, render_page(page))]
+    finally:
+        doc.close()
+    assert "HIDDEN" in texts and "VisibleHIDDEN" not in texts

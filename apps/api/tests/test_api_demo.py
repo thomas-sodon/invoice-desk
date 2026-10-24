@@ -91,61 +91,21 @@ def _ids_with_status(demo: dict[str, Any], status: str) -> list[str]:
 
 
 # ---------------------------------------------------------------------------- settle
-@pytest.mark.xfail(
-    strict=False,
-    reason=(
-        "Upstream gap (docs/GAPS.md, API section): through the real preprocessor the oracle "
-        "finds no OCR word refs for some fields (fragmented PDF text-layer words, OCR-merged "
-        "words), so calibrated confidence drops to ~0.63, and legible handwriting scores "
-        "below tau_field; R9 holds 8 clean invoices. "
-        "test_demo_board_matches_expected_except_r9_word_ref_holds pins the exact cause."
-    ),
-)
 def test_demo_run_settles_to_18_4_3(demo) -> None:
     env = _env(demo)
     view = env.client.get(f"/api/v1/batches/{demo['batch_id']}").json()
     assert view["counts"] == {"ready_to_pay": 18, "needs_review": 4, "flagged": 3}
 
 
-def test_demo_board_matches_expected_except_r9_word_ref_holds(demo) -> None:
-    """The batch settles; every document routes as labelled, except clean invoices that R9
-    holds because no OCR word backs a required field (and only for that reason)."""
+def test_demo_board_matches_expected(demo) -> None:
+    """The batch settles and every document routes exactly as labelled (data/demo/expected.json)."""
     env = _env(demo)
     assert len(demo["ids"]) == 25 and demo["jobs"] == 25
     view = env.client.get(f"/api/v1/batches/{demo['batch_id']}").json()  # anonymous: public demo
     assert view["batch"]["mode"] == "demo"
     assert set(view["documents"][0]) == DOC_KEYS
-    assert sum(view["counts"].values()) == 25
-    assert set(view["counts"]) <= {"ready_to_pay", "needs_review", "flagged"}
     got = {d["filename"]: d["status"] for d in view["documents"]}
-    assert {f for f, s in got.items() if s == "Flagged"} == {
-        f for f, s in STATUS_BY_FILE.items() if s == "Flagged"
-    }
-    no_refs = 0
-    for name, expected in STATUS_BY_FILE.items():
-        if got[name] == expected:
-            continue
-        assert (expected, got[name]) == ("ReadyToPay", "NeedsReview"), name
-        failed = env.sql(
-            "select rule_id, details_json from rule_results r join documents d on d.id ="
-            " r.document_id where d.filename = %s and d.batch_id = %s and not r.passed",
-            (name, demo["batch_id"]),
-        )
-        assert [r["rule_id"] for r in failed] == ["R9"], name
-        for fname in failed[0]["details_json"]["fields"]:
-            row = env.sql(
-                "select f.word_ids, f.calibrated_conf from fields f join documents d on d.id ="
-                " f.document_id where d.filename = %s and d.batch_id = %s and f.name = %s"
-                " and f.final",
-                (name, demo["batch_id"], fname),
-            )[0]
-            # no OCR word backs the value (ocr_agreement 0), or the handwriting penalty
-            assert row["calibrated_conf"] < 0.9, (name, fname)
-            no_refs += row["word_ids"] == []
-    held_clean = sum(1 for n, s in got.items() if s != STATUS_BY_FILE[n])
-    assert held_clean == 0 or no_refs > 0
-    ready = sum(1 for s in got.values() if s == "ReadyToPay")
-    assert ready >= 8 and view["counts"]["flagged"] == 3
+    assert got == STATUS_BY_FILE
     # offline replay run: the oracle's synthetic usage is priced from the real price table
     assert float(view["cost_usd"]) > 0
 
@@ -283,7 +243,7 @@ def test_dashboard(demo) -> None:
     env = _env(demo)
     assert env.client.get("/api/v1/dashboard").status_code == 401
     d = env.client.get("/api/v1/dashboard?days=30", headers=env.dev(OWNER)).json()
-    ready = len(_ids_with_status(demo, "ReadyToPay"))  # 18 once the upstream gap closes
+    ready = len(_ids_with_status(demo, "ReadyToPay"))
     assert d["invoices"] == 25
     assert d["hands_free_pct"] == round(100 * ready / 25, 1)
     assert d["hours_saved"] == round(ready * 8 / 60, 1)

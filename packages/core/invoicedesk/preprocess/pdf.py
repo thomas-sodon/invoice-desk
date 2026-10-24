@@ -184,6 +184,12 @@ class PdfWord:
     notes: list[str] = field(default_factory=list)
 
 
+def _visual(style: tuple[float, int, str, bool]) -> tuple[float, int, bool]:
+    """The parts of a span style that change how a word looks (not the font resource)."""
+    size, color, _font, invisible = style
+    return (size, color, invisible)
+
+
 def _rgb(color: int) -> tuple[int, int, int]:
     return ((color >> 16) & 255, (color >> 8) & 255, color & 255)
 
@@ -287,7 +293,10 @@ def text_layer_words(page: pymupdf.Page, rendered: RenderedPage) -> list[PdfWord
                         flush(cur_chars, cur_style)
                         cur_chars, cur_style = [], None
                         continue
-                    if cur_style is not None and cur_style != style:
+                    # Split a word on a visible style change only (size, colour, visibility).
+                    # Font identity is not one: Chromium emits a Type3 subset font per few
+                    # glyphs, which would otherwise fragment "Brushstroke" into B/rus/h/...
+                    if cur_style is not None and _visual(cur_style) != _visual(style):
                         flush(cur_chars, cur_style)
                         cur_chars = []
                     cur_style = style

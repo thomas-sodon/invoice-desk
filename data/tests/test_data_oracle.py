@@ -309,3 +309,29 @@ def test_word_refs_with_the_extractors_own_ocr_listing(core_gold) -> None:
     ids = ex.invoice_number.source.word_ids
     assert ids and " ".join(words[i].text for i in ids) == rec.boxes["invoice_number"].text
     assert ex.total.source.word_ids
+
+
+def test_word_refs_fall_back_to_the_gold_box_when_ocr_merged_tokens() -> None:
+    """RapidOCR glues values to their labels (``Number:1043``); the reader then cites the
+    merged word on the value's line, never a word on the line above or below."""
+    from invoicedesk_data.oracle import _find_ids, _find_ids_by_box, _parse_word_boxes
+
+    listing = "\n".join(
+        [
+            "OCR words:",
+            "--- page 1 (1237x1600 px) ---",
+            '[8] "PaymentDue:November17,2026" (99,340,394,366)',
+            '[9] "Number:1043" (168,363,289,394)',
+            '[10] "InvoiceDate:October18,2026" (99,386,369,418)',
+            "--- page 2 (1237x1600 px) ---",
+            '[11] "Number:1043" (168,363,289,394)',
+        ]
+    )
+    boxes = _parse_word_boxes(listing)
+    assert boxes[9] == (0, (168, 363, 289, 394)) and boxes[11][0] == 1
+    words = [(9, "Number:1043"), (10, "InvoiceDate:October18,2026")]
+    assert _find_ids(words, "1043") == []  # no token match: the fallback is needed
+    assert _find_ids_by_box(boxes, 0, (249, 369, 289, 385)) == [9]
+    assert _find_ids_by_box(boxes, 0, (218, 390, 367, 413)) == [10]
+    assert _find_ids_by_box(boxes, 1, (249, 369, 289, 385)) == [11]
+    assert _find_ids_by_box(boxes, 0, (600, 369, 700, 385)) == []  # no horizontal overlap

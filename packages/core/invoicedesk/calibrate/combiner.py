@@ -46,8 +46,10 @@ class HeuristicCalibrator:
 
     ``p = raw * (0.5 + 0.5 * ocr_agreement)``, then: arithmetic failure x0.5, cross-tier
     disagreement x0.6, cross-tier agreement halves the remaining error, no cited OCR words
-    x0.85, handwriting x0.9. Non-decreasing in ``raw_conf`` and ``ocr_agreement``; never
-    raises a value above its raw self-report except through cross-tier agreement.
+    x0.85, handwriting x0.9 unless two tiers independently agreed on the value (handwriting is
+    escalated to tier 2 precisely so the reads can be compared). Non-decreasing in
+    ``raw_conf`` and ``ocr_agreement``; never raises a value above its raw self-report except
+    through cross-tier agreement.
     """
 
     version = "heuristic-v1"
@@ -62,7 +64,7 @@ class HeuristicCalibrator:
             p = 1.0 - (1.0 - p) * 0.5
         if not s.has_source_words:
             p *= 0.85
-        if s.handwriting:
+        if s.handwriting and s.cross_tier_agree is not True:
             p *= 0.9
         return min(1.0, max(0.0, p))
 

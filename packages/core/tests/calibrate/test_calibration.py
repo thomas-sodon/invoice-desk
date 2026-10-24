@@ -38,6 +38,11 @@ def test_ocr_agreement_money_date_text() -> None:
     assert ocr_agreement(date("2026-10-10"), ["10/10/2026"]) == 1.0
     assert ocr_agreement(date("2026-10-10"), ["Oct", "10,", "2026"]) == 1.0
     assert ocr_agreement(date("2026-09-08"), ["9/8/2026"]) == 1.0
+    # OCR glued the value to its label: the value itself is still printed there
+    assert ocr_agreement(date("2026-10-18"), ["InvoiceDate:October18,2026"]) == 1.0
+    assert ocr_agreement(date("2026-10-18"), ["Due:October182026"]) == 1.0
+    assert ocr_agreement(date("2026-10-18"), ["October182026"]) == 1.0
+    assert ocr_agreement(date("2026-10-18"), ["PaymentDue:November18,2026"]) < 0.9
     assert ocr_agreement(date("2026-10-10"), ["11/12/2025"]) < 0.8
     assert ocr_agreement(date(None), ["x"]) == 0.0
     assert ocr_agreement(date("garbage"), ["garbage"]) == 1.0
@@ -47,6 +52,14 @@ def test_ocr_agreement_money_date_text() -> None:
     assert ocr_agreement(text("Rapid Rooter"), []) == 0.0
     assert ocr_agreement(text(None), ["x"]) == 0.0
     assert ocr_agreement(text("--"), ["x"]) == 0.0
+    # merged label + value tokens count as agreement only at token boundaries
+    assert ocr_agreement(text("1043"), ["Number:1043"]) == 1.0
+    assert ocr_agreement(text("WO-1180"), ["WorkorderWO-1180"]) == 1.0
+    assert ocr_agreement(text("Cedar Flats #201"), ["Re:Cedar", "Flats", "#201"]) == 1.0
+    assert ocr_agreement(text("1043"), ["Number:10430"]) < 0.9
+    # O/0 and I/l/1 OCR confusions
+    assert ocr_agreement(text("WO-1108"), ["W0-1108"]) == pytest.approx(0.97)
+    assert ocr_agreement(text("WO-1108"), ["W0-1109"]) < 0.9
 
 
 def test_build_field_signals() -> None:
@@ -100,6 +113,12 @@ def test_heuristic_is_monotone_and_penalizes() -> None:
     assert h.score(_sig(cross_tier_agree=True)) > clean
     assert h.score(_sig(has_source_words=False)) < clean
     assert h.score(_sig(handwriting=True)) < clean
+    # two tiers that independently agree on a handwritten value lift the handwriting factor
+    agreed = h.score(_sig(cross_tier_agree=True))
+    assert h.score(_sig(handwriting=True, cross_tier_agree=True)) == pytest.approx(agreed)
+    assert h.score(_sig(handwriting=True, cross_tier_agree=False)) < h.score(
+        _sig(cross_tier_agree=False)
+    )
     assert h.calibrate([_sig(field="a"), _sig(field="b", raw_conf=0.1)]).keys() == {"a", "b"}
 
 
