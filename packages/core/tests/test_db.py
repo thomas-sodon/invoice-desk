@@ -189,7 +189,12 @@ def test_status_flow_through_repo(pg_db: Database) -> None:
             S.READY_TO_PAY,
             actor=Actor.user(ids["a2"]),
             reason="approved",
-            evidence=ApprovalEvidence(votes),
+            evidence=ApprovalEvidence(
+                votes,
+                tuple(
+                    RuleOutcome(r, r != "R6", "flag" if r == "R6" else "pass") for r in ALL_RULE_IDS
+                ),
+            ),
         )
         key = f"invoicedesk-bill-{doc}"
         repo.record_bill(c, doc, system="fake", idempotency_key=key, status="pending")

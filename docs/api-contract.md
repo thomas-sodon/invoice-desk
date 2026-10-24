@@ -91,8 +91,8 @@ approve). The approver must never be the uploader (enforced by the API **and** a
 
 | Method and path | Request | Response |
 |---|---|---|
-| `POST /documents/{id}/corrections` | `{ "corrections": [{ "field": "total", "value": "124000" }] }` | `200 { "status" }`. Writes `reviews`, an `eval_examples` row (`split=correction`, provenance `human_correction`) and audit rows, then NeedsReview -> Validating -> re-route. |
-| `POST /documents/{id}/approvals` | `{ "kind": "bank_change", "decision": "approve" or "reject", "callback_attested": true, "note" }` | `200 { "approvals": [...], "status" }`. When the deterministic two-person rule is met, Flagged -> ReadyToPay. `403 self_approval` for the uploader. |
+| `POST /documents/{id}/corrections` | `{ "corrections": [{ "field": "total", "value": "124000" }] }` | `200 { "status" }`. Writes `reviews`, an `eval_examples` row (`split=correction`, provenance `human_correction`) and audit rows, then NeedsReview (or an extracted Flagged invoice with no release vote yet on the current hold, ADR-0008) -> Validating -> re-route. |
+| `POST /documents/{id}/approvals` | `{ "kind": "bank_change", "decision": "approve" or "reject", "callback_attested": true, "note" }` | `200 { "approvals": [...], "status" }`. When the deterministic two-person rule is met and no review-level rule failure is open, Flagged -> ReadyToPay. On a Flagged invoice with open review failures, a release vote is `409 illegal_transition` (the message lists them); an `over_cap` / `new_vendor` approve that clears an open R7 / R1 re-validates instead (ADR-0008). `403 self_approval` for the uploader. |
 | `POST /documents/{id}/reject` | `{ "reason" }` | `200 { "status": "Rejected" }` |
 | `POST /documents/{id}/post` | none | `202 { "job_id" }`. Only for `ReadyToPay`. Visitor uploads are refused. |
 | `POST /batches/{id}/post-ready` | none | `202 { "job_ids": [..], "count": 18 }` |

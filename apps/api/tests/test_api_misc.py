@@ -451,3 +451,31 @@ def test_client_ip_prefers_the_proxy_header_then_forwarded_for() -> None:
     assert client_ip(req(spoof), cast(Any, rt("Fly-Client-IP", False))) == "10.0.0.1"
     bad = {"Fly-Client-IP": "1.2.3.4, 5.6.7.8"}
     assert client_ip(req(bad), cast(Any, rt("Fly-Client-IP", False))) == "10.0.0.1"
+
+
+def test_screen_spans_and_bank_fields_mask_glued_account_numbers() -> None:
+    from invoicedesk_api import views
+
+    out = views._screen_out(
+        {
+            "detector": "hidden_text",
+            "verdict": "malicious",
+            "categories": ["bank_or_remit_change"],
+            "spans_json": [
+                {
+                    "text": "paymentto.newaccoun000555067890 IBAN GB82WEST12345698765432",
+                    "reason": "white text: acct-000555067890",
+                    "page": 0,
+                    "box": [1, 2, 3, 4],
+                    "source": "ocr",
+                }
+            ],
+        }
+    )
+    span = out.spans[0]
+    for leaked in ("000555067890", "GB82WEST12345698765432"):
+        assert leaked not in span.text and leaked not in span.reason
+    assert "7890" in span.text and "5432" in span.text
+    assert views._display("remit_to_bank_details", "acct 98765") == "acct •8765"
+    assert views._value("remit_to_bank_details", "acct 98765") == "acct •8765"
+    assert views._display("notes", "ACCT123456789") == "ACCT•••••6789"

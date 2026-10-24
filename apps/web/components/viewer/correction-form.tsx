@@ -7,6 +7,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { errorMessage } from "@/lib/api";
 import type { Correction, DocumentDetail } from "@/lib/api-types";
+import { releaseBlockers } from "@/lib/approvals";
 import { DATE_FIELD_NAMES, fieldLabel } from "@/lib/badges";
 import { editableValue, parseCorrection, problemFields, suggestedTotal } from "@/lib/corrections";
 import { formatCents } from "@/lib/money";
@@ -26,7 +27,9 @@ export function CorrectionForm({ doc, onDone }: { doc: DocumentDetail; onDone: (
     setValues(init);
   }, [doc, names]);
 
-  if (doc.status !== "NeedsReview") return null;
+  // A held (Flagged) invoice with an unverified total, arithmetic, date or estimate problem is
+  // corrected before the two-person release vote (ADR-0008).
+  if (doc.status !== "NeedsReview" && releaseBlockers(doc).length === 0) return null;
 
   const submit = async (corrections: Correction[]) => {
     if (!api) return;

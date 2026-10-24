@@ -17,7 +17,7 @@ from typing import Any
 from invoicedesk.config.tenant import RulesConfig, load_rules_config
 from invoicedesk.contracts.extraction import DATE_FIELDS, MONEY_FIELDS
 from invoicedesk.db.connection import Conn
-from invoicedesk.masking import mask_payload, mask_text
+from invoicedesk.masking import mask_bank_text, mask_payload, mask_text
 from invoicedesk.money import format_cents
 from invoicedesk.rules.engine import ALL_RULES
 from invoicedesk.status import DocStatus, kanban_column
@@ -318,6 +318,10 @@ def rule_result_out(row: dict[str, Any], *, anonymous: bool = False) -> sc.RuleR
     )
 
 
+#: Fields that hold bank details: every token with 5+ digits is masked, not only 6+ runs.
+BANK_FIELDS = frozenset({"remit_to_bank_details"})
+
+
 def _display(name: str, value: str | None) -> str | None:
     if value is None:
         return None
@@ -326,6 +330,8 @@ def _display(name: str, value: str | None) -> str | None:
         return format_cents(cents) if cents is not None else mask_text(value)
     if name in DATE_FIELDS:
         return value
+    if name in BANK_FIELDS:
+        return mask_bank_text(value)
     return mask_text(value)
 
 
@@ -333,6 +339,8 @@ def _value(name: str, value: str | None) -> str | None:
     """Money values are integer cents (``"124000"``), not account numbers: keep them exact."""
     if value is not None and name in MONEY_FIELDS and _int_or_none(value) is not None:
         return value
+    if name in BANK_FIELDS:
+        return mask_bank_text(value)
     return mask_text(value)
 
 
@@ -528,7 +536,7 @@ def _redactions(
             sc.Redaction(
                 page=int(remit.get("page") or 0),
                 box=_box(remit["box"]),  # type: ignore[arg-type]
-                label=None if anonymous else mask_text(remit.get("value")),
+                label=None if anonymous else mask_bank_text(remit.get("value")),
             )
         )
     for s in screens:

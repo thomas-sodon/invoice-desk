@@ -151,3 +151,100 @@ def test_comparison_grades_a_two_person_release_as_held_not_leaked(
     mine = out["rows"][0]["invoicedesk"]
     assert mine["verdict"] == "correct" and "two-person" in mine["reason"]
     assert out["summary"]["invoicedesk_wrong"] == 0
+
+
+# ---------------------------------------------------------------- ADR-0008: fix, then vote
+def _vote(services: PipelineServices, doc: str, who: str, kind: str = "bank_change") -> Any:
+    return services.record_approval(
+        doc, kind=kind, approver=who, decision="approve", callback_attested=True
+    )
+
+
+def _failed(world: Any, doc: str) -> dict[str, str]:
+    with world.db.tx() as conn:
+        rows = conn.execute(
+            "select rule_id, severity from rule_results where document_id = %s and not passed"
+            " and evaluation = (select max(evaluation) from rule_results where document_id = %s)",
+            (doc, doc),
+        ).fetchall()
+    return {r["rule_id"]: r["severity"] for r in rows}
+
+
+def test_bank_change_with_low_confidence_total_is_not_released_unverified(
+    world: Any, runner: PipelineRunner, services: PipelineServices
+) -> None:
+    from invoicedesk.pipeline.services import ReleaseBlocked
+
+    doc = world.add_document(
+        make_extraction(
+            invoice_number=text("INV-7101"),
+            total=money(124_000, conf=0.3),
+            remit_to_bank_details=text(world.ATTACKER_REMIT),
+        )
+    )
+    assert runner.process(doc)["status"] == "Flagged"
+    assert _failed(world, doc) == {"R6": "flag", "R9": "review"}
+    # Two approvers with a callback are not enough while the total is unverified.
+    with pytest.raises(ReleaseBlocked, match="R9"):
+        _vote(services, doc, world.approver_a)
+    assert world.count("approvals", doc) == 0 and world.status(doc) == "Flagged"
+    # The reviewer confirms the total on the held invoice; R6 holds it again (a new hold).
+    out = services.apply_corrections(doc, [{"field": "total", "value": "124000"}], world.clerk)
+    assert out.status == "Flagged"
+    assert _failed(world, doc) == {"R6": "flag"}
+    first = _vote(services, doc, world.approver_a)
+    assert not first.released
+    # Once a release vote is cast, a correction would void it: refused.
+    from invoicedesk.status import IllegalTransition
+
+    with pytest.raises(IllegalTransition, match="already voted"):
+        services.apply_corrections(doc, [{"field": "total", "value": "124001"}], world.clerk)
+    second = _vote(services, doc, world.approver_b)
+    assert second.released and world.status(doc) == "ReadyToPay"
+    assert world.audit_ok()
+
+
+def test_bank_change_over_cap_clears_r7_then_votes_on_the_new_hold(
+    world: Any, runner: PipelineRunner, services: PipelineServices
+) -> None:
+    from invoicedesk.pipeline.services import ReleaseBlocked
+
+    doc = world.add_document(
+        make_extraction(
+            invoice_number=text("INV-7102"),
+            total=money(640_000),
+            subtotal=money(640_000),
+            remit_to_bank_details=text(world.ATTACKER_REMIT),
+        )
+    )
+    assert runner.process(doc)["status"] == "Flagged"
+    failed = _failed(world, doc)
+    assert failed.get("R6") == "flag" and failed.get("R7") == "review"
+    with pytest.raises(ReleaseBlocked, match="R7"):
+        _vote(services, doc, world.approver_a)
+    # The over-cap approval is read by R7 on re-validation; R6 flags it again.
+    res = _vote(services, doc, world.approver_a, kind="over_cap")
+    assert res.revalidated and not res.released and world.status(doc) == "Flagged"
+    failed = _failed(world, doc)
+    assert "R7" not in failed and failed["R6"] == "flag"
+    # The line items still do not add up to the new total (R5) and it is over the estimate
+    # (R3): no two-person vote is accepted until those are fixed or the invoice is rejected.
+    assert {k for k, v in failed.items() if v != "flag"} >= {"R3", "R5"}
+    with pytest.raises(ReleaseBlocked, match="R3"):
+        _vote(services, doc, world.approver_b)
+    assert world.status(doc) == "Flagged" and world.count("approvals", doc) == 1
+
+
+def test_quarantined_document_cannot_be_corrected(
+    world: Any, runner: PipelineRunner, services: PipelineServices
+) -> None:
+    from invoicedesk.status import IllegalTransition
+
+    doc = _bank_change_doc(world)
+    assert runner.process(doc)["status"] == "Flagged"
+    with world.db.tx() as conn:  # simulate a never-extracted (quarantined) Flagged document
+        conn.execute(
+            "delete from pipeline_steps where document_id = %s and step = 'extract'", (doc,)
+        )
+    with pytest.raises(IllegalTransition, match="never read"):
+        services.apply_corrections(doc, [{"field": "total", "value": "124000"}], world.clerk)

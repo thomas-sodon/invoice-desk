@@ -11,6 +11,15 @@ Release rules (CLAUDE.md invariant 3; docs/foundation.md decisions 1-2):
   ``owner`` of the document's tenant), neither the uploader, with a callback attestation
   (``status._check_approvals``; bank-change approvals also need ``callback_attested`` on every
   row, enforced by the DB). No system or MCP actor can do it.
+* The release also needs the latest evaluation to have no open ``review``-level failure
+  (ADR-0008): approvers judge the ``flag`` hold (bank change, duplicate, lookalike, injection),
+  not an unverified total. A reviewer fixes those on the Flagged document first: a correction,
+  or an ``over_cap`` / ``new_vendor`` approval clearing an R7 / R1 review failure, moves
+  ``Flagged -> Validating``; R6 (never cleared by rules) puts it back in Flagged as a new hold,
+  and the two-person vote happens on the corrected values. Release votes are refused while a
+  review-level failure is open (:class:`ReleaseBlocked`), and corrections are refused once a
+  release vote was cast on the current hold (it would void that vote, and an approver votes
+  once per kind per document), so the order is always: fix, then vote.
 * Only votes cast *during the current hold* count (after the document entered Flagged, ordered
   by the serialized audit chain), so an approval recorded earlier in NeedsReview cannot be
   reused as the "second person". When R6 failed in the latest evaluation, only ``bank_change``
@@ -38,7 +47,7 @@ from invoicedesk.contracts.infra import JobQueue
 from invoicedesk.contracts.tenant_data import ApprovalRecord
 from invoicedesk.db import repo
 from invoicedesk.db.connection import Conn
-from invoicedesk.masking import mask_payload
+from invoicedesk.masking import mask_payload, mask_text
 from invoicedesk.pipeline.corrections import (
     Correction,
     apply_corrections_to_extraction,
@@ -55,6 +64,8 @@ from invoicedesk.status import (
     ApprovalVote,
     DocStatus,
     IllegalTransition,
+    RuleOutcome,
+    release_blockers,
     transition,
 )
 
@@ -65,6 +76,7 @@ __all__ = [
     "DuplicateVote",
     "NotAnApprover",
     "PipelineServices",
+    "ReleaseBlocked",
     "SelfApproval",
 ]
 
@@ -83,6 +95,10 @@ class SelfApproval(IllegalTransition):
 
 class NotAnApprover(IllegalTransition):
     """The voter is not a staff approver/owner of the document's tenant (API: 403)."""
+
+
+class ReleaseBlocked(IllegalTransition):
+    """A release vote on a Flagged document that still has open review-level failures."""
 
 
 class DuplicateVote(ValueError):
@@ -170,7 +186,9 @@ class PipelineServices:
         reviewer: str,
     ) -> CorrectionResult:
         """Record field corrections, store them as an eval example (split ``correction``),
-        move NeedsReview -> Validating as the reviewer, and re-validate."""
+        move NeedsReview (or an extracted Flagged document, ADR-0008) -> Validating as the
+        reviewer, and re-validate. A correction on a Flagged document opens a new hold: votes
+        cast before it no longer count toward release."""
         normalized = [
             c if isinstance(c, Correction) else normalize_correction(str(c["field"]), c["value"])
             for c in corrections
@@ -180,10 +198,21 @@ class PipelineServices:
         review_ids: list[str] = []
         with self.db.tx() as conn:
             doc = repo.get_document(conn, document_id, for_update=True)
-            if doc.status is not S.NEEDS_REVIEW:
+            if doc.status not in (S.NEEDS_REVIEW, S.FLAGGED):
                 raise IllegalTransition(
-                    f"corrections apply to NeedsReview documents only (is {doc.status})"
+                    f"corrections apply to NeedsReview or Flagged documents only (is {doc.status})"
                 )
+            if doc.status is S.FLAGGED:
+                if load_step_conn(conn, document_id, "extract") is None:
+                    raise IllegalTransition(
+                        "a quarantined document was never read, so there is nothing to correct;"
+                        " reject it and re-upload a clean copy"
+                    )
+                if _hold_has_release_votes(conn, document_id):
+                    raise IllegalTransition(
+                        "approvers already voted on this hold; a correction would void their"
+                        " votes. Reject the invoice and ask for a corrected copy instead"
+                    )
             current = {
                 r["name"]: r
                 for r in conn.execute(
@@ -296,6 +325,18 @@ class PipelineServices:
             if doc.uploaded_by is not None and doc.uploaded_by == actor.id:
                 raise SelfApproval("the uploader cannot approve their own document")
             _require_approver_role(conn, doc, actor)
+            extracted = load_step_conn(conn, document_id, "extract") is not None
+            outcomes = _latest_outcomes(conn, document_id)
+            clears = extracted and _clears_review_failure(kind, outcomes)
+            if doc.status is S.FLAGGED and decision == "approve" and extracted and not clears:
+                blockers = release_blockers(outcomes)
+                if blockers:
+                    raise ReleaseBlocked(
+                        mask_text(
+                            "fix these before the two-person release vote: " + "; ".join(blockers)
+                        )
+                        or ""
+                    )
             try:
                 with conn.transaction():  # savepoint: keep the outer tx usable on a conflict
                     repo.record_approval(
@@ -314,18 +355,32 @@ class PipelineServices:
             approvals = tuple(repo.list_approvals(conn, document_id))
 
             if doc.status is S.FLAGGED and decision == "approve":
-                extracted = load_step_conn(conn, document_id, "extract") is not None
-                evidence = ApprovalEvidence(votes=_release_votes(conn, document_id, approvals))
-                if extracted and _two_person_rule_met(doc, actor, evidence):
+                if clears:
+                    # e.g. R6 + R7: the over-cap approval is read by R7 on re-validation; R6
+                    # flags again and the two-person vote happens on the new hold.
                     repo.set_status(
                         conn,
                         document_id,
-                        S.READY_TO_PAY,
+                        S.VALIDATING,
                         actor=actor,
-                        reason="Two-person approval with callback attestation",
-                        evidence=evidence,
+                        reason=f"{kind.replace('_', '-')} approved on a held invoice;"
+                        " re-validating",
                     )
-                    released = True
+                    revalidate = True
+                else:
+                    evidence = ApprovalEvidence(
+                        votes=_release_votes(conn, document_id, approvals), outcomes=outcomes
+                    )
+                    if extracted and _two_person_rule_met(doc, actor, evidence):
+                        repo.set_status(
+                            conn,
+                            document_id,
+                            S.READY_TO_PAY,
+                            actor=actor,
+                            reason="Two-person approval with callback attestation",
+                            evidence=evidence,
+                        )
+                        released = True
             elif (
                 doc.status is S.NEEDS_REVIEW
                 and decision == "approve"
@@ -440,6 +495,16 @@ def _hold_started_audit_id(conn: Conn, document_id: str) -> int:
     return 0 if row is None else int(row["id"])
 
 
+def _hold_has_release_votes(conn: Conn, document_id: str) -> bool:
+    """Has anyone cast an approve vote since the document last entered Flagged?"""
+    row = conn.execute(
+        "select 1 from audit_log where document_id = %s and action = 'approval.approve'"
+        " and id > %s limit 1",
+        (document_id, _hold_started_audit_id(conn, document_id)),
+    ).fetchone()
+    return row is not None
+
+
 def _r6_failed(conn: Conn, document_id: str) -> bool:
     row = conn.execute(
         "select 1 from rule_results where document_id = %s and rule_id = 'R6' and not passed"
@@ -447,6 +512,32 @@ def _r6_failed(conn: Conn, document_id: str) -> bool:
         (document_id, document_id),
     ).fetchone()
     return row is not None
+
+
+def _latest_outcomes(conn: Conn, document_id: str) -> tuple[RuleOutcome, ...]:
+    """The rule outcomes of the latest evaluation (the one that put the document on hold)."""
+    rows = conn.execute(
+        "select rule_id, passed, severity, message from rule_results where document_id = %s"
+        " and evaluation = (select max(evaluation) from rule_results where document_id = %s)"
+        " order by rule_id",
+        (document_id, document_id),
+    ).fetchall()
+    return tuple(
+        RuleOutcome(str(r["rule_id"]), bool(r["passed"]), r["severity"], str(r["message"]))
+        for r in rows
+    )
+
+
+#: The review-level failure each clearing approval kind resolves through re-validation.
+_CLEARS: dict[str, str] = {"over_cap": "R7", "new_vendor": "R1"}
+
+
+def _clears_review_failure(kind: str, outcomes: Sequence[RuleOutcome]) -> bool:
+    """True when an ``over_cap`` / ``new_vendor`` approval targets an open review failure."""
+    rule = _CLEARS.get(kind)
+    return rule is not None and any(
+        o.rule_id == rule and not o.passed and o.severity == "review" for o in outcomes
+    )
 
 
 def _release_votes(

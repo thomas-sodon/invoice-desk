@@ -7,7 +7,10 @@ rejects anything not in :data:`TRANSITIONS` and, for the money-moving targets, d
 * ``Validating -> ReadyToPay`` needs a :class:`RoutingDecision` built by :func:`route` from a
   complete set of rule results R1..R10 that all passed.
 * ``Flagged -> ReadyToPay`` needs :class:`ApprovalEvidence`: two distinct human approvers,
-  neither of them the uploader, and a callback attestation (invariant 3).
+  neither of them the uploader, a callback attestation (invariant 3), and the latest rule
+  outcomes R1..R10 with no open ``review``-level failure: approvers release the *hold* (the
+  ``flag`` failures they judged), never an unverified total, arithmetic, estimate, cap, date or
+  vendor problem. Those are fixed first through ``Flagged -> Validating`` (ADR-0008).
 * ``ReadyToPay -> Posted`` needs a :class:`PostingReceipt` with an idempotency key, and is
   refused for anonymous try-it uploads (they are never posted).
 
@@ -37,6 +40,7 @@ __all__ = [
     "RuleOutcome",
     "TransitionRecord",
     "kanban_column",
+    "release_blockers",
     "route",
     "transition",
 ]
@@ -67,7 +71,7 @@ TRANSITIONS: dict[DocStatus, frozenset[DocStatus]] = {
     S.EXTRACTED: frozenset({S.VALIDATING}),
     S.VALIDATING: frozenset({S.READY_TO_PAY, S.NEEDS_REVIEW, S.FLAGGED}),
     S.NEEDS_REVIEW: frozenset({S.VALIDATING, S.REJECTED}),
-    S.FLAGGED: frozenset({S.READY_TO_PAY, S.REJECTED}),
+    S.FLAGGED: frozenset({S.READY_TO_PAY, S.VALIDATING, S.REJECTED}),
     S.READY_TO_PAY: frozenset({S.POSTED}),
     S.POSTED: frozenset(),
     S.REJECTED: frozenset(),
@@ -169,7 +173,13 @@ class ApprovalVote:
 
 @dataclass(frozen=True, slots=True)
 class ApprovalEvidence:
+    """Votes cast during the current hold plus the latest rule outcomes (R1..R10).
+
+    Without ``outcomes`` the release is refused (fail closed): the guard must see that every
+    remaining failure is a ``flag``-level hold the approvers are judging."""
+
     votes: tuple[ApprovalVote, ...]
+    outcomes: tuple[RuleOutcome, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -218,7 +228,23 @@ def _check_routing(ev: RoutingDecision, to: DocStatus) -> None:
         )
 
 
-def _check_approvals(ev: ApprovalEvidence, facts: DocumentFacts, outcomes: Sequence[str]) -> None:
+def release_blockers(outcomes: Sequence[RuleOutcome]) -> tuple[str, ...]:
+    """Why a two-person release of a Flagged document is still refused, as ``"R9: ..."``.
+
+    Empty when the outcomes cover R1..R10 and every failure is ``flag``-level (the hold the
+    approvers judge). A ``review``-level failure (R2 work order, R3 estimate, R5 arithmetic,
+    R7 cap, R8 dates, R9 confidence, R1 unknown vendor) must be corrected or cleared first,
+    exactly as it would be in NeedsReview; a missing rule result blocks too (fail closed).
+    """
+    present = {o.rule_id for o in outcomes}
+    missing = tuple(f"{r}: rule result missing" for r in ALL_RULE_IDS if r not in present)
+    open_review = tuple(
+        f"{o.rule_id}: {o.message}" for o in outcomes if not o.passed and o.severity != "flag"
+    )
+    return open_review + missing
+
+
+def _check_approvals(ev: ApprovalEvidence, facts: DocumentFacts) -> None:
     approvers = {v.approver_id for v in ev.votes if v.decision == "approve"}
     if any(v.decision == "reject" for v in ev.votes):
         raise IllegalTransition("an approver rejected; cannot release to ReadyToPay")
@@ -228,7 +254,11 @@ def _check_approvals(ev: ApprovalEvidence, facts: DocumentFacts, outcomes: Seque
         raise IllegalTransition("Flagged -> ReadyToPay needs two distinct human approvers")
     if not any(v.callback_attested for v in ev.votes if v.decision == "approve"):
         raise IllegalTransition("callback-to-number-on-file attestation is required")
-    del outcomes
+    blockers = release_blockers(ev.outcomes)
+    if blockers:
+        raise IllegalTransition(
+            "release blocked until these are corrected or cleared: " + "; ".join(blockers)
+        )
 
 
 def transition(
@@ -257,7 +287,7 @@ def transition(
         else:  # Flagged -> ReadyToPay
             if actor.kind != "user" or not isinstance(evidence, ApprovalEvidence):
                 raise IllegalTransition("Flagged -> ReadyToPay requires human ApprovalEvidence")
-            _check_approvals(evidence, facts, ())
+            _check_approvals(evidence, facts)
             details["approvers"] = sorted(
                 {v.approver_id for v in evidence.votes if v.decision == "approve"}
             )
@@ -274,7 +304,7 @@ def transition(
         details["reasons"] = list(evidence.reasons)
     elif to is S.REJECTED and actor.kind not in ("user", "system"):
         raise IllegalTransition("only a human or the system can reject")
-    elif cur is S.NEEDS_REVIEW and to is S.VALIDATING and actor.kind != "user":
-        raise IllegalTransition("NeedsReview -> Validating happens after a human correction")
+    elif cur in (S.NEEDS_REVIEW, S.FLAGGED) and to is S.VALIDATING and actor.kind != "user":
+        raise IllegalTransition(f"{cur} -> Validating happens after a human correction")
 
     return TransitionRecord(facts.document_id, cur, to, actor, reason, details)

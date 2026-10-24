@@ -66,3 +66,71 @@ def test_amounts_are_not_masked_but_accounts_still_are() -> None:
     assert mask_payload({"total_cents": "acct 000123456789"}) == {
         "total_cents": "acct ••••••••6789"
     }
+
+
+def test_glued_account_numbers_and_ibans_are_masked() -> None:
+    # OCR of hidden or faint text drops spaces; the number is still an account number.
+    cases = {
+        "newaccoun000555067890": "newaccoun••••••••7890",
+        "sendto:acct000555067890": "sendto:acct••••••••7890",
+        "account-000555067890": "account-••••••••7890",
+        "ACCT123456789": "ACCT•••••6789",
+        "paymentto.newaccoun 000555067890": "paymentto.newaccoun ••••••••7890",
+        "IBAN GB82WEST12345698765432": "IBAN ••••••••••••••••••5432",
+        "IBAN GB82 WEST 1234 5698 7654 32 today": "IBAN ••••••••••••••••••5432 today",
+        "deadbeef000555067890": "deadbeef••••••••7890",
+        "on 2026-10-24 555067890": "on 2026-10-24 •••••7890",
+        "acct0005-5506-7890": "acct••••••••7890",
+        # a short grouped code glued to a word is a file or invoice reference, kept
+        "08-handy-heron-26-7200-handwritten.jpg": "08-handy-heron-26-7200-handwritten.jpg",
+    }
+    for raw, want in cases.items():
+        assert mask_text(raw) == want, raw
+    for raw in ("000555067890", "123456789", "GB82WEST12345698765432"):
+        for text in (f"x{raw}", f"{raw}x", f"-{raw}-", f"acct:{raw}."):
+            out = mask_text(text) or ""
+            assert raw not in out and raw[-4:] in out, text
+
+
+def test_ids_hashes_dates_and_amounts_survive() -> None:
+    keep = [
+        "sha 3a7bd3e2360a3d29eea436fcfb7e44c735d117c42d1c1835420b6b9942dd4f1b",
+        "doc 123e4567-e89b-12d3-a456-426614174000",
+        "trace 4bf92f3577b34da6a3ce929d0e0e4736",
+        "at 2026-10-24T12:30:00.123456Z and 2026-10-24 12:30",
+        "cost 0.00012345 USD, rate 3,1234567, total $1,240.00",
+        "INV-2231 WO-01187 PO 12345",
+    ]
+    for s in keep:
+        assert mask_text(s) == s, s
+    out = mask_payload(
+        {
+            "phash": "f0e1d2c3b4a59687",
+            "word_ids": ["p0_w123456"],
+            "requestid": "doc-123456789",
+            "document_id": "123456789",
+            "note": "ref 123456789",
+            # a sensitive key wins over the id exemption
+            "bank_account_id": "000123456789",
+            # an id key holding free text (whitespace) is scrubbed like any text
+            "external_id": "acct 000123456789",
+        }
+    )
+    assert out == {
+        "phash": "f0e1d2c3b4a59687",
+        "word_ids": ["p0_w123456"],
+        "requestid": "doc-123456789",
+        "document_id": "123456789",
+        "note": "ref •••••6789",
+        "bank_account_id": "••••••••6789",
+        "external_id": "acct ••••••••6789",
+    }
+
+
+def test_mask_bank_text_masks_five_digit_tokens() -> None:
+    from invoicedesk.masking import mask_bank_text
+
+    assert mask_bank_text(None) is None
+    assert mask_bank_text("First Test Bank acct 98765 IBAN GB82WEST12345698765432") == (
+        "First Test Bank acct •8765 IBAN ••••••••••••••••••5432"
+    )

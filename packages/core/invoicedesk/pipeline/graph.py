@@ -7,6 +7,11 @@
                                                    \\--NeedsReview/Flagged--> review_interrupt
     review_interrupt --(human acted; status re-read from the DB)--> validate | post | END
 
+A human correction (or an over-cap / new-vendor approval) on a NeedsReview *or* Flagged document
+goes back through ``validate`` (ADR-0008). ``post`` follows a review only after a two-person
+release that ``status.transition`` accepted, which needs the latest evaluation to have no open
+review-level failure, so a held invoice is never posted with an unverified total.
+
 Invariants this module holds:
 
 * **The LLM reads; code decides (1).** Routing is ``status.route`` over all ten rule results;

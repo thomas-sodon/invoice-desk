@@ -36,6 +36,7 @@ import type {
   TryitUploadResponse,
   UploadResponse,
 } from "../api-types";
+import { clearingKindFor, releaseBlockers } from "../approvals";
 import { getDevUser } from "../auth";
 import { columnFor } from "../columns";
 import { addUsd, formatCents } from "../money";
@@ -533,8 +534,12 @@ export class MockApiClient implements ApiClient {
 
   async correct(id: string, corrections: Correction[]): Promise<{ status: DocStatus }> {
     const d = this.doc(id);
-    if (d.status !== "NeedsReview")
+    // Mirrors PipelineServices.apply_corrections (ADR-0008): a held invoice is corrected only
+    // before the release vote; the correction re-runs the checks and opens a new hold.
+    const held = d.status === "Flagged" && releaseBlockers(d).length > 0;
+    if (d.status !== "NeedsReview" && !held)
       throw new ApiError(409, "illegal_transition", "Only invoices waiting for review can be corrected.");
+    if (held) d.approvals = [];
     if (corrections.length === 0) throw new ApiError(422, "invalid", "Nothing to correct.");
     const me = this.me_();
     for (const c of corrections) {
@@ -599,6 +604,16 @@ export class MockApiClient implements ApiClient {
       throw new ApiError(403, "self_approval", "You uploaded this invoice, so someone else has to approve it.");
     if (d.status !== "Flagged" && d.status !== "NeedsReview")
       throw new ApiError(409, "illegal_transition", "This invoice isn't waiting for an approval.");
+    const clearing = d.status === "Flagged" ? clearingKindFor(d) : null;
+    if (d.status === "Flagged" && req.decision === "approve" && req.kind !== clearing) {
+      const blockers = releaseBlockers(d);
+      if (blockers.length > 0)
+        throw new ApiError(
+          409,
+          "illegal_transition",
+          `fix these before the two-person release vote: ${blockers.map((r) => `${r.rule_id}: ${r.message}`).join("; ")}`,
+        );
+    }
     if (req.decision === "approve" && d.approvals.some((a) => a.approver_id === me.id && a.decision === "approve"))
       throw new ApiError(409, "duplicate_approval", "You already approved this one. A second person must approve it.");
     const callbackNeeded = d.approvals_required?.callback ?? req.kind === "bank_change";
@@ -619,7 +634,16 @@ export class MockApiClient implements ApiClient {
       note: req.note ?? null,
     });
     if (req.decision === "approve") {
-      if (d.status === "Flagged") {
+      if (d.status === "Flagged" && clearing && req.kind === clearing) {
+        // ADR-0008: the over-limit / new-vendor approval re-runs the checks; R6 holds it again.
+        const clears: Record<string, string[]> = { new_vendor: ["R1", "R2"], over_cap: ["R7"] };
+        for (const r of d.rule_results)
+          if (!r.passed && r.severity !== "flag" && clears[req.kind]?.includes(r.rule_id))
+            Object.assign(r, { passed: true, severity: "pass", message: `Approved by ${me.display_name}.` });
+        d.approvals = [];
+        this.setStatus(d, "Validating", `user:${me.id}`);
+        this.reroute(d);
+      } else if (d.status === "Flagged") {
         const distinct = new Set(d.approvals.filter((a) => a.decision === "approve").map((a) => a.approver_id));
         const callbacks = d.approvals.some((a) => a.decision === "approve" && a.callback_attested);
         // Mirrors invoicedesk.status._check_approvals: any reject vote blocks release.

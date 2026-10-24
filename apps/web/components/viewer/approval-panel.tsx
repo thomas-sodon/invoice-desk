@@ -7,7 +7,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { errorMessage } from "@/lib/api";
 import type { DocumentDetail } from "@/lib/api-types";
-import { approvalKindFor, approvalProgress, approveGate, KIND_LABELS } from "@/lib/approvals";
+import { approvalKindFor, approvalProgress, approveGate, clearingKindFor, KIND_LABELS } from "@/lib/approvals";
 import { maskFieldValue } from "@/lib/mask";
 import { shortDate } from "@/lib/utils";
 
@@ -23,10 +23,12 @@ export function ApprovalPanel({ doc, onDone }: { doc: DocumentDetail; onDone: ()
 
 function ApprovalPanelFor({ doc, onDone }: { doc: DocumentDetail; onDone: () => void }) {
   const { api, me } = useApi();
-  const kind = approvalKindFor(doc);
+  // An open over-limit / new-vendor problem on a held invoice is approved first (ADR-0008).
+  const clearing = clearingKindFor(doc);
+  const kind = clearing ?? approvalKindFor(doc);
   const gate = approveGate(doc, me);
   const progress = approvalProgress(doc);
-  const callbackRequired = doc.approvals_required?.callback ?? kind === "bank_change";
+  const callbackRequired = clearing ? false : (doc.approvals_required?.callback ?? kind === "bank_change");
   const [attested, setAttested] = React.useState(false);
   const [note, setNote] = React.useState("");
   const [busy, setBusy] = React.useState(false);
@@ -58,10 +60,22 @@ function ApprovalPanelFor({ doc, onDone }: { doc: DocumentDetail; onDone: () => 
         <ShieldCheck className="h-5 w-5 text-slate-700" />
         <span className="font-semibold">{KIND_LABELS[kind] ?? kind}</span>
         <span className="text-slate-600">
-          · {progress.have} of {progress.need} approval{progress.need === 1 ? "" : "s"}
-          {callbackRequired && (progress.callback ? " · callback done" : " · callback needed")}
+          {clearing ? (
+            "· one approval"
+          ) : (
+            <>
+              · {progress.have} of {progress.need} approval{progress.need === 1 ? "" : "s"}
+              {callbackRequired && (progress.callback ? " · callback done" : " · callback needed")}
+            </>
+          )}
         </span>
       </div>
+      {clearing && (
+        <p className="text-slate-700" data-testid="clear-first">
+          Approve the {clearing === "over_cap" ? "amount over the spending limit" : "new vendor"} first. The checks then
+          run again, and the bank-change vote happens on the updated invoice.
+        </p>
+      )}
       {kind === "bank_change" && (
         <p className="text-slate-700">
           Bank changes always go to people: two approvers, neither the person who uploaded it, and a phone call to the

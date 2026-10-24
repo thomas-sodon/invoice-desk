@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { DocumentDetail, Field, Me, ScreenResult } from "@/lib/api-types";
-import { approvalKindFor, approvalProgress, approveGate } from "@/lib/approvals";
+import { approvalKindFor, approvalProgress, approveGate, clearingKindFor, releaseBlockers } from "@/lib/approvals";
 import { badgeInfo } from "@/lib/badges";
 import { parseCorrection, problemFields, suggestedTotal, editableValue } from "@/lib/corrections";
 import { maskNumber, maskText } from "@/lib/mask";
@@ -180,5 +180,40 @@ describe("labels", () => {
     expect(badgeInfo("bank_change")).toEqual({ label: "Bank change", tone: "red" });
     expect(badgeInfo("work_order").label).toBe("Work order issue");
     expect(badgeInfo("something_new").label).toBe("something new");
+  });
+});
+
+describe("release blockers on a held invoice (ADR-0008)", () => {
+  const owner: Me = { id: "sam", email: "s", display_name: "Sam", role: "owner" };
+  const rr = (rule_id: string, severity: "review" | "flag") => ({
+    rule_id,
+    name: rule_id,
+    passed: false,
+    severity,
+    message: `${rule_id} open`,
+    fields: [],
+    details: {},
+  });
+  const held = (...rules: ReturnType<typeof rr>[]) => ({
+    ...byFile("18-"),
+    uploaded_by: "priya",
+    approvals: [],
+    rule_results: [rr("R6", "flag"), ...rules],
+  });
+  it("refuses the release vote while a review-level problem is open", () => {
+    const doc = held(rr("R9", "review"));
+    expect(releaseBlockers(doc).map((r) => r.rule_id)).toEqual(["R9"]);
+    expect(clearingKindFor(doc)).toBeNull();
+    expect(approveGate(doc, owner)).toMatchObject({ allowed: false, reason: "fix_first" });
+  });
+  it("offers the over-limit approval first when R7 is open", () => {
+    const doc = held(rr("R7", "review"));
+    expect(clearingKindFor(doc)).toBe("over_cap");
+    expect(approveGate(doc, owner)).toEqual({ allowed: true });
+  });
+  it("allows the vote once only flag-level holds remain", () => {
+    expect(releaseBlockers(held())).toEqual([]);
+    expect(approveGate(held(), owner)).toEqual({ allowed: true });
+    expect(releaseBlockers({ status: "NeedsReview", rule_results: [rr("R9", "review")] })).toEqual([]);
   });
 });

@@ -226,7 +226,8 @@ stateDiagram-v2
   Quarantined --> Flagged
   NeedsReview --> Validating: human corrects fields
   NeedsReview --> Rejected
-  Flagged --> ReadyToPay: two-person approval with callback attestation
+  Flagged --> Validating: human corrects fields before the release vote (ADR-0008)
+  Flagged --> ReadyToPay: two-person approval with callback attestation, no open review failure
   Flagged --> Rejected
   ReadyToPay --> Posted: post_bill with idempotency key
   Posted --> [*]

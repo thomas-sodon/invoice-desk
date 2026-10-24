@@ -13,6 +13,7 @@ right and why.
 | [0005-guardrails](0005-guardrails.md) | Containment over detection: screening first, tool-less reader, deterministic rules, least-privilege posting |
 | [0006-pipeline-state-and-release](0006-pipeline-state-and-release.md) | Step markers for crash-safe nodes, per-tenant validation lock, what the checkpoint holds, hold-scoped release votes |
 | [0007-demo-calibration-and-board](0007-demo-calibration-and-board.md) | WO-1187 estimate $3,200, whole-word text layer, OCR agreement and handwriting calibration, R4 image hits need the total, board headlines |
+| [0008-release-needs-verified-values](0008-release-needs-verified-values.md) | A two-person release of a Flagged invoice needs no open review-level failure; held invoices are corrected first (`Flagged -> Validating`), then voted on |
 
 New ADRs take the next number and use the same headings: Status, Date, Spec, Context, Decision,
 Consequences.

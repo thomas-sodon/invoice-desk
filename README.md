@@ -216,6 +216,7 @@ Diagrams with the real module names and the full state machine are in
 - [ADR-0005: guardrails as architecture](docs/adr/0005-guardrails.md)
 - [ADR-0006: crash-safe pipeline steps and hold-scoped release](docs/adr/0006-pipeline-state-and-release.md)
 - [ADR-0007: demo numbers, calibration and board headlines](docs/adr/0007-demo-calibration-and-board.md)
+- [ADR-0008: a held invoice is fixed before the two-person release](docs/adr/0008-release-needs-verified-values.md)
 
 Stack: Python 3.12 (FastAPI, LangGraph, Pydantic v2, psycopg, PyMuPDF, RapidOCR), the official
 `anthropic` SDK with structured outputs, Next.js 15 + TypeScript, Postgres (Supabase-compatible

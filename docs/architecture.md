@@ -114,7 +114,8 @@ stateDiagram-v2
   Quarantined --> Flagged
   NeedsReview --> Validating: human correction or approval recorded
   NeedsReview --> Rejected
-  Flagged --> ReadyToPay: ApprovalEvidence (2 distinct staff, not the uploader, callback)
+  Flagged --> Validating: human correction before the release vote (ADR-0008)
+  Flagged --> ReadyToPay: ApprovalEvidence (2 distinct staff, not the uploader, callback, no open review failure)
   Flagged --> Rejected
   ReadyToPay --> Posted: PostingReceipt with idempotency key (never visitor uploads)
   Posted --> [*]

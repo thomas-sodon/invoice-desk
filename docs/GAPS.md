@@ -569,8 +569,23 @@ Still open after integration:
   `TextLayerSpan.invisible` (preprocess), `ModelRole.INJECTION_CLASSIFIER_T2` (guardrails),
   `LLMCallError.response` and replay-key file-id normalization (extraction), a per-tenant QBO
   expense account (pipeline). Each is a shared-contract change with no failing behaviour today.
-- **Core `mask_text` does not mask digit runs glued to letters** (`ACCT123456789`), because it
-  also runs over hashes and ids; bank fields are masked by key. The web masker is stricter. It
-  now leaves decimal fractions and `*_cents` / `*_usd` amount strings alone.
+- **Fixed: core `mask_text` now masks digit runs glued to letters, punctuation or hyphens**
+  (`newaccoun000555067890`, `ACCT123456789`) and IBAN-shaped tokens. Only UUIDs, md5/sha1/sha256
+  hex digests and ISO dates are exempt by format, and `mask_payload` exempts id-shaped values
+  under hash/id keys (`sha256`, `phash`, `*_id`, `requestid`). Remaining trade-off: an invoice or
+  PO number with 6+ digits (`INV-2024001`) is shown masked to its last 4 in free text (fail
+  closed); 5-digit runs outside bank fields stay visible. A run glued to a word is masked when it
+  has 6+ contiguous digits or 8+ digits in groups; a short grouped code glued to a word
+  (`heron-26-7200`, `acct-123 456`) is kept as a file or invoice reference, so a 6-7 digit
+  account printed in groups *and* glued to a word would still show.
 - **pnpm still warns about ignored build scripts** in an existing `node_modules`; the allow-list
   applies on a fresh install.
+
+## Release of held invoices (ADR-0008)
+
+- **No re-vote after a correction on the same document.** `approvals` is unique per (document,
+  kind, approver), so a correction is refused once a release vote is cast on the current hold;
+  the remedy is reject-and-resubmit. A per-hold unique key would need a migration and is not
+  needed for the MVP.
+- **A genuine overage (R3) or wrong work order on a held invoice cannot be approved away**; it is
+  rejected, as in NeedsReview. Decided, not a defect, but worth knowing for the demo script.
