@@ -31,8 +31,8 @@ typecheck: ## pyright (+ web tsc when present)
 test-py: ## pytest (Postgres tests start a throwaway cluster or skip)
 	$(UV) run pytest
 
-test-web: ## web typecheck + lint (+ unit tests when present)
-	@if [ -f apps/web/package.json ]; then $(PNPM) --filter web typecheck && $(PNPM) --filter web lint && $(PNPM) --filter web test --if-present; else echo "apps/web not built yet"; fi
+test-web: ## web typecheck + lint + vitest
+	@if [ -f apps/web/package.json ]; then $(PNPM) --filter web typecheck && $(PNPM) --filter web lint && $(PNPM) --filter web test; else echo "apps/web not built yet"; fi
 
 test: test-py test-web ## pytest + web typecheck/lint
 
