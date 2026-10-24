@@ -410,3 +410,36 @@ don't delete entries. Mark them **closed** when resolved.
   but its label lists only R9; `invoicedesk-data verify` checks the routed status and missing
   planted rules, not extra rules. Counted as rule false positives until the label is fixed.
 - **The test split was never run here.** Only dev, adversarial and smoke were evaluated.
+
+## MCP server (M16)
+
+- **SDK coverage of the 2026-07-28 spec (`mcp` 2.3.0).** Used as shipped: the stateless
+  per-request envelope (no `initialize`, no `Mcp-Session-Id`), `Mcp-Method`/`Mcp-Name` header
+  validation (a header that disagrees with the body is a `-32020` 400), `ttlMs`/`cacheScope`
+  cache hints, `server/discover`, and MRTR `input_required` with sealed, principal-bound
+  `requestState`. The confirmation on `post_bill` is the SDK's MRTR elicitation (resolver
+  `Elicit`), not a hand-rolled round-trip. Gaps: the SDK's `RequireAuthMiddleware` only knows
+  server-wide scopes, so per-tool scopes are our own `McpAuthGate` (reads `Mcp-Name`, answers
+  403 `insufficient_scope`) plus a re-check inside each tool; the SDK's PRM route is replaced by
+  ours to advertise all three scopes and serve both the path-inserted and bare well-known URLs.
+- **Pre-2026 clients cannot post.** The server runs stateless, so a 2025-11-25 client has no
+  back-channel for an elicitation request; `post_bill` refuses with a message naming protocol
+  2026-07-28 (`extract_invoice`/`validate_invoice` still work). Never posts unconfirmed.
+- **Hosted authorization server not exercised.** No AuthKit (or other CIMD-capable) tenant here:
+  tokens in tests are signed by a test RSA JWKS served over a mocked httpx transport. The claim
+  names read for the client id (`client_id`, then `azp`, `cid`) and scopes (`scope`, `scp`,
+  `permissions`) follow common providers but are unverified against real AuthKit tokens. CIMD
+  registration happens entirely at the authorization server and was not tested.
+  `make mcp-devtoken` prints local dev tokens from a git-ignored key (offline mode only).
+- **Confirmation authenticity rests on the MCP client.** The human's answer arrives as client
+  `inputResponses`; a compromised client host could answer for the human. Mitigation: the form
+  asks the person to *type* vendor name and total, and the API refuses any mismatch with the
+  stored values (422 `confirmation_mismatch`), Flagged is refused before anyone is asked, and
+  R6 can never be cleared by an agent. The prompt shows InvoiceDesk's total (from R7's integer
+  details); there is no agent endpoint for the stored vendor name, so it is not pre-shown.
+- **No upload path through MCP.** `extract_invoice` takes a `file_url` or an `upload_handle`
+  from `POST /api/v1/agent/uploads`, which needs a facade service token an MCP client does not
+  hold. Real clients therefore use `file_url` (the API fetches it with SSRF guards).
+- **Not tested with a real MCP host** (Claude Desktop / claude.ai connectors) or deployed
+  (`infra/fly/mcp.toml` not written); tests drive the SDK's own client over an ASGI transport,
+  plus a manual uvicorn smoke run (PRM, 401 with `resource_metadata`, `tools/list`).
