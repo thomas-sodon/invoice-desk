@@ -4,7 +4,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as React from "react";
-import { setDevUser } from "@/lib/auth";
+import { getJwt, setDevUser } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 import { useApi } from "./api-provider";
 
@@ -27,7 +27,8 @@ const STAFF = [
 
 function IdentityPicker() {
   const { api, me } = useApi();
-  if (!api) return null;
+  // With a real sign-in token the dev header is never sent, so a picker would only mislead.
+  if (!api || (api.mode === "http" && getJwt())) return null;
   // The picker sets X-Dev-User, which the API accepts only in offline mode (and mock mode).
   return (
     <label className="flex items-center gap-2 text-sm text-slate-600">

@@ -142,7 +142,7 @@ describe("approval gate", () => {
   it("asks for a second, different person", () => {
     const once = { ...flagged, approvals: [{ kind: "bank_change", approver_id: "sam", decision: "approve" as const, callback_attested: true, created_at: "" }] };
     expect(approveGate(once, owner)).toMatchObject({ allowed: false, reason: "already_approved" });
-    expect(approvalProgress(once)).toEqual({ have: 1, need: 2, callback: true });
+    expect(approvalProgress(once)).toEqual({ have: 1, need: 2, callback: true, rejected: false });
   });
   it("is closed for documents not waiting on approval", () => {
     expect(approveGate(byFile("01-"), owner)).toMatchObject({ allowed: false, reason: "not_waiting" });

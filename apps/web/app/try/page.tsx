@@ -10,6 +10,7 @@ import { Alert } from "@/components/ui/alert";
 import { DocumentViewer } from "@/components/viewer/document-viewer";
 import { ApiError, errorMessage } from "@/lib/api";
 import { isReplayUpload, type DocStatus, type DocumentDetail, type TryitStatus } from "@/lib/api-types";
+import { STATUS_LABELS } from "@/lib/columns";
 import { splitUploads } from "@/lib/upload";
 
 const SETTLED: DocStatus[] = ["ReadyToPay", "NeedsReview", "Flagged", "Rejected", "Posted"];
@@ -132,7 +133,7 @@ export default function TryItPage() {
       {docId && !doc && <p className="text-slate-600">Reading your invoice…</p>}
       {doc && (
         <div className="rounded-xl border border-slate-200 bg-white p-4 sm:p-5">
-          {!SETTLED.includes(doc.status) && <p className="mb-3 text-blue-700">Checking… ({doc.status})</p>}
+          {!SETTLED.includes(doc.status) && <p className="mb-3 text-blue-700">Checking… ({STATUS_LABELS[doc.status]})</p>}
           <DocumentViewer doc={doc} onChanged={() => undefined} variant="visitor" />
         </div>
       )}

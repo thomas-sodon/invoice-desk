@@ -520,7 +520,8 @@ export class MockApiClient implements ApiClient {
     await this.delay();
     const d = this.doc(id);
     if (d.session_id) throw new ApiError(404, "not_found", "That invoice doesn't exist (or was deleted).");
-    return toDetail(d);
+    // Follow-ups live in their own table server-side; the detail lists this document's drafts.
+    return { ...toDetail(d), followups: clone(this.state.followups.filter((f) => f.document_id === id)) };
   }
 
   async getAudit(id: string): Promise<AuditView> {
@@ -621,7 +622,9 @@ export class MockApiClient implements ApiClient {
       if (d.status === "Flagged") {
         const distinct = new Set(d.approvals.filter((a) => a.decision === "approve").map((a) => a.approver_id));
         const callbacks = d.approvals.some((a) => a.decision === "approve" && a.callback_attested);
-        if (distinct.size >= (d.approvals_required?.count ?? 2) && callbacks) {
+        // Mirrors invoicedesk.status._check_approvals: any reject vote blocks release.
+        const vetoed = d.approvals.some((a) => a.decision === "reject");
+        if (!vetoed && distinct.size >= (d.approvals_required?.count ?? 2) && callbacks) {
           d.headline = "Released by two approvers after a callback to the vendor";
           this.setStatus(d, "ReadyToPay", `user:${me.id}`);
         } else {
@@ -659,6 +662,10 @@ export class MockApiClient implements ApiClient {
     if (d.session_id) throw new ApiError(403, "forbidden", "Try-it uploads are never posted to accounting.");
     if (d.status !== "ReadyToPay")
       throw new ApiError(409, "illegal_transition", "Only invoices that are ready to pay can be posted.");
+    // A bill needs a vendor and a total; a document released without a reading (for example a
+    // quarantined one) cannot be posted until it has been read.
+    if (d.total_cents === null || !d.vendor_name)
+      throw new ApiError(409, "illegal_transition", "This invoice has no vendor or total on file yet, so it can't be posted.");
     const jobId = uuid();
     const key = `${d.id}:bill`;
     setTimeout(() => {
@@ -674,7 +681,7 @@ export class MockApiClient implements ApiClient {
   async postReady(batchId: string): Promise<{ job_ids: string[]; count: number }> {
     const ready = this.state.order
       .map((id) => this.state.docs[id])
-      .filter((d): d is MockDoc => !!d && d.batch_id === batchId && d.status === "ReadyToPay" && !d.session_id);
+      .filter((d): d is MockDoc => !!d && d.batch_id === batchId && d.status === "ReadyToPay" && !d.session_id && d.total_cents !== null && !!d.vendor_name);
     const job_ids: string[] = [];
     for (const d of ready) {
       job_ids.push((await this.post(d.id)).job_id);

@@ -43,6 +43,9 @@ export function PdfPage({
   React.useEffect(() => {
     if (width <= 0) return;
     let cancelled = false;
+    // A resize starts a new render; the previous one must be cancelled first, because pdf.js
+    // refuses two concurrent renders on one canvas.
+    let task: { cancel: () => void; promise: Promise<unknown> } | null = null;
     (async () => {
       try {
         const pdfjs = await import("pdfjs-dist");
@@ -62,16 +65,19 @@ export function PdfPage({
         canvas.style.height = `${viewport.height}px`;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
-        await p.render({ canvasContext: ctx, viewport, transform: dpr === 1 ? undefined : [dpr, 0, 0, dpr, 0, 0] }).promise;
+        task = p.render({ canvasContext: ctx, viewport, transform: dpr === 1 ? undefined : [dpr, 0, 0, dpr, 0, 0] });
+        await task.promise;
         if (!cancelled)
           setPage({ index: 0, width: Math.round(base.width * toProcessed), height: Math.round(base.height * toProcessed), image_url: url });
         void pdf.destroy();
-      } catch {
+      } catch (e) {
+        if (e instanceof Error && e.name === "RenderingCancelledException") return;
         if (!cancelled) setError("This PDF couldn't be displayed in the browser.");
       }
     })();
     return () => {
       cancelled = true;
+      task?.cancel();
     };
   }, [url, width]);
 

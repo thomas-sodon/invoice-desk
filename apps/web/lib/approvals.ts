@@ -33,11 +33,18 @@ export function approveGate(doc: Pick<DocumentDetail, "status" | "approvals" | "
   return { allowed: true };
 }
 
-export function approvalProgress(doc: Pick<DocumentDetail, "approvals" | "approvals_required">): { have: number; need: number; callback: boolean } {
+export function approvalProgress(doc: Pick<DocumentDetail, "approvals" | "approvals_required">): {
+  have: number;
+  need: number;
+  callback: boolean;
+  /** Any reject vote blocks release (invoicedesk.status._check_approvals). */
+  rejected: boolean;
+} {
   const need = doc.approvals_required?.count ?? 1;
   const have = new Set(doc.approvals.filter((a) => a.decision === "approve").map((a) => a.approver_id)).size;
   const callback = doc.approvals.some((a) => a.decision === "approve" && a.callback_attested);
-  return { have, need, callback };
+  const rejected = doc.approvals.some((a) => a.decision === "reject");
+  return { have, need, callback, rejected };
 }
 
 export const KIND_LABELS: Record<string, string> = {

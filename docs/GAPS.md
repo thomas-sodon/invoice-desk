@@ -241,3 +241,7 @@ don't delete entries. Mark them **closed** when resolved.
   stored token after `invalid_grant`. Simultaneous refreshes are not serialized by a database
   lock, and Intuit's behaviour when the same refresh token is used twice has not been checked
   live.
+
+### Web app review (apps/web)
+- The core state machine lets two approvers release a *quarantined* document (no fields read) from Flagged to ReadyToPay. The mock now refuses to post a document that has no vendor or total; the real API/core has no such guard yet (raised to the API/core owners).
+- Page renders can still show printed bank numbers until the API returns `redactions` or serves pre-redacted renders; the UI now keeps the image hidden until the redaction boxes are painted, but it can only cover regions the API reports.

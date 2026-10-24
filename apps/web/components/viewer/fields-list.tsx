@@ -3,7 +3,7 @@
 import type { Field } from "@/lib/api-types";
 import { fieldLabel } from "@/lib/badges";
 import { BAND_COLORS } from "@/lib/bands";
-import { maskText } from "@/lib/mask";
+import { maskFieldValue } from "@/lib/mask";
 import { cn } from "@/lib/utils";
 
 const DOT: Record<Field["band"], string> = { green: "bg-green-600", amber: "bg-amber-500", red: "bg-red-600" };
@@ -36,7 +36,7 @@ export function FieldsList({
               <span className={cn("mt-2 h-2.5 w-2.5 shrink-0 rounded-full", DOT[f.band])} aria-hidden />
               <span className="min-w-0 flex-1">
                 <span className="block text-sm text-slate-500">{fieldLabel(f.name)}</span>
-                <span className="block break-words font-medium text-slate-900">{display ? maskText(display) : <em className="text-slate-500">not readable</em>}</span>
+                <span className="block break-words font-medium text-slate-900">{display ? maskFieldValue(f.name, display) : <em className="text-slate-500">not readable</em>}</span>
                 {f.reason && <span className="block text-sm font-medium" style={{ color: BAND_COLORS[f.band].stroke }}>{f.reason}</span>}
               </span>
               {f.calibrated_conf !== null && (

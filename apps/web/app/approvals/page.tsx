@@ -7,6 +7,7 @@ import { ApprovalPanel } from "@/components/viewer/approval-panel";
 import { HiddenTextAlert } from "@/components/viewer/document-viewer";
 import { PageOverlay } from "@/components/viewer/page-overlay";
 import { RulesList } from "@/components/viewer/rules-list";
+import { maskText } from "@/lib/mask";
 import { hiddenTextSummary } from "@/lib/screening";
 
 export default function ApprovalsPage() {
@@ -34,7 +35,7 @@ export default function ApprovalsPage() {
             <HiddenTextAlert doc={doc} />
             {doc.headline && !hiddenTextSummary(doc.screen_results) && (
               <Alert tone="red" className="text-lg font-semibold">
-                {doc.headline}
+                {maskText(doc.headline)}
               </Alert>
             )}
             <ApprovalPanel doc={doc} onDone={done} />

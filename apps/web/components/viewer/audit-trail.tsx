@@ -14,15 +14,24 @@ function describe(after: unknown): string {
 export function AuditTrail({ documentId }: { documentId: string }) {
   const { api } = useApi();
   const [view, setView] = React.useState<AuditView | null>(null);
+  const [loadError, setLoadError] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   React.useEffect(() => {
     if (!open || !api) return;
-    void api.getAudit(documentId).then(setView).catch(() => setView({ entries: [], chain_ok: false }));
+    // A failed request is not evidence of tampering: report it separately from chain_ok.
+    api
+      .getAudit(documentId)
+      .then((v) => {
+        setView(v);
+        setLoadError(false);
+      })
+      .catch(() => setLoadError(true));
   }, [open, api, documentId]);
   return (
     <details className="group" onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}>
       <summary className="cursor-pointer font-semibold text-slate-800">History (tamper-evident)</summary>
-      {view && (
+      {loadError && <p className="mt-2 text-sm text-slate-600">Couldn&apos;t load the history. Try again in a moment.</p>}
+      {view && !loadError && (
         <div className="mt-2">
           <p className={view.chain_ok ? "text-sm text-green-800" : "text-sm text-red-800"}>
             {view.chain_ok ? "History verified: no entry has been altered." : "History check failed."}

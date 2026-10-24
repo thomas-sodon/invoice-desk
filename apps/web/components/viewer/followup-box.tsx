@@ -8,8 +8,14 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { errorMessage } from "@/lib/api";
 import type { DocumentDetail, Followup } from "@/lib/api-types";
+import { maskText } from "@/lib/mask";
 
 export function FollowupBox({ doc }: { doc: DocumentDetail }) {
+  // Keyed by document so a draft shown for one invoice never appears under the next one.
+  return <FollowupBoxFor key={doc.id} doc={doc} />;
+}
+
+function FollowupBoxFor({ doc }: { doc: DocumentDetail }) {
   const { api } = useApi();
   const [draft, setDraft] = React.useState<Followup | null>(doc.followups[0] ?? null);
   const [error, setError] = React.useState<string | null>(null);
@@ -34,7 +40,7 @@ export function FollowupBox({ doc }: { doc: DocumentDetail }) {
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
           <p className="text-sm text-slate-500">Draft to {draft.to_addr ?? "the vendor (address on file)"}</p>
           <p className="font-semibold">{draft.draft_subject}</p>
-          <p className="mt-1 line-clamp-4 whitespace-pre-line text-slate-700">{draft.draft_body}</p>
+          <p className="mt-1 line-clamp-4 whitespace-pre-line text-slate-700">{maskText(draft.draft_body)}</p>
           <Link href="/followups" className="mt-2 inline-block text-blue-700 underline">
             Review and send
           </Link>

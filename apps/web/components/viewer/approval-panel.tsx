@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { errorMessage } from "@/lib/api";
 import type { DocumentDetail } from "@/lib/api-types";
 import { approvalKindFor, approvalProgress, approveGate, KIND_LABELS } from "@/lib/approvals";
-import { maskText } from "@/lib/mask";
+import { maskFieldValue } from "@/lib/mask";
 import { shortDate } from "@/lib/utils";
 
 /**
@@ -16,6 +16,12 @@ import { shortDate } from "@/lib/utils";
  * uploader and from clerks; the API enforces the same rules (403 self_approval) regardless.
  */
 export function ApprovalPanel({ doc, onDone }: { doc: DocumentDetail; onDone: () => void }) {
+  // Keyed by document: a ticked callback box or a note must never carry over to another invoice
+  // when a queue reuses this panel for the next item.
+  return <ApprovalPanelFor key={doc.id} doc={doc} onDone={onDone} />;
+}
+
+function ApprovalPanelFor({ doc, onDone }: { doc: DocumentDetail; onDone: () => void }) {
   const { api, me } = useApi();
   const kind = approvalKindFor(doc);
   const gate = approveGate(doc, me);
@@ -64,7 +70,7 @@ export function ApprovalPanel({ doc, onDone }: { doc: DocumentDetail; onDone: ()
       )}
       {remit?.display_value && (
         <p className="text-sm text-slate-700">
-          Bank details on this invoice: <span className="font-mono">{maskText(remit.display_value)}</span>
+          Bank details on this invoice: <span className="font-mono">{maskFieldValue("remit_to_bank_details", remit.display_value)}</span>
         </p>
       )}
       {doc.approvals.length > 0 && (
@@ -84,6 +90,12 @@ export function ApprovalPanel({ doc, onDone }: { doc: DocumentDetail; onDone: ()
             </li>
           ))}
         </ul>
+      )}
+      {progress.rejected && (
+        <Alert tone="red" data-testid="approval-vetoed">
+          An approver voted to reject this invoice, so it can&apos;t be released for payment. Reject it, or ask the vendor
+          for a corrected invoice.
+        </Alert>
       )}
       {gate.allowed ? (
         <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-3">

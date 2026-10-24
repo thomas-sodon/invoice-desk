@@ -13,15 +13,23 @@ export function useDocument(id: string | null, loader?: (api: ApiClient, id: str
   const loaderRef = React.useRef(loader);
   loaderRef.current = loader;
 
+  // The id the caller currently wants; a slow response for a previously selected invoice must not
+  // replace the one now on screen (queues switch documents quickly).
+  const currentId = React.useRef(id);
+  currentId.current = id;
+
   const reload = React.useCallback(() => {
     if (!api || !id) return;
     const load = loaderRef.current ?? ((a: ApiClient, i: string) => a.getDocument(i));
     load(api, id)
       .then((d) => {
+        if (currentId.current !== id) return;
         setDoc(d);
         setError(null);
       })
-      .catch((e: unknown) => setError(e));
+      .catch((e: unknown) => {
+        if (currentId.current === id) setError(e);
+      });
   }, [api, id]);
 
   React.useEffect(() => {

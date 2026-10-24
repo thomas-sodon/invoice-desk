@@ -5,6 +5,7 @@ import type { ApiClient } from "@/lib/api";
 import { errorMessage } from "@/lib/api";
 import type { DocumentCard, DocumentDetail } from "@/lib/api-types";
 import { badgeInfo } from "@/lib/badges";
+import { maskText } from "@/lib/mask";
 import { formatCents } from "@/lib/money";
 import { cn } from "@/lib/utils";
 import { useApi } from "./api-provider";
@@ -86,7 +87,7 @@ export function Queue({
                     <span className="truncate font-semibold">{d.vendor_name ?? d.filename}</span>
                     <span className="shrink-0 tabular-nums">{formatCents(d.total_cents)}</span>
                   </span>
-                  {d.headline && <span className="mt-1 block text-[0.95rem] text-slate-700">{d.headline}</span>}
+                  {d.headline && <span className="mt-1 block text-[0.95rem] text-slate-700">{maskText(d.headline)}</span>}
                   <span className="mt-1 flex flex-wrap gap-1">
                     {d.badges.slice(0, 3).map((b) => (
                       <Chip key={b} tone={badgeInfo(b).tone} className="text-xs">

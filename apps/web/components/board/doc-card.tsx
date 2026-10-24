@@ -5,6 +5,7 @@ import { CSS } from "@dnd-kit/utilities";
 import type { DocumentCard as Card } from "@/lib/api-types";
 import { badgeInfo } from "@/lib/badges";
 import { STATUS_LABELS } from "@/lib/columns";
+import { maskText } from "@/lib/mask";
 import { formatCents } from "@/lib/money";
 import { cn } from "@/lib/utils";
 import { Chip } from "../ui/chip";
@@ -65,7 +66,7 @@ export function DocCard({
                     card.column === "flagged" ? "font-semibold text-red-800" : "text-amber-900",
                   )}
                 >
-                  {card.headline}
+                  {maskText(card.headline)}
                 </span>
               ) : (
                 inFlight && <span className="mt-1 block text-sm text-slate-500">{STATUS_LABELS[card.status]}…</span>

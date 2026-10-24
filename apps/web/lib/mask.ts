@@ -20,3 +20,29 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 export function maskText(text: string): string {
   return text.replace(/\d(?:[ -]?\d){5,}/g, (run) => (ISO_DATE.test(run) ? run : maskNumber(run)));
 }
+
+/** Structured fields whose values are identifiers, dates or amounts, never bank numbers. */
+const STRUCTURED_FIELDS = new Set([
+  "invoice_number",
+  "invoice_date",
+  "due_date",
+  "work_order_number",
+  "subtotal",
+  "tax",
+  "total",
+  "vendor_tax_id_last4",
+]);
+
+/** Field names that hold bank or account details (mirrors invoicedesk.masking.SENSITIVE_KEY_RE). */
+export const SENSITIVE_FIELD_RE = /(bank|account|acct|routing|aba|iban|swift|bic|sort_code|card)/i;
+
+/**
+ * Masks an extracted field value for display. Invoice and work-order numbers, dates and amounts are
+ * shown as read (masking "26-7200" would hide the invoice number); bank fields mask every run of
+ * 5+ digits; any other free text masks 6+ digit runs like `maskText`.
+ */
+export function maskFieldValue(name: string, value: string): string {
+  if (SENSITIVE_FIELD_RE.test(name)) return value.replace(/\d(?:[ -]?\d){4,}/g, (run) => maskNumber(run));
+  if (STRUCTURED_FIELDS.has(name)) return value;
+  return maskText(value);
+}

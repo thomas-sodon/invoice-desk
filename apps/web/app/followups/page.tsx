@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { errorMessage } from "@/lib/api";
 import type { Followup } from "@/lib/api-types";
+import { maskText } from "@/lib/mask";
 import { shortDate } from "@/lib/utils";
 
 function Draft({ f, onDone }: { f: Followup; onDone: () => void }) {
@@ -48,7 +49,7 @@ function Draft({ f, onDone }: { f: Followup; onDone: () => void }) {
         {editing ? (
           <textarea aria-label="Body" rows={9} className="w-full rounded-md border border-slate-300 p-3" value={body} onChange={(e) => setBody(e.target.value)} />
         ) : (
-          <p className="whitespace-pre-line text-slate-800">{f.draft_body}</p>
+          <p className="whitespace-pre-line text-slate-800">{maskText(f.draft_body)}</p>
         )}
         {sent ? (
           <Alert tone="green">Approved and sent {f.sent_at ? shortDate(f.sent_at) : "(sending…)"}.</Alert>

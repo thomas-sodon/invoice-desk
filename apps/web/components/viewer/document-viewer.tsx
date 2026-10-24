@@ -12,6 +12,7 @@ import { badgeInfo } from "@/lib/badges";
 import { BAND_COLORS } from "@/lib/bands";
 import { COLUMN_TONE, STATUS_LABELS } from "@/lib/columns";
 import { formatCents } from "@/lib/money";
+import { maskText } from "@/lib/mask";
 import { hiddenTextSummary } from "@/lib/screening";
 import { isPdfName } from "@/lib/upload";
 import { ApprovalPanel } from "./approval-panel";
@@ -211,7 +212,7 @@ export function DocumentViewer({
           <p className="break-all text-sm text-slate-500">{doc.filename}</p>
           {doc.headline && !hiddenTextSummary(doc.screen_results) && (
             <Alert tone={doc.status === "Flagged" ? "red" : doc.status === "NeedsReview" ? "amber" : "green"} className="text-lg font-semibold">
-              {doc.headline}
+              {maskText(doc.headline)}
             </Alert>
           )}
         </header>
@@ -246,7 +247,7 @@ export function DocumentViewer({
               <tbody>
                 {doc.line_items.map((li, i) => (
                   <tr key={i} className="border-t border-slate-100">
-                    <td className="py-1.5 pr-2">{li.description ?? "—"}</td>
+                    <td className="py-1.5 pr-2">{li.description ? maskText(li.description) : "—"}</td>
                     <td className="py-1.5 text-right tabular-nums">{li.quantity ?? "—"}</td>
                     <td className="py-1.5 text-right tabular-nums">{formatCents(li.amount_cents)}</td>
                   </tr>

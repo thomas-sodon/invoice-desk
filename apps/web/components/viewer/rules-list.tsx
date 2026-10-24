@@ -1,6 +1,7 @@
 import { CircleAlert, CircleCheck, OctagonX } from "lucide-react";
 import type { RuleResult } from "@/lib/api-types";
 import { RULE_TITLES } from "@/lib/badges";
+import { maskText } from "@/lib/mask";
 
 export function RulesList({ rules }: { rules: RuleResult[] }) {
   if (rules.length === 0) return <p className="text-slate-600">Checks haven&apos;t run yet.</p>;
@@ -18,7 +19,7 @@ export function RulesList({ rules }: { rules: RuleResult[] }) {
           )}
           <span>
             <span className="font-semibold text-slate-900">{RULE_TITLES[r.rule_id] ?? r.name}</span>
-            <span className="block text-slate-700">{r.message}</span>
+            <span className="block text-slate-700">{maskText(r.message)}</span>
           </span>
         </li>
       ))}

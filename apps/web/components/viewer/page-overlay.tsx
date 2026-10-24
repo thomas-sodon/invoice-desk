@@ -64,8 +64,11 @@ export function OverlayCanvas({
   showFields,
   onSelect,
   redactions,
+  onDrawn,
 }: {
   redactions?: Redaction[];
+  /** Called after the overlay (including any redaction boxes) has been painted. */
+  onDrawn?: () => void;
   page: PageImage;
   width: number;
   height: number;
@@ -76,12 +79,17 @@ export function OverlayCanvas({
   onSelect?: (field: string | null) => void;
 }) {
   const ref = React.useRef<HTMLCanvasElement>(null);
+  const onDrawnRef = React.useRef(onDrawn);
+  onDrawnRef.current = onDrawn;
   const rects = React.useMemo(
     () => overlayRects({ page, displayWidth: width, fields, screen, selected, showFields, redactions }),
     [page, width, fields, screen, selected, showFields, redactions],
   );
   React.useEffect(() => {
-    if (ref.current && width > 0) draw(ref.current, rects, width, height);
+    if (ref.current && width > 0) {
+      draw(ref.current, rects, width, height);
+      onDrawnRef.current?.();
+    }
   }, [rects, width, height]);
   return (
     <canvas
@@ -112,6 +120,10 @@ export function PageOverlay(props: {
   const { page, alt } = props;
   const wrap = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState({ w: 0, h: 0 });
+  // When the page has printed bank details, keep the image hidden until the opaque redaction
+  // boxes are painted over it, so a full account number never flashes on screen (invariant 9).
+  const needsCover = (props.redactions ?? []).some((r) => (r.page ?? 0) === page.index);
+  const [covered, setCovered] = React.useState(false);
 
   React.useEffect(() => {
     const el = wrap.current;
@@ -129,7 +141,11 @@ export function PageOverlay(props: {
   return (
     <div ref={wrap} className="relative w-full overflow-hidden rounded-lg border border-slate-200 bg-white" style={{ aspectRatio: `${page.width} / ${page.height}` }}>
       {/* eslint-disable-next-line @next/next/no-img-element -- signed URLs from the API, sized by the overlay */}
-      <img src={page.image_url} alt={alt} className="absolute left-0 top-0 h-full w-full select-none" draggable={false} />
+      <img src={page.image_url} alt={alt} className="absolute left-0 top-0 h-full w-full select-none"
+        style={{ visibility: needsCover && !covered ? "hidden" : "visible" }}
+        data-covered={needsCover ? String(covered) : undefined}
+        draggable={false}
+      />
       <OverlayCanvas
         page={page}
         width={size.w}
@@ -140,6 +156,7 @@ export function PageOverlay(props: {
         showFields={props.showFields ?? true}
         onSelect={props.onSelect}
         redactions={props.redactions}
+        onDrawn={() => setCovered(true)}
       />
     </div>
   );

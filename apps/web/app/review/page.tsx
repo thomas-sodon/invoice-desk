@@ -8,6 +8,7 @@ import { CorrectionForm } from "@/components/viewer/correction-form";
 import { FollowupBox } from "@/components/viewer/followup-box";
 import { PageOverlay } from "@/components/viewer/page-overlay";
 import { RulesList } from "@/components/viewer/rules-list";
+import { maskText } from "@/lib/mask";
 
 export default function ReviewPage() {
   const [selected, setSelected] = React.useState<string | null>(null);
@@ -26,7 +27,7 @@ export default function ReviewPage() {
           </div>
           <div className="min-w-0 space-y-4">
             <h2 className="text-2xl font-bold">{doc.vendor_name ?? doc.filename}</h2>
-            {doc.headline && <Alert tone="amber" className="text-lg font-semibold">{doc.headline}</Alert>}
+            {doc.headline && <Alert tone="amber" className="text-lg font-semibold">{maskText(doc.headline)}</Alert>}
             <CorrectionForm doc={doc} onDone={done} />
             <details>
               <summary className="cursor-pointer font-semibold">All checks</summary>

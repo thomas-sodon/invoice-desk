@@ -23,6 +23,8 @@ import { UploadZone } from "./upload-zone";
 import { useBoard } from "./use-board";
 
 const LAST_BATCH_KEY = "invoicedesk.lastBatch";
+/** `?batch=all` shows every invoice; without it the board opens on the latest batch. */
+const ALL_BATCHES = "all";
 
 function rememberBatch(id: string) {
   try {
@@ -73,13 +75,17 @@ export function Board() {
   const openDoc = params.get("doc");
   // ?hero=1 renders the DESIGN §9 hero layout: three outcome columns plus a floating invoice panel.
   const hero = params.get("hero") === "1";
-  const [batchId, setBatchId] = React.useState<string | null>(urlBatch);
+  const [batchId, setBatchId] = React.useState<string | null>(urlBatch === ALL_BATCHES ? null : urlBatch);
   const { cards, cost, loading, error, conn, reload } = useBoard(batchId);
   const [busy, setBusy] = React.useState<string | null>(null);
   const [notice, setNotice] = React.useState<{ tone: "red" | "amber" | "green" | "blue"; text: string } | null>(null);
 
   // Default to the last batch this viewer worked on (or the mock's latest batch).
   React.useEffect(() => {
+    if (urlBatch === ALL_BATCHES) {
+      setBatchId(null);
+      return;
+    }
     if (urlBatch) {
       setBatchId(urlBatch);
       return;
@@ -280,7 +286,7 @@ export function Board() {
           </Link>
         )}
         {batchId && (
-          <button type="button" className="text-blue-700 underline" onClick={() => { setBatchId(null); setQuery({ batch: null }); }}>
+          <button type="button" className="text-blue-700 underline" onClick={() => { setBatchId(null); setQuery({ batch: ALL_BATCHES, doc: null }); }}>
             Show all invoices
           </button>
         )}
