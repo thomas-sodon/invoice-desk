@@ -64,3 +64,34 @@ don't delete entries. Mark them **closed** when resolved.
 - **Latency was measured on this 4-CPU container only.** One native PDF page (render, OCR,
   CLAHE OCR, text layer, pHash) takes about 1.2 s warm and about 2.5 s cold, including model
   load. A test asserts under 3 s warm.
+
+## Extraction, calibration, telemetry (2026-10-24)
+
+- **No live Claude call has been made.** There is no `ANTHROPIC_API_KEY` here. The request
+  bodies for every role (model, `output_config.effort`, thinking, `fallbacks`, beta header,
+  cache breakpoints, Files API image blocks) are asserted against the official SDK (anthropic
+  2.3.0) through a mocked transport, not against the real API. The SDK uses `httpx2`, so the
+  mocks use `httpx2.MockTransport`; `respx` (which patches `httpx`) cannot intercept it. The
+  only live test, `test_live_haiku_smoke`, is marked `live` and skips without a key. *Close
+  by:* one `pytest -m live` run with a key, plus a smoke eval.
+- **Prompt caching is not verified.** The frozen prefix (system prompt, schema notes, two
+  few-shot examples) is about 3,000 estimated tokens, with one breakpoint at its end. Whether
+  `usage.cache_read_input_tokens` is non-zero on the second call per tier has not been
+  observed. *Close by:* the first recorded live run.
+- **No fitted calibrator yet.** `load_calibrator()` returns the monotone `heuristic-v1`
+  combiner until the evals component fits one on the dev split (`fit_calibrator(...,
+  split="dev")`, `choose_thresholds(...)`) and points `INVOICEDESK_CALIBRATOR` at the JSON
+  artifact. `tau_field` 0.90 and `tau_hi` 0.95 in `rules.yaml` are placeholders, not tuned
+  values. The ECE ≤ 0.05 claim is shown only on synthetic signals in unit tests.
+- **The offline extractor is a heuristic, not a model.** Offline, `invoicedesk extract` with
+  no recording falls back to `extract.offline`, a regex/label reader over the OCR words. It
+  exists so the tiered path runs end to end without network access. It must never be used for
+  eval numbers. FakeLLM's token counts (and so the offline costs) are estimates.
+- **Replay recordings can't match live uploads yet.** `RecordingLLM` keys each recording by
+  `LLMRequest.replay_key()`, which includes the Files API `file_id`. A live upload returns
+  `file_...` ids, while `ReplayLLM.upload_file` returns `file_replay_<sha>`. So a recorded
+  extraction request will miss on replay. *Close by:* a foundation fix that normalizes file
+  ids in the replay key (see the extraction component's needs_outside_ownership).
+- **Langfuse export is untested against a real Langfuse.** `setup_tracing` builds an
+  OTLP/HTTP exporter to `<LANGFUSE_HOST>/api/public/otel/v1/traces` with basic auth, only when
+  `INVOICEDESK_MODE=live`. Tests check the configuration and use in-memory exporters.
