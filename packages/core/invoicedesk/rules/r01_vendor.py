@@ -59,7 +59,17 @@ def check(ctx: RuleContext) -> RuleResult:
             )
         else:
             msg = f"New vendor: {name!r} is not in the vendor list. Approve the vendor first."
-        return fail(RULE_ID, NAME, "review", msg, fields=_FIELDS, badge="new_vendor", **base)
+        headline = f"New vendor: {name.strip()} is not in the vendor list" if name.strip() else msg
+        return fail(
+            RULE_ID,
+            NAME,
+            "review",
+            msg,
+            fields=_FIELDS,
+            badge="new_vendor",
+            headline=headline,
+            **base,
+        )
 
     v = m.vendor
     if v.status == "blocked":

@@ -66,8 +66,10 @@ def check(ctx: RuleContext) -> RuleResult:
         if reasons:
             fields.append("remit_to_bank_details")
 
+    from_email = False
     if "bank_or_remit_change" in ctx.screening.categories:
         reasons.append("the screening classifier found a bank or remit-to change request")
+        from_email = any(s.source == "email_body" for s in ctx.screening.flagged_spans)
         details["screen_spans"] = [mask_text(s.text) for s in ctx.screening.flagged_spans]
 
     if ex.embedded_instructions:
@@ -82,6 +84,8 @@ def check(ctx: RuleContext) -> RuleResult:
 
     if reasons:
         msg = mask_text("Bank-detail hold: " + "; ".join(reasons) + ". " + APPROVALS_NOTE) or ""
+        where = " in the e-mail" if from_email else ""
+        details["headline"] = f"Bank-detail change requested{where}: needs two approvers"
         return fail(RULE_ID, NAME, "flag", msg, fields=fields, badge="bank_change", **details)
     return passed(RULE_ID, NAME, "No bank or remit-to change.", **details)
 

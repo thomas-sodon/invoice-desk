@@ -7,7 +7,9 @@ Checks against ``TenantData.prior_invoices`` (historical bills and earlier docum
 * ``tweaked_amount``: same vendor and invoice number, different total;
 * ``fuzzy``: same vendor, different invoice number, total within ``fuzzy_amount_bps`` and
   invoice dates within ``fuzzy_window_days``;
-* ``image``: page-0 pHash Hamming distance <= ``phash_max_distance``.
+* ``image``: page-0 pHash Hamming distance <= ``phash_max_distance`` and the same (or an
+  unreadable) total. A re-photographed duplicate keeps its total; two different invoices
+  printed from one vendor template have near-identical pHashes but different totals.
 
 Vendor-keyed checks need a resolved vendor (R1); file and image checks do not. The document
 itself is skipped if it appears in ``prior_invoices`` (so a re-run never flags it as its own
@@ -86,7 +88,8 @@ def check(ctx: RuleContext) -> RuleResult:
             kind = "fuzzy"
         else:
             dist = phash_distance(ctx.document.phash, p.phash)
-            if dist is not None and dist <= cfg.phash_max_distance:
+            same_total = total is None or p.total_cents is None or p.total_cents == total
+            if dist is not None and dist <= cfg.phash_max_distance and same_total:
                 kind = "image"
                 reason = f"same image (pHash distance {dist})"
         if kind is not None:

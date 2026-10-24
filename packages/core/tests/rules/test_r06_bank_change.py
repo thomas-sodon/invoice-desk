@@ -102,6 +102,7 @@ def test_remit_for_unknown_or_lookalike_vendor(make_ctx: CtxFactory) -> None:
             make_ctx(vendor_name=text(name), remit_to_bank_details=text(MASTER))
         )
         assert res.severity == "flag" and "not in the vendor list" in res.message
+        assert res.details["headline"] == "Bank-detail change requested: needs two approvers"
         assert_masked(res.message)
 
 
@@ -125,6 +126,9 @@ def test_classifier_bank_category(make_ctx: CtxFactory) -> None:
     res = r06_bank_change.check(make_ctx(screening=scr))
     assert res.severity == "flag" and "screening classifier" in res.message
     assert res.details["screen_spans"] == ["Please update our account to ••••••••4321"]
+    assert res.details["headline"] == (
+        "Bank-detail change requested in the e-mail: needs two approvers"
+    )
 
 
 def test_classifier_bank_category_even_with_clean_verdict(make_ctx: CtxFactory) -> None:

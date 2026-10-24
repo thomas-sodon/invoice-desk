@@ -97,6 +97,24 @@ def test_phash_near_copy(make_ctx: CtxFactory, universe: Universe) -> None:
     assert run(make_ctx, universe, far, document=doc).passed
 
 
+def test_phash_needs_the_same_or_an_unreadable_total(
+    make_ctx: CtxFactory, universe: Universe
+) -> None:
+    """Two different invoices printed from one vendor template look alike to pHash; a
+    re-photographed duplicate also keeps its total."""
+    doc = DocumentInfo(document_id="d", sha256="s", phash="0000ffff0000ffff")
+    template = prior(
+        ref_id="hb-9", vendor_id=None, invoice_number=None, phash="0000ffff0000ff3f",
+        total_cents=99_900,
+    )  # fmt: skip
+    assert run(make_ctx, universe, template, document=doc).passed
+    unknown = prior(
+        ref_id="hb-9", vendor_id=None, invoice_number=None, phash="0000ffff0000ff3f",
+        total_cents=None,
+    )  # fmt: skip
+    assert run(make_ctx, universe, unknown, document=doc).severity == "flag"
+
+
 def test_exact_file(make_ctx: CtxFactory, universe: Universe) -> None:
     doc = DocumentInfo(document_id="d", sha256="abc", phash=None)
     res = run(

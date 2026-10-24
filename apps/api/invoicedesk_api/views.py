@@ -197,17 +197,45 @@ def _badges(
     return sorted(found, key=lambda b: (order.get(b, len(order)), b))
 
 
+_FLAG_PRIORITY = {"R6": 0, "R10": 1, "R4": 2}
+TOTAL_UNREADABLE_HEADLINE = "Total unreadable: please confirm"
+HIDDEN_BANK_CHANGE_HEADLINE = "Hidden instruction detected: attempted bank-account change, blocked"
+
+
+def _total_unreadable(rules: Sequence[dict[str, Any]], fields: dict[str, dict[str, Any]]) -> bool:
+    """R9 holds the total and no total was read: the arithmetic (R5) and cap (R7) holds that
+    follow are consequences, so the card asks for the total itself."""
+    for r in rules:
+        if r["rule_id"] == "R9" and not r["passed"]:
+            held = (r["details_json"] or {}).get("fields") or []
+            return "total" in held and fields.get("total", {}).get("value") is None
+    return False
+
+
 def _headline(
-    status: DocStatus, rules: Sequence[dict[str, Any]], screens: Sequence[dict[str, Any]]
+    status: DocStatus,
+    rules: Sequence[dict[str, Any]],
+    screens: Sequence[dict[str, Any]],
+    fields: dict[str, dict[str, Any]] | None = None,
 ) -> str | None:
     failed = [r for r in rules if not r["passed"]]
-    pick = [r for r in failed if r["severity"] == "flag"] or failed
+    flags = [r for r in failed if r["severity"] == "flag"]
+    if not flags and _total_unreadable(failed, fields or {}):
+        return TOTAL_UNREADABLE_HEADLINE
+    # the money-risk flag the reviewer must act on first: bank change, then injection,
+    # then duplicate; otherwise rule order
+    pick = sorted(flags, key=lambda r: _FLAG_PRIORITY.get(r["rule_id"], 9)) or failed
     if pick:
         details = pick[0]["details_json"] or {}
         text = details.get("headline") if isinstance(details.get("headline"), str) else None
-        return mask_text(text or pick[0]["message"])
+        return mask_text(text or str(pick[0]["message"]).rstrip("."))
     noisy = [s["detector"] for s in screens if s["verdict"] != "clean"]
     if noisy and status in (DocStatus.FLAGGED, DocStatus.QUARANTINED, DocStatus.REJECTED):
+        cats = {
+            str(c) for s in screens if s["verdict"] != "clean" for c in s.get("categories") or []
+        }
+        if "bank_or_remit_change" in cats:
+            return HIDDEN_BANK_CHANGE_HEADLINE
         parts = [_DETECTOR_HEADLINE.get(str(d), str(d)) for d in dict.fromkeys(noisy)]
         return "Quarantined: " + "; ".join(parts)
     return None
@@ -244,7 +272,7 @@ def _card(
         vendor_name=mask_text(vendor),
         invoice_number=mask_text(number),
         total_cents=_int_or_none(fields.get("total", {}).get("value")),
-        headline=_headline(status, rules, screens),
+        headline=_headline(status, rules, screens, fields),
         badges=_badges(rules, screens, bool(bits.get("handwriting"))),
         cost_usd=usd(doc["total_cost_usd"]),
         thumbnail_url=_signed(rt, bits.get("thumb")),

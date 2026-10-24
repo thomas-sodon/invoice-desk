@@ -137,6 +137,9 @@ def test_new_vendor_approval_by_uploader_or_rejected_does_not_clear(make_ctx: Ct
     for approvals in ((self_ok,), (other_ok, rej), (wrong_kind,)):
         res = r1(make_ctx, vendor_name=text("Bluewater Window Cleaning"), approvals=approvals)
         assert res.severity == "review", approvals
+        assert res.details["headline"] == (
+            "New vendor: Bluewater Window Cleaning is not in the vendor list"
+        )
 
 
 def test_approval_never_clears_a_lookalike(make_ctx: CtxFactory) -> None:

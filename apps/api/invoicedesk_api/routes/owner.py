@@ -5,6 +5,7 @@ Scope discipline): the data is the fictional Maple Row universe."""
 from __future__ import annotations
 
 import datetime as dt
+import json
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 from typing import Annotated, Any
@@ -154,7 +155,8 @@ async def comparison(
                 kind = "demo_replay"
             svc = rt.services(kind)
             run_naive(rt.db, bid, svc.deps.llm, storage=rt.storage)
-        return svc_compare(rt, bid)
+        truth = demo_truth(rt, bid) if is_public_batch(batch) else None
+        return rt.services().comparison(bid, truth=truth)
 
     out = await run_in_threadpool(_work)
     return sc.Comparison.model_validate(out)
@@ -162,6 +164,43 @@ async def comparison(
 
 def svc_compare(rt: Runtime, batch_id: str) -> dict[str, Any]:
     return rt.services().comparison(batch_id)
+
+
+#: Planted-defect rules in ``data/demo/expected.json`` -> comparison money-risk labels.
+_RULE_LABELS = {"R4": "duplicate", "R6": "bank_change", "R10": "injection"}
+
+
+def _demo_labels_by_sha() -> dict[str, set[str]]:
+    from invoicedesk.config.settings import REPO_ROOT
+
+    path = REPO_ROOT / "data" / "demo" / "expected.json"
+    try:
+        expected = json.loads(path.read_text())
+    except (OSError, ValueError):
+        return {}
+    return {
+        f["sha256"]: {_RULE_LABELS[r] for r in f.get("rules", {}) if r in _RULE_LABELS}
+        for f in expected.get("files", [])
+    }
+
+
+def demo_truth(rt: Runtime, batch_id: str) -> dict[str, list[str]] | None:
+    """Gold money-risk labels for a demo batch, keyed by document id (matched on the file's
+    SHA-256), so comparison mode is graded against the labels and not against InvoiceDesk's
+    own findings. ``None`` (fall back to evidence) when any document is not a known demo file."""
+    labels = _demo_labels_by_sha()
+    with rt.db.tx() as conn:
+        rows = conn.execute(
+            "select id, sha256 from documents where batch_id = %s and session_id is null",
+            (batch_id,),
+        ).fetchall()
+    truth: dict[str, list[str]] = {}
+    for r in rows:
+        found = labels.get(r["sha256"])
+        if found is None:
+            return None
+        truth[str(r["id"])] = sorted(found)
+    return truth
 
 
 # ---------------------------------------------------------------------------- scorecard
