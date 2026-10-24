@@ -44,21 +44,35 @@ _IBAN = (
 )
 #: Formats that are never account numbers and pass through unchanged: UUIDs, md5 / sha1 /
 #: sha256 hex digests (document hashes, audit-chain hashes, trace ids) and ISO dates (also
-#: when a time follows: ``2026-10-24 12:30``). Anything
-#: else that merely contains hex (``deadbeef000555067890``) is still masked.
+#: when a time follows: ``2026-10-24 12:30``). Truncated lowercase ``hexdigest()[:n]`` ids
+#: (n = 8, 10, 12, 16, 24: ``extract-0249c1c17a``, ``renders/<16hex>/page-0.png``,
+#: ``file_fake_<24hex>``) are kept too when they form a whole path or id segment (bounded by
+#: non-alphanumerics), contain at least one a-f letter and are not a letter prefix or a single
+#: trailing letter glued to a 6+ digit run. Anything else that merely contains hex
+#: (``deadbeef000555067890``, 20 chars) or is glued to non-hex letters (``ACCT123456789``) is
+#: still masked. Values under a sensitive key are masked whatever their shape.
+_SHORT_HEX = (
+    r"(?<![0-9A-Za-z])(?=[0-9a-f]*[a-f])"
+    # ...but not a letter prefix glued to a 6+ digit run ("abc123456789", a labelled account
+    # number) or a single stray trailing letter ("123456789a"): not digests.
+    r"(?![a-f]+\d{6,}(?![0-9A-Za-z]))(?!\d{6,}[a-f](?![0-9A-Za-z]))"
+    r"(?:[0-9a-f]{24}|[0-9a-f]{16}|[0-9a-f]{12}|[0-9a-f]{10}|[0-9a-f]{8})"
+    r"(?![0-9A-Za-z])"
+)
 _EXEMPT = (
     r"(?<![0-9A-Za-z-])[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-"
     r"[0-9a-fA-F]{12}(?![0-9A-Za-z-])"
     r"|(?<![0-9A-Za-z])(?:[0-9a-f]{64}|[0-9a-f]{40}|[0-9a-f]{32}"
     r"|[0-9A-F]{64}|[0-9A-F]{40}|[0-9A-F]{32})(?![0-9A-Za-z])"
     r"|(?<![\d-])\d{4}-\d{2}-\d{2}(?![\d-])"
+    f"|{_SHORT_HEX}"
 )
 _TEXT_RE = re.compile(f"(?P<exempt>{_EXEMPT})|(?P<iban>{_IBAN})|(?P<run>{_DIGIT_RUN})")
 #: Keys whose string values are hashes or identifiers, not free text (exempt by key when the
 #: value is a single id-shaped token; a sensitive key always wins).
 _ID_KEY_RE = re.compile(
     r"(^id$|_id$|_ids$|^ids$|^sha256$|^phash$|^hash$|_hash$|^idempotency_key$|^requestid$"
-    r"|^trace_?id$|^span_?id$)",
+    r"|^trace_?id$|^span_?id$|^storage_key$|_storage_key$|^version$|_version$|^external_?ref$)",
     re.IGNORECASE,
 )
 _ID_VALUE_RE = re.compile(r"^[A-Za-z0-9_:./-]{1,200}$")

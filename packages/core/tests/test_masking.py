@@ -134,3 +134,68 @@ def test_mask_bank_text_masks_five_digit_tokens() -> None:
     assert mask_bank_text("First Test Bank acct 98765 IBAN GB82WEST12345698765432") == (
         "First Test Bank acct •8765 IBAN ••••••••••••••••••5432"
     )
+
+
+def test_truncated_hex_ids_in_paths_and_ids_survive() -> None:
+    # hexdigest()[:n] ids used across the codebase (storage keys, prompt/calibrator versions,
+    # fake QBO ids, CLI doc ids) are not account numbers, even when they hold 6+ digits.
+    keep = [
+        "renders/0123456789ab/p.png",
+        "1234567abcdef012",
+        "cli/renders/1234567a0249c1c1/page-0.png",
+        "extract-0249c1c17a",
+        "bill-1234567abc",
+        "att-0000000a12",
+        "file_fake_1234567abcdef0123456789a",
+        "calibrator 98765432ab",
+        "deadbeef",
+    ]
+    for s in keep:
+        assert mask_text(s) == s, s
+    # still masked: glued account numbers, non-hex letters, letter prefixes, a stray trailing
+    # letter, other lengths, uppercase, and digits-only segments
+    masked = {
+        "ACCT123456789": "ACCT•••••6789",
+        "a123456789": "a•••••6789",
+        "abc123456789": "abc•••••6789",
+        "123456789a": "•••••6789a",
+        "deadbeef000555067890": "deadbeef••••••••7890",
+        "renders/123456789012/p.png": "renders/••••••••9012/p.png",
+        "x1234567abcdef012": "x•••4567abcdef012",
+        "1234567ABCDEF012": "•••4567ABCDEF012",
+    }
+    for raw, want in masked.items():
+        assert mask_text(raw) == want, raw
+
+
+def test_id_and_version_keys_are_exempt_by_key() -> None:
+    p = {
+        "storage_key": "cli/renders/123456789012/page-0.png",
+        "page_storage_key": "t/renders/123456789012/page-1.png",
+        "prompt_version": "extract-1234567890",
+        "calibrator_version": "1234567890",
+        "external_bill_id": "bill-1234567890",
+        "external_attachment_id": "att-1234567890",
+        "doc_id": "1234567890123456",
+        # a sensitive key still wins, and free text under an id key is scrubbed
+        "bank_version": "000123456789",
+        "storage_key_note": "acct 000123456789",
+        "prompt_version_text": "x 000123456789",
+    }
+    out = mask_payload(p)
+    for k in (
+        "storage_key",
+        "page_storage_key",
+        "prompt_version",
+        "calibrator_version",
+        "external_bill_id",
+        "external_attachment_id",
+        "doc_id",
+    ):
+        assert out[k] == p[k], k
+    assert out["bank_version"] == "••••••••6789"
+    assert out["storage_key_note"] == "acct ••••••••6789"
+    assert out["prompt_version_text"] == "x ••••••••6789"
+    assert mask_payload({"storage_key": "acct 000123456789"}) == {
+        "storage_key": "acct ••••••••6789"
+    }

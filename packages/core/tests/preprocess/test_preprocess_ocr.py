@@ -230,6 +230,7 @@ def test_cli_prints_json(tmp_path, fx, capsys):
     out = json.loads(capsys.readouterr().out)
     assert out["is_native_pdf"] is True
     assert out["pages"][0]["storage_key"].startswith("cli/renders/")
+    assert "\u2022" not in out["pages"][0]["storage_key"]  # hex doc-id segment not masked
     assert (tmp_path / "store" / out["pages"][0]["storage_key"]).exists()
     dumped = json.dumps(out)
     assert "123456789012" not in dumped  # account numbers masked to last 4

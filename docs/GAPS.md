@@ -589,3 +589,14 @@ Still open after integration:
   needed for the MVP.
 - **A genuine overage (R3) or wrong work order on a held invoice cannot be approved away**; it is
   rejected, as in NeedsReview. Decided, not a defect, but worth knowing for the demo script.
+
+## Masking: truncated hex ids vs. account numbers (heuristic residual)
+
+`mask_text` keeps lowercase hex segments of 8/10/12/16/24 chars that contain an a-f letter
+(the `hexdigest()[:n]` ids used for storage keys, prompt/calibrator versions, fake QBO ids and
+CLI doc ids), and `mask_payload` exempts `storage_key`/`*_version` keys by key. A letter prefix
+glued to a 6+ digit run (`abc123456789`) or a single trailing letter (`123456789a`) is still
+masked, and values under bank/account keys and `mask_bank_text` are masked whatever their shape.
+Residual: a free-text account number that happens to be printed as such a lowercase hex segment
+with interior letters (e.g. `12345a6789bc`) would pass through `mask_text`. No real-world
+account format looks like this; revisit if a pilot vendor's remit format does.
