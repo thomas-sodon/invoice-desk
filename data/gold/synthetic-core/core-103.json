@@ -1,0 +1,578 @@
+{
+ "augment": {
+  "blur": 0.7352384932252948,
+  "capture": "photo",
+  "crumple": 0.0,
+  "jpeg_quality": 85.0,
+  "noise": 4.544890839211515,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    911,
+    330,
+    1008,
+    348
+   ],
+   "page": 0,
+   "text": "Sep 7, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    908,
+    310,
+    1007,
+    329
+   ],
+   "page": 0,
+   "text": "Aug 8, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    937,
+    289,
+    1006,
+    304
+   ],
+   "page": 0,
+   "text": "MR2506"
+  },
+  "line_items.0.amount": {
+   "box": [
+    936,
+    446,
+    1002,
+    464
+   ],
+   "page": 0,
+   "text": "$430.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    203,
+    444,
+    444,
+    464
+   ],
+   "page": 0,
+   "text": "Monthly grounds maintenance"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    702,
+    446,
+    709,
+    460
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    791,
+    446,
+    856,
+    463
+   ],
+   "page": 0,
+   "text": "$430.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    937,
+    482,
+    1003,
+    500
+   ],
+   "page": 0,
+   "text": "$350.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    203,
+    480,
+    333,
+    499
+   ],
+   "page": 0,
+   "text": "Hedge trimming"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    703,
+    482,
+    710,
+    496
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    792,
+    482,
+    857,
+    499
+   ],
+   "page": 0,
+   "text": "$350.00"
+  },
+  "property_or_unit": {
+   "box": [
+    223,
+    350,
+    281,
+    364
+   ],
+   "page": 0,
+   "text": "Unit A1"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    196,
+    675,
+    967,
+    698
+   ],
+   "page": 0,
+   "text": "Remit to: Greenwhistle Landscaping, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999054586"
+  },
+  "subtotal": {
+   "box": [
+    939,
+    530,
+    1005,
+    548
+   ],
+   "page": 0,
+   "text": "$780.00"
+  },
+  "tax": {
+   "box": [
+    961,
+    568,
+    1006,
+    585
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    924,
+    608,
+    1008,
+    627
+   ],
+   "page": 0,
+   "text": "$780.00"
+  },
+  "vendor_address": {
+   "box": [
+    543,
+    1405,
+    699,
+    1444
+   ],
+   "page": 0,
+   "text": "9330 Vanessa Union, Springfield, OR 97487"
+  },
+  "vendor_name": {
+   "box": [
+    372,
+    186,
+    814,
+    214
+   ],
+   "page": 0,
+   "text": "Greenwhistle Landscaping"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    656,
+    1446,
+    739,
+    1461
+   ],
+   "page": 0,
+   "text": "00-0002270"
+  },
+  "work_order_number": {
+   "box": [
+    932,
+    350,
+    1007,
+    365
+   ],
+   "page": 0,
+   "text": "WO 1191"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     911,
+     330,
+     1008,
+     348
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-07"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     908,
+     310,
+     1007,
+     329
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-08"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     937,
+     289,
+     1006,
+     304
+    ],
+    "word_ids": []
+   },
+   "value": "MR2506"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       936,
+       446,
+       1002,
+       464
+      ],
+      "word_ids": []
+     },
+     "value_cents": 43000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       203,
+       444,
+       444,
+       464
+      ],
+      "word_ids": []
+     },
+     "value": "Monthly grounds maintenance"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       702,
+       446,
+       709,
+       460
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       791,
+       446,
+       856,
+       463
+      ],
+      "word_ids": []
+     },
+     "value_cents": 43000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       937,
+       482,
+       1003,
+       500
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       203,
+       480,
+       333,
+       499
+      ],
+      "word_ids": []
+     },
+     "value": "Hedge trimming"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       703,
+       482,
+       710,
+       496
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       792,
+       482,
+       857,
+       499
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     223,
+     350,
+     281,
+     364
+    ],
+    "word_ids": []
+   },
+   "value": "Unit A1"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     196,
+     675,
+     967,
+     698
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Greenwhistle Landscaping, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999054586"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     939,
+     530,
+     1005,
+     548
+    ],
+    "word_ids": []
+   },
+   "value_cents": 78000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     961,
+     568,
+     1006,
+     585
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     924,
+     608,
+     1008,
+     627
+    ],
+    "word_ids": []
+   },
+   "value_cents": 78000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     543,
+     1405,
+     699,
+     1444
+    ],
+    "word_ids": []
+   },
+   "value": "9330 Vanessa Union, Springfield, OR 97487"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     372,
+     186,
+     814,
+     214
+    ],
+    "word_ids": []
+   },
+   "value": "Greenwhistle Landscaping"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     656,
+     1446,
+     739,
+     1461
+    ],
+    "word_ids": []
+   },
+   "value": "2270"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     932,
+     350,
+     1007,
+     365
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1191"
+  }
+ },
+ "filename": "core-103.jpg",
+ "hidden_boxes": [],
+ "id": "core-103",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "0562732b8092ef3bfa41bfe3dcd0289c79fb21d4a119f36a7e0681a620b88459"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "740639062cb292ffa6126f94c746bc13813141b89bc63055dd1e2fea39bc7182",
+ "split": "test",
+ "template": "letterhead",
+ "truth": {
+  "accent": "#0f6b6b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-103",
+  "doc_type": "invoice",
+  "due_date": "2026-09-07",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-08",
+  "invoice_number": "MR2506",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 43000,
+    "description": "Monthly grounds maintenance",
+    "quantity": "1",
+    "unit_price_cents": 43000
+   },
+   {
+    "amount_cents": 35000,
+    "description": "Hedge trimming",
+    "quantity": "1",
+    "unit_price_cents": 35000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit A1",
+  "remit_text": "Remit to: Greenwhistle Landscaping, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999054586",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 78000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "letterhead",
+  "total_cents": 78000,
+  "vendor_address": "9330 Vanessa Union, Springfield, OR 97487",
+  "vendor_email": "billing@greenwhistle.example",
+  "vendor_id": "f38242d8-1bc3-5322-bae8-4584b1df97a7",
+  "vendor_name": "Greenwhistle Landscaping",
+  "vendor_phone": "(541) 555-0115",
+  "vendor_slug": "greenwhistle",
+  "vendor_tax_id_last4": "2270",
+  "visible_instructions": [],
+  "work_order_number": "WO-1191",
+  "work_order_printed": "WO 1191"
+ }
+}

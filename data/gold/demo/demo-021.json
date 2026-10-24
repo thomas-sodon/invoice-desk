@@ -1,0 +1,785 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    866,
+    316,
+    961,
+    330
+   ],
+   "page": 0,
+   "text": "11/15/2026"
+  },
+  "invoice_date": {
+   "box": [
+    866,
+    284,
+    963,
+    298
+   ],
+   "page": 0,
+   "text": "10/16/2026"
+  },
+  "invoice_number": {
+   "box": [
+    866,
+    253,
+    946,
+    267
+   ],
+   "page": 0,
+   "text": "INV-2240"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1046,
+    524,
+    1133,
+    542
+   ],
+   "page": 0,
+   "text": "$2,150.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    525,
+    328,
+    543
+   ],
+   "page": 0,
+   "text": "Replace kitchen drain line"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    729,
+    525,
+    738,
+    539
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    849,
+    524,
+    936,
+    542
+   ],
+   "page": 0,
+   "text": "$2,150.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1062,
+    567,
+    1133,
+    584
+   ],
+   "page": 0,
+   "text": "$650.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    104,
+    568,
+    396,
+    586
+   ],
+   "page": 0,
+   "text": "Replace P-trap and supply valves"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    729,
+    568,
+    738,
+    582
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    865,
+    567,
+    936,
+    584
+   ],
+   "page": 0,
+   "text": "$650.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1062,
+    609,
+    1133,
+    626
+   ],
+   "page": 0,
+   "text": "$400.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    104,
+    610,
+    234,
+    628
+   ],
+   "page": 0,
+   "text": "Plumbing labor"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    728,
+    610,
+    739,
+    624
+   ],
+   "page": 0,
+   "text": "4"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    865,
+    609,
+    936,
+    626
+   ],
+   "page": 0,
+   "text": "$100.00"
+  },
+  "line_items.3.amount": {
+   "box": [
+    1062,
+    652,
+    1133,
+    669
+   ],
+   "page": 0,
+   "text": "$340.00"
+  },
+  "line_items.3.description": {
+   "box": [
+    104,
+    653,
+    374,
+    671
+   ],
+   "page": 0,
+   "text": "Replace corroded shutoff valve"
+  },
+  "line_items.3.quantity": {
+   "box": [
+    729,
+    653,
+    738,
+    667
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.3.unit_price": {
+   "box": [
+    865,
+    652,
+    936,
+    669
+   ],
+   "page": 0,
+   "text": "$340.00"
+  },
+  "property_or_unit": {
+   "box": [
+    865,
+    380,
+    1059,
+    421
+   ],
+   "page": 0,
+   "text": "Unit 12B, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    109,
+    869,
+    1028,
+    886
+   ],
+   "page": 0,
+   "text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "box": [
+    1046,
+    709,
+    1133,
+    727
+   ],
+   "page": 0,
+   "text": "$3,540.00"
+  },
+  "tax": {
+   "box": [
+    1062,
+    744,
+    1133,
+    761
+   ],
+   "page": 0,
+   "text": "$256.65"
+  },
+  "total": {
+   "box": [
+    1019,
+    783,
+    1133,
+    806
+   ],
+   "page": 0,
+   "text": "$3,796.65"
+  },
+  "vendor_address": {
+   "box": [
+    104,
+    200,
+    296,
+    240
+   ],
+   "page": 0,
+   "text": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "box": [
+    93,
+    39,
+    633,
+    76
+   ],
+   "page": 0,
+   "text": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    156,
+    244,
+    243,
+    256
+   ],
+   "page": 0,
+   "text": "00-0004821"
+  },
+  "work_order_number": {
+   "box": [
+    865,
+    348,
+    947,
+    362
+   ],
+   "page": 0,
+   "text": "WO-1187"
+  }
+ },
+ "category": "needs_review",
+ "description": "$340.00 over approved estimate for Unit 12B (WO-1187)",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "$340.00 over approved estimate for Unit 12B (WO-1187)",
+  "quarantined": false,
+  "rules": {
+   "R3": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     316,
+     961,
+     330
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-15"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     284,
+     963,
+     298
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-16"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     253,
+     946,
+     267
+    ],
+    "word_ids": []
+   },
+   "value": "INV-2240"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1046,
+       524,
+       1133,
+       542
+      ],
+      "word_ids": []
+     },
+     "value_cents": 215000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       525,
+       328,
+       543
+      ],
+      "word_ids": []
+     },
+     "value": "Replace kitchen drain line"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       729,
+       525,
+       738,
+       539
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       849,
+       524,
+       936,
+       542
+      ],
+      "word_ids": []
+     },
+     "value_cents": 215000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       567,
+       1133,
+       584
+      ],
+      "word_ids": []
+     },
+     "value_cents": 65000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       568,
+       396,
+       586
+      ],
+      "word_ids": []
+     },
+     "value": "Replace P-trap and supply valves"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       729,
+       568,
+       738,
+       582
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       865,
+       567,
+       936,
+       584
+      ],
+      "word_ids": []
+     },
+     "value_cents": 65000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       609,
+       1133,
+       626
+      ],
+      "word_ids": []
+     },
+     "value_cents": 40000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       610,
+       234,
+       628
+      ],
+      "word_ids": []
+     },
+     "value": "Plumbing labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       728,
+       610,
+       739,
+       624
+      ],
+      "word_ids": []
+     },
+     "value": "4"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       865,
+       609,
+       936,
+       626
+      ],
+      "word_ids": []
+     },
+     "value_cents": 10000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       652,
+       1133,
+       669
+      ],
+      "word_ids": []
+     },
+     "value_cents": 34000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       653,
+       374,
+       671
+      ],
+      "word_ids": []
+     },
+     "value": "Replace corroded shutoff valve"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       729,
+       653,
+       738,
+       667
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       865,
+       652,
+       936,
+       669
+      ],
+      "word_ids": []
+     },
+     "value_cents": 34000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     380,
+     1059,
+     421
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 12B, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     109,
+     869,
+     1028,
+     886
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1046,
+     709,
+     1133,
+     727
+    ],
+    "word_ids": []
+   },
+   "value_cents": 354000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1062,
+     744,
+     1133,
+     761
+    ],
+    "word_ids": []
+   },
+   "value_cents": 25665
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1019,
+     783,
+     1133,
+     806
+    ],
+    "word_ids": []
+   },
+   "value_cents": 379665
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     104,
+     200,
+     296,
+     240
+    ],
+    "word_ids": []
+   },
+   "value": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     93,
+     39,
+     633,
+     76
+    ],
+    "word_ids": []
+   },
+   "value": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     156,
+     244,
+     243,
+     256
+    ],
+    "word_ids": []
+   },
+   "value": "4821"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     348,
+     947,
+     362
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1187"
+  }
+ },
+ "filename": "10-rapid-rooter-INV-2240-pdf.pdf",
+ "hidden_boxes": [],
+ "id": "demo-021",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "ba0efb5f217e42bb93373751ff78b6978b80f2f171d81f9f9a202369ece1ca7b"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "eb279485b5ee60c538649382c011077935e3ab3795eeef251e8786022edbdb26",
+ "split": "demo",
+ "template": "trades",
+ "truth": {
+  "accent": "#1f4e79",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "over_estimate"
+  ],
+  "doc_id": "demo-021",
+  "doc_type": "invoice",
+  "due_date": "2026-11-15",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "$340.00 over approved estimate for Unit 12B (WO-1187)",
+   "quarantined": false,
+   "rules": {
+    "R3": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-16",
+  "invoice_number": "INV-2240",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 215000,
+    "description": "Replace kitchen drain line",
+    "quantity": "1",
+    "unit_price_cents": 215000
+   },
+   {
+    "amount_cents": 65000,
+    "description": "Replace P-trap and supply valves",
+    "quantity": "1",
+    "unit_price_cents": 65000
+   },
+   {
+    "amount_cents": 40000,
+    "description": "Plumbing labor",
+    "quantity": "4",
+    "unit_price_cents": 10000
+   },
+   {
+    "amount_cents": 34000,
+    "description": "Replace corroded shutoff valve",
+    "quantity": "1",
+    "unit_price_cents": 34000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {
+   "layout_level": 0
+  },
+  "property_or_unit": "Unit 12B, Maple Court Apartments",
+  "remit_text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991",
+  "set_name": "demo",
+  "subtotal_cents": 354000,
+  "tax_cents": 25665,
+  "tax_rate_bps": 725,
+  "template": "trades",
+  "total_cents": 379665,
+  "vendor_address": "118 Alder Way, Springfield, OR 97477",
+  "vendor_email": "billing@rapidrooter.example",
+  "vendor_id": "cb828b2b-5dfc-5147-b209-1c638ffac3c7",
+  "vendor_name": "Rapid Rooter Plumbing LLC",
+  "vendor_phone": "(541) 555-0110",
+  "vendor_slug": "rapid-rooter",
+  "vendor_tax_id_last4": "4821",
+  "visible_instructions": [],
+  "work_order_number": "WO-1187",
+  "work_order_printed": "WO-1187"
+ }
+}

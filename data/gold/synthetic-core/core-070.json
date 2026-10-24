@@ -1,0 +1,580 @@
+{
+ "augment": {
+  "angle": -0.5556809906074105,
+  "blur": 0.7930399610561157,
+  "capture": "scan",
+  "jpeg_quality": 81.0,
+  "noise": 5.236926131764461,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 4.542151452223999,
+  "ty": -0.4356903219938051
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    625,
+    561,
+    739,
+    582
+   ],
+   "page": 0,
+   "text": "21 Sep 2026"
+  },
+  "invoice_date": {
+   "box": [
+    624,
+    528,
+    733,
+    549
+   ],
+   "page": 0,
+   "text": "7 Aug 2026"
+  },
+  "invoice_number": {
+   "box": [
+    626,
+    495,
+    720,
+    512
+   ],
+   "page": 0,
+   "text": "INV04802"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1075,
+    781,
+    1152,
+    802
+   ],
+   "page": 0,
+   "text": "$335.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    427,
+    777,
+    700,
+    800
+   ],
+   "page": 0,
+   "text": "Replace broken window pane"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    871,
+    781,
+    878,
+    798
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    938,
+    780,
+    1016,
+    801
+   ],
+   "page": 0,
+   "text": "$335.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1079,
+    825,
+    1152,
+    846
+   ],
+   "page": 0,
+   "text": "$100.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    427,
+    821,
+    625,
+    839
+   ],
+   "page": 0,
+   "text": "Reseal window frame"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    871,
+    825,
+    878,
+    842
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    942,
+    824,
+    1016,
+    845
+   ],
+   "page": 0,
+   "text": "$100.00"
+  },
+  "property_or_unit": {
+   "box": [
+    625,
+    628,
+    687,
+    645
+   ],
+   "page": 0,
+   "text": "Unit A1"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    38,
+    712,
+    301,
+    792
+   ],
+   "page": 0,
+   "text": "Remit to: Clearpane Glass Works, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999120019"
+  },
+  "subtotal": {
+   "box": [
+    1074,
+    884,
+    1151,
+    905
+   ],
+   "page": 0,
+   "text": "$435.00"
+  },
+  "tax": {
+   "box": [
+    1090,
+    928,
+    1152,
+    948
+   ],
+   "page": 0,
+   "text": "$31.54"
+  },
+  "total": {
+   "box": [
+    1020,
+    970,
+    1150,
+    1000
+   ],
+   "page": 0,
+   "text": "$466.54"
+  },
+  "vendor_address": {
+   "box": [
+    41,
+    489,
+    245,
+    535
+   ],
+   "page": 0,
+   "text": "7203 Ray Walks, Springfield, OR 97490"
+  },
+  "vendor_name": {
+   "box": [
+    41,
+    396,
+    284,
+    459
+   ],
+   "page": 0,
+   "text": "Clearpane Glass Works"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    39,
+    646,
+    150,
+    663
+   ],
+   "page": 0,
+   "text": "00-0001491"
+  },
+  "work_order_number": {
+   "box": [
+    624,
+    595,
+    710,
+    612
+   ],
+   "page": 0,
+   "text": "WO-1227"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     625,
+     561,
+     739,
+     582
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-21"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     624,
+     528,
+     733,
+     549
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-07"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     626,
+     495,
+     720,
+     512
+    ],
+    "word_ids": []
+   },
+   "value": "INV04802"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1075,
+       781,
+       1152,
+       802
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       427,
+       777,
+       700,
+       800
+      ],
+      "word_ids": []
+     },
+     "value": "Replace broken window pane"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       871,
+       781,
+       878,
+       798
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       938,
+       780,
+       1016,
+       801
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1079,
+       825,
+       1152,
+       846
+      ],
+      "word_ids": []
+     },
+     "value_cents": 10000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       427,
+       821,
+       625,
+       839
+      ],
+      "word_ids": []
+     },
+     "value": "Reseal window frame"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       871,
+       825,
+       878,
+       842
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       942,
+       824,
+       1016,
+       845
+      ],
+      "word_ids": []
+     },
+     "value_cents": 10000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     625,
+     628,
+     687,
+     645
+    ],
+    "word_ids": []
+   },
+   "value": "Unit A1"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     38,
+     712,
+     301,
+     792
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Clearpane Glass Works, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999120019"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1074,
+     884,
+     1151,
+     905
+    ],
+    "word_ids": []
+   },
+   "value_cents": 43500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1090,
+     928,
+     1152,
+     948
+    ],
+    "word_ids": []
+   },
+   "value_cents": 3154
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1020,
+     970,
+     1150,
+     1000
+    ],
+    "word_ids": []
+   },
+   "value_cents": 46654
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     41,
+     489,
+     245,
+     535
+    ],
+    "word_ids": []
+   },
+   "value": "7203 Ray Walks, Springfield, OR 97490"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     41,
+     396,
+     284,
+     459
+    ],
+    "word_ids": []
+   },
+   "value": "Clearpane Glass Works"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     39,
+     646,
+     150,
+     663
+    ],
+    "word_ids": []
+   },
+   "value": "1491"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     624,
+     595,
+     710,
+     612
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1227"
+  }
+ },
+ "filename": "core-070.pdf",
+ "hidden_boxes": [],
+ "id": "core-070",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "6f0b747c130bfcba5d59c5278c5938a6eb211403b141a15ebf1d93543e76ebf6"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "52348e33f729310cefb781c1dca4296444ece437b7b3591492b926a3dd57cea5",
+ "split": "dev",
+ "template": "modern",
+ "truth": {
+  "accent": "#1f4e79",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-070",
+  "doc_type": "invoice",
+  "due_date": "2026-09-21",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-07",
+  "invoice_number": "INV04802",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 33500,
+    "description": "Replace broken window pane",
+    "quantity": "1",
+    "unit_price_cents": 33500
+   },
+   {
+    "amount_cents": 10000,
+    "description": "Reseal window frame",
+    "quantity": "1",
+    "unit_price_cents": 10000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit A1",
+  "remit_text": "Remit to: Clearpane Glass Works, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999120019",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 43500,
+  "tax_cents": 3154,
+  "tax_rate_bps": 725,
+  "template": "modern",
+  "total_cents": 46654,
+  "vendor_address": "7203 Ray Walks, Springfield, OR 97490",
+  "vendor_email": "billing@clearpane.example",
+  "vendor_id": "1220761e-8d8c-5d27-a575-1da028782800",
+  "vendor_name": "Clearpane Glass Works",
+  "vendor_phone": "(541) 555-0122",
+  "vendor_slug": "clearpane",
+  "vendor_tax_id_last4": "1491",
+  "visible_instructions": [],
+  "work_order_number": "WO-1227",
+  "work_order_printed": "WO-1227"
+ }
+}

@@ -1,0 +1,443 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    851,
+    302,
+    967,
+    315
+   ],
+   "page": 0,
+   "text": "2026-10-14"
+  },
+  "invoice_number": {
+   "box": [
+    886,
+    273,
+    967,
+    286
+   ],
+   "page": 0,
+   "text": "SR-7900"
+  },
+  "line_items.0.amount": {
+   "box": [
+    899,
+    482,
+    967,
+    495
+   ],
+   "page": 0,
+   "text": "350.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    269,
+    481,
+    562,
+    499
+   ],
+   "page": 0,
+   "text": "Snow plowing, parking lot"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    748,
+    482,
+    757,
+    495
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    794,
+    482,
+    862,
+    495
+   ],
+   "page": 0,
+   "text": "350.00"
+  },
+  "property_or_unit": {
+   "box": [
+    757,
+    359,
+    967,
+    377
+   ],
+   "page": 0,
+   "text": "Juniper House #107"
+  },
+  "subtotal": {
+   "box": [
+    899,
+    545,
+    967,
+    558
+   ],
+   "page": 0,
+   "text": "350.00"
+  },
+  "tax": {
+   "box": [
+    910,
+    573,
+    967,
+    586
+   ],
+   "page": 0,
+   "text": "25.38"
+  },
+  "total": {
+   "box": [
+    877,
+    603,
+    967,
+    621
+   ],
+   "page": 0,
+   "text": "375.38"
+  },
+  "vendor_address": {
+   "box": [
+    495,
+    147,
+    741,
+    187
+   ],
+   "page": 0,
+   "text": "54 Kemp Roads, Springfield, OR 97465"
+  },
+  "vendor_name": {
+   "box": [
+    465,
+    117,
+    771,
+    136
+   ],
+   "page": 0,
+   "text": "Frostline Snow & Ice"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    601,
+    216,
+    717,
+    229
+   ],
+   "page": 0,
+   "text": "00-0004962"
+  },
+  "work_order_number": {
+   "box": [
+    885,
+    331,
+    967,
+    344
+   ],
+   "page": 0,
+   "text": "WO-1166"
+  }
+ },
+ "category": "clean",
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     851,
+     302,
+     967,
+     315
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-14"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     886,
+     273,
+     967,
+     286
+    ],
+    "word_ids": []
+   },
+   "value": "SR-7900"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       899,
+       482,
+       967,
+       495
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       269,
+       481,
+       562,
+       499
+      ],
+      "word_ids": []
+     },
+     "value": "Snow plowing, parking lot"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       748,
+       482,
+       757,
+       495
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       794,
+       482,
+       862,
+       495
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     757,
+     359,
+     967,
+     377
+    ],
+    "word_ids": []
+   },
+   "value": "Juniper House #107"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     899,
+     545,
+     967,
+     558
+    ],
+    "word_ids": []
+   },
+   "value_cents": 35000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     910,
+     573,
+     967,
+     586
+    ],
+    "word_ids": []
+   },
+   "value_cents": 2538
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     877,
+     603,
+     967,
+     621
+    ],
+    "word_ids": []
+   },
+   "value_cents": 37538
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     495,
+     147,
+     741,
+     187
+    ],
+    "word_ids": []
+   },
+   "value": "54 Kemp Roads, Springfield, OR 97465"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     465,
+     117,
+     771,
+     136
+    ],
+    "word_ids": []
+   },
+   "value": "Frostline Snow & Ice"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     601,
+     216,
+     717,
+     229
+    ],
+    "word_ids": []
+   },
+   "value": "4962"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     885,
+     331,
+     967,
+     344
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1166"
+  }
+ },
+ "filename": "12-frostline-SR-7900-pdf.pdf",
+ "hidden_boxes": [],
+ "id": "demo-004",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "8769dde2b551944dfddeada7d0e0924f2eb30f99b2de4326a37e2824582f4966"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "e8ce41bba29a059631c1972d9ecb6bf6d7a308342015ec15ee4ed61e3d9927df",
+ "split": "demo",
+ "template": "compact",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "demo-004",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-14",
+  "invoice_number": "SR-7900",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 35000,
+    "description": "Snow plowing, parking lot",
+    "quantity": "1",
+    "unit_price_cents": 35000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {
+   "layout_level": 0
+  },
+  "property_or_unit": "Juniper House #107",
+  "remit_text": null,
+  "set_name": "demo",
+  "subtotal_cents": 35000,
+  "tax_cents": 2538,
+  "tax_rate_bps": 725,
+  "template": "compact",
+  "total_cents": 37538,
+  "vendor_address": "54 Kemp Roads, Springfield, OR 97465",
+  "vendor_email": "billing@frostline.example",
+  "vendor_id": "3ec030da-b192-5173-acb6-4ed55dd03266",
+  "vendor_name": "Frostline Snow & Ice",
+  "vendor_phone": "(541) 555-0124",
+  "vendor_slug": "frostline",
+  "vendor_tax_id_last4": "4962",
+  "visible_instructions": [],
+  "work_order_number": "WO-1166",
+  "work_order_printed": "WO-1166"
+ }
+}

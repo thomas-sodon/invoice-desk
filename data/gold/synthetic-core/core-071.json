@@ -1,0 +1,478 @@
+{
+ "augment": {
+  "angle": -0.6016756765081844,
+  "blur": 0.5173326910140947,
+  "capture": "scan",
+  "jpeg_quality": 79.0,
+  "noise": 5.288486553756132,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 0.7765976023823669,
+  "ty": -1.411668494316526
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    1005,
+    314,
+    1135,
+    335
+   ],
+   "page": 0,
+   "text": "Sep 24, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    1017,
+    292,
+    1136,
+    313
+   ],
+   "page": 0,
+   "text": "Sep 9, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    1052,
+    270,
+    1135,
+    286
+   ],
+   "page": 0,
+   "text": "MR9001"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1042,
+    444,
+    1122,
+    463
+   ],
+   "page": 0,
+   "text": "$400.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    123,
+    434,
+    377,
+    458
+   ],
+   "page": 0,
+   "text": "Exterior window washing"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    718,
+    440,
+    727,
+    456
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    845,
+    441,
+    925,
+    461
+   ],
+   "page": 0,
+   "text": "$400.00"
+  },
+  "property_or_unit": {
+   "box": [
+    152,
+    328,
+    187,
+    345
+   ],
+   "page": 0,
+   "text": "202"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    109,
+    651,
+    1055,
+    679
+   ],
+   "page": 0,
+   "text": "Remit to: Bluejay Window Washing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999211290"
+  },
+  "subtotal": {
+   "box": [
+    1041,
+    497,
+    1121,
+    516
+   ],
+   "page": 0,
+   "text": "$400.00"
+  },
+  "tax": {
+   "box": [
+    1066,
+    538,
+    1121,
+    557
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1019,
+    580,
+    1121,
+    602
+   ],
+   "page": 0,
+   "text": "$400.00"
+  },
+  "vendor_address": {
+   "box": [
+    504,
+    1479,
+    720,
+    1519
+   ],
+   "page": 0,
+   "text": "1737 Michelle Extensions, Springfield, OR 97418"
+  },
+  "vendor_name": {
+   "box": [
+    362,
+    146,
+    886,
+    187
+   ],
+   "page": 0,
+   "text": "Bluejay Window Washing"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    654,
+    1520,
+    753,
+    1536
+   ],
+   "page": 0,
+   "text": "00-0008481"
+  },
+  "work_order_number": {
+   "box": [
+    1041,
+    337,
+    1135,
+    354
+   ],
+   "page": 0,
+   "text": "WO-1190"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1005,
+     314,
+     1135,
+     335
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-24"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1017,
+     292,
+     1136,
+     313
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-09"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1052,
+     270,
+     1135,
+     286
+    ],
+    "word_ids": []
+   },
+   "value": "MR9001"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1042,
+       444,
+       1122,
+       463
+      ],
+      "word_ids": []
+     },
+     "value_cents": 40000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       123,
+       434,
+       377,
+       458
+      ],
+      "word_ids": []
+     },
+     "value": "Exterior window washing"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       718,
+       440,
+       727,
+       456
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       845,
+       441,
+       925,
+       461
+      ],
+      "word_ids": []
+     },
+     "value_cents": 40000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     152,
+     328,
+     187,
+     345
+    ],
+    "word_ids": []
+   },
+   "value": "202"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     109,
+     651,
+     1055,
+     679
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Bluejay Window Washing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999211290"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1041,
+     497,
+     1121,
+     516
+    ],
+    "word_ids": []
+   },
+   "value_cents": 40000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1066,
+     538,
+     1121,
+     557
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1019,
+     580,
+     1121,
+     602
+    ],
+    "word_ids": []
+   },
+   "value_cents": 40000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     504,
+     1479,
+     720,
+     1519
+    ],
+    "word_ids": []
+   },
+   "value": "1737 Michelle Extensions, Springfield, OR 97418"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     362,
+     146,
+     886,
+     187
+    ],
+    "word_ids": []
+   },
+   "value": "Bluejay Window Washing"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     654,
+     1520,
+     753,
+     1536
+    ],
+    "word_ids": []
+   },
+   "value": "8481"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1041,
+     337,
+     1135,
+     354
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1190"
+  }
+ },
+ "filename": "core-071.jpg",
+ "hidden_boxes": [],
+ "id": "core-071",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "b5ac907180fa15ecbc6e5c36778378464d7c67e30faa6f06104921dc14909382"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "715aa04dc17daad403efd049cc4baf1fec3864e9f9635f8756301171377e8887",
+ "split": "dev",
+ "template": "letterhead",
+ "truth": {
+  "accent": "#6b4f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-071",
+  "doc_type": "invoice",
+  "due_date": "2026-09-24",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-09",
+  "invoice_number": "MR9001",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 40000,
+    "description": "Exterior window washing",
+    "quantity": "1",
+    "unit_price_cents": 40000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "202",
+  "remit_text": "Remit to: Bluejay Window Washing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999211290",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 40000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "letterhead",
+  "total_cents": 40000,
+  "vendor_address": "1737 Michelle Extensions, Springfield, OR 97418",
+  "vendor_email": "billing@bluejay.example",
+  "vendor_id": "e092e0e3-2402-5abc-b8cf-b3b9fffc4e7e",
+  "vendor_name": "Bluejay Window Washing",
+  "vendor_phone": "(541) 555-0131",
+  "vendor_slug": "bluejay",
+  "vendor_tax_id_last4": "8481",
+  "visible_instructions": [],
+  "work_order_number": "WO-1190",
+  "work_order_printed": "WO-1190"
+ }
+}

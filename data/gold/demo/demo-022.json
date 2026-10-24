@@ -1,0 +1,473 @@
+{
+ "augment": {
+  "angle": 1.5516042893050646,
+  "blur": 0.41795216385386047,
+  "capture": "scan",
+  "jpeg_quality": 74.0,
+  "noise": 3.1547785149672323,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -0.03891972474117722,
+  "ty": 0.34661079134921735
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    225,
+    414,
+    394,
+    437
+   ],
+   "page": 0,
+   "text": "November 17, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    218,
+    390,
+    367,
+    413
+   ],
+   "page": 0,
+   "text": "October 18, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    249,
+    369,
+    289,
+    385
+   ],
+   "page": 0,
+   "text": "1043"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1039,
+    595,
+    1109,
+    614
+   ],
+   "page": 0,
+   "text": "$330.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    117,
+    617,
+    282,
+    642
+   ],
+   "page": 0,
+   "text": "Replace thermostat"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    647,
+    608,
+    657,
+    623
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    813,
+    601,
+    883,
+    620
+   ],
+   "page": 0,
+   "text": "$330.00"
+  },
+  "property_or_unit": {
+   "box": [
+    182,
+    467,
+    258,
+    489
+   ],
+   "page": 0,
+   "text": "Apt 14A"
+  },
+  "subtotal": {
+   "box": [
+    1040,
+    639,
+    1110,
+    658
+   ],
+   "page": 0,
+   "text": "$330.00"
+  },
+  "tax": {
+   "box": [
+    1063,
+    681,
+    1111,
+    702
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1043,
+    726,
+    1112,
+    746
+   ],
+   "page": 0,
+   "text": "$330.00"
+  },
+  "vendor_address": {
+   "box": [
+    505,
+    172,
+    700,
+    223
+   ],
+   "page": 0,
+   "text": "47 Tannery Lane, Springfield, OR 97478"
+  },
+  "vendor_name": {
+   "box": [
+    365,
+    119,
+    835,
+    172
+   ],
+   "page": 0,
+   "text": "Marigold Mobile Welding"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    622,
+    245,
+    724,
+    263
+   ],
+   "page": 0,
+   "text": "00-0003307"
+  },
+  "work_order_number": {
+   "box": [
+    211,
+    441,
+    296,
+    459
+   ],
+   "page": 0,
+   "text": "WO-1147"
+  }
+ },
+ "category": "needs_review",
+ "description": "New vendor: Marigold Mobile Welding is not in the vendor list",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "New vendor: Marigold Mobile Welding is not in the vendor list",
+  "quarantined": false,
+  "rules": {
+   "R1": "review",
+   "R2": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     225,
+     414,
+     394,
+     437
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-17"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     218,
+     390,
+     367,
+     413
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-18"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     249,
+     369,
+     289,
+     385
+    ],
+    "word_ids": []
+   },
+   "value": "1043"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1039,
+       595,
+       1109,
+       614
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       117,
+       617,
+       282,
+       642
+      ],
+      "word_ids": []
+     },
+     "value": "Replace thermostat"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       647,
+       608,
+       657,
+       623
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       813,
+       601,
+       883,
+       620
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     182,
+     467,
+     258,
+     489
+    ],
+    "word_ids": []
+   },
+   "value": "Apt 14A"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1040,
+     639,
+     1110,
+     658
+    ],
+    "word_ids": []
+   },
+   "value_cents": 33000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1063,
+     681,
+     1111,
+     702
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1043,
+     726,
+     1112,
+     746
+    ],
+    "word_ids": []
+   },
+   "value_cents": 33000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     505,
+     172,
+     700,
+     223
+    ],
+    "word_ids": []
+   },
+   "value": "47 Tannery Lane, Springfield, OR 97478"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     365,
+     119,
+     835,
+     172
+    ],
+    "word_ids": []
+   },
+   "value": "Marigold Mobile Welding"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     622,
+     245,
+     724,
+     263
+    ],
+    "word_ids": []
+   },
+   "value": "3307"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     211,
+     441,
+     296,
+     459
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1147"
+  }
+ },
+ "filename": "11-marigold-1043-scan.jpg",
+ "hidden_boxes": [],
+ "id": "demo-022",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "fff28209cde22daf32aa81ce23f24979b4431ecd543869e9218f8899e9b6e213"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "b334f89ad51b5a8f8d156d37d26b3223771cf9ada9c9d2a6d931e65e6650be86",
+ "split": "demo",
+ "template": "word",
+ "truth": {
+  "accent": "#444444",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "new_vendor"
+  ],
+  "doc_id": "demo-022",
+  "doc_type": "invoice",
+  "due_date": "2026-11-17",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "New vendor: Marigold Mobile Welding is not in the vendor list",
+   "quarantined": false,
+   "rules": {
+    "R1": "review",
+    "R2": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-18",
+  "invoice_number": "1043",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 33000,
+    "description": "Replace thermostat",
+    "quantity": "1",
+    "unit_price_cents": 33000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {
+   "layout_level": 0
+  },
+  "property_or_unit": "Apt 14A",
+  "remit_text": null,
+  "set_name": "demo",
+  "subtotal_cents": 33000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "word",
+  "total_cents": 33000,
+  "vendor_address": "47 Tannery Lane, Springfield, OR 97478",
+  "vendor_email": null,
+  "vendor_id": null,
+  "vendor_name": "Marigold Mobile Welding",
+  "vendor_phone": "(541) 555-0199",
+  "vendor_slug": null,
+  "vendor_tax_id_last4": "3307",
+  "visible_instructions": [],
+  "work_order_number": "WO-1147",
+  "work_order_printed": "WO-1147"
+ }
+}

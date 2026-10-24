@@ -1,0 +1,462 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    898,
+    437,
+    986,
+    450
+   ],
+   "page": 0,
+   "text": "11/03/2026"
+  },
+  "invoice_date": {
+   "box": [
+    898,
+    382,
+    987,
+    395
+   ],
+   "page": 0,
+   "text": "10/04/2026"
+  },
+  "invoice_number": {
+   "box": [
+    897,
+    355,
+    955,
+    368
+   ],
+   "page": 0,
+   "text": "A-3501"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1053,
+    568,
+    1133,
+    584
+   ],
+   "page": 0,
+   "text": "$3,475.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    569,
+    436,
+    586
+   ],
+   "page": 0,
+   "text": "Replace rooftop HVAC unit (phase 1 of 2)"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    769,
+    569,
+    777,
+    582
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    875,
+    569,
+    955,
+    584
+   ],
+   "page": 0,
+   "text": "$3,475.00"
+  },
+  "property_or_unit": {
+   "box": [
+    450,
+    282,
+    700,
+    299
+   ],
+   "page": 0,
+   "text": "Unit 1U, Willow Bend Duplexes"
+  },
+  "subtotal": {
+   "box": [
+    1056,
+    625,
+    1136,
+    641
+   ],
+   "page": 0,
+   "text": "$3,475.00"
+  },
+  "tax": {
+   "box": [
+    1091,
+    657,
+    1136,
+    671
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1029,
+    688,
+    1136,
+    710
+   ],
+   "page": 0,
+   "text": "$3,475.00"
+  },
+  "vendor_address": {
+   "box": [
+    92,
+    114,
+    273,
+    152
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    92,
+    83,
+    412,
+    109
+   ],
+   "page": 0,
+   "text": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    127,
+    199,
+    223,
+    212
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    897,
+    464,
+    973,
+    477
+   ],
+   "page": 0,
+   "text": "WO 1222"
+  }
+ },
+ "category": "prior",
+ "description": "First half of a split job (processed first)",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R3": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     437,
+     986,
+     450
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-03"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     382,
+     987,
+     395
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-04"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     355,
+     955,
+     368
+    ],
+    "word_ids": []
+   },
+   "value": "A-3501"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1053,
+       568,
+       1133,
+       584
+      ],
+      "word_ids": []
+     },
+     "value_cents": 347500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       569,
+       436,
+       586
+      ],
+      "word_ids": []
+     },
+     "value": "Replace rooftop HVAC unit (phase 1 of 2)"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       769,
+       569,
+       777,
+       582
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       875,
+       569,
+       955,
+       584
+      ],
+      "word_ids": []
+     },
+     "value_cents": 347500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     450,
+     282,
+     700,
+     299
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 1U, Willow Bend Duplexes"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1056,
+     625,
+     1136,
+     641
+    ],
+    "word_ids": []
+   },
+   "value_cents": 347500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1091,
+     657,
+     1136,
+     671
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1029,
+     688,
+     1136,
+     710
+    ],
+    "word_ids": []
+   },
+   "value_cents": 347500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     114,
+     273,
+     152
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     83,
+     412,
+     109
+    ],
+    "word_ids": []
+   },
+   "value": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     199,
+     223,
+     212
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     464,
+     973,
+     477
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1222"
+  }
+ },
+ "filename": "adv-031.pdf",
+ "hidden_boxes": [],
+ "id": "adv-031",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "4354553224d0dbd74be9d7b82418da221d50fa00fe118806d4e807b4705647ed"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "9323e816017f68336c2ef8d8de7b583d5277fdd862bf24420e718417b84d14c3",
+ "split": "adversarial",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "prior"
+  ],
+  "doc_id": "adv-031",
+  "doc_type": "invoice",
+  "due_date": "2026-11-03",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R3": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-04",
+  "invoice_number": "A-3501",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 347500,
+    "description": "Replace rooftop HVAC unit (phase 1 of 2)",
+    "quantity": "1",
+    "unit_price_cents": 347500
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 1U, Willow Bend Duplexes",
+  "remit_text": null,
+  "set_name": "adversarial",
+  "subtotal_cents": 347500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "quickbooks",
+  "total_cents": 347500,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": "billing@copperleaf.example",
+  "vendor_id": "be39ac95-ef89-520d-aeb1-9b7f6eed3e23",
+  "vendor_name": "Copperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": "copperleaf",
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1222",
+  "work_order_printed": "WO 1222"
+ }
+}

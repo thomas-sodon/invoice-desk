@@ -1,0 +1,658 @@
+{
+ "augment": {
+  "angle": 1.0985616267903011,
+  "blur": 0.3078225959012603,
+  "capture": "scan",
+  "jpeg_quality": 85.0,
+  "noise": 4.045062468361586,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 0.6485258837463288,
+  "ty": -5.927011815444629
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    227,
+    376,
+    346,
+    396
+   ],
+   "page": 0,
+   "text": "June 29, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    221,
+    352,
+    340,
+    372
+   ],
+   "page": 0,
+   "text": "June 14, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    250,
+    327,
+    320,
+    344
+   ],
+   "page": 0,
+   "text": "26-6702"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1041,
+    560,
+    1110,
+    579
+   ],
+   "page": 0,
+   "text": "$455.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    119,
+    577,
+    253,
+    600
+   ],
+   "page": 0,
+   "text": "Crown thinning"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    672,
+    569,
+    680,
+    585
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    827,
+    563,
+    895,
+    584
+   ],
+   "page": 0,
+   "text": "$455.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1042,
+    604,
+    1111,
+    623
+   ],
+   "page": 0,
+   "text": "$600.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    120,
+    620,
+    297,
+    639
+   ],
+   "page": 0,
+   "text": "Remove hazard limb"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    673,
+    613,
+    681,
+    629
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    828,
+    607,
+    896,
+    628
+   ],
+   "page": 0,
+   "text": "$600.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1053,
+    647,
+    1112,
+    667
+   ],
+   "page": 0,
+   "text": "$17.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    121,
+    663,
+    312,
+    688
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    674,
+    657,
+    682,
+    672
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    839,
+    652,
+    897,
+    671
+   ],
+   "page": 0,
+   "text": "$17.00"
+  },
+  "property_or_unit": {
+   "box": [
+    187,
+    422,
+    369,
+    445
+   ],
+   "page": 0,
+   "text": "Unit 203, Cedar Flats"
+  },
+  "subtotal": {
+   "box": [
+    1027,
+    692,
+    1113,
+    713
+   ],
+   "page": 0,
+   "text": "$1,072.00"
+  },
+  "tax": {
+   "box": [
+    1066,
+    735,
+    1113,
+    755
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1029,
+    780,
+    1114,
+    801
+   ],
+   "page": 0,
+   "text": "$1,072.00"
+  },
+  "vendor_address": {
+   "box": [
+    510,
+    159,
+    705,
+    208
+   ],
+   "page": 0,
+   "text": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "box": [
+    426,
+    109,
+    786,
+    155
+   ],
+   "page": 0,
+   "text": "Mossgate Tree Care"
+  },
+  "work_order_number": {
+   "box": [
+    214,
+    401,
+    298,
+    417
+   ],
+   "page": 0,
+   "text": "WO-1132"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R8": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     227,
+     376,
+     346,
+     396
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-06-29"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     221,
+     352,
+     340,
+     372
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-06-14"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     250,
+     327,
+     320,
+     344
+    ],
+    "word_ids": []
+   },
+   "value": "26-6702"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1041,
+       560,
+       1110,
+       579
+      ],
+      "word_ids": []
+     },
+     "value_cents": 45500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       119,
+       577,
+       253,
+       600
+      ],
+      "word_ids": []
+     },
+     "value": "Crown thinning"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       672,
+       569,
+       680,
+       585
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       827,
+       563,
+       895,
+       584
+      ],
+      "word_ids": []
+     },
+     "value_cents": 45500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1042,
+       604,
+       1111,
+       623
+      ],
+      "word_ids": []
+     },
+     "value_cents": 60000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       120,
+       620,
+       297,
+       639
+      ],
+      "word_ids": []
+     },
+     "value": "Remove hazard limb"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       673,
+       613,
+       681,
+       629
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       828,
+       607,
+       896,
+       628
+      ],
+      "word_ids": []
+     },
+     "value_cents": 60000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1053,
+       647,
+       1112,
+       667
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1700
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       121,
+       663,
+       312,
+       688
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       674,
+       657,
+       682,
+       672
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       839,
+       652,
+       897,
+       671
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1700
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     187,
+     422,
+     369,
+     445
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 203, Cedar Flats"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1027,
+     692,
+     1113,
+     713
+    ],
+    "word_ids": []
+   },
+   "value_cents": 107200
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1066,
+     735,
+     1113,
+     755
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1029,
+     780,
+     1114,
+     801
+    ],
+    "word_ids": []
+   },
+   "value_cents": 107200
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     510,
+     159,
+     705,
+     208
+    ],
+    "word_ids": []
+   },
+   "value": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     426,
+     109,
+     786,
+     155
+    ],
+    "word_ids": []
+   },
+   "value": "Mossgate Tree Care"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     214,
+     401,
+     298,
+     417
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1132"
+  }
+ },
+ "filename": "core-068.pdf",
+ "hidden_boxes": [],
+ "id": "core-068",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "6254c54fb486c12cc08f5a466cbce1810e91120ff12e4f37c29892fa61ae8117"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "e58d8d7694c8a528affcba6ecb0b4f8a14eb7ae7e533c278c90faf09c5559233",
+ "split": "dev",
+ "template": "word",
+ "truth": {
+  "accent": "#a23b72",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "stale_date"
+  ],
+  "doc_id": "core-068",
+  "doc_type": "invoice",
+  "due_date": "2026-06-29",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R8": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-06-14",
+  "invoice_number": "26-6702",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 45500,
+    "description": "Crown thinning",
+    "quantity": "1",
+    "unit_price_cents": 45500
+   },
+   {
+    "amount_cents": 60000,
+    "description": "Remove hazard limb",
+    "quantity": "1",
+    "unit_price_cents": 60000
+   },
+   {
+    "amount_cents": 1700,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 1700
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 203, Cedar Flats",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 107200,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "word",
+  "total_cents": 107200,
+  "vendor_address": "617 Allen Brook, Springfield, OR 97437",
+  "vendor_email": "billing@mossgate.example",
+  "vendor_id": "615b7da3-1a81-5c11-b6da-205980a7680b",
+  "vendor_name": "Mossgate Tree Care",
+  "vendor_phone": "(541) 555-0129",
+  "vendor_slug": "mossgate",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1132",
+  "work_order_printed": "WO-1132"
+ }
+}

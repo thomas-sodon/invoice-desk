@@ -1,0 +1,456 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    619,
+    261,
+    733,
+    276
+   ],
+   "page": 0,
+   "text": "22 Oct 2026"
+  },
+  "invoice_date": {
+   "box": [
+    618,
+    227,
+    723,
+    246
+   ],
+   "page": 0,
+   "text": "7 Sep 2026"
+  },
+  "invoice_number": {
+   "box": [
+    619,
+    194,
+    710,
+    209
+   ],
+   "page": 0,
+   "text": "INV07203"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1077,
+    477,
+    1147,
+    496
+   ],
+   "page": 0,
+   "text": "$175.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    423,
+    479,
+    590,
+    498
+   ],
+   "page": 0,
+   "text": "Paint and supplies"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    815,
+    479,
+    821,
+    494
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    914,
+    477,
+    984,
+    496
+   ],
+   "page": 0,
+   "text": "$175.00"
+  },
+  "property_or_unit": {
+   "box": [
+    619,
+    327,
+    933,
+    346
+   ],
+   "page": 0,
+   "text": "Unit 14B, Maple Court Apartments"
+  },
+  "subtotal": {
+   "box": [
+    1077,
+    536,
+    1147,
+    555
+   ],
+   "page": 0,
+   "text": "$175.00"
+  },
+  "tax": {
+   "box": [
+    1095,
+    578,
+    1147,
+    597
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1028,
+    622,
+    1147,
+    650
+   ],
+   "page": 0,
+   "text": "$175.00"
+  },
+  "vendor_address": {
+   "box": [
+    34,
+    194,
+    235,
+    237
+   ],
+   "page": 0,
+   "text": "818 Kimberly Mills, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "box": [
+    35,
+    102,
+    257,
+    168
+   ],
+   "page": 0,
+   "text": "Brushstroke Painting Studio"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    34,
+    352,
+    152,
+    367
+   ],
+   "page": 0,
+   "text": "00-0003390"
+  },
+  "work_order_number": {
+   "box": [
+    618,
+    294,
+    697,
+    309
+   ],
+   "page": 0,
+   "text": "WO 1160"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     619,
+     261,
+     733,
+     276
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-22"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     227,
+     723,
+     246
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-07"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     619,
+     194,
+     710,
+     209
+    ],
+    "word_ids": []
+   },
+   "value": "INV07203"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1077,
+       477,
+       1147,
+       496
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       423,
+       479,
+       590,
+       498
+      ],
+      "word_ids": []
+     },
+     "value": "Paint and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       815,
+       479,
+       821,
+       494
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       914,
+       477,
+       984,
+       496
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     619,
+     327,
+     933,
+     346
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 14B, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1077,
+     536,
+     1147,
+     555
+    ],
+    "word_ids": []
+   },
+   "value_cents": 17500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1095,
+     578,
+     1147,
+     597
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1028,
+     622,
+     1147,
+     650
+    ],
+    "word_ids": []
+   },
+   "value_cents": 17500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     34,
+     194,
+     235,
+     237
+    ],
+    "word_ids": []
+   },
+   "value": "818 Kimberly Mills, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     35,
+     102,
+     257,
+     168
+    ],
+    "word_ids": []
+   },
+   "value": "Brushstroke Painting Studio"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     34,
+     352,
+     152,
+     367
+    ],
+    "word_ids": []
+   },
+   "value": "3390"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     294,
+     697,
+     309
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1160"
+  }
+ },
+ "filename": "core-033.pdf",
+ "hidden_boxes": [],
+ "id": "core-033",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "a6acaa36abb37c766f6f71e87134cdc5e11c7221052efd596e6e80f47f00f537"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "9fb008c822cf454fff51f2e172f019f715a1958856df84058767d39610e9c7d5",
+ "split": "test",
+ "template": "modern",
+ "truth": {
+  "accent": "#8a5a00",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-033",
+  "doc_type": "invoice",
+  "due_date": "2026-10-22",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-07",
+  "invoice_number": "INV07203",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 17500,
+    "description": "Paint and supplies",
+    "quantity": "1",
+    "unit_price_cents": 17500
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 14B, Maple Court Apartments",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 17500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "modern",
+  "total_cents": 17500,
+  "vendor_address": "818 Kimberly Mills, Springfield, OR 97474",
+  "vendor_email": "billing@brushstroke.example",
+  "vendor_id": "c3eea8a2-95bb-5f5e-be3a-38b6f41fd258",
+  "vendor_name": "Brushstroke Painting Studio",
+  "vendor_phone": "(541) 555-0114",
+  "vendor_slug": "brushstroke",
+  "vendor_tax_id_last4": "3390",
+  "visible_instructions": [],
+  "work_order_number": "WO-1160",
+  "work_order_printed": "WO 1160"
+ }
+}

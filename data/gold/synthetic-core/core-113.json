@@ -1,0 +1,535 @@
+{
+ "augment": {
+  "angle": -1.5314341404940592,
+  "blur": 0.7849996299300102,
+  "capture": "scan",
+  "jpeg_quality": 72.0,
+  "noise": 5.437137205744159,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -7.945765597766734,
+  "ty": 1.4615478243854128
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    128,
+    309,
+    209,
+    341
+   ],
+   "page": 0,
+   "text": "8/4/26"
+  },
+  "invoice_number": {
+   "box": [
+    1066,
+    231,
+    1136,
+    254
+   ],
+   "page": 0,
+   "text": "6909"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1045,
+    512,
+    1126,
+    543
+   ],
+   "page": 0,
+   "text": "990.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    123,
+    487,
+    339,
+    531
+   ],
+   "page": 0,
+   "text": "Repoint brick wall"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    731,
+    504,
+    747,
+    528
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    851,
+    505,
+    934,
+    537
+   ],
+   "page": 0,
+   "text": "990.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1041,
+    573,
+    1124,
+    607
+   ],
+   "page": 0,
+   "text": "305.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    126,
+    546,
+    340,
+    585
+   ],
+   "page": 0,
+   "text": "Seal retaining wall"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    730,
+    568,
+    752,
+    598
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    847,
+    569,
+    934,
+    602
+   ],
+   "page": 0,
+   "text": "305.00"
+  },
+  "property_or_unit": {
+   "box": [
+    659,
+    396,
+    1066,
+    448
+   ],
+   "page": 0,
+   "text": "Unit 14A, Maple Court Apartments"
+  },
+  "subtotal": {
+   "box": [
+    1013,
+    831,
+    1120,
+    868
+   ],
+   "page": 0,
+   "text": "1,295.00"
+  },
+  "tax": {
+   "box": [
+    1059,
+    890,
+    1117,
+    923
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    1010,
+    947,
+    1117,
+    980
+   ],
+   "page": 0,
+   "text": "1,295.00"
+  },
+  "vendor_address": {
+   "box": [
+    113,
+    216,
+    266,
+    256
+   ],
+   "page": 0,
+   "text": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "box": [
+    115,
+    182,
+    423,
+    222
+   ],
+   "page": 0,
+   "text": "Stonebridge Masonry"
+  },
+  "work_order_number": {
+   "box": [
+    658,
+    327,
+    786,
+    356
+   ],
+   "page": 0,
+   "text": "WO #1244"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": true,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     128,
+     309,
+     209,
+     341
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-04"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1066,
+     231,
+     1136,
+     254
+    ],
+    "word_ids": []
+   },
+   "value": "6909"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1045,
+       512,
+       1126,
+       543
+      ],
+      "word_ids": []
+     },
+     "value_cents": 99000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       123,
+       487,
+       339,
+       531
+      ],
+      "word_ids": []
+     },
+     "value": "Repoint brick wall"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       731,
+       504,
+       747,
+       528
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       851,
+       505,
+       934,
+       537
+      ],
+      "word_ids": []
+     },
+     "value_cents": 99000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1041,
+       573,
+       1124,
+       607
+      ],
+      "word_ids": []
+     },
+     "value_cents": 30500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       126,
+       546,
+       340,
+       585
+      ],
+      "word_ids": []
+     },
+     "value": "Seal retaining wall"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       730,
+       568,
+       752,
+       598
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       847,
+       569,
+       934,
+       602
+      ],
+      "word_ids": []
+     },
+     "value_cents": 30500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     659,
+     396,
+     1066,
+     448
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 14A, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1013,
+     831,
+     1120,
+     868
+    ],
+    "word_ids": []
+   },
+   "value_cents": 129500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1059,
+     890,
+     1117,
+     923
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1010,
+     947,
+     1117,
+     980
+    ],
+    "word_ids": []
+   },
+   "value_cents": 129500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     113,
+     216,
+     266,
+     256
+    ],
+    "word_ids": []
+   },
+   "value": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     115,
+     182,
+     423,
+     222
+    ],
+    "word_ids": []
+   },
+   "value": "Stonebridge Masonry"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     658,
+     327,
+     786,
+     356
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1244"
+  }
+ },
+ "filename": "core-113.jpg",
+ "hidden_boxes": [],
+ "id": "core-113",
+ "medium": "handwritten",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "09a4cb7068d245ea9576d1105dc803a7b58efc179f497cbb06a35091c2076968"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "6b388aa047a931fb89f4d370429d1243b7d71e792352bfa15982317e9ab8c38d",
+ "split": "dev",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#0f6b6b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-113",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": true,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-04",
+  "invoice_number": "6909",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 99000,
+    "description": "Repoint brick wall",
+    "quantity": "1",
+    "unit_price_cents": 99000
+   },
+   {
+    "amount_cents": 30500,
+    "description": "Seal retaining wall",
+    "quantity": "1",
+    "unit_price_cents": 30500
+   }
+  ],
+  "medium": "handwritten",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 14A, Maple Court Apartments",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 129500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 129500,
+  "vendor_address": "856 Juan Neck, Springfield, OR 97474",
+  "vendor_email": "billing@stonebridge.example",
+  "vendor_id": "04d3b8e2-c66d-5b7e-905c-50747ff8aca5",
+  "vendor_name": "Stonebridge Masonry",
+  "vendor_phone": "(541) 555-0127",
+  "vendor_slug": "stonebridge",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1244",
+  "work_order_printed": "WO #1244"
+ }
+}

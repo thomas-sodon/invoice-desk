@@ -1,0 +1,647 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    117,
+    234,
+    200,
+    250
+   ],
+   "page": 0,
+   "text": "10/11/26"
+  },
+  "invoice_number": {
+   "box": [
+    1059,
+    130,
+    1128,
+    150
+   ],
+   "page": 0,
+   "text": "4002"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1050,
+    410,
+    1116,
+    426
+   ],
+   "page": 0,
+   "text": "480.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    120,
+    409,
+    288,
+    426
+   ],
+   "page": 0,
+   "text": "Rodent exclusion"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    733,
+    410,
+    742,
+    426
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    857,
+    410,
+    923,
+    426
+   ],
+   "page": 0,
+   "text": "480.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1051,
+    470,
+    1116,
+    486
+   ],
+   "page": 0,
+   "text": "915.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    120,
+    469,
+    345,
+    491
+   ],
+   "page": 0,
+   "text": "Bed bug heat treatment"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    733,
+    470,
+    742,
+    486
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    858,
+    470,
+    923,
+    486
+   ],
+   "page": 0,
+   "text": "915.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1064,
+    531,
+    1116,
+    547
+   ],
+   "page": 0,
+   "text": "18.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    120,
+    530,
+    337,
+    552
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    733,
+    531,
+    742,
+    547
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    871,
+    531,
+    923,
+    547
+   ],
+   "page": 0,
+   "text": "18.00"
+  },
+  "property_or_unit": {
+   "box": [
+    646,
+    303,
+    924,
+    320
+   ],
+   "page": 0,
+   "text": "Alder Row Townhomes #A4"
+  },
+  "subtotal": {
+   "box": [
+    1034,
+    729,
+    1116,
+    749
+   ],
+   "page": 0,
+   "text": "1,413.00"
+  },
+  "tax": {
+   "box": [
+    1075,
+    787,
+    1116,
+    803
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    1034,
+    845,
+    1116,
+    865
+   ],
+   "page": 0,
+   "text": "1,413.00"
+  },
+  "vendor_address": {
+   "box": [
+    107,
+    141,
+    258,
+    175
+   ],
+   "page": 0,
+   "text": "269 Larry Rapids, Springfield, OR 97412"
+  },
+  "vendor_name": {
+   "box": [
+    106,
+    106,
+    458,
+    136
+   ],
+   "page": 0,
+   "text": "Antwhisper Pest Control"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    274,
+    178,
+    354,
+    189
+   ],
+   "page": 0,
+   "text": "00-0008536"
+  },
+  "work_order_number": {
+   "box": [
+    645,
+    234,
+    741,
+    250
+   ],
+   "page": 0,
+   "text": "WO-1252"
+  }
+ },
+ "category": "prior",
+ "description": "Original (processed first)",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     117,
+     234,
+     200,
+     250
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-11"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1059,
+     130,
+     1128,
+     150
+    ],
+    "word_ids": []
+   },
+   "value": "4002"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1050,
+       410,
+       1116,
+       426
+      ],
+      "word_ids": []
+     },
+     "value_cents": 48000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       120,
+       409,
+       288,
+       426
+      ],
+      "word_ids": []
+     },
+     "value": "Rodent exclusion"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       733,
+       410,
+       742,
+       426
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       857,
+       410,
+       923,
+       426
+      ],
+      "word_ids": []
+     },
+     "value_cents": 48000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1051,
+       470,
+       1116,
+       486
+      ],
+      "word_ids": []
+     },
+     "value_cents": 91500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       120,
+       469,
+       345,
+       491
+      ],
+      "word_ids": []
+     },
+     "value": "Bed bug heat treatment"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       733,
+       470,
+       742,
+       486
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       858,
+       470,
+       923,
+       486
+      ],
+      "word_ids": []
+     },
+     "value_cents": 91500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1064,
+       531,
+       1116,
+       547
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1800
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       120,
+       530,
+       337,
+       552
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       733,
+       531,
+       742,
+       547
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       871,
+       531,
+       923,
+       547
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1800
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     646,
+     303,
+     924,
+     320
+    ],
+    "word_ids": []
+   },
+   "value": "Alder Row Townhomes #A4"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1034,
+     729,
+     1116,
+     749
+    ],
+    "word_ids": []
+   },
+   "value_cents": 141300
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1075,
+     787,
+     1116,
+     803
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1034,
+     845,
+     1116,
+     865
+    ],
+    "word_ids": []
+   },
+   "value_cents": 141300
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     107,
+     141,
+     258,
+     175
+    ],
+    "word_ids": []
+   },
+   "value": "269 Larry Rapids, Springfield, OR 97412"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     106,
+     106,
+     458,
+     136
+    ],
+    "word_ids": []
+   },
+   "value": "Antwhisper Pest Control"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     274,
+     178,
+     354,
+     189
+    ],
+    "word_ids": []
+   },
+   "value": "8536"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     645,
+     234,
+     741,
+     250
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1252"
+  }
+ },
+ "filename": "adv-025.pdf",
+ "hidden_boxes": [],
+ "id": "adv-025",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "01b1c4ec0012461946377bce89661e20413aaa8b747b6a38debab02fbf33ff50"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "99870d9a40f60b7d3aaa0309d8549ae5f810e37ffda956a3bed69450914adbdc",
+ "split": "adversarial",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#6b4f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "prior"
+  ],
+  "doc_id": "adv-025",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-11",
+  "invoice_number": "4002",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 48000,
+    "description": "Rodent exclusion",
+    "quantity": "1",
+    "unit_price_cents": 48000
+   },
+   {
+    "amount_cents": 91500,
+    "description": "Bed bug heat treatment",
+    "quantity": "1",
+    "unit_price_cents": 91500
+   },
+   {
+    "amount_cents": 1800,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 1800
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Alder Row Townhomes #A4",
+  "remit_text": null,
+  "set_name": "adversarial",
+  "subtotal_cents": 141300,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 141300,
+  "vendor_address": "269 Larry Rapids, Springfield, OR 97412",
+  "vendor_email": "billing@antwhisper.example",
+  "vendor_id": "30f25fce-7bd2-5dd8-8a9c-4090b1299348",
+  "vendor_name": "Antwhisper Pest Control",
+  "vendor_phone": "(541) 555-0119",
+  "vendor_slug": "antwhisper",
+  "vendor_tax_id_last4": "8536",
+  "visible_instructions": [],
+  "work_order_number": "WO-1252",
+  "work_order_printed": "WO-1252"
+ }
+}

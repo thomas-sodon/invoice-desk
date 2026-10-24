@@ -1,0 +1,747 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    851,
+    301,
+    967,
+    314
+   ],
+   "page": 0,
+   "text": "2026-07-31"
+  },
+  "invoice_number": {
+   "box": [
+    886,
+    272,
+    967,
+    285
+   ],
+   "page": 0,
+   "text": "SR-5001"
+  },
+  "line_items.0.amount": {
+   "box": [
+    899,
+    481,
+    967,
+    494
+   ],
+   "page": 0,
+   "text": "785.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    270,
+    480,
+    503,
+    498
+   ],
+   "page": 0,
+   "text": "Replace fence panels"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    762,
+    481,
+    772,
+    494
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    801,
+    481,
+    870,
+    494
+   ],
+   "page": 0,
+   "text": "785.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    898,
+    513,
+    967,
+    526
+   ],
+   "page": 0,
+   "text": "245.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    269,
+    512,
+    479,
+    530
+   ],
+   "page": 0,
+   "text": "Set new fence post"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    762,
+    513,
+    772,
+    526
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    801,
+    513,
+    870,
+    526
+   ],
+   "page": 0,
+   "text": "245.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    899,
+    545,
+    967,
+    558
+   ],
+   "page": 0,
+   "text": "155.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    270,
+    544,
+    598,
+    562
+   ],
+   "page": 0,
+   "text": "Repair gate latch and hinges"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    762,
+    545,
+    772,
+    558
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    801,
+    545,
+    870,
+    558
+   ],
+   "page": 0,
+   "text": "155.00"
+  },
+  "line_items.3.amount": {
+   "box": [
+    910,
+    576,
+    967,
+    589
+   ],
+   "page": 0,
+   "text": "19.00"
+  },
+  "line_items.3.description": {
+   "box": [
+    269,
+    575,
+    527,
+    593
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.3.quantity": {
+   "box": [
+    762,
+    576,
+    772,
+    589
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.3.unit_price": {
+   "box": [
+    813,
+    576,
+    870,
+    589
+   ],
+   "page": 0,
+   "text": "19.00"
+  },
+  "property_or_unit": {
+   "box": [
+    934,
+    358,
+    967,
+    371
+   ],
+   "page": 0,
+   "text": "202"
+  },
+  "subtotal": {
+   "box": [
+    875,
+    639,
+    967,
+    656
+   ],
+   "page": 0,
+   "text": "1,204.00"
+  },
+  "tax": {
+   "box": [
+    910,
+    667,
+    967,
+    680
+   ],
+   "page": 0,
+   "text": "72.24"
+  },
+  "total": {
+   "box": [
+    846,
+    697,
+    967,
+    719
+   ],
+   "page": 0,
+   "text": "1,276.24"
+  },
+  "vendor_address": {
+   "box": [
+    495,
+    145,
+    741,
+    186
+   ],
+   "page": 0,
+   "text": "2150 Darren Vista, Springfield, OR 97485"
+  },
+  "vendor_name": {
+   "box": [
+    458,
+    116,
+    779,
+    135
+   ],
+   "page": 0,
+   "text": "Ironwood Fence & Gate"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    601,
+    214,
+    717,
+    227
+   ],
+   "page": 0,
+   "text": "00-0009476"
+  },
+  "work_order_number": {
+   "box": [
+    873,
+    329,
+    967,
+    342
+   ],
+   "page": 0,
+   "text": "WO #1159"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     851,
+     301,
+     967,
+     314
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-07-31"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     886,
+     272,
+     967,
+     285
+    ],
+    "word_ids": []
+   },
+   "value": "SR-5001"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       899,
+       481,
+       967,
+       494
+      ],
+      "word_ids": []
+     },
+     "value_cents": 78500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       270,
+       480,
+       503,
+       498
+      ],
+      "word_ids": []
+     },
+     "value": "Replace fence panels"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       762,
+       481,
+       772,
+       494
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       801,
+       481,
+       870,
+       494
+      ],
+      "word_ids": []
+     },
+     "value_cents": 78500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       898,
+       513,
+       967,
+       526
+      ],
+      "word_ids": []
+     },
+     "value_cents": 24500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       269,
+       512,
+       479,
+       530
+      ],
+      "word_ids": []
+     },
+     "value": "Set new fence post"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       762,
+       513,
+       772,
+       526
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       801,
+       513,
+       870,
+       526
+      ],
+      "word_ids": []
+     },
+     "value_cents": 24500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       899,
+       545,
+       967,
+       558
+      ],
+      "word_ids": []
+     },
+     "value_cents": 15500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       270,
+       544,
+       598,
+       562
+      ],
+      "word_ids": []
+     },
+     "value": "Repair gate latch and hinges"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       762,
+       545,
+       772,
+       558
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       801,
+       545,
+       870,
+       558
+      ],
+      "word_ids": []
+     },
+     "value_cents": 15500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       910,
+       576,
+       967,
+       589
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1900
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       269,
+       575,
+       527,
+       593
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       762,
+       576,
+       772,
+       589
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       813,
+       576,
+       870,
+       589
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1900
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     934,
+     358,
+     967,
+     371
+    ],
+    "word_ids": []
+   },
+   "value": "202"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     875,
+     639,
+     967,
+     656
+    ],
+    "word_ids": []
+   },
+   "value_cents": 120400
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     910,
+     667,
+     967,
+     680
+    ],
+    "word_ids": []
+   },
+   "value_cents": 7224
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     846,
+     697,
+     967,
+     719
+    ],
+    "word_ids": []
+   },
+   "value_cents": 127624
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     495,
+     145,
+     741,
+     186
+    ],
+    "word_ids": []
+   },
+   "value": "2150 Darren Vista, Springfield, OR 97485"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     458,
+     116,
+     779,
+     135
+    ],
+    "word_ids": []
+   },
+   "value": "Ironwood Fence & Gate"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     601,
+     214,
+     717,
+     227
+    ],
+    "word_ids": []
+   },
+   "value": "9476"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     873,
+     329,
+     967,
+     342
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1159"
+  }
+ },
+ "filename": "core-034.pdf",
+ "hidden_boxes": [],
+ "id": "core-034",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "e85da7ddc7e656884c047b51dc742a51ae304aea67dd378e26db8c8a937841dd"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "f67f07ea4dd0f4ca90284c3006220f1f9a0c853596c23b3af7c8952867410be4",
+ "split": "test",
+ "template": "compact",
+ "truth": {
+  "accent": "#245c4c",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-034",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-07-31",
+  "invoice_number": "SR-5001",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 78500,
+    "description": "Replace fence panels",
+    "quantity": "1",
+    "unit_price_cents": 78500
+   },
+   {
+    "amount_cents": 24500,
+    "description": "Set new fence post",
+    "quantity": "1",
+    "unit_price_cents": 24500
+   },
+   {
+    "amount_cents": 15500,
+    "description": "Repair gate latch and hinges",
+    "quantity": "1",
+    "unit_price_cents": 15500
+   },
+   {
+    "amount_cents": 1900,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 1900
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "202",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 120400,
+  "tax_cents": 7224,
+  "tax_rate_bps": 600,
+  "template": "compact",
+  "total_cents": 127624,
+  "vendor_address": "2150 Darren Vista, Springfield, OR 97485",
+  "vendor_email": "billing@ironwood.example",
+  "vendor_id": "01a5ae7b-3a30-5f35-bda9-2a05b40867b6",
+  "vendor_name": "Ironwood Fence & Gate",
+  "vendor_phone": "(541) 555-0132",
+  "vendor_slug": "ironwood",
+  "vendor_tax_id_last4": "9476",
+  "visible_instructions": [],
+  "work_order_number": "WO-1159",
+  "work_order_printed": "WO #1159"
+ }
+}

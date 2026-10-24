@@ -1,0 +1,584 @@
+{
+ "augment": {
+  "blur": 0.6572317578581406,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 89.0,
+  "noise": 6.813734080781163,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    297,
+    604,
+    407,
+    623
+   ],
+   "page": 0,
+   "text": "October 5, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    292,
+    582,
+    420,
+    603
+   ],
+   "page": 0,
+   "text": "September 5, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    315,
+    561,
+    372,
+    575
+   ],
+   "page": 0,
+   "text": "26-2504"
+  },
+  "line_items.0.amount": {
+   "box": [
+    928,
+    776,
+    995,
+    794
+   ],
+   "page": 0,
+   "text": "$5,200.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    209,
+    785,
+    461,
+    808
+   ],
+   "page": 0,
+   "text": "Tear-off and re-roof, building section"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    711,
+    781,
+    717,
+    795
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    790,
+    777,
+    856,
+    796
+   ],
+   "page": 0,
+   "text": "$5,200.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    940,
+    815,
+    994,
+    832
+   ],
+   "page": 0,
+   "text": "$960.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    210,
+    827,
+    343,
+    848
+   ],
+   "page": 0,
+   "text": "Roofing crew labor"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    710,
+    821,
+    717,
+    835
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    802,
+    817,
+    856,
+    835
+   ],
+   "page": 0,
+   "text": "$960.00"
+  },
+  "property_or_unit": {
+   "box": [
+    263,
+    649,
+    400,
+    670
+   ],
+   "page": 0,
+   "text": "Juniper House #106"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    203,
+    996,
+    951,
+    1030
+   ],
+   "page": 0,
+   "text": "Remit to: Summit Ridge Roofing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999038748"
+  },
+  "subtotal": {
+   "box": [
+    927,
+    854,
+    994,
+    873
+   ],
+   "page": 0,
+   "text": "$6,160.00"
+  },
+  "tax": {
+   "box": [
+    939,
+    894,
+    993,
+    911
+   ],
+   "page": 0,
+   "text": "$369.60"
+  },
+  "total": {
+   "box": [
+    926,
+    933,
+    993,
+    951
+   ],
+   "page": 0,
+   "text": "$6,529.60"
+  },
+  "vendor_address": {
+   "box": [
+    525,
+    384,
+    681,
+    429
+   ],
+   "page": 0,
+   "text": "3389 Owens Harbor, Springfield, OR 97497"
+  },
+  "vendor_name": {
+   "box": [
+    437,
+    337,
+    770,
+    380
+   ],
+   "page": 0,
+   "text": "Summit Ridge Roofing"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    617,
+    452,
+    699,
+    468
+   ],
+   "page": 0,
+   "text": "00-0007285"
+  },
+  "work_order_number": {
+   "box": [
+    285,
+    628,
+    354,
+    643
+   ],
+   "page": 0,
+   "text": "WO-1176"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R7": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     297,
+     604,
+     407,
+     623
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-05"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     292,
+     582,
+     420,
+     603
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-05"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     315,
+     561,
+     372,
+     575
+    ],
+    "word_ids": []
+   },
+   "value": "26-2504"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       928,
+       776,
+       995,
+       794
+      ],
+      "word_ids": []
+     },
+     "value_cents": 520000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       209,
+       785,
+       461,
+       808
+      ],
+      "word_ids": []
+     },
+     "value": "Tear-off and re-roof, building section"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       711,
+       781,
+       717,
+       795
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       790,
+       777,
+       856,
+       796
+      ],
+      "word_ids": []
+     },
+     "value_cents": 520000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       940,
+       815,
+       994,
+       832
+      ],
+      "word_ids": []
+     },
+     "value_cents": 96000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       210,
+       827,
+       343,
+       848
+      ],
+      "word_ids": []
+     },
+     "value": "Roofing crew labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       710,
+       821,
+       717,
+       835
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       802,
+       817,
+       856,
+       835
+      ],
+      "word_ids": []
+     },
+     "value_cents": 96000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     263,
+     649,
+     400,
+     670
+    ],
+    "word_ids": []
+   },
+   "value": "Juniper House #106"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     203,
+     996,
+     951,
+     1030
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Summit Ridge Roofing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999038748"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     927,
+     854,
+     994,
+     873
+    ],
+    "word_ids": []
+   },
+   "value_cents": 616000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     939,
+     894,
+     993,
+     911
+    ],
+    "word_ids": []
+   },
+   "value_cents": 36960
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     926,
+     933,
+     993,
+     951
+    ],
+    "word_ids": []
+   },
+   "value_cents": 652960
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     525,
+     384,
+     681,
+     429
+    ],
+    "word_ids": []
+   },
+   "value": "3389 Owens Harbor, Springfield, OR 97497"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     437,
+     337,
+     770,
+     380
+    ],
+    "word_ids": []
+   },
+   "value": "Summit Ridge Roofing"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     617,
+     452,
+     699,
+     468
+    ],
+    "word_ids": []
+   },
+   "value": "7285"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     285,
+     628,
+     354,
+     643
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1176"
+  }
+ },
+ "filename": "core-090.jpg",
+ "hidden_boxes": [],
+ "id": "core-090",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "b21c30b4b30c3c0e26095bfb0e9a62dc937d3af48ebd23324f25e260a2f71c54"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "79bb7aa314877715772dc63344cdc8a109ad8c4b4de6fb0f1a8d1fa318b969b1",
+ "split": "test",
+ "template": "word",
+ "truth": {
+  "accent": "#5b2a86",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "over_cap"
+  ],
+  "doc_id": "core-090",
+  "doc_type": "invoice",
+  "due_date": "2026-10-05",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R7": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-05",
+  "invoice_number": "26-2504",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 520000,
+    "description": "Tear-off and re-roof, building section",
+    "quantity": "1",
+    "unit_price_cents": 520000
+   },
+   {
+    "amount_cents": 96000,
+    "description": "Roofing crew labor",
+    "quantity": "1",
+    "unit_price_cents": 96000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Juniper House #106",
+  "remit_text": "Remit to: Summit Ridge Roofing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999038748",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 616000,
+  "tax_cents": 36960,
+  "tax_rate_bps": 600,
+  "template": "word",
+  "total_cents": 652960,
+  "vendor_address": "3389 Owens Harbor, Springfield, OR 97497",
+  "vendor_email": "billing@summitridge.example",
+  "vendor_id": "1cd30260-b26c-5574-9350-6e0b79ca977b",
+  "vendor_name": "Summit Ridge Roofing",
+  "vendor_phone": "(541) 555-0113",
+  "vendor_slug": "summit-ridge",
+  "vendor_tax_id_last4": "7285",
+  "visible_instructions": [],
+  "work_order_number": "WO-1176",
+  "work_order_printed": "WO-1176"
+ }
+}

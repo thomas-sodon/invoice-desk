@@ -1,0 +1,571 @@
+{
+ "augment": {
+  "angle": 1.1414359930121698,
+  "blur": 0.6270454013595075,
+  "capture": "scan",
+  "jpeg_quality": 55.0,
+  "noise": 4.547796213497746,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -0.9878602967386279,
+  "ty": 9.618938811630787
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    904,
+    321,
+    958,
+    338
+   ],
+   "page": 0,
+   "text": "9/1/26"
+  },
+  "invoice_date": {
+   "box": [
+    902,
+    279,
+    967,
+    296
+   ],
+   "page": 0,
+   "text": "8/17/26"
+  },
+  "invoice_number": {
+   "box": [
+    901,
+    237,
+    958,
+    252
+   ],
+   "page": 0,
+   "text": "2701-B"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1061,
+    525,
+    1125,
+    542
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    98,
+    540,
+    345,
+    562
+   ],
+   "page": 0,
+   "text": "Chimney sweep and inspection"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    744,
+    532,
+    752,
+    547
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    874,
+    529,
+    939,
+    546
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1062,
+    567,
+    1126,
+    585
+   ],
+   "page": 0,
+   "text": "$280.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    100,
+    584,
+    266,
+    605
+   ],
+   "page": 0,
+   "text": "Replace chimney cap"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    745,
+    575,
+    753,
+    590
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    875,
+    571,
+    940,
+    589
+   ],
+   "page": 0,
+   "text": "$280.00"
+  },
+  "property_or_unit": {
+   "box": [
+    906,
+    406,
+    964,
+    422
+   ],
+   "page": 0,
+   "text": "Unit A5"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    90,
+    789,
+    1003,
+    827
+   ],
+   "page": 0,
+   "text": "Remit to: Ember Hearth Chimney Sweep, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999237128"
+  },
+  "subtotal": {
+   "box": [
+    1063,
+    629,
+    1127,
+    647
+   ],
+   "page": 0,
+   "text": "$485.00"
+  },
+  "tax": {
+   "box": [
+    1084,
+    672,
+    1128,
+    689
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1050,
+    715,
+    1129,
+    737
+   ],
+   "page": 0,
+   "text": "$485.00"
+  },
+  "vendor_address": {
+   "box": [
+    79,
+    279,
+    253,
+    325
+   ],
+   "page": 0,
+   "text": "4254 Steven Trail, Springfield, OR 97413"
+  },
+  "vendor_name": {
+   "box": [
+    80,
+    239,
+    480,
+    276
+   ],
+   "page": 0,
+   "text": "Ember Hearth Chimney Sweep"
+  },
+  "work_order_number": {
+   "box": [
+    904,
+    364,
+    988,
+    380
+   ],
+   "page": 0,
+   "text": "WO #1183"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R2": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     904,
+     321,
+     958,
+     338
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-01"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     902,
+     279,
+     967,
+     296
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-17"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     901,
+     237,
+     958,
+     252
+    ],
+    "word_ids": []
+   },
+   "value": "2701-B"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1061,
+       525,
+       1125,
+       542
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       98,
+       540,
+       345,
+       562
+      ],
+      "word_ids": []
+     },
+     "value": "Chimney sweep and inspection"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       744,
+       532,
+       752,
+       547
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       874,
+       529,
+       939,
+       546
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       567,
+       1126,
+       585
+      ],
+      "word_ids": []
+     },
+     "value_cents": 28000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       100,
+       584,
+       266,
+       605
+      ],
+      "word_ids": []
+     },
+     "value": "Replace chimney cap"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       745,
+       575,
+       753,
+       590
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       875,
+       571,
+       940,
+       589
+      ],
+      "word_ids": []
+     },
+     "value_cents": 28000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     906,
+     406,
+     964,
+     422
+    ],
+    "word_ids": []
+   },
+   "value": "Unit A5"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     90,
+     789,
+     1003,
+     827
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Ember Hearth Chimney Sweep, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999237128"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1063,
+     629,
+     1127,
+     647
+    ],
+    "word_ids": []
+   },
+   "value_cents": 48500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1084,
+     672,
+     1128,
+     689
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1050,
+     715,
+     1129,
+     737
+    ],
+    "word_ids": []
+   },
+   "value_cents": 48500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     79,
+     279,
+     253,
+     325
+    ],
+    "word_ids": []
+   },
+   "value": "4254 Steven Trail, Springfield, OR 97413"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     80,
+     239,
+     480,
+     276
+    ],
+    "word_ids": []
+   },
+   "value": "Ember Hearth Chimney Sweep"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     904,
+     364,
+     988,
+     380
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1183"
+  }
+ },
+ "filename": "core-074.jpg",
+ "hidden_boxes": [],
+ "id": "core-074",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "edb7717f2314ef5b62aaf4897ac2a956598c6faa1fbb71660a93e9bbba763b0d"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "78d6b9ee5c9f80f65b600094a1d5a0a37e6bc644b88e40e750079b0a0687d149",
+ "split": "dev",
+ "template": "statement",
+ "truth": {
+  "accent": "#7b2d26",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "wrong_unit"
+  ],
+  "doc_id": "core-074",
+  "doc_type": "invoice",
+  "due_date": "2026-09-01",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R2": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-17",
+  "invoice_number": "2701-B",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 20500,
+    "description": "Chimney sweep and inspection",
+    "quantity": "1",
+    "unit_price_cents": 20500
+   },
+   {
+    "amount_cents": 28000,
+    "description": "Replace chimney cap",
+    "quantity": "1",
+    "unit_price_cents": 28000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit A5",
+  "remit_text": "Remit to: Ember Hearth Chimney Sweep, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999237128",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 48500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "statement",
+  "total_cents": 48500,
+  "vendor_address": "4254 Steven Trail, Springfield, OR 97413",
+  "vendor_email": "billing@emberhearth.example",
+  "vendor_id": "dd778c17-5b32-546c-b7a8-ab68de7f6a88",
+  "vendor_name": "Ember Hearth Chimney Sweep",
+  "vendor_phone": "(541) 555-0133",
+  "vendor_slug": "ember-hearth",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1183",
+  "work_order_printed": "WO #1183"
+ }
+}

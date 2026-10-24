@@ -1,0 +1,558 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    898,
+    435,
+    987,
+    448
+   ],
+   "page": 0,
+   "text": "09/14/2026"
+  },
+  "invoice_date": {
+   "box": [
+    898,
+    381,
+    987,
+    394
+   ],
+   "page": 0,
+   "text": "08/15/2026"
+  },
+  "invoice_number": {
+   "box": [
+    897,
+    354,
+    955,
+    367
+   ],
+   "page": 0,
+   "text": "A-3402"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1068,
+    566,
+    1133,
+    581
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    567,
+    311,
+    584
+   ],
+   "page": 0,
+   "text": "Furnace tune-up and filter"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    718,
+    567,
+    726,
+    580
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    864,
+    566,
+    929,
+    581
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1068,
+    607,
+    1133,
+    622
+   ],
+   "page": 0,
+   "text": "$340.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    104,
+    608,
+    270,
+    625
+   ],
+   "page": 0,
+   "text": "Recharge refrigerant"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    718,
+    608,
+    726,
+    621
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    864,
+    607,
+    929,
+    622
+   ],
+   "page": 0,
+   "text": "$340.00"
+  },
+  "property_or_unit": {
+   "box": [
+    449,
+    281,
+    667,
+    298
+   ],
+   "page": 0,
+   "text": "Willow Bend Duplexes #3U"
+  },
+  "subtotal": {
+   "box": [
+    1071,
+    665,
+    1136,
+    680
+   ],
+   "page": 0,
+   "text": "$545.00"
+  },
+  "tax": {
+   "box": [
+    1091,
+    696,
+    1136,
+    710
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1049,
+    727,
+    1136,
+    747
+   ],
+   "page": 0,
+   "text": "$545.00"
+  },
+  "vendor_address": {
+   "box": [
+    92,
+    113,
+    273,
+    151
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    92,
+    82,
+    412,
+    108
+   ],
+   "page": 0,
+   "text": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    127,
+    198,
+    223,
+    211
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    897,
+    463,
+    972,
+    476
+   ],
+   "page": 0,
+   "text": "WO 1167"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     435,
+     987,
+     448
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-14"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     381,
+     987,
+     394
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-15"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     354,
+     955,
+     367
+    ],
+    "word_ids": []
+   },
+   "value": "A-3402"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       566,
+       1133,
+       581
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       567,
+       311,
+       584
+      ],
+      "word_ids": []
+     },
+     "value": "Furnace tune-up and filter"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       718,
+       567,
+       726,
+       580
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       864,
+       566,
+       929,
+       581
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       607,
+       1133,
+       622
+      ],
+      "word_ids": []
+     },
+     "value_cents": 34000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       608,
+       270,
+       625
+      ],
+      "word_ids": []
+     },
+     "value": "Recharge refrigerant"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       718,
+       608,
+       726,
+       621
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       864,
+       607,
+       929,
+       622
+      ],
+      "word_ids": []
+     },
+     "value_cents": 34000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     449,
+     281,
+     667,
+     298
+    ],
+    "word_ids": []
+   },
+   "value": "Willow Bend Duplexes #3U"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1071,
+     665,
+     1136,
+     680
+    ],
+    "word_ids": []
+   },
+   "value_cents": 54500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1091,
+     696,
+     1136,
+     710
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1049,
+     727,
+     1136,
+     747
+    ],
+    "word_ids": []
+   },
+   "value_cents": 54500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     113,
+     273,
+     151
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     82,
+     412,
+     108
+    ],
+    "word_ids": []
+   },
+   "value": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     198,
+     223,
+     211
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     463,
+     972,
+     476
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1167"
+  }
+ },
+ "filename": "core-014.pdf",
+ "hidden_boxes": [],
+ "id": "core-014",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "4d43fe4cb45ca2346e831ad328aef7026836887acb6fc4c2cecb94fcb5737632"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "380a2bb810e2b8b9242794eef26c66c523e7837823f456a1ec8208cd43ba07fe",
+ "split": "dev",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-014",
+  "doc_type": "invoice",
+  "due_date": "2026-09-14",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-15",
+  "invoice_number": "A-3402",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 20500,
+    "description": "Furnace tune-up and filter",
+    "quantity": "1",
+    "unit_price_cents": 20500
+   },
+   {
+    "amount_cents": 34000,
+    "description": "Recharge refrigerant",
+    "quantity": "1",
+    "unit_price_cents": 34000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Willow Bend Duplexes #3U",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 54500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "quickbooks",
+  "total_cents": 54500,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": "billing@copperleaf.example",
+  "vendor_id": "be39ac95-ef89-520d-aeb1-9b7f6eed3e23",
+  "vendor_name": "Copperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": "copperleaf",
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1167",
+  "work_order_printed": "WO 1167"
+ }
+}

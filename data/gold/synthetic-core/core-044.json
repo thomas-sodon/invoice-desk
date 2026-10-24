@@ -1,0 +1,667 @@
+{
+ "augment": {
+  "angle": -1.3630320024818545,
+  "blur": 0.6881838686033003,
+  "capture": "scan",
+  "jpeg_quality": 66.0,
+  "noise": 4.409877500302031,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -5.0116073849503096,
+  "ty": -5.117462387018763
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    901,
+    436,
+    991,
+    452
+   ],
+   "page": 0,
+   "text": "09/07/2026"
+  },
+  "invoice_date": {
+   "box": [
+    902,
+    382,
+    992,
+    398
+   ],
+   "page": 0,
+   "text": "08/08/2026"
+  },
+  "invoice_number": {
+   "box": [
+    902,
+    355,
+    961,
+    371
+   ],
+   "page": 0,
+   "text": "A-3405"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1068,
+    571,
+    1134,
+    589
+   ],
+   "page": 0,
+   "text": "$560.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    549,
+    198,
+    565
+   ],
+   "page": 0,
+   "text": "HVAC labor"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    691,
+    563,
+    702,
+    577
+   ],
+   "page": 0,
+   "text": "4"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    851,
+    567,
+    917,
+    584
+   ],
+   "page": 0,
+   "text": "$140.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1067,
+    612,
+    1133,
+    630
+   ],
+   "page": 0,
+   "text": "$230.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    103,
+    590,
+    261,
+    612
+   ],
+   "page": 0,
+   "text": "Replace thermostat"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    691,
+    604,
+    701,
+    618
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    850,
+    608,
+    916,
+    625
+   ],
+   "page": 0,
+   "text": "$230.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1076,
+    654,
+    1132,
+    671
+   ],
+   "page": 0,
+   "text": "$50.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    102,
+    631,
+    282,
+    653
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    690,
+    645,
+    700,
+    659
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    859,
+    649,
+    915,
+    665
+   ],
+   "page": 0,
+   "text": "$50.00"
+  },
+  "property_or_unit": {
+   "box": [
+    455,
+    271,
+    511,
+    291
+   ],
+   "page": 0,
+   "text": "Apt 2U"
+  },
+  "subtotal": {
+   "box": [
+    1067,
+    711,
+    1134,
+    729
+   ],
+   "page": 0,
+   "text": "$840.00"
+  },
+  "tax": {
+   "box": [
+    1087,
+    743,
+    1133,
+    759
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1044,
+    773,
+    1132,
+    796
+   ],
+   "page": 0,
+   "text": "$840.00"
+  },
+  "vendor_address": {
+   "box": [
+    102,
+    95,
+    285,
+    138
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    103,
+    64,
+    425,
+    99
+   ],
+   "page": 0,
+   "text": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    136,
+    181,
+    233,
+    197
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    899,
+    464,
+    986,
+    480
+   ],
+   "page": 0,
+   "text": "WO #1217"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     901,
+     436,
+     991,
+     452
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-07"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     902,
+     382,
+     992,
+     398
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-08"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     902,
+     355,
+     961,
+     371
+    ],
+    "word_ids": []
+   },
+   "value": "A-3405"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       571,
+       1134,
+       589
+      ],
+      "word_ids": []
+     },
+     "value_cents": 56000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       549,
+       198,
+       565
+      ],
+      "word_ids": []
+     },
+     "value": "HVAC labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       691,
+       563,
+       702,
+       577
+      ],
+      "word_ids": []
+     },
+     "value": "4"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       851,
+       567,
+       917,
+       584
+      ],
+      "word_ids": []
+     },
+     "value_cents": 14000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1067,
+       612,
+       1133,
+       630
+      ],
+      "word_ids": []
+     },
+     "value_cents": 23000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       103,
+       590,
+       261,
+       612
+      ],
+      "word_ids": []
+     },
+     "value": "Replace thermostat"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       691,
+       604,
+       701,
+       618
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       850,
+       608,
+       916,
+       625
+      ],
+      "word_ids": []
+     },
+     "value_cents": 23000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1076,
+       654,
+       1132,
+       671
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       102,
+       631,
+       282,
+       653
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       690,
+       645,
+       700,
+       659
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       859,
+       649,
+       915,
+       665
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     455,
+     271,
+     511,
+     291
+    ],
+    "word_ids": []
+   },
+   "value": "Apt 2U"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1067,
+     711,
+     1134,
+     729
+    ],
+    "word_ids": []
+   },
+   "value_cents": 84000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1087,
+     743,
+     1133,
+     759
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1044,
+     773,
+     1132,
+     796
+    ],
+    "word_ids": []
+   },
+   "value_cents": 84000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     102,
+     95,
+     285,
+     138
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     103,
+     64,
+     425,
+     99
+    ],
+    "word_ids": []
+   },
+   "value": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     136,
+     181,
+     233,
+     197
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     899,
+     464,
+     986,
+     480
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1217"
+  }
+ },
+ "filename": "core-044.jpg",
+ "hidden_boxes": [],
+ "id": "core-044",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "8281d98bb028e25f68a8fadc77ef050d609f65f9e485336689bd092404adae7d"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "54ad56dd8c061d25cbecad175ad0165a87ef8adc12f7afb4c226427de8c8425d",
+ "split": "dev",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-044",
+  "doc_type": "invoice",
+  "due_date": "2026-09-07",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-08",
+  "invoice_number": "A-3405",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 56000,
+    "description": "HVAC labor",
+    "quantity": "4",
+    "unit_price_cents": 14000
+   },
+   {
+    "amount_cents": 23000,
+    "description": "Replace thermostat",
+    "quantity": "1",
+    "unit_price_cents": 23000
+   },
+   {
+    "amount_cents": 5000,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 5000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Apt 2U",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 84000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "quickbooks",
+  "total_cents": 84000,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": "billing@copperleaf.example",
+  "vendor_id": "be39ac95-ef89-520d-aeb1-9b7f6eed3e23",
+  "vendor_name": "Copperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": "copperleaf",
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1217",
+  "work_order_printed": "WO #1217"
+ }
+}

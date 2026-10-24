@@ -1,0 +1,584 @@
+{
+ "augment": {
+  "blur": 0.6670636817153642,
+  "capture": "photo",
+  "crumple": 0.0,
+  "jpeg_quality": 85.0,
+  "noise": 4.22774373904536,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    791,
+    367,
+    879,
+    381
+   ],
+   "page": 0,
+   "text": "09/02/2026"
+  },
+  "invoice_date": {
+   "box": [
+    791,
+    339,
+    879,
+    353
+   ],
+   "page": 0,
+   "text": "08/03/2026"
+  },
+  "invoice_number": {
+   "box": [
+    792,
+    312,
+    864,
+    326
+   ],
+   "page": 0,
+   "text": "INV-2502"
+  },
+  "line_items.0.amount": {
+   "box": [
+    966,
+    526,
+    1030,
+    542
+   ],
+   "page": 0,
+   "text": "$405.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    126,
+    531,
+    325,
+    549
+   ],
+   "page": 0,
+   "text": "Replace kitchen drain trap"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    687,
+    529,
+    696,
+    542
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    796,
+    527,
+    860,
+    543
+   ],
+   "page": 0,
+   "text": "$405.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    966,
+    563,
+    1030,
+    579
+   ],
+   "page": 0,
+   "text": "$450.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    125,
+    568,
+    359,
+    582
+   ],
+   "page": 0,
+   "text": "Additional work not in estimate"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    687,
+    566,
+    696,
+    579
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    796,
+    564,
+    860,
+    580
+   ],
+   "page": 0,
+   "text": "$450.00"
+  },
+  "property_or_unit": {
+   "box": [
+    792,
+    422,
+    823,
+    435
+   ],
+   "page": 0,
+   "text": "14B"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    130,
+    751,
+    938,
+    770
+   ],
+   "page": 0,
+   "text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "box": [
+    966,
+    612,
+    1030,
+    628
+   ],
+   "page": 0,
+   "text": "$855.00"
+  },
+  "tax": {
+   "box": [
+    976,
+    643,
+    1030,
+    659
+   ],
+   "page": 0,
+   "text": "$61.99"
+  },
+  "total": {
+   "box": [
+    947,
+    676,
+    1031,
+    695
+   ],
+   "page": 0,
+   "text": "$916.99"
+  },
+  "vendor_address": {
+   "box": [
+    126,
+    271,
+    294,
+    309
+   ],
+   "page": 0,
+   "text": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "box": [
+    116,
+    131,
+    588,
+    169
+   ],
+   "page": 0,
+   "text": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    171,
+    310,
+    247,
+    322
+   ],
+   "page": 0,
+   "text": "00-0004821"
+  },
+  "work_order_number": {
+   "box": [
+    791,
+    395,
+    865,
+    408
+   ],
+   "page": 0,
+   "text": "WO 1215"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R3": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     791,
+     367,
+     879,
+     381
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-02"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     791,
+     339,
+     879,
+     353
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-03"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     792,
+     312,
+     864,
+     326
+    ],
+    "word_ids": []
+   },
+   "value": "INV-2502"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       966,
+       526,
+       1030,
+       542
+      ],
+      "word_ids": []
+     },
+     "value_cents": 40500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       126,
+       531,
+       325,
+       549
+      ],
+      "word_ids": []
+     },
+     "value": "Replace kitchen drain trap"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       687,
+       529,
+       696,
+       542
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       796,
+       527,
+       860,
+       543
+      ],
+      "word_ids": []
+     },
+     "value_cents": 40500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       966,
+       563,
+       1030,
+       579
+      ],
+      "word_ids": []
+     },
+     "value_cents": 45000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       125,
+       568,
+       359,
+       582
+      ],
+      "word_ids": []
+     },
+     "value": "Additional work not in estimate"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       687,
+       566,
+       696,
+       579
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       796,
+       564,
+       860,
+       580
+      ],
+      "word_ids": []
+     },
+     "value_cents": 45000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     792,
+     422,
+     823,
+     435
+    ],
+    "word_ids": []
+   },
+   "value": "14B"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     130,
+     751,
+     938,
+     770
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     966,
+     612,
+     1030,
+     628
+    ],
+    "word_ids": []
+   },
+   "value_cents": 85500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     976,
+     643,
+     1030,
+     659
+    ],
+    "word_ids": []
+   },
+   "value_cents": 6199
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     947,
+     676,
+     1031,
+     695
+    ],
+    "word_ids": []
+   },
+   "value_cents": 91699
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     126,
+     271,
+     294,
+     309
+    ],
+    "word_ids": []
+   },
+   "value": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     116,
+     131,
+     588,
+     169
+    ],
+    "word_ids": []
+   },
+   "value": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     171,
+     310,
+     247,
+     322
+    ],
+    "word_ids": []
+   },
+   "value": "4821"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     791,
+     395,
+     865,
+     408
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1215"
+  }
+ },
+ "filename": "core-098.jpg",
+ "hidden_boxes": [],
+ "id": "core-098",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "a931d40fc796150df35fdfa25de22660e584718f1379bb224b3d55f560b41e5d"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "f361d0032fdb3bd2bc72dc7c3d558e32f1e392073edba3878ce6b8d716c3b262",
+ "split": "test",
+ "template": "trades",
+ "truth": {
+  "accent": "#1f4e79",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "over_estimate"
+  ],
+  "doc_id": "core-098",
+  "doc_type": "invoice",
+  "due_date": "2026-09-02",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R3": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-03",
+  "invoice_number": "INV-2502",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 40500,
+    "description": "Replace kitchen drain trap",
+    "quantity": "1",
+    "unit_price_cents": 40500
+   },
+   {
+    "amount_cents": 45000,
+    "description": "Additional work not in estimate",
+    "quantity": "1",
+    "unit_price_cents": 45000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "14B",
+  "remit_text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 85500,
+  "tax_cents": 6199,
+  "tax_rate_bps": 725,
+  "template": "trades",
+  "total_cents": 91699,
+  "vendor_address": "118 Alder Way, Springfield, OR 97477",
+  "vendor_email": "billing@rapidrooter.example",
+  "vendor_id": "cb828b2b-5dfc-5147-b209-1c638ffac3c7",
+  "vendor_name": "Rapid Rooter Plumbing LLC",
+  "vendor_phone": "(541) 555-0110",
+  "vendor_slug": "rapid-rooter",
+  "vendor_tax_id_last4": "4821",
+  "visible_instructions": [],
+  "work_order_number": "WO-1215",
+  "work_order_printed": "WO 1215"
+ }
+}

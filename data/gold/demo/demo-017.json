@@ -1,0 +1,550 @@
+{
+ "augment": {
+  "blur": 0.9534482722268273,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 75.0,
+  "noise": 5.256784968348843,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    286,
+    512,
+    413,
+    530
+   ],
+   "page": 0,
+   "text": "November 2, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    282,
+    491,
+    401,
+    509
+   ],
+   "page": 0,
+   "text": "October 18, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    306,
+    472,
+    363,
+    486
+   ],
+   "page": 0,
+   "text": "26-6900"
+  },
+  "line_items.0.amount": {
+   "box": [
+    932,
+    687,
+    988,
+    703
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    189,
+    680,
+    333,
+    695
+   ],
+   "page": 0,
+   "text": "Remove hazard limb"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    635,
+    685,
+    642,
+    698
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    760,
+    685,
+    815,
+    701
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    940,
+    723,
+    987,
+    739
+   ],
+   "page": 0,
+   "text": "$53.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    188,
+    716,
+    343,
+    736
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    635,
+    721,
+    642,
+    734
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    767,
+    722,
+    815,
+    738
+   ],
+   "page": 0,
+   "text": "$53.00"
+  },
+  "property_or_unit": {
+   "box": [
+    251,
+    553,
+    305,
+    566
+   ],
+   "page": 0,
+   "text": "Unit A5"
+  },
+  "subtotal": {
+   "box": [
+    931,
+    761,
+    987,
+    777
+   ],
+   "page": 0,
+   "text": "$723.00"
+  },
+  "tax": {
+   "box": [
+    948,
+    797,
+    987,
+    814
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    930,
+    836,
+    986,
+    852
+   ],
+   "page": 0,
+   "text": "$723.00"
+  },
+  "vendor_address": {
+   "box": [
+    519,
+    340,
+    675,
+    380
+   ],
+   "page": 0,
+   "text": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "box": [
+    454,
+    301,
+    740,
+    336
+   ],
+   "page": 0,
+   "text": "Mossgate Tree Care"
+  },
+  "work_order_number": {
+   "box": [
+    273,
+    533,
+    341,
+    547
+   ],
+   "page": 0,
+   "text": "WO-1113"
+  }
+ },
+ "category": "clean",
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     286,
+     512,
+     413,
+     530
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-02"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     282,
+     491,
+     401,
+     509
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-18"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     306,
+     472,
+     363,
+     486
+    ],
+    "word_ids": []
+   },
+   "value": "26-6900"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       932,
+       687,
+       988,
+       703
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       189,
+       680,
+       333,
+       695
+      ],
+      "word_ids": []
+     },
+     "value": "Remove hazard limb"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       635,
+       685,
+       642,
+       698
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       760,
+       685,
+       815,
+       701
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       940,
+       723,
+       987,
+       739
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5300
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       188,
+       716,
+       343,
+       736
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       635,
+       721,
+       642,
+       734
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       767,
+       722,
+       815,
+       738
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5300
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     251,
+     553,
+     305,
+     566
+    ],
+    "word_ids": []
+   },
+   "value": "Unit A5"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     931,
+     761,
+     987,
+     777
+    ],
+    "word_ids": []
+   },
+   "value_cents": 72300
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     948,
+     797,
+     987,
+     814
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     930,
+     836,
+     986,
+     852
+    ],
+    "word_ids": []
+   },
+   "value_cents": 72300
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     519,
+     340,
+     675,
+     380
+    ],
+    "word_ids": []
+   },
+   "value": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     454,
+     301,
+     740,
+     336
+    ],
+    "word_ids": []
+   },
+   "value": "Mossgate Tree Care"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     273,
+     533,
+     341,
+     547
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1113"
+  }
+ },
+ "filename": "17-mossgate-26-6900-photo.jpg",
+ "hidden_boxes": [],
+ "id": "demo-017",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "21e0a5f2c644a1e3d1559d462ad096e2d0671302b06054cda3f94c336e263533"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "d11be388f57df4a8727d94c7f2f8c2806d9207839a038d0df30b2990fbd9f899",
+ "split": "demo",
+ "template": "word",
+ "truth": {
+  "accent": "#a23b72",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "demo-017",
+  "doc_type": "invoice",
+  "due_date": "2026-11-02",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-18",
+  "invoice_number": "26-6900",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 67000,
+    "description": "Remove hazard limb",
+    "quantity": "1",
+    "unit_price_cents": 67000
+   },
+   {
+    "amount_cents": 5300,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 5300
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {
+   "layout_level": 2
+  },
+  "property_or_unit": "Unit A5",
+  "remit_text": null,
+  "set_name": "demo",
+  "subtotal_cents": 72300,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "word",
+  "total_cents": 72300,
+  "vendor_address": "617 Allen Brook, Springfield, OR 97437",
+  "vendor_email": "billing@mossgate.example",
+  "vendor_id": "615b7da3-1a81-5c11-b6da-205980a7680b",
+  "vendor_name": "Mossgate Tree Care",
+  "vendor_phone": "(541) 555-0129",
+  "vendor_slug": "mossgate",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1113",
+  "work_order_printed": "WO-1113"
+ }
+}

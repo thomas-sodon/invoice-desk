@@ -1,0 +1,665 @@
+{
+ "augment": {
+  "blur": 1.1373063374525851,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 90.0,
+  "noise": 3.961381158018645,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    156,
+    313,
+    230,
+    344
+   ],
+   "page": 0,
+   "text": "8/6/26"
+  },
+  "invoice_number": {
+   "box": [
+    967,
+    215,
+    1064,
+    234
+   ],
+   "page": 0,
+   "text": "3403-B"
+  },
+  "line_items.0.amount": {
+   "box": [
+    984,
+    463,
+    1060,
+    487
+   ],
+   "page": 0,
+   "text": "120.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    159,
+    465,
+    513,
+    496
+   ],
+   "page": 0,
+   "text": "Refrigerator compressor diagnosis"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    703,
+    466,
+    721,
+    489
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    807,
+    464,
+    885,
+    490
+   ],
+   "page": 0,
+   "text": "120.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    981,
+    516,
+    1059,
+    544
+   ],
+   "page": 0,
+   "text": "185.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    159,
+    519,
+    374,
+    550
+   ],
+   "page": 0,
+   "text": "Replace oven igniter"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    702,
+    518,
+    716,
+    539
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    809,
+    514,
+    884,
+    540
+   ],
+   "page": 0,
+   "text": "185.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    982,
+    567,
+    1059,
+    598
+   ],
+   "page": 0,
+   "text": "200.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    160,
+    572,
+    364,
+    605
+   ],
+   "page": 0,
+   "text": "Washer drain repair"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    704,
+    571,
+    722,
+    596
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    806,
+    570,
+    886,
+    600
+   ],
+   "page": 0,
+   "text": "200.00"
+  },
+  "property_or_unit": {
+   "box": [
+    637,
+    369,
+    999,
+    409
+   ],
+   "page": 0,
+   "text": "Unit 11B, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    140,
+    892,
+    850,
+    911
+   ],
+   "page": 0,
+   "text": "Remit to: Quillfeather Appliance Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999070424"
+  },
+  "subtotal": {
+   "box": [
+    981,
+    739,
+    1054,
+    765
+   ],
+   "page": 0,
+   "text": "505.00"
+  },
+  "tax": {
+   "box": [
+    991,
+    791,
+    1056,
+    819
+   ],
+   "page": 0,
+   "text": "36.61"
+  },
+  "total": {
+   "box": [
+    978,
+    839,
+    1051,
+    863
+   ],
+   "page": 0,
+   "text": "541.61"
+  },
+  "vendor_address": {
+   "box": [
+    139,
+    228,
+    276,
+    261
+   ],
+   "page": 0,
+   "text": "6595 William Ford, Springfield, OR 97488"
+  },
+  "vendor_name": {
+   "box": [
+    138,
+    195,
+    528,
+    226
+   ],
+   "page": 0,
+   "text": "Quillfeather Appliance Repair"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    290,
+    261,
+    363,
+    272
+   ],
+   "page": 0,
+   "text": "00-0002123"
+  },
+  "work_order_number": {
+   "box": [
+    638,
+    309,
+    743,
+    337
+   ],
+   "page": 0,
+   "text": "WO-1109"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": true,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     156,
+     313,
+     230,
+     344
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-06"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     967,
+     215,
+     1064,
+     234
+    ],
+    "word_ids": []
+   },
+   "value": "3403-B"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       984,
+       463,
+       1060,
+       487
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       159,
+       465,
+       513,
+       496
+      ],
+      "word_ids": []
+     },
+     "value": "Refrigerator compressor diagnosis"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       703,
+       466,
+       721,
+       489
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       807,
+       464,
+       885,
+       490
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       981,
+       516,
+       1059,
+       544
+      ],
+      "word_ids": []
+     },
+     "value_cents": 18500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       159,
+       519,
+       374,
+       550
+      ],
+      "word_ids": []
+     },
+     "value": "Replace oven igniter"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       702,
+       518,
+       716,
+       539
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       809,
+       514,
+       884,
+       540
+      ],
+      "word_ids": []
+     },
+     "value_cents": 18500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       982,
+       567,
+       1059,
+       598
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       160,
+       572,
+       364,
+       605
+      ],
+      "word_ids": []
+     },
+     "value": "Washer drain repair"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       704,
+       571,
+       722,
+       596
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       806,
+       570,
+       886,
+       600
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     637,
+     369,
+     999,
+     409
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 11B, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     140,
+     892,
+     850,
+     911
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Quillfeather Appliance Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999070424"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     981,
+     739,
+     1054,
+     765
+    ],
+    "word_ids": []
+   },
+   "value_cents": 50500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     991,
+     791,
+     1056,
+     819
+    ],
+    "word_ids": []
+   },
+   "value_cents": 3661
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     978,
+     839,
+     1051,
+     863
+    ],
+    "word_ids": []
+   },
+   "value_cents": 54161
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     139,
+     228,
+     276,
+     261
+    ],
+    "word_ids": []
+   },
+   "value": "6595 William Ford, Springfield, OR 97488"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     138,
+     195,
+     528,
+     226
+    ],
+    "word_ids": []
+   },
+   "value": "Quillfeather Appliance Repair"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     290,
+     261,
+     363,
+     272
+    ],
+    "word_ids": []
+   },
+   "value": "2123"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     638,
+     309,
+     743,
+     337
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1109"
+  }
+ },
+ "filename": "core-115.jpg",
+ "hidden_boxes": [],
+ "id": "core-115",
+ "medium": "handwritten",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "dddd5ba9ee7e86466f4085880444379077b5a2a96d4a3a4765f93ff93a53d800"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "8069ef5ca22ea20224206baa87843f987b49c1a169ec69f3dc10dc1324c8c561",
+ "split": "test",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#a23b72",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-115",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": true,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-06",
+  "invoice_number": "3403-B",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 12000,
+    "description": "Refrigerator compressor diagnosis",
+    "quantity": "1",
+    "unit_price_cents": 12000
+   },
+   {
+    "amount_cents": 18500,
+    "description": "Replace oven igniter",
+    "quantity": "1",
+    "unit_price_cents": 18500
+   },
+   {
+    "amount_cents": 20000,
+    "description": "Washer drain repair",
+    "quantity": "1",
+    "unit_price_cents": 20000
+   }
+  ],
+  "medium": "handwritten",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 11B, Maple Court Apartments",
+  "remit_text": "Remit to: Quillfeather Appliance Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999070424",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 50500,
+  "tax_cents": 3661,
+  "tax_rate_bps": 725,
+  "template": "carbon_copy",
+  "total_cents": 54161,
+  "vendor_address": "6595 William Ford, Springfield, OR 97488",
+  "vendor_email": "billing@quillfeather.example",
+  "vendor_id": "77aac527-4e1c-5336-baf5-985d6bbe201f",
+  "vendor_name": "Quillfeather Appliance Repair",
+  "vendor_phone": "(541) 555-0117",
+  "vendor_slug": "quillfeather",
+  "vendor_tax_id_last4": "2123",
+  "visible_instructions": [],
+  "work_order_number": "WO-1109",
+  "work_order_printed": "WO-1109"
+ }
+}

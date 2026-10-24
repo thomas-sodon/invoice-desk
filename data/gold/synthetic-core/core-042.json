@@ -1,0 +1,433 @@
+{
+ "augment": {
+  "angle": 0.8295399727364794,
+  "blur": 0.7440241962088449,
+  "capture": "scan",
+  "jpeg_quality": 57.0,
+  "noise": 4.055753616400935,
+  "output": "png",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -6.796976131679344,
+  "ty": -5.453697812249629
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    102,
+    326,
+    176,
+    344
+   ],
+   "page": 0,
+   "text": "9/23/26"
+  },
+  "invoice_number": {
+   "box": [
+    1044,
+    209,
+    1114,
+    231
+   ],
+   "page": 0,
+   "text": "6902"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1039,
+    489,
+    1106,
+    507
+   ],
+   "page": 0,
+   "text": "940.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    108,
+    500,
+    316,
+    525
+   ],
+   "page": 0,
+   "text": "Repair concrete steps"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    721,
+    494,
+    732,
+    511
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    846,
+    492,
+    913,
+    510
+   ],
+   "page": 0,
+   "text": "940.00"
+  },
+  "property_or_unit": {
+   "box": [
+    633,
+    389,
+    708,
+    407
+   ],
+   "page": 0,
+   "text": "Unit 1L"
+  },
+  "subtotal": {
+   "box": [
+    1044,
+    809,
+    1110,
+    827
+   ],
+   "page": 0,
+   "text": "940.00"
+  },
+  "tax": {
+   "box": [
+    1069,
+    866,
+    1111,
+    883
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    1046,
+    924,
+    1112,
+    942
+   ],
+   "page": 0,
+   "text": "940.00"
+  },
+  "vendor_address": {
+   "box": [
+    92,
+    232,
+    244,
+    271
+   ],
+   "page": 0,
+   "text": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "box": [
+    92,
+    195,
+    399,
+    231
+   ],
+   "page": 0,
+   "text": "Stonebridge Masonry"
+  },
+  "work_order_number": {
+   "box": [
+    631,
+    318,
+    725,
+    337
+   ],
+   "page": 0,
+   "text": "WO 1110"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     102,
+     326,
+     176,
+     344
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-23"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1044,
+     209,
+     1114,
+     231
+    ],
+    "word_ids": []
+   },
+   "value": "6902"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1039,
+       489,
+       1106,
+       507
+      ],
+      "word_ids": []
+     },
+     "value_cents": 94000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       108,
+       500,
+       316,
+       525
+      ],
+      "word_ids": []
+     },
+     "value": "Repair concrete steps"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       721,
+       494,
+       732,
+       511
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       846,
+       492,
+       913,
+       510
+      ],
+      "word_ids": []
+     },
+     "value_cents": 94000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     633,
+     389,
+     708,
+     407
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 1L"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1044,
+     809,
+     1110,
+     827
+    ],
+    "word_ids": []
+   },
+   "value_cents": 94000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1069,
+     866,
+     1111,
+     883
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1046,
+     924,
+     1112,
+     942
+    ],
+    "word_ids": []
+   },
+   "value_cents": 94000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     232,
+     244,
+     271
+    ],
+    "word_ids": []
+   },
+   "value": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     195,
+     399,
+     231
+    ],
+    "word_ids": []
+   },
+   "value": "Stonebridge Masonry"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     631,
+     318,
+     725,
+     337
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1110"
+  }
+ },
+ "filename": "core-042.png",
+ "hidden_boxes": [],
+ "id": "core-042",
+ "medium": "scanned",
+ "mime": "image/png",
+ "page_sha256": [
+  "a2cb2859d975d070bade0046dc316de620a77300ee5207a32c7e7e754593d2c4"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "4d6cf47d82c3d63882f77e41a430e50ecabe73b19101647d6e265874a4a2731d",
+ "split": "dev",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#0f6b6b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-042",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-23",
+  "invoice_number": "6902",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 94000,
+    "description": "Repair concrete steps",
+    "quantity": "1",
+    "unit_price_cents": 94000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 1L",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 94000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 94000,
+  "vendor_address": "856 Juan Neck, Springfield, OR 97474",
+  "vendor_email": "billing@stonebridge.example",
+  "vendor_id": "04d3b8e2-c66d-5b7e-905c-50747ff8aca5",
+  "vendor_name": "Stonebridge Masonry",
+  "vendor_phone": "(541) 555-0127",
+  "vendor_slug": "stonebridge",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1110",
+  "work_order_printed": "WO 1110"
+ }
+}

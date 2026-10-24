@@ -1,0 +1,767 @@
+{
+ "augment": {
+  "blur": 0.5051316374007024,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 72.0,
+  "noise": 5.231500556915517,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    834,
+    543,
+    912,
+    557
+   ],
+   "page": 0,
+   "text": "10/11/2026"
+  },
+  "invoice_date": {
+   "box": [
+    835,
+    495,
+    913,
+    509
+   ],
+   "page": 0,
+   "text": "08/27/2026"
+  },
+  "invoice_number": {
+   "box": [
+    834,
+    471,
+    886,
+    485
+   ],
+   "page": 0,
+   "text": "A-7301"
+  },
+  "line_items.0.amount": {
+   "box": [
+    980,
+    656,
+    1038,
+    671
+   ],
+   "page": 0,
+   "text": "$120.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    141,
+    670,
+    293,
+    689
+   ],
+   "page": 0,
+   "text": "Install transition strips"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    652,
+    664,
+    660,
+    676
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    791,
+    660,
+    849,
+    674
+   ],
+   "page": 0,
+   "text": "$120.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    980,
+    692,
+    1038,
+    707
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    141,
+    706,
+    302,
+    725
+   ],
+   "page": 0,
+   "text": "Repair subfloor section"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    652,
+    700,
+    660,
+    712
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    791,
+    696,
+    849,
+    710
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    966,
+    728,
+    1037,
+    744
+   ],
+   "page": 0,
+   "text": "$2,200.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    140,
+    741,
+    332,
+    761
+   ],
+   "page": 0,
+   "text": "Replace vinyl plank flooring"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    651,
+    735,
+    659,
+    748
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    777,
+    731,
+    848,
+    747
+   ],
+   "page": 0,
+   "text": "$2,200.00"
+  },
+  "line_items.3.amount": {
+   "box": [
+    988,
+    765,
+    1037,
+    779
+   ],
+   "page": 0,
+   "text": "$65.00"
+  },
+  "line_items.3.description": {
+   "box": [
+    140,
+    778,
+    297,
+    797
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.3.quantity": {
+   "box": [
+    651,
+    771,
+    659,
+    784
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.3.unit_price": {
+   "box": [
+    799,
+    768,
+    848,
+    782
+   ],
+   "page": 0,
+   "text": "$65.00"
+  },
+  "property_or_unit": {
+   "box": [
+    444,
+    416,
+    465,
+    428
+   ],
+   "page": 0,
+   "text": "C3"
+  },
+  "subtotal": {
+   "box": [
+    968,
+    814,
+    1038,
+    830
+   ],
+   "page": 0,
+   "text": "$3,055.00"
+  },
+  "tax": {
+   "box": [
+    980,
+    841,
+    1038,
+    856
+   ],
+   "page": 0,
+   "text": "$252.04"
+  },
+  "total": {
+   "box": [
+    943,
+    869,
+    1038,
+    891
+   ],
+   "page": 0,
+   "text": "$3,307.04"
+  },
+  "vendor_address": {
+   "box": [
+    134,
+    271,
+    298,
+    308
+   ],
+   "page": 0,
+   "text": "1909 Christopher Cape, Springfield, OR 97491"
+  },
+  "vendor_name": {
+   "box": [
+    135,
+    241,
+    356,
+    269
+   ],
+   "page": 0,
+   "text": "Oakhollow Flooring"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    164,
+    346,
+    249,
+    360
+   ],
+   "page": 0,
+   "text": "00-0002877"
+  },
+  "work_order_number": {
+   "box": [
+    833,
+    568,
+    900,
+    581
+   ],
+   "page": 0,
+   "text": "WO 1258"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     834,
+     543,
+     912,
+     557
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-11"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     835,
+     495,
+     913,
+     509
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-27"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     834,
+     471,
+     886,
+     485
+    ],
+    "word_ids": []
+   },
+   "value": "A-7301"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       980,
+       656,
+       1038,
+       671
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       141,
+       670,
+       293,
+       689
+      ],
+      "word_ids": []
+     },
+     "value": "Install transition strips"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       652,
+       664,
+       660,
+       676
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       791,
+       660,
+       849,
+       674
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       980,
+       692,
+       1038,
+       707
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       141,
+       706,
+       302,
+       725
+      ],
+      "word_ids": []
+     },
+     "value": "Repair subfloor section"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       652,
+       700,
+       660,
+       712
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       791,
+       696,
+       849,
+       710
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       966,
+       728,
+       1037,
+       744
+      ],
+      "word_ids": []
+     },
+     "value_cents": 220000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       140,
+       741,
+       332,
+       761
+      ],
+      "word_ids": []
+     },
+     "value": "Replace vinyl plank flooring"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       651,
+       735,
+       659,
+       748
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       777,
+       731,
+       848,
+       747
+      ],
+      "word_ids": []
+     },
+     "value_cents": 220000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       988,
+       765,
+       1037,
+       779
+      ],
+      "word_ids": []
+     },
+     "value_cents": 6500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       140,
+       778,
+       297,
+       797
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       651,
+       771,
+       659,
+       784
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       799,
+       768,
+       848,
+       782
+      ],
+      "word_ids": []
+     },
+     "value_cents": 6500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     444,
+     416,
+     465,
+     428
+    ],
+    "word_ids": []
+   },
+   "value": "C3"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     968,
+     814,
+     1038,
+     830
+    ],
+    "word_ids": []
+   },
+   "value_cents": 305500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     980,
+     841,
+     1038,
+     856
+    ],
+    "word_ids": []
+   },
+   "value_cents": 25204
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     943,
+     869,
+     1038,
+     891
+    ],
+    "word_ids": []
+   },
+   "value_cents": 330704
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     134,
+     271,
+     298,
+     308
+    ],
+    "word_ids": []
+   },
+   "value": "1909 Christopher Cape, Springfield, OR 97491"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     135,
+     241,
+     356,
+     269
+    ],
+    "word_ids": []
+   },
+   "value": "Oakhollow Flooring"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     164,
+     346,
+     249,
+     360
+    ],
+    "word_ids": []
+   },
+   "value": "2877"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     833,
+     568,
+     900,
+     581
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1258"
+  }
+ },
+ "filename": "core-100.jpg",
+ "hidden_boxes": [],
+ "id": "core-100",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "27ac183f7c76d5d120d25dc45e1e0d73b5d0bca534feecb55c25fdca4c990b67"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "0f0ce725828e0beb4efc17199517b3e5a1f33277d120a8e90a4052d44a941f15",
+ "split": "dev",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#245c4c",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-100",
+  "doc_type": "invoice",
+  "due_date": "2026-10-11",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-27",
+  "invoice_number": "A-7301",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 12000,
+    "description": "Install transition strips",
+    "quantity": "1",
+    "unit_price_cents": 12000
+   },
+   {
+    "amount_cents": 67000,
+    "description": "Repair subfloor section",
+    "quantity": "1",
+    "unit_price_cents": 67000
+   },
+   {
+    "amount_cents": 220000,
+    "description": "Replace vinyl plank flooring",
+    "quantity": "1",
+    "unit_price_cents": 220000
+   },
+   {
+    "amount_cents": 6500,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 6500
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "C3",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 305500,
+  "tax_cents": 25204,
+  "tax_rate_bps": 825,
+  "template": "quickbooks",
+  "total_cents": 330704,
+  "vendor_address": "1909 Christopher Cape, Springfield, OR 97491",
+  "vendor_email": "billing@oakhollow.example",
+  "vendor_id": "ec0d355d-af22-5f15-88a9-1e3e53138a4a",
+  "vendor_name": "Oakhollow Flooring",
+  "vendor_phone": "(541) 555-0120",
+  "vendor_slug": "oakhollow",
+  "vendor_tax_id_last4": "2877",
+  "visible_instructions": [],
+  "work_order_number": "WO-1258",
+  "work_order_printed": "WO 1258"
+ }
+}

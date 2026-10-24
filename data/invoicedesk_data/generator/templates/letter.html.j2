@@ -1,0 +1,20 @@
+{%- import "_macros.html.j2" as m -%}
+<!doctype html><html><head><meta charset="utf-8"><style>
+{{ base_css | safe }}
+body { font-family: "Liberation Serif", serif; font-size: 15px; }
+.page { padding: {{ 70 + doc.top_pad }}px 80px; }
+.vn { font-size: 24px; font-weight: 700; color: {{ doc.accent }}; }
+.rule { border-top: 2px solid {{ doc.accent }}; margin: 8px 0 26px; }
+p { line-height: 1.5; }
+.bank { border: 1px solid #333; padding: 12px 16px; margin: 18px 0; }
+</style></head><body><div class="page">
+<div class="vn">{{ m.g("vendor_name", doc.vendor_name) }}</div>
+{{ m.gblock("vendor_address", doc.address_lines, doc.vendor_address) }}
+<div>{{ doc.phone }}{% if doc.tax_id_printed %} &middot; EIN {{ m.g("vendor_tax_id_last4", doc.tax_id_printed) }}{% endif %}</div>
+<div class="rule"></div>
+<p>{{ m.g("invoice_date", doc.invoice_date) }}</p>
+<p>{{ doc.bill_to_name }}<br>Accounts Payable<br>{{ doc.bill_to_address }}</p>
+{% for para in doc.letter_body %}<p>{{ para }}</p>{% endfor %}
+{% if doc.remit %}<div class="bank">{{ m.g("remit_to_bank_details", doc.remit) }}</div>{% endif %}
+<p>Sincerely,<br><br>{{ doc.signer }}<br>Office Manager, {{ doc.vendor_name }}</p>
+</div>{{ m.adversarial(doc) }}</body></html>

@@ -1,0 +1,543 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    234,
+    380,
+    374,
+    399
+   ],
+   "page": 0,
+   "text": "August 10, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    229,
+    355,
+    344,
+    375
+   ],
+   "page": 0,
+   "text": "July 26, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    259,
+    331,
+    329,
+    345
+   ],
+   "page": 0,
+   "text": "26-6700"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1045,
+    579,
+    1113,
+    596
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    123,
+    579,
+    299,
+    594
+   ],
+   "page": 0,
+   "text": "Remove hazard limb"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    676,
+    580,
+    683,
+    594
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    831,
+    578,
+    898,
+    596
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1056,
+    622,
+    1113,
+    640
+   ],
+   "page": 0,
+   "text": "$38.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    123,
+    623,
+    313,
+    643
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    676,
+    624,
+    683,
+    638
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    841,
+    623,
+    898,
+    640
+   ],
+   "page": 0,
+   "text": "$38.00"
+  },
+  "property_or_unit": {
+   "box": [
+    194,
+    427,
+    472,
+    445
+   ],
+   "page": 0,
+   "text": "Unit A5, Alder Row Townhomes"
+  },
+  "subtotal": {
+   "box": [
+    1045,
+    667,
+    1113,
+    684
+   ],
+   "page": 0,
+   "text": "$708.00"
+  },
+  "tax": {
+   "box": [
+    1067,
+    710,
+    1113,
+    728
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1045,
+    755,
+    1113,
+    772
+   ],
+   "page": 0,
+   "text": "$708.00"
+  },
+  "vendor_address": {
+   "box": [
+    522,
+    170,
+    715,
+    214
+   ],
+   "page": 0,
+   "text": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "box": [
+    439,
+    122,
+    797,
+    160
+   ],
+   "page": 0,
+   "text": "Mossgate Tree Care"
+  },
+  "work_order_number": {
+   "box": [
+    221,
+    404,
+    304,
+    418
+   ],
+   "page": 0,
+   "text": "WO-1113"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     234,
+     380,
+     374,
+     399
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-10"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     229,
+     355,
+     344,
+     375
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-07-26"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     259,
+     331,
+     329,
+     345
+    ],
+    "word_ids": []
+   },
+   "value": "26-6700"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1045,
+       579,
+       1113,
+       596
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       123,
+       579,
+       299,
+       594
+      ],
+      "word_ids": []
+     },
+     "value": "Remove hazard limb"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       676,
+       580,
+       683,
+       594
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       831,
+       578,
+       898,
+       596
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1056,
+       622,
+       1113,
+       640
+      ],
+      "word_ids": []
+     },
+     "value_cents": 3800
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       123,
+       623,
+       313,
+       643
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       676,
+       624,
+       683,
+       638
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       841,
+       623,
+       898,
+       640
+      ],
+      "word_ids": []
+     },
+     "value_cents": 3800
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     194,
+     427,
+     472,
+     445
+    ],
+    "word_ids": []
+   },
+   "value": "Unit A5, Alder Row Townhomes"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1045,
+     667,
+     1113,
+     684
+    ],
+    "word_ids": []
+   },
+   "value_cents": 70800
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1067,
+     710,
+     1113,
+     728
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1045,
+     755,
+     1113,
+     772
+    ],
+    "word_ids": []
+   },
+   "value_cents": 70800
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     522,
+     170,
+     715,
+     214
+    ],
+    "word_ids": []
+   },
+   "value": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     439,
+     122,
+     797,
+     160
+    ],
+    "word_ids": []
+   },
+   "value": "Mossgate Tree Care"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     221,
+     404,
+     304,
+     418
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1113"
+  }
+ },
+ "filename": "core-007.pdf",
+ "hidden_boxes": [],
+ "id": "core-007",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "00962f3d93d368d4c5a32559e46fb1539c7bbbe0bc5135166f226491891953b8"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "bdbda9bf926abe9ac4d659d5db84a9b62d039fd5668cc32684e040231c0ca698",
+ "split": "dev",
+ "template": "word",
+ "truth": {
+  "accent": "#a23b72",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-007",
+  "doc_type": "invoice",
+  "due_date": "2026-08-10",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-07-26",
+  "invoice_number": "26-6700",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 67000,
+    "description": "Remove hazard limb",
+    "quantity": "1",
+    "unit_price_cents": 67000
+   },
+   {
+    "amount_cents": 3800,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 3800
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit A5, Alder Row Townhomes",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 70800,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "word",
+  "total_cents": 70800,
+  "vendor_address": "617 Allen Brook, Springfield, OR 97437",
+  "vendor_email": "billing@mossgate.example",
+  "vendor_id": "615b7da3-1a81-5c11-b6da-205980a7680b",
+  "vendor_name": "Mossgate Tree Care",
+  "vendor_phone": "(541) 555-0129",
+  "vendor_slug": "mossgate",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1113",
+  "work_order_printed": "WO-1113"
+ }
+}

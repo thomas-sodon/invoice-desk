@@ -1,0 +1,558 @@
+{
+ "augment": {
+  "blur": 0.7161896066384643,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 84.0,
+  "noise": 3.931776835107417,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    204,
+    360,
+    282,
+    391
+   ],
+   "page": 0,
+   "text": "8/25/26"
+  },
+  "invoice_number": {
+   "box": [
+    917,
+    262,
+    1018,
+    281
+   ],
+   "page": 0,
+   "text": "SR-1406"
+  },
+  "line_items.0.amount": {
+   "box": [
+    947,
+    507,
+    1015,
+    532
+   ],
+   "page": 0,
+   "text": "350.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    207,
+    513,
+    408,
+    542
+   ],
+   "page": 0,
+   "text": "Move-out deep clean"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    696,
+    510,
+    708,
+    530
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    793,
+    510,
+    860,
+    536
+   ],
+   "page": 0,
+   "text": "350.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    960,
+    561,
+    1020,
+    590
+   ],
+   "page": 0,
+   "text": "85.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    204,
+    564,
+    459,
+    597
+   ],
+   "page": 0,
+   "text": "Appliance interior cleaning"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    697,
+    564,
+    712,
+    587
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    803,
+    563,
+    862,
+    589
+   ],
+   "page": 0,
+   "text": "85.00"
+  },
+  "property_or_unit": {
+   "box": [
+    637,
+    417,
+    835,
+    449
+   ],
+   "page": 0,
+   "text": "Unit 202, Cedar Flats"
+  },
+  "subtotal": {
+   "box": [
+    949,
+    787,
+    1018,
+    814
+   ],
+   "page": 0,
+   "text": "435.00"
+  },
+  "tax": {
+   "box": [
+    960,
+    838,
+    1021,
+    869
+   ],
+   "page": 0,
+   "text": "35.89"
+  },
+  "total": {
+   "box": [
+    944,
+    880,
+    1063,
+    926
+   ],
+   "page": 0,
+   "text": "470.89"
+  },
+  "vendor_address": {
+   "box": [
+    189,
+    276,
+    323,
+    309
+   ],
+   "page": 0,
+   "text": "1514 Christopher Prairie, Springfield, OR 97460"
+  },
+  "vendor_name": {
+   "box": [
+    190,
+    245,
+    518,
+    275
+   ],
+   "page": 0,
+   "text": "Sparkvale Cleaning Services"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    325,
+    309,
+    391,
+    320
+   ],
+   "page": 0,
+   "text": "00-0003128"
+  },
+  "work_order_number": {
+   "box": [
+    635,
+    358,
+    732,
+    388
+   ],
+   "page": 0,
+   "text": "WO-1117"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R9": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": true,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     204,
+     360,
+     282,
+     391
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-25"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     917,
+     262,
+     1018,
+     281
+    ],
+    "word_ids": []
+   },
+   "value": "SR-1406"
+  },
+  "legibility_issues": [
+   "total is illegible"
+  ],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       947,
+       507,
+       1015,
+       532
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       207,
+       513,
+       408,
+       542
+      ],
+      "word_ids": []
+     },
+     "value": "Move-out deep clean"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       696,
+       510,
+       708,
+       530
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       793,
+       510,
+       860,
+       536
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       960,
+       561,
+       1020,
+       590
+      ],
+      "word_ids": []
+     },
+     "value_cents": 8500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       204,
+       564,
+       459,
+       597
+      ],
+      "word_ids": []
+     },
+     "value": "Appliance interior cleaning"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       697,
+       564,
+       712,
+       587
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       803,
+       563,
+       862,
+       589
+      ],
+      "word_ids": []
+     },
+     "value_cents": 8500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     637,
+     417,
+     835,
+     449
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 202, Cedar Flats"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     949,
+     787,
+     1018,
+     814
+    ],
+    "word_ids": []
+   },
+   "value_cents": 43500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     960,
+     838,
+     1021,
+     869
+    ],
+    "word_ids": []
+   },
+   "value_cents": 3589
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     944,
+     880,
+     1063,
+     926
+    ],
+    "word_ids": []
+   },
+   "value_cents": 47089
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     189,
+     276,
+     323,
+     309
+    ],
+    "word_ids": []
+   },
+   "value": "1514 Christopher Prairie, Springfield, OR 97460"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     190,
+     245,
+     518,
+     275
+    ],
+    "word_ids": []
+   },
+   "value": "Sparkvale Cleaning Services"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     325,
+     309,
+     391,
+     320
+    ],
+    "word_ids": []
+   },
+   "value": "3128"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     635,
+     358,
+     732,
+     388
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1117"
+  }
+ },
+ "filename": "core-117.jpg",
+ "hidden_boxes": [],
+ "id": "core-117",
+ "medium": "handwritten",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "e4fb45f0cddede6e276577dc0c2f012aa8d7e8eb6156a8544bdc33adcb1d92a5"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "f70c0076d2db88d3263dbf34ad44d2b6478914ea47dd9f3c440cae4eb0526488",
+ "split": "dev",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#3d3d3d",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "illegible_total"
+  ],
+  "doc_id": "core-117",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R9": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": true,
+  "hidden": [],
+  "illegible_fields": [
+   "total"
+  ],
+  "invoice_date": "2026-08-25",
+  "invoice_number": "SR-1406",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 35000,
+    "description": "Move-out deep clean",
+    "quantity": "1",
+    "unit_price_cents": 35000
+   },
+   {
+    "amount_cents": 8500,
+    "description": "Appliance interior cleaning",
+    "quantity": "1",
+    "unit_price_cents": 8500
+   }
+  ],
+  "medium": "handwritten",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 202, Cedar Flats",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 43500,
+  "tax_cents": 3589,
+  "tax_rate_bps": 825,
+  "template": "carbon_copy",
+  "total_cents": 47089,
+  "vendor_address": "1514 Christopher Prairie, Springfield, OR 97460",
+  "vendor_email": "billing@sparkvale.example",
+  "vendor_id": "966fb8f9-3ffa-5603-8a5d-ee218bef7536",
+  "vendor_name": "Sparkvale Cleaning Services",
+  "vendor_phone": "(541) 555-0116",
+  "vendor_slug": "sparkvale",
+  "vendor_tax_id_last4": "3128",
+  "visible_instructions": [],
+  "work_order_number": "WO-1117",
+  "work_order_printed": "WO-1117"
+ }
+}

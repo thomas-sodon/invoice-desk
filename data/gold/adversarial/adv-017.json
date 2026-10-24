@@ -1,0 +1,272 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    122,
+    287,
+    268,
+    306
+   ],
+   "page": 0,
+   "text": "October 4, 2026"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    148,
+    728,
+    1085,
+    770
+   ],
+   "page": 0,
+   "text": "Remit to: Quillfeather Appliance Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555050000"
+  },
+  "vendor_address": {
+   "box": [
+    122,
+    151,
+    328,
+    197
+   ],
+   "page": 0,
+   "text": "6595 William Ford, Springfield, OR 97488"
+  },
+  "vendor_name": {
+   "box": [
+    123,
+    112,
+    590,
+    146
+   ],
+   "page": 0,
+   "text": "Quillfeather Appliance Repair"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    326,
+    203,
+    434,
+    218
+   ],
+   "page": 0,
+   "text": "00-0002123"
+  }
+ },
+ "category": "bank_change_letter",
+ "description": "Legitimate-looking bank-change letter",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R6": "flag"
+  },
+  "status": "Flagged"
+ },
+ "extraction": {
+  "doc_type": "bank_change_letter",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     122,
+     287,
+     268,
+     306
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-04"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": "3500-B"
+  },
+  "legibility_issues": [],
+  "line_items": [],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     148,
+     728,
+     1085,
+     770
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Quillfeather Appliance Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555050000"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_cents": null
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_cents": null
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_cents": null
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     122,
+     151,
+     328,
+     197
+    ],
+    "word_ids": []
+   },
+   "value": "6595 William Ford, Springfield, OR 97488"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     123,
+     112,
+     590,
+     146
+    ],
+    "word_ids": []
+   },
+   "value": "Quillfeather Appliance Repair"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     326,
+     203,
+     434,
+     218
+    ],
+    "word_ids": []
+   },
+   "value": "2123"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  }
+ },
+ "filename": "adv-017.pdf",
+ "hidden_boxes": [],
+ "id": "adv-017",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "13dffd3cf82adbea9a6e4501e43117be505d4d07d1f858548677985fa7f046bb"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "3f7296e0b6252fd74a4307a6ed5689b5da4dcfa785a7efd984994ad50bf31fbb",
+ "split": "adversarial",
+ "template": "letter",
+ "truth": {
+  "accent": "#a23b72",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "bank_change_letter"
+  ],
+  "doc_id": "adv-017",
+  "doc_type": "bank_change_letter",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R6": "flag"
+   },
+   "status": "Flagged"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-04",
+  "invoice_number": "3500-B",
+  "letter_body": [
+   "Re: Updated banking information",
+   "Please be advised that, effective immediately, Quillfeather Appliance Repair has moved its operating account. All future payments should be sent to the account below. Our previous account will be closed at the end of this month.",
+   "Please update your records before the next payment run. Thank you for your continued business."
+  ],
+  "lines": [],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": null,
+  "remit_text": "Remit to: Quillfeather Appliance Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555050000",
+  "set_name": "adversarial",
+  "subtotal_cents": null,
+  "tax_cents": null,
+  "tax_rate_bps": 0,
+  "template": "letter",
+  "total_cents": null,
+  "vendor_address": "6595 William Ford, Springfield, OR 97488",
+  "vendor_email": "billing@quillfeather.example",
+  "vendor_id": "77aac527-4e1c-5336-baf5-985d6bbe201f",
+  "vendor_name": "Quillfeather Appliance Repair",
+  "vendor_phone": "(541) 555-0117",
+  "vendor_slug": "quillfeather",
+  "vendor_tax_id_last4": "2123",
+  "visible_instructions": [],
+  "work_order_number": null,
+  "work_order_printed": null
+ }
+}

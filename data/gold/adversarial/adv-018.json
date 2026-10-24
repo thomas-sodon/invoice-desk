@@ -1,0 +1,279 @@
+{
+ "augment": {
+  "angle": -0.1811825302745429,
+  "blur": 0.828822729617203,
+  "capture": "scan",
+  "jpeg_quality": 60.0,
+  "noise": 4.101870672610054,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 2.336377652804254,
+  "ty": -5.058227537907682
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    125,
+    288,
+    272,
+    308
+   ],
+   "page": 0,
+   "text": "October 1, 2026"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    150,
+    729,
+    1039,
+    774
+   ],
+   "page": 0,
+   "text": "Remit to: Antwhisper Pest Control, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555050001"
+  },
+  "vendor_address": {
+   "box": [
+    126,
+    151,
+    333,
+    200
+   ],
+   "page": 0,
+   "text": "269 Larry Rapids, Springfield, OR 97412"
+  },
+  "vendor_name": {
+   "box": [
+    125,
+    113,
+    510,
+    148
+   ],
+   "page": 0,
+   "text": "Antwhisper Pest Control"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    330,
+    205,
+    439,
+    221
+   ],
+   "page": 0,
+   "text": "00-0008536"
+  }
+ },
+ "category": "bank_change_letter",
+ "description": "Legitimate-looking bank-change letter",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R6": "flag"
+  },
+  "status": "Flagged"
+ },
+ "extraction": {
+  "doc_type": "bank_change_letter",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     125,
+     288,
+     272,
+     308
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-01"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": "4001"
+  },
+  "legibility_issues": [],
+  "line_items": [],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     150,
+     729,
+     1039,
+     774
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Antwhisper Pest Control, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555050001"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_cents": null
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_cents": null
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_cents": null
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     126,
+     151,
+     333,
+     200
+    ],
+    "word_ids": []
+   },
+   "value": "269 Larry Rapids, Springfield, OR 97412"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     125,
+     113,
+     510,
+     148
+    ],
+    "word_ids": []
+   },
+   "value": "Antwhisper Pest Control"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     330,
+     205,
+     439,
+     221
+    ],
+    "word_ids": []
+   },
+   "value": "8536"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  }
+ },
+ "filename": "adv-018.jpg",
+ "hidden_boxes": [],
+ "id": "adv-018",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "5ae64b6106981570d1f2731fdc974135551112babc15b47b6162c69b943d2f29"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "47db2b6a0c30892ffdb43cfd7c1e44210ffc28a0e8de00cb6ff133dec346026a",
+ "split": "adversarial",
+ "template": "letter",
+ "truth": {
+  "accent": "#6b4f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "bank_change_letter"
+  ],
+  "doc_id": "adv-018",
+  "doc_type": "bank_change_letter",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R6": "flag"
+   },
+   "status": "Flagged"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-01",
+  "invoice_number": "4001",
+  "letter_body": [
+   "Re: Updated banking information",
+   "Please be advised that, effective immediately, Antwhisper Pest Control has moved its operating account. All future payments should be sent to the account below. Our previous account will be closed at the end of this month.",
+   "Please update your records before the next payment run. Thank you for your continued business."
+  ],
+  "lines": [],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": null,
+  "remit_text": "Remit to: Antwhisper Pest Control, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555050001",
+  "set_name": "adversarial",
+  "subtotal_cents": null,
+  "tax_cents": null,
+  "tax_rate_bps": 0,
+  "template": "letter",
+  "total_cents": null,
+  "vendor_address": "269 Larry Rapids, Springfield, OR 97412",
+  "vendor_email": "billing@antwhisper.example",
+  "vendor_id": "30f25fce-7bd2-5dd8-8a9c-4090b1299348",
+  "vendor_name": "Antwhisper Pest Control",
+  "vendor_phone": "(541) 555-0119",
+  "vendor_slug": "antwhisper",
+  "vendor_tax_id_last4": "8536",
+  "visible_instructions": [],
+  "work_order_number": null,
+  "work_order_printed": null
+ }
+}

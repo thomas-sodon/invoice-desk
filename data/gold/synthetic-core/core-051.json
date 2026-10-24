@@ -1,0 +1,667 @@
+{
+ "augment": {
+  "angle": 0.037486446083109914,
+  "blur": 0.4388978251485746,
+  "capture": "scan",
+  "jpeg_quality": 61.0,
+  "noise": 5.685790608572008,
+  "output": "png",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 1.8952871550956392,
+  "ty": 6.143365837381008
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    619,
+    265,
+    726,
+    285
+   ],
+   "page": 0,
+   "text": "9 Sep 2026"
+  },
+  "invoice_date": {
+   "box": [
+    620,
+    232,
+    730,
+    248
+   ],
+   "page": 0,
+   "text": "26 Jul 2026"
+  },
+  "invoice_number": {
+   "box": [
+    620,
+    199,
+    712,
+    215
+   ],
+   "page": 0,
+   "text": "INV07204"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1062,
+    480,
+    1149,
+    502
+   ],
+   "page": 0,
+   "text": "$1,210.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    424,
+    483,
+    661,
+    503
+   ],
+   "page": 0,
+   "text": "Interior repaint, two coats"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    833,
+    482,
+    840,
+    499
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    908,
+    480,
+    995,
+    502
+   ],
+   "page": 0,
+   "text": "$1,210.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1076,
+    524,
+    1149,
+    544
+   ],
+   "page": 0,
+   "text": "$130.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    424,
+    527,
+    592,
+    547
+   ],
+   "page": 0,
+   "text": "Paint and supplies"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    833,
+    526,
+    840,
+    543
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    921,
+    524,
+    995,
+    544
+   ],
+   "page": 0,
+   "text": "$130.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1072,
+    568,
+    1149,
+    588
+   ],
+   "page": 0,
+   "text": "$455.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    424,
+    571,
+    610,
+    587
+   ],
+   "page": 0,
+   "text": "Paint trim and doors"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    833,
+    570,
+    840,
+    587
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    917,
+    568,
+    995,
+    588
+   ],
+   "page": 0,
+   "text": "$455.00"
+  },
+  "property_or_unit": {
+   "box": [
+    620,
+    332,
+    690,
+    348
+   ],
+   "page": 0,
+   "text": "Unit 11B"
+  },
+  "subtotal": {
+   "box": [
+    1060,
+    627,
+    1149,
+    649
+   ],
+   "page": 0,
+   "text": "$1,795.00"
+  },
+  "tax": {
+   "box": [
+    1096,
+    670,
+    1149,
+    690
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    999,
+    713,
+    1149,
+    745
+   ],
+   "page": 0,
+   "text": "$1,795.00"
+  },
+  "vendor_address": {
+   "box": [
+    35,
+    199,
+    237,
+    243
+   ],
+   "page": 0,
+   "text": "818 Kimberly Mills, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "box": [
+    36,
+    107,
+    259,
+    173
+   ],
+   "page": 0,
+   "text": "Brushstroke Painting Studio"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    35,
+    356,
+    154,
+    372
+   ],
+   "page": 0,
+   "text": "00-0003390"
+  },
+  "work_order_number": {
+   "box": [
+    619,
+    299,
+    706,
+    315
+   ],
+   "page": 0,
+   "text": "WO-1226"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     619,
+     265,
+     726,
+     285
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-09"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     620,
+     232,
+     730,
+     248
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-07-26"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     620,
+     199,
+     712,
+     215
+    ],
+    "word_ids": []
+   },
+   "value": "INV07204"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       480,
+       1149,
+       502
+      ],
+      "word_ids": []
+     },
+     "value_cents": 121000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       424,
+       483,
+       661,
+       503
+      ],
+      "word_ids": []
+     },
+     "value": "Interior repaint, two coats"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       833,
+       482,
+       840,
+       499
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       908,
+       480,
+       995,
+       502
+      ],
+      "word_ids": []
+     },
+     "value_cents": 121000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1076,
+       524,
+       1149,
+       544
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       424,
+       527,
+       592,
+       547
+      ],
+      "word_ids": []
+     },
+     "value": "Paint and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       833,
+       526,
+       840,
+       543
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       921,
+       524,
+       995,
+       544
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1072,
+       568,
+       1149,
+       588
+      ],
+      "word_ids": []
+     },
+     "value_cents": 45500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       424,
+       571,
+       610,
+       587
+      ],
+      "word_ids": []
+     },
+     "value": "Paint trim and doors"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       833,
+       570,
+       840,
+       587
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       917,
+       568,
+       995,
+       588
+      ],
+      "word_ids": []
+     },
+     "value_cents": 45500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     620,
+     332,
+     690,
+     348
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 11B"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1060,
+     627,
+     1149,
+     649
+    ],
+    "word_ids": []
+   },
+   "value_cents": 179500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1096,
+     670,
+     1149,
+     690
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     999,
+     713,
+     1149,
+     745
+    ],
+    "word_ids": []
+   },
+   "value_cents": 179500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     35,
+     199,
+     237,
+     243
+    ],
+    "word_ids": []
+   },
+   "value": "818 Kimberly Mills, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     36,
+     107,
+     259,
+     173
+    ],
+    "word_ids": []
+   },
+   "value": "Brushstroke Painting Studio"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     35,
+     356,
+     154,
+     372
+    ],
+    "word_ids": []
+   },
+   "value": "3390"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     619,
+     299,
+     706,
+     315
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1226"
+  }
+ },
+ "filename": "core-051.png",
+ "hidden_boxes": [],
+ "id": "core-051",
+ "medium": "scanned",
+ "mime": "image/png",
+ "page_sha256": [
+  "3e933edd1742d03cdf2e094991f96494936dd39564d13811a4a9ee1f94c9460f"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "848d3f6d65f2f6afb9c6da4e176fef575cd936c87ed0618503774a7cbab45cf0",
+ "split": "dev",
+ "template": "modern",
+ "truth": {
+  "accent": "#8a5a00",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-051",
+  "doc_type": "invoice",
+  "due_date": "2026-09-09",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-07-26",
+  "invoice_number": "INV07204",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 121000,
+    "description": "Interior repaint, two coats",
+    "quantity": "1",
+    "unit_price_cents": 121000
+   },
+   {
+    "amount_cents": 13000,
+    "description": "Paint and supplies",
+    "quantity": "1",
+    "unit_price_cents": 13000
+   },
+   {
+    "amount_cents": 45500,
+    "description": "Paint trim and doors",
+    "quantity": "1",
+    "unit_price_cents": 45500
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 11B",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 179500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "modern",
+  "total_cents": 179500,
+  "vendor_address": "818 Kimberly Mills, Springfield, OR 97474",
+  "vendor_email": "billing@brushstroke.example",
+  "vendor_id": "c3eea8a2-95bb-5f5e-be3a-38b6f41fd258",
+  "vendor_name": "Brushstroke Painting Studio",
+  "vendor_phone": "(541) 555-0114",
+  "vendor_slug": "brushstroke",
+  "vendor_tax_id_last4": "3390",
+  "visible_instructions": [],
+  "work_order_number": "WO-1226",
+  "work_order_printed": "WO-1226"
+ }
+}

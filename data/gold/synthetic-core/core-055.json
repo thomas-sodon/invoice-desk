@@ -1,0 +1,652 @@
+{
+ "augment": {
+  "angle": 1.3094709841599292,
+  "blur": 0.4563758646377494,
+  "capture": "scan",
+  "jpeg_quality": 57.0,
+  "noise": 4.106980767002886,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 4.739829409970023,
+  "ty": -5.290032672212583
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    846,
+    367,
+    963,
+    384
+   ],
+   "page": 0,
+   "text": "2026-09-24"
+  },
+  "invoice_number": {
+   "box": [
+    880,
+    338,
+    962,
+    354
+   ],
+   "page": 0,
+   "text": "SR-1402"
+  },
+  "line_items.0.amount": {
+   "box": [
+    898,
+    547,
+    967,
+    563
+   ],
+   "page": 0,
+   "text": "115.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    267,
+    555,
+    586,
+    581
+   ],
+   "page": 0,
+   "text": "Appliance interior cleaning"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    757,
+    552,
+    767,
+    566
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    798,
+    550,
+    867,
+    565
+   ],
+   "page": 0,
+   "text": "115.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    898,
+    579,
+    968,
+    595
+   ],
+   "page": 0,
+   "text": "195.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    269,
+    589,
+    504,
+    613
+   ],
+   "page": 0,
+   "text": "Common area cleaning"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    757,
+    584,
+    768,
+    598
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    798,
+    582,
+    868,
+    597
+   ],
+   "page": 0,
+   "text": "195.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    898,
+    611,
+    968,
+    627
+   ],
+   "page": 0,
+   "text": "410.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    269,
+    621,
+    493,
+    645
+   ],
+   "page": 0,
+   "text": "Move-out deep clean"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    758,
+    616,
+    768,
+    630
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    798,
+    614,
+    868,
+    629
+   ],
+   "page": 0,
+   "text": "410.00"
+  },
+  "property_or_unit": {
+   "box": [
+    930,
+    425,
+    964,
+    440
+   ],
+   "page": 0,
+   "text": "108"
+  },
+  "subtotal": {
+   "box": [
+    901,
+    673,
+    970,
+    689
+   ],
+   "page": 0,
+   "text": "720.00"
+  },
+  "tax": {
+   "box": [
+    912,
+    702,
+    971,
+    718
+   ],
+   "page": 0,
+   "text": "59.40"
+  },
+  "total": {
+   "box": [
+    880,
+    731,
+    971,
+    751
+   ],
+   "page": 0,
+   "text": "779.40"
+  },
+  "vendor_address": {
+   "box": [
+    469,
+    216,
+    752,
+    265
+   ],
+   "page": 0,
+   "text": "1514 Christopher Prairie, Springfield, OR 97460"
+  },
+  "vendor_name": {
+   "box": [
+    400,
+    186,
+    818,
+    221
+   ],
+   "page": 0,
+   "text": "Sparkvale Cleaning Services"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    594,
+    287,
+    711,
+    304
+   ],
+   "page": 0,
+   "text": "00-0003128"
+  },
+  "work_order_number": {
+   "box": [
+    868,
+    396,
+    964,
+    412
+   ],
+   "page": 0,
+   "text": "WO #1223"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     846,
+     367,
+     963,
+     384
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-24"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     880,
+     338,
+     962,
+     354
+    ],
+    "word_ids": []
+   },
+   "value": "SR-1402"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       898,
+       547,
+       967,
+       563
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       267,
+       555,
+       586,
+       581
+      ],
+      "word_ids": []
+     },
+     "value": "Appliance interior cleaning"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       757,
+       552,
+       767,
+       566
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       798,
+       550,
+       867,
+       565
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       898,
+       579,
+       968,
+       595
+      ],
+      "word_ids": []
+     },
+     "value_cents": 19500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       269,
+       589,
+       504,
+       613
+      ],
+      "word_ids": []
+     },
+     "value": "Common area cleaning"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       757,
+       584,
+       768,
+       598
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       798,
+       582,
+       868,
+       597
+      ],
+      "word_ids": []
+     },
+     "value_cents": 19500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       898,
+       611,
+       968,
+       627
+      ],
+      "word_ids": []
+     },
+     "value_cents": 41000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       269,
+       621,
+       493,
+       645
+      ],
+      "word_ids": []
+     },
+     "value": "Move-out deep clean"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       758,
+       616,
+       768,
+       630
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       798,
+       614,
+       868,
+       629
+      ],
+      "word_ids": []
+     },
+     "value_cents": 41000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     930,
+     425,
+     964,
+     440
+    ],
+    "word_ids": []
+   },
+   "value": "108"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     901,
+     673,
+     970,
+     689
+    ],
+    "word_ids": []
+   },
+   "value_cents": 72000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     912,
+     702,
+     971,
+     718
+    ],
+    "word_ids": []
+   },
+   "value_cents": 5940
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     880,
+     731,
+     971,
+     751
+    ],
+    "word_ids": []
+   },
+   "value_cents": 77940
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     469,
+     216,
+     752,
+     265
+    ],
+    "word_ids": []
+   },
+   "value": "1514 Christopher Prairie, Springfield, OR 97460"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     400,
+     186,
+     818,
+     221
+    ],
+    "word_ids": []
+   },
+   "value": "Sparkvale Cleaning Services"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     594,
+     287,
+     711,
+     304
+    ],
+    "word_ids": []
+   },
+   "value": "3128"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     868,
+     396,
+     964,
+     412
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1223"
+  }
+ },
+ "filename": "core-055.pdf",
+ "hidden_boxes": [],
+ "id": "core-055",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "bd4be1b7e9026d6ef0f3b042b5ec7113b9727d36aa160877aeeb1bf957158d47"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "0215d28e06c529405095fc80cb12db4b7d1f28eb8cb81dec812fe66f5d4d633d",
+ "split": "dev",
+ "template": "compact",
+ "truth": {
+  "accent": "#3d3d3d",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-055",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-24",
+  "invoice_number": "SR-1402",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 11500,
+    "description": "Appliance interior cleaning",
+    "quantity": "1",
+    "unit_price_cents": 11500
+   },
+   {
+    "amount_cents": 19500,
+    "description": "Common area cleaning",
+    "quantity": "1",
+    "unit_price_cents": 19500
+   },
+   {
+    "amount_cents": 41000,
+    "description": "Move-out deep clean",
+    "quantity": "1",
+    "unit_price_cents": 41000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "108",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 72000,
+  "tax_cents": 5940,
+  "tax_rate_bps": 825,
+  "template": "compact",
+  "total_cents": 77940,
+  "vendor_address": "1514 Christopher Prairie, Springfield, OR 97460",
+  "vendor_email": "billing@sparkvale.example",
+  "vendor_id": "966fb8f9-3ffa-5603-8a5d-ee218bef7536",
+  "vendor_name": "Sparkvale Cleaning Services",
+  "vendor_phone": "(541) 555-0116",
+  "vendor_slug": "sparkvale",
+  "vendor_tax_id_last4": "3128",
+  "visible_instructions": [],
+  "work_order_number": "WO-1223",
+  "work_order_printed": "WO #1223"
+ }
+}

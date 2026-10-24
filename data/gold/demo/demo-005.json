@@ -1,0 +1,662 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    900,
+    739,
+    988,
+    752
+   ],
+   "page": 0,
+   "text": "11/10/2026"
+  },
+  "invoice_date": {
+   "box": [
+    900,
+    684,
+    988,
+    697
+   ],
+   "page": 0,
+   "text": "10/11/2026"
+  },
+  "invoice_number": {
+   "box": [
+    899,
+    657,
+    957,
+    670
+   ],
+   "page": 0,
+   "text": "A-3600"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1068,
+    869,
+    1133,
+    884
+   ],
+   "page": 0,
+   "text": "$650.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    870,
+    197,
+    883
+   ],
+   "page": 0,
+   "text": "HVAC labor"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    717,
+    870,
+    726,
+    883
+   ],
+   "page": 0,
+   "text": "5"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    864,
+    869,
+    929,
+    884
+   ],
+   "page": 0,
+   "text": "$130.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1068,
+    910,
+    1133,
+    925
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    104,
+    911,
+    311,
+    928
+   ],
+   "page": 0,
+   "text": "Furnace tune-up and filter"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    718,
+    911,
+    726,
+    924
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    864,
+    910,
+    929,
+    925
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1078,
+    952,
+    1133,
+    966
+   ],
+   "page": 0,
+   "text": "$60.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    104,
+    952,
+    283,
+    969
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    718,
+    952,
+    726,
+    965
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    874,
+    951,
+    929,
+    966
+   ],
+   "page": 0,
+   "text": "$60.00"
+  },
+  "property_or_unit": {
+   "box": [
+    450,
+    584,
+    723,
+    601
+   ],
+   "page": 0,
+   "text": "Unit 11A, Maple Court Apartments"
+  },
+  "subtotal": {
+   "box": [
+    1071,
+    1009,
+    1136,
+    1024
+   ],
+   "page": 0,
+   "text": "$915.00"
+  },
+  "tax": {
+   "box": [
+    1091,
+    1040,
+    1136,
+    1054
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1049,
+    1071,
+    1136,
+    1091
+   ],
+   "page": 0,
+   "text": "$915.00"
+  },
+  "vendor_address": {
+   "box": [
+    92,
+    416,
+    273,
+    454
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    92,
+    385,
+    412,
+    411
+   ],
+   "page": 0,
+   "text": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    127,
+    501,
+    223,
+    514
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    899,
+    766,
+    975,
+    779
+   ],
+   "page": 0,
+   "text": "WO-1155"
+  }
+ },
+ "category": "clean",
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     900,
+     739,
+     988,
+     752
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-10"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     900,
+     684,
+     988,
+     697
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-11"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     899,
+     657,
+     957,
+     670
+    ],
+    "word_ids": []
+   },
+   "value": "A-3600"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       869,
+       1133,
+       884
+      ],
+      "word_ids": []
+     },
+     "value_cents": 65000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       870,
+       197,
+       883
+      ],
+      "word_ids": []
+     },
+     "value": "HVAC labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       717,
+       870,
+       726,
+       883
+      ],
+      "word_ids": []
+     },
+     "value": "5"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       864,
+       869,
+       929,
+       884
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       910,
+       1133,
+       925
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       911,
+       311,
+       928
+      ],
+      "word_ids": []
+     },
+     "value": "Furnace tune-up and filter"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       718,
+       911,
+       726,
+       924
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       864,
+       910,
+       929,
+       925
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1078,
+       952,
+       1133,
+       966
+      ],
+      "word_ids": []
+     },
+     "value_cents": 6000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       952,
+       283,
+       969
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       718,
+       952,
+       726,
+       965
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       874,
+       951,
+       929,
+       966
+      ],
+      "word_ids": []
+     },
+     "value_cents": 6000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     450,
+     584,
+     723,
+     601
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 11A, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1071,
+     1009,
+     1136,
+     1024
+    ],
+    "word_ids": []
+   },
+   "value_cents": 91500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1091,
+     1040,
+     1136,
+     1054
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1049,
+     1071,
+     1136,
+     1091
+    ],
+    "word_ids": []
+   },
+   "value_cents": 91500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     416,
+     273,
+     454
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     385,
+     412,
+     411
+    ],
+    "word_ids": []
+   },
+   "value": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     501,
+     223,
+     514
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     899,
+     766,
+     975,
+     779
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1155"
+  }
+ },
+ "filename": "25-copperleaf-A-3600-pdf.pdf",
+ "hidden_boxes": [],
+ "id": "demo-005",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "428d567b4c94bfa5219c05f4e3decd263ccc5332e5e3834669e99a829124e44c"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "d79fdd1d2f24d084b561f91c507845778a96d4fe84ffd0e47cd7c076f2f80ba3",
+ "split": "demo",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "demo-005",
+  "doc_type": "invoice",
+  "due_date": "2026-11-10",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-11",
+  "invoice_number": "A-3600",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 65000,
+    "description": "HVAC labor",
+    "quantity": "5",
+    "unit_price_cents": 13000
+   },
+   {
+    "amount_cents": 20500,
+    "description": "Furnace tune-up and filter",
+    "quantity": "1",
+    "unit_price_cents": 20500
+   },
+   {
+    "amount_cents": 6000,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 6000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {
+   "layout_level": 4
+  },
+  "property_or_unit": "Unit 11A, Maple Court Apartments",
+  "remit_text": null,
+  "set_name": "demo",
+  "subtotal_cents": 91500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "quickbooks",
+  "total_cents": 91500,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": "billing@copperleaf.example",
+  "vendor_id": "be39ac95-ef89-520d-aeb1-9b7f6eed3e23",
+  "vendor_name": "Copperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": "copperleaf",
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1155",
+  "work_order_printed": "WO-1155"
+ }
+}

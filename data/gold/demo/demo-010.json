@@ -1,0 +1,669 @@
+{
+ "augment": {
+  "angle": 1.3786499088379491,
+  "blur": 0.5026783388507363,
+  "capture": "scan",
+  "jpeg_quality": 64.0,
+  "noise": 2.8548794370200703,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 4.778644896061133,
+  "ty": 8.05849937659599
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    904,
+    170,
+    968,
+    188
+   ],
+   "page": 0,
+   "text": "12/2/26"
+  },
+  "invoice_date": {
+   "box": [
+    903,
+    127,
+    977,
+    145
+   ],
+   "page": 0,
+   "text": "10/18/26"
+  },
+  "invoice_number": {
+   "box": [
+    901,
+    86,
+    958,
+    102
+   ],
+   "page": 0,
+   "text": "5200-B"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1062,
+    373,
+    1126,
+    391
+   ],
+   "page": 0,
+   "text": "$150.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    99,
+    391,
+    339,
+    416
+   ],
+   "page": 0,
+   "text": "Troubleshoot tripping breaker"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    738,
+    382,
+    747,
+    397
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    872,
+    378,
+    936,
+    395
+   ],
+   "page": 0,
+   "text": "$150.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1073,
+    415,
+    1127,
+    433
+   ],
+   "page": 0,
+   "text": "$90.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    101,
+    434,
+    324,
+    457
+   ],
+   "page": 0,
+   "text": "Replace smoke/CO detector"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    739,
+    424,
+    748,
+    439
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    883,
+    420,
+    937,
+    437
+   ],
+   "page": 0,
+   "text": "$90.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1074,
+    457,
+    1128,
+    476
+   ],
+   "page": 0,
+   "text": "$80.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    102,
+    478,
+    266,
+    500
+   ],
+   "page": 0,
+   "text": "Replace GFCI outlets"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    740,
+    467,
+    749,
+    482
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    884,
+    462,
+    938,
+    480
+   ],
+   "page": 0,
+   "text": "$80.00"
+  },
+  "property_or_unit": {
+   "box": [
+    906,
+    257,
+    937,
+    272
+   ],
+   "page": 0,
+   "text": "14A"
+  },
+  "subtotal": {
+   "box": [
+    1066,
+    520,
+    1130,
+    538
+   ],
+   "page": 0,
+   "text": "$320.00"
+  },
+  "tax": {
+   "box": [
+    1077,
+    562,
+    1131,
+    580
+   ],
+   "page": 0,
+   "text": "$23.20"
+  },
+  "total": {
+   "box": [
+    1053,
+    606,
+    1132,
+    628
+   ],
+   "page": 0,
+   "text": "$343.20"
+  },
+  "vendor_address": {
+   "box": [
+    80,
+    131,
+    254,
+    177
+   ],
+   "page": 0,
+   "text": "5467 Austin Spring, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    78,
+    91,
+    479,
+    123
+   ],
+   "page": 0,
+   "text": "Voltwise Electrical Contractors"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    133,
+    200,
+    229,
+    217
+   ],
+   "page": 0,
+   "text": "00-0008483"
+  },
+  "work_order_number": {
+   "box": [
+    904,
+    213,
+    979,
+    229
+   ],
+   "page": 0,
+   "text": "WO 1251"
+  }
+ },
+ "category": "clean",
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     904,
+     170,
+     968,
+     188
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-12-02"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     903,
+     127,
+     977,
+     145
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-18"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     901,
+     86,
+     958,
+     102
+    ],
+    "word_ids": []
+   },
+   "value": "5200-B"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       373,
+       1126,
+       391
+      ],
+      "word_ids": []
+     },
+     "value_cents": 15000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       99,
+       391,
+       339,
+       416
+      ],
+      "word_ids": []
+     },
+     "value": "Troubleshoot tripping breaker"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       738,
+       382,
+       747,
+       397
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       872,
+       378,
+       936,
+       395
+      ],
+      "word_ids": []
+     },
+     "value_cents": 15000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1073,
+       415,
+       1127,
+       433
+      ],
+      "word_ids": []
+     },
+     "value_cents": 9000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       101,
+       434,
+       324,
+       457
+      ],
+      "word_ids": []
+     },
+     "value": "Replace smoke/CO detector"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       739,
+       424,
+       748,
+       439
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       883,
+       420,
+       937,
+       437
+      ],
+      "word_ids": []
+     },
+     "value_cents": 9000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1074,
+       457,
+       1128,
+       476
+      ],
+      "word_ids": []
+     },
+     "value_cents": 8000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       102,
+       478,
+       266,
+       500
+      ],
+      "word_ids": []
+     },
+     "value": "Replace GFCI outlets"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       740,
+       467,
+       749,
+       482
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       884,
+       462,
+       938,
+       480
+      ],
+      "word_ids": []
+     },
+     "value_cents": 8000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     906,
+     257,
+     937,
+     272
+    ],
+    "word_ids": []
+   },
+   "value": "14A"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1066,
+     520,
+     1130,
+     538
+    ],
+    "word_ids": []
+   },
+   "value_cents": 32000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1077,
+     562,
+     1131,
+     580
+    ],
+    "word_ids": []
+   },
+   "value_cents": 2320
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1053,
+     606,
+     1132,
+     628
+    ],
+    "word_ids": []
+   },
+   "value_cents": 34320
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     80,
+     131,
+     254,
+     177
+    ],
+    "word_ids": []
+   },
+   "value": "5467 Austin Spring, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     78,
+     91,
+     479,
+     123
+    ],
+    "word_ids": []
+   },
+   "value": "Voltwise Electrical Contractors"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     133,
+     200,
+     229,
+     217
+    ],
+    "word_ids": []
+   },
+   "value": "8483"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     904,
+     213,
+     979,
+     229
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1251"
+  }
+ },
+ "filename": "04-voltwise-5200-B-scan.pdf",
+ "hidden_boxes": [],
+ "id": "demo-010",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "2ab4d2cf6da3b2f2039cdc807f7cca793ad3e971e55b97114a42e98cfaa29653"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "f0229f9db706a7f4634f48bc5d7f5a7ec842819d4003c3d0d92a3a55daf7bcca",
+ "split": "demo",
+ "template": "statement",
+ "truth": {
+  "accent": "#5b2a86",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "demo-010",
+  "doc_type": "invoice",
+  "due_date": "2026-12-02",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-18",
+  "invoice_number": "5200-B",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 15000,
+    "description": "Troubleshoot tripping breaker",
+    "quantity": "1",
+    "unit_price_cents": 15000
+   },
+   {
+    "amount_cents": 9000,
+    "description": "Replace smoke/CO detector",
+    "quantity": "1",
+    "unit_price_cents": 9000
+   },
+   {
+    "amount_cents": 8000,
+    "description": "Replace GFCI outlets",
+    "quantity": "1",
+    "unit_price_cents": 8000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {
+   "layout_level": 0
+  },
+  "property_or_unit": "14A",
+  "remit_text": null,
+  "set_name": "demo",
+  "subtotal_cents": 32000,
+  "tax_cents": 2320,
+  "tax_rate_bps": 725,
+  "template": "statement",
+  "total_cents": 34320,
+  "vendor_address": "5467 Austin Spring, Springfield, OR 97416",
+  "vendor_email": "billing@voltwise.example",
+  "vendor_id": "419f2d5d-cd6f-5b78-9e6d-95e261098668",
+  "vendor_name": "Voltwise Electrical Contractors",
+  "vendor_phone": "(541) 555-0125",
+  "vendor_slug": "voltwise",
+  "vendor_tax_id_last4": "8483",
+  "visible_instructions": [],
+  "work_order_number": "WO-1251",
+  "work_order_printed": "WO 1251"
+ }
+}

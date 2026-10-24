@@ -1,0 +1,566 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    116,
+    279,
+    189,
+    295
+   ],
+   "page": 0,
+   "text": "9/30/26"
+  },
+  "invoice_number": {
+   "box": [
+    988,
+    175,
+    1129,
+    195
+   ],
+   "page": 0,
+   "text": "INV-9101"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1052,
+    455,
+    1116,
+    471
+   ],
+   "page": 0,
+   "text": "130.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    120,
+    455,
+    274,
+    476
+   ],
+   "page": 0,
+   "text": "Irrigation repair"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    733,
+    455,
+    742,
+    471
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    859,
+    455,
+    923,
+    471
+   ],
+   "page": 0,
+   "text": "130.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1050,
+    516,
+    1116,
+    532
+   ],
+   "page": 0,
+   "text": "445.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    120,
+    515,
+    415,
+    537
+   ],
+   "page": 0,
+   "text": "Monthly grounds maintenance"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    733,
+    516,
+    742,
+    532
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    857,
+    516,
+    923,
+    532
+   ],
+   "page": 0,
+   "text": "445.00"
+  },
+  "property_or_unit": {
+   "box": [
+    646,
+    349,
+    730,
+    365
+   ],
+   "page": 0,
+   "text": "Unit 105"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    107,
+    952,
+    843,
+    968
+   ],
+   "page": 0,
+   "text": "Remit to: Bіrchline Electrіc Co., Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040001"
+  },
+  "subtotal": {
+   "box": [
+    1051,
+    775,
+    1116,
+    791
+   ],
+   "page": 0,
+   "text": "575.00"
+  },
+  "tax": {
+   "box": [
+    1075,
+    832,
+    1116,
+    848
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    1051,
+    890,
+    1116,
+    906
+   ],
+   "page": 0,
+   "text": "575.00"
+  },
+  "vendor_address": {
+   "box": [
+    107,
+    187,
+    257,
+    221
+   ],
+   "page": 0,
+   "text": "1083 Eric Camp, Springfield, OR 97441"
+  },
+  "vendor_name": {
+   "box": [
+    106,
+    151,
+    412,
+    175
+   ],
+   "page": 0,
+   "text": "Bіrchline Electrіc Co."
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    274,
+    224,
+    353,
+    235
+   ],
+   "page": 0,
+   "text": "00-0006996"
+  },
+  "work_order_number": {
+   "box": [
+    645,
+    279,
+    741,
+    295
+   ],
+   "page": 0,
+   "text": "WO-1163"
+  }
+ },
+ "category": "lookalike_letterhead",
+ "description": "Lookalike letterhead: Cyrillic homoglyphs in 'Birchline Electric'",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R1": "flag",
+   "R6": "flag"
+  },
+  "status": "Flagged"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     116,
+     279,
+     189,
+     295
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-30"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     988,
+     175,
+     1129,
+     195
+    ],
+    "word_ids": []
+   },
+   "value": "INV-9101"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1052,
+       455,
+       1116,
+       471
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       120,
+       455,
+       274,
+       476
+      ],
+      "word_ids": []
+     },
+     "value": "Irrigation repair"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       733,
+       455,
+       742,
+       471
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       859,
+       455,
+       923,
+       471
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1050,
+       516,
+       1116,
+       532
+      ],
+      "word_ids": []
+     },
+     "value_cents": 44500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       120,
+       515,
+       415,
+       537
+      ],
+      "word_ids": []
+     },
+     "value": "Monthly grounds maintenance"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       733,
+       516,
+       742,
+       532
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       857,
+       516,
+       923,
+       532
+      ],
+      "word_ids": []
+     },
+     "value_cents": 44500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     646,
+     349,
+     730,
+     365
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 105"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     107,
+     952,
+     843,
+     968
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Bіrchline Electrіc Co., Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040001"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1051,
+     775,
+     1116,
+     791
+    ],
+    "word_ids": []
+   },
+   "value_cents": 57500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1075,
+     832,
+     1116,
+     848
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1051,
+     890,
+     1116,
+     906
+    ],
+    "word_ids": []
+   },
+   "value_cents": 57500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     107,
+     187,
+     257,
+     221
+    ],
+    "word_ids": []
+   },
+   "value": "1083 Eric Camp, Springfield, OR 97441"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     106,
+     151,
+     412,
+     175
+    ],
+    "word_ids": []
+   },
+   "value": "Bіrchline Electrіc Co."
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     274,
+     224,
+     353,
+     235
+    ],
+    "word_ids": []
+   },
+   "value": "6996"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     645,
+     279,
+     741,
+     295
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1163"
+  }
+ },
+ "filename": "adv-015.pdf",
+ "hidden_boxes": [],
+ "id": "adv-015",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "66b391f5391b7154272b20660a823ff9486b26b6ee7cfe84c5a41880b51b360f"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "a5bef69455530e3270baa3eca94032fb47da0c91cf7188a42003c0922c3534eb",
+ "split": "adversarial",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#7a1f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "lookalike_letterhead"
+  ],
+  "doc_id": "adv-015",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R1": "flag",
+    "R6": "flag"
+   },
+   "status": "Flagged"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-30",
+  "invoice_number": "INV-9101",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 13000,
+    "description": "Irrigation repair",
+    "quantity": "1",
+    "unit_price_cents": 13000
+   },
+   {
+    "amount_cents": 44500,
+    "description": "Monthly grounds maintenance",
+    "quantity": "1",
+    "unit_price_cents": 44500
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 105",
+  "remit_text": "Remit to: Bіrchline Electrіc Co., Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040001",
+  "set_name": "adversarial",
+  "subtotal_cents": 57500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 57500,
+  "vendor_address": "1083 Eric Camp, Springfield, OR 97441",
+  "vendor_email": null,
+  "vendor_id": null,
+  "vendor_name": "Bіrchline Electrіc Co.",
+  "vendor_phone": "(541) 555-0111",
+  "vendor_slug": null,
+  "vendor_tax_id_last4": "6996",
+  "visible_instructions": [],
+  "work_order_number": "WO-1163",
+  "work_order_printed": "WO-1163"
+ }
+}

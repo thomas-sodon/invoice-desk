@@ -1,0 +1,782 @@
+{
+ "augment": {
+  "blur": 1.1557306043082924,
+  "capture": "photo",
+  "crumple": 0.0,
+  "jpeg_quality": 75.0,
+  "noise": 5.561024552695216,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    269,
+    597,
+    396,
+    614
+   ],
+   "page": 0,
+   "text": "October 16, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    264,
+    576,
+    411,
+    595
+   ],
+   "page": 0,
+   "text": "September 16, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    290,
+    555,
+    351,
+    568
+   ],
+   "page": 0,
+   "text": "26-2503"
+  },
+  "line_items.0.amount": {
+   "box": [
+    959,
+    776,
+    1018,
+    792
+   ],
+   "page": 0,
+   "text": "$700.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    167,
+    773,
+    311,
+    792
+   ],
+   "page": 0,
+   "text": "Roofing crew labor"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    675,
+    776,
+    684,
+    789
+   ],
+   "page": 0,
+   "text": "5"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    792,
+    775,
+    851,
+    791
+   ],
+   "page": 0,
+   "text": "$140.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    958,
+    815,
+    1018,
+    831
+   ],
+   "page": 0,
+   "text": "$300.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    167,
+    812,
+    262,
+    831
+   ],
+   "page": 0,
+   "text": "Seal skylight"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    675,
+    815,
+    683,
+    828
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    791,
+    814,
+    851,
+    830
+   ],
+   "page": 0,
+   "text": "$300.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    958,
+    854,
+    1017,
+    870
+   ],
+   "page": 0,
+   "text": "$545.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    165,
+    851,
+    379,
+    871
+   ],
+   "page": 0,
+   "text": "Repair roof leak and flashing"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    675,
+    854,
+    682,
+    867
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    790,
+    853,
+    850,
+    869
+   ],
+   "page": 0,
+   "text": "$545.00"
+  },
+  "line_items.3.amount": {
+   "box": [
+    967,
+    892,
+    1017,
+    909
+   ],
+   "page": 0,
+   "text": "$22.00"
+  },
+  "line_items.3.description": {
+   "box": [
+    164,
+    890,
+    329,
+    910
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.3.quantity": {
+   "box": [
+    674,
+    893,
+    681,
+    906
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.3.unit_price": {
+   "box": [
+    799,
+    891,
+    849,
+    908
+   ],
+   "page": 0,
+   "text": "$22.00"
+  },
+  "property_or_unit": {
+   "box": [
+    230,
+    640,
+    284,
+    658
+   ],
+   "page": 0,
+   "text": "Apt A2"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    148,
+    1071,
+    968,
+    1092
+   ],
+   "page": 0,
+   "text": "Remit to: Summit Ridge Roofing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999038748"
+  },
+  "subtotal": {
+   "box": [
+    943,
+    932,
+    1016,
+    949
+   ],
+   "page": 0,
+   "text": "$1,567.00"
+  },
+  "tax": {
+   "box": [
+    965,
+    970,
+    1016,
+    987
+   ],
+   "page": 0,
+   "text": "$94.02"
+  },
+  "total": {
+   "box": [
+    942,
+    1009,
+    1015,
+    1026
+   ],
+   "page": 0,
+   "text": "$1,661.02"
+  },
+  "vendor_address": {
+   "box": [
+    518,
+    393,
+    685,
+    434
+   ],
+   "page": 0,
+   "text": "3389 Owens Harbor, Springfield, OR 97497"
+  },
+  "vendor_name": {
+   "box": [
+    426,
+    350,
+    779,
+    387
+   ],
+   "page": 0,
+   "text": "Summit Ridge Roofing"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    616,
+    458,
+    703,
+    472
+   ],
+   "page": 0,
+   "text": "00-0007285"
+  },
+  "work_order_number": {
+   "box": [
+    256,
+    619,
+    330,
+    633
+   ],
+   "page": 0,
+   "text": "WO-1210"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     269,
+     597,
+     396,
+     614
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-16"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     264,
+     576,
+     411,
+     595
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-16"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     290,
+     555,
+     351,
+     568
+    ],
+    "word_ids": []
+   },
+   "value": "26-2503"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       959,
+       776,
+       1018,
+       792
+      ],
+      "word_ids": []
+     },
+     "value_cents": 70000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       167,
+       773,
+       311,
+       792
+      ],
+      "word_ids": []
+     },
+     "value": "Roofing crew labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       675,
+       776,
+       684,
+       789
+      ],
+      "word_ids": []
+     },
+     "value": "5"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       792,
+       775,
+       851,
+       791
+      ],
+      "word_ids": []
+     },
+     "value_cents": 14000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       958,
+       815,
+       1018,
+       831
+      ],
+      "word_ids": []
+     },
+     "value_cents": 30000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       167,
+       812,
+       262,
+       831
+      ],
+      "word_ids": []
+     },
+     "value": "Seal skylight"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       675,
+       815,
+       683,
+       828
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       791,
+       814,
+       851,
+       830
+      ],
+      "word_ids": []
+     },
+     "value_cents": 30000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       958,
+       854,
+       1017,
+       870
+      ],
+      "word_ids": []
+     },
+     "value_cents": 54500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       165,
+       851,
+       379,
+       871
+      ],
+      "word_ids": []
+     },
+     "value": "Repair roof leak and flashing"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       675,
+       854,
+       682,
+       867
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       790,
+       853,
+       850,
+       869
+      ],
+      "word_ids": []
+     },
+     "value_cents": 54500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       967,
+       892,
+       1017,
+       909
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2200
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       164,
+       890,
+       329,
+       910
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       674,
+       893,
+       681,
+       906
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       799,
+       891,
+       849,
+       908
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2200
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     230,
+     640,
+     284,
+     658
+    ],
+    "word_ids": []
+   },
+   "value": "Apt A2"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     148,
+     1071,
+     968,
+     1092
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Summit Ridge Roofing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999038748"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     943,
+     932,
+     1016,
+     949
+    ],
+    "word_ids": []
+   },
+   "value_cents": 156700
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     965,
+     970,
+     1016,
+     987
+    ],
+    "word_ids": []
+   },
+   "value_cents": 9402
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     942,
+     1009,
+     1015,
+     1026
+    ],
+    "word_ids": []
+   },
+   "value_cents": 166102
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     518,
+     393,
+     685,
+     434
+    ],
+    "word_ids": []
+   },
+   "value": "3389 Owens Harbor, Springfield, OR 97497"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     426,
+     350,
+     779,
+     387
+    ],
+    "word_ids": []
+   },
+   "value": "Summit Ridge Roofing"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     616,
+     458,
+     703,
+     472
+    ],
+    "word_ids": []
+   },
+   "value": "7285"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     256,
+     619,
+     330,
+     633
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1210"
+  }
+ },
+ "filename": "core-084.jpg",
+ "hidden_boxes": [],
+ "id": "core-084",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "a9ac7c894be9c632be4b4bf7c7d8f6fb4b8dd5da9d6efa31e6724bdff070a493"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "4a25bc09a7bd331c21e98796d0ddad2383aeec386809e3cb76c17e20e77752f1",
+ "split": "dev",
+ "template": "word",
+ "truth": {
+  "accent": "#5b2a86",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-084",
+  "doc_type": "invoice",
+  "due_date": "2026-10-16",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-16",
+  "invoice_number": "26-2503",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 70000,
+    "description": "Roofing crew labor",
+    "quantity": "5",
+    "unit_price_cents": 14000
+   },
+   {
+    "amount_cents": 30000,
+    "description": "Seal skylight",
+    "quantity": "1",
+    "unit_price_cents": 30000
+   },
+   {
+    "amount_cents": 54500,
+    "description": "Repair roof leak and flashing",
+    "quantity": "1",
+    "unit_price_cents": 54500
+   },
+   {
+    "amount_cents": 2200,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 2200
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Apt A2",
+  "remit_text": "Remit to: Summit Ridge Roofing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999038748",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 156700,
+  "tax_cents": 9402,
+  "tax_rate_bps": 600,
+  "template": "word",
+  "total_cents": 166102,
+  "vendor_address": "3389 Owens Harbor, Springfield, OR 97497",
+  "vendor_email": "billing@summitridge.example",
+  "vendor_id": "1cd30260-b26c-5574-9350-6e0b79ca977b",
+  "vendor_name": "Summit Ridge Roofing",
+  "vendor_phone": "(541) 555-0113",
+  "vendor_slug": "summit-ridge",
+  "vendor_tax_id_last4": "7285",
+  "visible_instructions": [],
+  "work_order_number": "WO-1210",
+  "work_order_printed": "WO-1210"
+ }
+}

@@ -1,0 +1,276 @@
+{
+ "as_of": "2026-10-20",
+ "note": "Evaluate with today = as_of. Board: 18 ReadyToPay, 4 NeedsReview, 3 Flagged.",
+ "board": {
+  "Flagged": 3,
+  "NeedsReview": 4,
+  "ReadyToPay": 18
+ },
+ "files": [
+  {
+   "filename": "01-bluejay-MR9200-scan.jpg",
+   "mime": "image/jpeg",
+   "sha256": "3e638fce128aa6870414af542df40eb699de7fa6694e5133c197af4d992e512d",
+   "medium": "scanned",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-011"
+  },
+  {
+   "filename": "02-clearpane-INV05000-photo.jpg",
+   "mime": "image/jpeg",
+   "sha256": "743373631e0b426f398341eb5f6fe6969097d9df4fb744ed4f7c08d8661c63c4",
+   "medium": "photo",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-016"
+  },
+  {
+   "filename": "03-thistledown-INV-4000-handwritten.jpg",
+   "mime": "image/jpeg",
+   "sha256": "a35d61dccf9139931a251608a3fcaf4f5289722bb82fe81444898d03ec9733d7",
+   "medium": "handwritten",
+   "status": "NeedsReview",
+   "headline": "Total unreadable: please confirm",
+   "rules": {
+    "R9": "review"
+   },
+   "gold_id": "demo-020"
+  },
+  {
+   "filename": "04-voltwise-5200-B-scan.pdf",
+   "mime": "application/pdf",
+   "sha256": "f0229f9db706a7f4634f48bc5d7f5a7ec842819d4003c3d0d92a3a55daf7bcca",
+   "medium": "scanned",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-010"
+  },
+  {
+   "filename": "05-greenwhistle-MR2700-photo.jpg",
+   "mime": "image/jpeg",
+   "sha256": "fe18b897e56390d20a640326ac064ad57b89d72dbcd4658548f7a6e404970ff8",
+   "medium": "photo",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-014"
+  },
+  {
+   "filename": "06-brushstroke-INV07400-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "1e8d4da6f11b45d7c9f1bad217ff97453b15c709cff15b027538185516ebdc3b",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-001"
+  },
+  {
+   "filename": "07-oakhollow-A-7500-handwritten.pdf",
+   "mime": "application/pdf",
+   "sha256": "3c7ece8e7b3bf97b0d516434299a09a32d2e32a76c5e48d994030bb153055a39",
+   "medium": "handwritten",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-018"
+  },
+  {
+   "filename": "08-handy-heron-26-7200-handwritten.jpg",
+   "mime": "image/jpeg",
+   "sha256": "127975580715454e6104cec3d7b05e2abff9eaab7fe37d46d41d907eafd6ff48",
+   "medium": "handwritten",
+   "status": "NeedsReview",
+   "headline": "Total unreadable: please confirm",
+   "rules": {
+    "R9": "review"
+   },
+   "gold_id": "demo-019"
+  },
+  {
+   "filename": "09-downspout-MR6500-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "9fb0ef013f43dbb10e4dac978ec452f5cf43e825e8644a2c50deab160cd23307",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-007"
+  },
+  {
+   "filename": "10-rapid-rooter-INV-2240-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "eb279485b5ee60c538649382c011077935e3ab3795eeef251e8786022edbdb26",
+   "medium": "native",
+   "status": "NeedsReview",
+   "headline": "$340.00 over approved estimate for Unit 12B (WO-1187)",
+   "rules": {
+    "R3": "review"
+   },
+   "gold_id": "demo-021"
+  },
+  {
+   "filename": "11-marigold-1043-scan.jpg",
+   "mime": "image/jpeg",
+   "sha256": "b334f89ad51b5a8f8d156d37d26b3223771cf9ada9c9d2a6d931e65e6650be86",
+   "medium": "scanned",
+   "status": "NeedsReview",
+   "headline": "New vendor: Marigold Mobile Welding is not in the vendor list",
+   "rules": {
+    "R1": "review",
+    "R2": "review"
+   },
+   "gold_id": "demo-022"
+  },
+  {
+   "filename": "12-frostline-SR-7900-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "e8ce41bba29a059631c1972d9ecb6bf6d7a308342015ec15ee4ed61e3d9927df",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-004"
+  },
+  {
+   "filename": "13-kettle-creek-A-3600-photo.jpg",
+   "mime": "image/jpeg",
+   "sha256": "44305f71349eaabafc834fb1f92476ea4dd51c5e348062ecc6f4fc00b340a997",
+   "medium": "photo",
+   "status": "Flagged",
+   "headline": "Hidden instruction detected: attempted bank-account change, blocked",
+   "rules": {
+    "R10": "flag"
+   },
+   "gold_id": "demo-025"
+  },
+  {
+   "filename": "14-tumbler-INV-7400-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "865aa918438d75b3974d825dc0402157a0887d15baa62d0b58d9ec64bfb4886c",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-002"
+  },
+  {
+   "filename": "15-ironwood-SR-5200-scan.pdf",
+   "mime": "application/pdf",
+   "sha256": "18effd6cf9300a864334265304e5a90da2929bef13e4f167b20518e72887546c",
+   "medium": "scanned",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-009"
+  },
+  {
+   "filename": "16-summit-ridge-26-2700-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "443d4b892a1f5eb5bfa23fd67c172039a8dc30bafc0876feb28bb899d16db24b",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-003"
+  },
+  {
+   "filename": "17-mossgate-26-6900-photo.jpg",
+   "mime": "image/jpeg",
+   "sha256": "d11be388f57df4a8727d94c7f2f8c2806d9207839a038d0df30b2990fbd9f899",
+   "medium": "photo",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-017"
+  },
+  {
+   "filename": "18-ember-hearth-2900-B-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "1bc40b7219d4072c64a9bb4d171cbd4b4e31e5a14c7c4bdc032ed503d1eb73e7",
+   "medium": "native",
+   "status": "Flagged",
+   "headline": "Hidden instruction detected: attempted bank-account change, blocked",
+   "rules": {
+    "R10": "flag"
+   },
+   "gold_id": "demo-024"
+  },
+  {
+   "filename": "19-quillfeather-3600-B-scan.jpg",
+   "mime": "image/jpeg",
+   "sha256": "0eebbec93ec900d40706326534734f977a176a2ee61484911e9dc858e63e9e91",
+   "medium": "scanned",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-013"
+  },
+  {
+   "filename": "20-antwhisper-4100-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "089fca80f28bc1cdb83bcc73901fa40eb217a06afb9226a3eb2882ac8fe0348d",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-006"
+  },
+  {
+   "filename": "21-rapid-rooter-INV-2236-photo.jpg",
+   "mime": "image/jpeg",
+   "sha256": "879878d45a406faae528eb49233d9f5446bcbd5047c8f644ce6b9659a15e3ea8",
+   "medium": "photo",
+   "status": "Flagged",
+   "headline": "Duplicate of INV-2231 (same vendor, amount, week)",
+   "rules": {
+    "R4": "flag"
+   },
+   "gold_id": "demo-023"
+  },
+  {
+   "filename": "22-sparkvale-SR-1600-photo.jpg",
+   "mime": "image/jpeg",
+   "sha256": "2d31d2d7948c81736d31529a70243eea0cd6718e0131e3526bb20852c2a23ede",
+   "medium": "photo",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-015"
+  },
+  {
+   "filename": "23-pinecone-INV07000-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "976c14bcbbd539a90e4460b2c6f44077e3cbcfb5c710128640d1c8a981acb6ee",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-008"
+  },
+  {
+   "filename": "24-stonebridge-7100-scan.jpg",
+   "mime": "image/jpeg",
+   "sha256": "b1ea5ee39af24be0d85a448b6ba6bd14eea5ca611cc00b2a03018e8dc57799aa",
+   "medium": "scanned",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-012"
+  },
+  {
+   "filename": "25-copperleaf-A-3600-pdf.pdf",
+   "mime": "application/pdf",
+   "sha256": "d79fdd1d2f24d084b561f91c507845778a96d4fe84ffd0e47cd7c076f2f80ba3",
+   "medium": "native",
+   "status": "ReadyToPay",
+   "headline": "",
+   "rules": {},
+   "gold_id": "demo-005"
+  }
+ ]
+}

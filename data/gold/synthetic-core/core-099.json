@@ -1,0 +1,758 @@
+{
+ "augment": {
+  "blur": 0.8734160095039947,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 77.0,
+  "noise": 5.534852911831338,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    796,
+    418,
+    893,
+    433
+   ],
+   "page": 0,
+   "text": "2026-09-23"
+  },
+  "invoice_number": {
+   "box": [
+    825,
+    393,
+    893,
+    408
+   ],
+   "page": 0,
+   "text": "SR-1404"
+  },
+  "line_items.0.amount": {
+   "box": [
+    837,
+    572,
+    895,
+    586
+   ],
+   "page": 0,
+   "text": "365.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    310,
+    586,
+    498,
+    609
+   ],
+   "page": 0,
+   "text": "Move-out deep clean"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    720,
+    578,
+    728,
+    590
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    754,
+    575,
+    812,
+    589
+   ],
+   "page": 0,
+   "text": "365.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    837,
+    599,
+    895,
+    613
+   ],
+   "page": 0,
+   "text": "245.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    310,
+    613,
+    508,
+    637
+   ],
+   "page": 0,
+   "text": "Common area cleaning"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    720,
+    605,
+    728,
+    618
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    753,
+    602,
+    812,
+    616
+   ],
+   "page": 0,
+   "text": "245.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    847,
+    626,
+    895,
+    640
+   ],
+   "page": 0,
+   "text": "70.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    309,
+    638,
+    577,
+    664
+   ],
+   "page": 0,
+   "text": "Appliance interior cleaning"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    720,
+    633,
+    729,
+    645
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    763,
+    630,
+    812,
+    644
+   ],
+   "page": 0,
+   "text": "70.00"
+  },
+  "line_items.3.amount": {
+   "box": [
+    847,
+    654,
+    895,
+    668
+   ],
+   "page": 0,
+   "text": "50.00"
+  },
+  "line_items.3.description": {
+   "box": [
+    310,
+    667,
+    528,
+    692
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.3.quantity": {
+   "box": [
+    720,
+    660,
+    729,
+    673
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.3.unit_price": {
+   "box": [
+    764,
+    657,
+    812,
+    671
+   ],
+   "page": 0,
+   "text": "50.00"
+  },
+  "property_or_unit": {
+   "box": [
+    688,
+    466,
+    894,
+    489
+   ],
+   "page": 0,
+   "text": "Unit 205, Cedar Flats"
+  },
+  "subtotal": {
+   "box": [
+    838,
+    707,
+    896,
+    722
+   ],
+   "page": 0,
+   "text": "730.00"
+  },
+  "tax": {
+   "box": [
+    848,
+    732,
+    896,
+    746
+   ],
+   "page": 0,
+   "text": "60.22"
+  },
+  "total": {
+   "box": [
+    820,
+    757,
+    896,
+    776
+   ],
+   "page": 0,
+   "text": "814.22"
+  },
+  "vendor_address": {
+   "box": [
+    485,
+    291,
+    720,
+    335
+   ],
+   "page": 0,
+   "text": "1514 Christopher Prairie, Springfield, OR 97460"
+  },
+  "vendor_name": {
+   "box": [
+    428,
+    265,
+    775,
+    299
+   ],
+   "page": 0,
+   "text": "Sparkvale Cleaning Services"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    588,
+    352,
+    685,
+    367
+   ],
+   "page": 0,
+   "text": "00-0003128"
+  },
+  "work_order_number": {
+   "box": [
+    825,
+    443,
+    894,
+    457
+   ],
+   "page": 0,
+   "text": "WO 1108"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R5": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     796,
+     418,
+     893,
+     433
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-23"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     825,
+     393,
+     893,
+     408
+    ],
+    "word_ids": []
+   },
+   "value": "SR-1404"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       837,
+       572,
+       895,
+       586
+      ],
+      "word_ids": []
+     },
+     "value_cents": 36500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       310,
+       586,
+       498,
+       609
+      ],
+      "word_ids": []
+     },
+     "value": "Move-out deep clean"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       720,
+       578,
+       728,
+       590
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       754,
+       575,
+       812,
+       589
+      ],
+      "word_ids": []
+     },
+     "value_cents": 36500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       837,
+       599,
+       895,
+       613
+      ],
+      "word_ids": []
+     },
+     "value_cents": 24500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       310,
+       613,
+       508,
+       637
+      ],
+      "word_ids": []
+     },
+     "value": "Common area cleaning"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       720,
+       605,
+       728,
+       618
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       753,
+       602,
+       812,
+       616
+      ],
+      "word_ids": []
+     },
+     "value_cents": 24500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       847,
+       626,
+       895,
+       640
+      ],
+      "word_ids": []
+     },
+     "value_cents": 7000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       309,
+       638,
+       577,
+       664
+      ],
+      "word_ids": []
+     },
+     "value": "Appliance interior cleaning"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       720,
+       633,
+       729,
+       645
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       763,
+       630,
+       812,
+       644
+      ],
+      "word_ids": []
+     },
+     "value_cents": 7000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       847,
+       654,
+       895,
+       668
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       310,
+       667,
+       528,
+       692
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       720,
+       660,
+       729,
+       673
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       764,
+       657,
+       812,
+       671
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     688,
+     466,
+     894,
+     489
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 205, Cedar Flats"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     838,
+     707,
+     896,
+     722
+    ],
+    "word_ids": []
+   },
+   "value_cents": 73000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     848,
+     732,
+     896,
+     746
+    ],
+    "word_ids": []
+   },
+   "value_cents": 6022
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     820,
+     757,
+     896,
+     776
+    ],
+    "word_ids": []
+   },
+   "value_cents": 81422
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     485,
+     291,
+     720,
+     335
+    ],
+    "word_ids": []
+   },
+   "value": "1514 Christopher Prairie, Springfield, OR 97460"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     428,
+     265,
+     775,
+     299
+    ],
+    "word_ids": []
+   },
+   "value": "Sparkvale Cleaning Services"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     588,
+     352,
+     685,
+     367
+    ],
+    "word_ids": []
+   },
+   "value": "3128"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     825,
+     443,
+     894,
+     457
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1108"
+  }
+ },
+ "filename": "core-099.jpg",
+ "hidden_boxes": [],
+ "id": "core-099",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "86a6ee4306371d30e3eface87980ec2aa1d55dab796df9136e1b4e7a4ab453bb"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "c6dda189d625f9e7c72d29a726c70f7610c2c446aceba0ea667eccfda69073e7",
+ "split": "test",
+ "template": "compact",
+ "truth": {
+  "accent": "#3d3d3d",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "arithmetic"
+  ],
+  "doc_id": "core-099",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R5": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-23",
+  "invoice_number": "SR-1404",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 36500,
+    "description": "Move-out deep clean",
+    "quantity": "1",
+    "unit_price_cents": 36500
+   },
+   {
+    "amount_cents": 24500,
+    "description": "Common area cleaning",
+    "quantity": "1",
+    "unit_price_cents": 24500
+   },
+   {
+    "amount_cents": 7000,
+    "description": "Appliance interior cleaning",
+    "quantity": "1",
+    "unit_price_cents": 7000
+   },
+   {
+    "amount_cents": 5000,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 5000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 205, Cedar Flats",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 73000,
+  "tax_cents": 6022,
+  "tax_rate_bps": 825,
+  "template": "compact",
+  "total_cents": 81422,
+  "vendor_address": "1514 Christopher Prairie, Springfield, OR 97460",
+  "vendor_email": "billing@sparkvale.example",
+  "vendor_id": "966fb8f9-3ffa-5603-8a5d-ee218bef7536",
+  "vendor_name": "Sparkvale Cleaning Services",
+  "vendor_phone": "(541) 555-0116",
+  "vendor_slug": "sparkvale",
+  "vendor_tax_id_last4": "3128",
+  "visible_instructions": [],
+  "work_order_number": "WO-1108",
+  "work_order_printed": "WO 1108"
+ }
+}

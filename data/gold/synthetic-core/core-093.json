@@ -1,0 +1,641 @@
+{
+ "augment": {
+  "blur": 1.0835491307614618,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 88.0,
+  "noise": 5.189633598452226,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    169,
+    374,
+    220,
+    391
+   ],
+   "page": 0,
+   "text": "7/7/26"
+  },
+  "invoice_number": {
+   "box": [
+    945,
+    255,
+    1003,
+    276
+   ],
+   "page": 0,
+   "text": "6908"
+  },
+  "line_items.0.amount": {
+   "box": [
+    939,
+    517,
+    994,
+    535
+   ],
+   "page": 0,
+   "text": "240.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    174,
+    532,
+    321,
+    557
+   ],
+   "page": 0,
+   "text": "Seal retaining wall"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    665,
+    525,
+    672,
+    541
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    778,
+    521,
+    833,
+    538
+   ],
+   "page": 0,
+   "text": "240.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    925,
+    574,
+    994,
+    595
+   ],
+   "page": 0,
+   "text": "1,305.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    174,
+    588,
+    321,
+    612
+   ],
+   "page": 0,
+   "text": "Repoint brick wall"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    665,
+    581,
+    673,
+    597
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    764,
+    577,
+    833,
+    598
+   ],
+   "page": 0,
+   "text": "1,305.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    939,
+    631,
+    995,
+    648
+   ],
+   "page": 0,
+   "text": "695.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    174,
+    645,
+    343,
+    668
+   ],
+   "page": 0,
+   "text": "Repair concrete steps"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    665,
+    638,
+    673,
+    654
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    779,
+    634,
+    834,
+    651
+   ],
+   "page": 0,
+   "text": "695.00"
+  },
+  "property_or_unit": {
+   "box": [
+    602,
+    421,
+    848,
+    449
+   ],
+   "page": 0,
+   "text": "Unit C5, Birch Street Cottages"
+  },
+  "subtotal": {
+   "box": [
+    925,
+    816,
+    995,
+    837
+   ],
+   "page": 0,
+   "text": "2,240.00"
+  },
+  "tax": {
+   "box": [
+    960,
+    870,
+    996,
+    887
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    925,
+    924,
+    996,
+    944
+   ],
+   "page": 0,
+   "text": "2,240.00"
+  },
+  "vendor_address": {
+   "box": [
+    162,
+    286,
+    285,
+    322
+   ],
+   "page": 0,
+   "text": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "box": [
+    162,
+    250,
+    412,
+    287
+   ],
+   "page": 0,
+   "text": "Stonebridge Masonry"
+  },
+  "work_order_number": {
+   "box": [
+    601,
+    361,
+    682,
+    379
+   ],
+   "page": 0,
+   "text": "WO-1220"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R8": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     169,
+     374,
+     220,
+     391
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-07-07"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     945,
+     255,
+     1003,
+     276
+    ],
+    "word_ids": []
+   },
+   "value": "6908"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       939,
+       517,
+       994,
+       535
+      ],
+      "word_ids": []
+     },
+     "value_cents": 24000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       174,
+       532,
+       321,
+       557
+      ],
+      "word_ids": []
+     },
+     "value": "Seal retaining wall"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       665,
+       525,
+       672,
+       541
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       778,
+       521,
+       833,
+       538
+      ],
+      "word_ids": []
+     },
+     "value_cents": 24000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       925,
+       574,
+       994,
+       595
+      ],
+      "word_ids": []
+     },
+     "value_cents": 130500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       174,
+       588,
+       321,
+       612
+      ],
+      "word_ids": []
+     },
+     "value": "Repoint brick wall"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       665,
+       581,
+       673,
+       597
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       764,
+       577,
+       833,
+       598
+      ],
+      "word_ids": []
+     },
+     "value_cents": 130500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       939,
+       631,
+       995,
+       648
+      ],
+      "word_ids": []
+     },
+     "value_cents": 69500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       174,
+       645,
+       343,
+       668
+      ],
+      "word_ids": []
+     },
+     "value": "Repair concrete steps"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       665,
+       638,
+       673,
+       654
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       779,
+       634,
+       834,
+       651
+      ],
+      "word_ids": []
+     },
+     "value_cents": 69500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     602,
+     421,
+     848,
+     449
+    ],
+    "word_ids": []
+   },
+   "value": "Unit C5, Birch Street Cottages"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     925,
+     816,
+     995,
+     837
+    ],
+    "word_ids": []
+   },
+   "value_cents": 224000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     960,
+     870,
+     996,
+     887
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     925,
+     924,
+     996,
+     944
+    ],
+    "word_ids": []
+   },
+   "value_cents": 224000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     162,
+     286,
+     285,
+     322
+    ],
+    "word_ids": []
+   },
+   "value": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     162,
+     250,
+     412,
+     287
+    ],
+    "word_ids": []
+   },
+   "value": "Stonebridge Masonry"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     601,
+     361,
+     682,
+     379
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1220"
+  }
+ },
+ "filename": "core-093.jpg",
+ "hidden_boxes": [],
+ "id": "core-093",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "d0964afadafde906f4b48030cc37a4ab375a08643bd199b809c0ba911cc420a2"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "93fc317d80ebe4418fcc806d818799d1df04316d0e55a763b110cf2d0f2bf180",
+ "split": "test",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#0f6b6b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "stale_date"
+  ],
+  "doc_id": "core-093",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R8": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-07-07",
+  "invoice_number": "6908",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 24000,
+    "description": "Seal retaining wall",
+    "quantity": "1",
+    "unit_price_cents": 24000
+   },
+   {
+    "amount_cents": 130500,
+    "description": "Repoint brick wall",
+    "quantity": "1",
+    "unit_price_cents": 130500
+   },
+   {
+    "amount_cents": 69500,
+    "description": "Repair concrete steps",
+    "quantity": "1",
+    "unit_price_cents": 69500
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit C5, Birch Street Cottages",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 224000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 224000,
+  "vendor_address": "856 Juan Neck, Springfield, OR 97474",
+  "vendor_email": "billing@stonebridge.example",
+  "vendor_id": "04d3b8e2-c66d-5b7e-905c-50747ff8aca5",
+  "vendor_name": "Stonebridge Masonry",
+  "vendor_phone": "(541) 555-0127",
+  "vendor_slug": "stonebridge",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1220",
+  "work_order_printed": "WO-1220"
+ }
+}

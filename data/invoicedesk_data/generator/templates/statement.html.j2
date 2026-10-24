@@ -1,0 +1,41 @@
+{%- import "_macros.html.j2" as m -%}
+<!doctype html><html><head><meta charset="utf-8"><style>
+{{ base_css | safe }}
+body { font-family: "Carlito", "Liberation Sans", sans-serif; font-size: 13px; }
+.page { padding-top: {{ 44 + doc.top_pad }}px; }
+.hd { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
+.vn { font-size: 21px; font-weight: 700; color: {{ doc.accent }}; }
+.box { border: 1.5px solid {{ doc.accent }}; }
+.box td { border: 1px solid {{ doc.accent }}88; }
+.box .k { background: {{ doc.accent }}; color: #fff; font-size: 11px; text-transform: uppercase; width: 45%; }
+.items { margin-top: 24px; border: 1.5px solid {{ doc.accent }}; }
+.items th { background: {{ doc.accent }}; color: #fff; text-align: left; font-weight: 400; }
+.items td { border-bottom: 1px solid #ccc; }
+.items tr:nth-child(odd) td { background: #f6f6f6; }
+.right { width: 330px; margin-left: auto; margin-top: 12px; }
+.right td { border: 1px solid {{ doc.accent }}88; }
+.right .k { background: #eee; }
+.right .g2 td { font-weight: 700; font-size: 16px; background: {{ doc.accent }}22; }
+</style></head><body><div class="page">
+<div class="hd"><div><div class="vn">{{ m.g("vendor_name", doc.vendor_name) }}</div>
+{{ m.gblock("vendor_address", doc.address_lines, doc.vendor_address) }}
+<div>{{ doc.phone }} &middot; {{ doc.email }}</div>
+{% if doc.tax_id_printed %}<div>Tax ID {{ m.g("vendor_tax_id_last4", doc.tax_id_printed) }}</div>{% endif %}
+<div style="margin-top:16px"><b>Customer:</b> {{ doc.bill_to_name }}<br>{{ doc.bill_to_address }}</div></div>
+<table class="box">
+<tr><td class="k">Invoice / Statement</td><td>{{ m.g("invoice_number", doc.invoice_number) }}</td></tr>
+<tr><td class="k">Date</td><td>{{ m.g("invoice_date", doc.invoice_date) }}</td></tr>
+{% if doc.due_date %}<tr><td class="k">Due</td><td>{{ m.g("due_date", doc.due_date) }}</td></tr>{% endif %}
+{% if doc.wo %}<tr><td class="k">Work order</td><td>{{ m.g("work_order_number", doc.wo) }}</td></tr>{% endif %}
+{% if doc.unit %}<tr><td class="k">Property</td><td>{{ m.g("property_or_unit", doc.unit) }}</td></tr>{% endif %}
+</table></div>
+<table class="items"><tr><th>Description</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Ext.</th></tr>
+{{ m.line_rows(doc) }}</table>
+<table class="right">
+<tr><td class="k">Subtotal</td><td class="num">{{ m.g("subtotal", doc.subtotal) }}</td></tr>
+<tr><td class="k">{{ doc.tax_label }}</td><td class="num">{{ m.g("tax", doc.tax) }}</td></tr>
+<tr class="g2"><td>Total</td><td class="num">{{ m.g("total", doc.total) }}</td></tr>
+</table>
+{% if doc.remit %}<p style="margin-top:22px">{{ m.g("remit_to_bank_details", doc.remit) }}</p>{% endif %}
+{% for n in doc.notes %}<p class="small muted">{{ n }}</p>{% endfor %}
+</div>{{ m.adversarial(doc) }}</body></html>

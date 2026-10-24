@@ -1,0 +1,478 @@
+{
+ "augment": {
+  "angle": 0.5050709970536555,
+  "blur": 0.42067138479078736,
+  "capture": "scan",
+  "jpeg_quality": 85.0,
+  "noise": 4.480101828560792,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -1.796417654826108,
+  "ty": -7.052475027742751
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    858,
+    304,
+    958,
+    320
+   ],
+   "page": 0,
+   "text": "09/12/2026"
+  },
+  "invoice_date": {
+   "box": [
+    858,
+    272,
+    957,
+    288
+   ],
+   "page": 0,
+   "text": "08/13/2026"
+  },
+  "invoice_number": {
+   "box": [
+    859,
+    241,
+    940,
+    256
+   ],
+   "page": 0,
+   "text": "INV-2501"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1057,
+    488,
+    1129,
+    507
+   ],
+   "page": 0,
+   "text": "$225.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    99,
+    495,
+    394,
+    517
+   ],
+   "page": 0,
+   "text": "Replace toilet wax ring and flange"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    760,
+    492,
+    770,
+    507
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    875,
+    490,
+    947,
+    508
+   ],
+   "page": 0,
+   "text": "$225.00"
+  },
+  "property_or_unit": {
+   "box": [
+    860,
+    368,
+    923,
+    383
+   ],
+   "page": 0,
+   "text": "Unit A2"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    106,
+    706,
+    1026,
+    732
+   ],
+   "page": 0,
+   "text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "box": [
+    1058,
+    546,
+    1130,
+    565
+   ],
+   "page": 0,
+   "text": "$225.00"
+  },
+  "tax": {
+   "box": [
+    1069,
+    581,
+    1129,
+    599
+   ],
+   "page": 0,
+   "text": "$16.31"
+  },
+  "total": {
+   "box": [
+    1036,
+    619,
+    1130,
+    642
+   ],
+   "page": 0,
+   "text": "$241.31"
+  },
+  "vendor_address": {
+   "box": [
+    96,
+    193,
+    290,
+    237
+   ],
+   "page": 0,
+   "text": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "box": [
+    84,
+    30,
+    625,
+    73
+   ],
+   "page": 0,
+   "text": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    149,
+    239,
+    237,
+    253
+   ],
+   "page": 0,
+   "text": "00-0004821"
+  },
+  "work_order_number": {
+   "box": [
+    859,
+    337,
+    942,
+    352
+   ],
+   "page": 0,
+   "text": "WO-1126"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     858,
+     304,
+     958,
+     320
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-12"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     858,
+     272,
+     957,
+     288
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-13"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     859,
+     241,
+     940,
+     256
+    ],
+    "word_ids": []
+   },
+   "value": "INV-2501"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1057,
+       488,
+       1129,
+       507
+      ],
+      "word_ids": []
+     },
+     "value_cents": 22500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       99,
+       495,
+       394,
+       517
+      ],
+      "word_ids": []
+     },
+     "value": "Replace toilet wax ring and flange"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       760,
+       492,
+       770,
+       507
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       875,
+       490,
+       947,
+       508
+      ],
+      "word_ids": []
+     },
+     "value_cents": 22500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     860,
+     368,
+     923,
+     383
+    ],
+    "word_ids": []
+   },
+   "value": "Unit A2"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     106,
+     706,
+     1026,
+     732
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1058,
+     546,
+     1130,
+     565
+    ],
+    "word_ids": []
+   },
+   "value_cents": 22500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1069,
+     581,
+     1129,
+     599
+    ],
+    "word_ids": []
+   },
+   "value_cents": 1631
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1036,
+     619,
+     1130,
+     642
+    ],
+    "word_ids": []
+   },
+   "value_cents": 24131
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     96,
+     193,
+     290,
+     237
+    ],
+    "word_ids": []
+   },
+   "value": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     84,
+     30,
+     625,
+     73
+    ],
+    "word_ids": []
+   },
+   "value": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     149,
+     239,
+     237,
+     253
+    ],
+    "word_ids": []
+   },
+   "value": "4821"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     859,
+     337,
+     942,
+     352
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1126"
+  }
+ },
+ "filename": "core-067.jpg",
+ "hidden_boxes": [],
+ "id": "core-067",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "6195ca3de196171aabb8a2ac3531c088616a324a1a643b5459453b1321d50beb"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "948a07c9deda8a07c1c6ce4264b67132b87923c64b9674961610ca0a9c0d1dbb",
+ "split": "test",
+ "template": "trades",
+ "truth": {
+  "accent": "#1f4e79",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-067",
+  "doc_type": "invoice",
+  "due_date": "2026-09-12",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-13",
+  "invoice_number": "INV-2501",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 22500,
+    "description": "Replace toilet wax ring and flange",
+    "quantity": "1",
+    "unit_price_cents": 22500
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit A2",
+  "remit_text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 22500,
+  "tax_cents": 1631,
+  "tax_rate_bps": 725,
+  "template": "trades",
+  "total_cents": 24131,
+  "vendor_address": "118 Alder Way, Springfield, OR 97477",
+  "vendor_email": "billing@rapidrooter.example",
+  "vendor_id": "cb828b2b-5dfc-5147-b209-1c638ffac3c7",
+  "vendor_name": "Rapid Rooter Plumbing LLC",
+  "vendor_phone": "(541) 555-0110",
+  "vendor_slug": "rapid-rooter",
+  "vendor_tax_id_last4": "4821",
+  "visible_instructions": [],
+  "work_order_number": "WO-1126",
+  "work_order_printed": "WO-1126"
+ }
+}

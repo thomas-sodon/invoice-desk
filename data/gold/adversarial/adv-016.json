@@ -1,0 +1,581 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    898,
+    648,
+    986,
+    661
+   ],
+   "page": 0,
+   "text": "11/09/2026"
+  },
+  "invoice_date": {
+   "box": [
+    898,
+    593,
+    987,
+    606
+   ],
+   "page": 0,
+   "text": "10/10/2026"
+  },
+  "invoice_number": {
+   "box": [
+    898,
+    566,
+    972,
+    579
+   ],
+   "page": 0,
+   "text": "INV-9102"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1068,
+    778,
+    1133,
+    793
+   ],
+   "page": 0,
+   "text": "$135.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    779,
+    276,
+    792
+   ],
+   "page": 0,
+   "text": "Reseal window frame"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    742,
+    779,
+    751,
+    792
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    876,
+    779,
+    941,
+    793
+   ],
+   "page": 0,
+   "text": "$135.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1068,
+    819,
+    1133,
+    834
+   ],
+   "page": 0,
+   "text": "$295.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    104,
+    820,
+    341,
+    837
+   ],
+   "page": 0,
+   "text": "Replace broken window pane"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    742,
+    820,
+    751,
+    833
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    876,
+    820,
+    941,
+    834
+   ],
+   "page": 0,
+   "text": "$295.00"
+  },
+  "property_or_unit": {
+   "box": [
+    450,
+    493,
+    518,
+    506
+   ],
+   "page": 0,
+   "text": "Unit 12A"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    92,
+    1014,
+    984,
+    1031
+   ],
+   "page": 0,
+   "text": "Remit to: C0pperleaf Heating & Air, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040002"
+  },
+  "subtotal": {
+   "box": [
+    1071,
+    877,
+    1136,
+    892
+   ],
+   "page": 0,
+   "text": "$430.00"
+  },
+  "tax": {
+   "box": [
+    1091,
+    908,
+    1136,
+    922
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1049,
+    940,
+    1136,
+    960
+   ],
+   "page": 0,
+   "text": "$430.00"
+  },
+  "vendor_address": {
+   "box": [
+    92,
+    346,
+    273,
+    384
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    92,
+    315,
+    411,
+    341
+   ],
+   "page": 0,
+   "text": "C0pperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    127,
+    410,
+    223,
+    423
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    897,
+    675,
+    973,
+    688
+   ],
+   "page": 0,
+   "text": "WO 1237"
+  }
+ },
+ "category": "lookalike_letterhead",
+ "description": "Lookalike letterhead: digit zero for the letter O in 'Copperleaf'",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R1": "flag",
+   "R6": "flag"
+  },
+  "status": "Flagged"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     648,
+     986,
+     661
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-09"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     593,
+     987,
+     606
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-10"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     566,
+     972,
+     579
+    ],
+    "word_ids": []
+   },
+   "value": "INV-9102"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       778,
+       1133,
+       793
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       779,
+       276,
+       792
+      ],
+      "word_ids": []
+     },
+     "value": "Reseal window frame"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       742,
+       779,
+       751,
+       792
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       876,
+       779,
+       941,
+       793
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       819,
+       1133,
+       834
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       820,
+       341,
+       837
+      ],
+      "word_ids": []
+     },
+     "value": "Replace broken window pane"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       742,
+       820,
+       751,
+       833
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       876,
+       820,
+       941,
+       834
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     450,
+     493,
+     518,
+     506
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 12A"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     1014,
+     984,
+     1031
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: C0pperleaf Heating & Air, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040002"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1071,
+     877,
+     1136,
+     892
+    ],
+    "word_ids": []
+   },
+   "value_cents": 43000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1091,
+     908,
+     1136,
+     922
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1049,
+     940,
+     1136,
+     960
+    ],
+    "word_ids": []
+   },
+   "value_cents": 43000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     346,
+     273,
+     384
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     315,
+     411,
+     341
+    ],
+    "word_ids": []
+   },
+   "value": "C0pperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     410,
+     223,
+     423
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     675,
+     973,
+     688
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1237"
+  }
+ },
+ "filename": "adv-016.pdf",
+ "hidden_boxes": [],
+ "id": "adv-016",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "05236a2c2382a9b8af52fa608ae66baa03dca8fb08fd337d2ddae2efafd009b7"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "e08e8bcc6781d8bba1ea502d405d66e82fe1717db5060b80c0d602782bf28a48",
+ "split": "adversarial",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "lookalike_letterhead"
+  ],
+  "doc_id": "adv-016",
+  "doc_type": "invoice",
+  "due_date": "2026-11-09",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R1": "flag",
+    "R6": "flag"
+   },
+   "status": "Flagged"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-10",
+  "invoice_number": "INV-9102",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 13500,
+    "description": "Reseal window frame",
+    "quantity": "1",
+    "unit_price_cents": 13500
+   },
+   {
+    "amount_cents": 29500,
+    "description": "Replace broken window pane",
+    "quantity": "1",
+    "unit_price_cents": 29500
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 12A",
+  "remit_text": "Remit to: C0pperleaf Heating & Air, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040002",
+  "set_name": "adversarial",
+  "subtotal_cents": 43000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "quickbooks",
+  "total_cents": 43000,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": null,
+  "vendor_id": null,
+  "vendor_name": "C0pperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": null,
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1237",
+  "work_order_printed": "WO 1237"
+ }
+}

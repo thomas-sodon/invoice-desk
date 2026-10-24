@@ -1,0 +1,566 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    236,
+    400,
+    405,
+    420
+   ],
+   "page": 0,
+   "text": "September 29, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    228,
+    377,
+    368,
+    396
+   ],
+   "page": 0,
+   "text": "August 30, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    260,
+    353,
+    290,
+    367
+   ],
+   "page": 0,
+   "text": "343"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1045,
+    600,
+    1113,
+    617
+   ],
+   "page": 0,
+   "text": "$650.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    123,
+    600,
+    229,
+    615
+   ],
+   "page": 0,
+   "text": "HVAC labor"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    697,
+    601,
+    705,
+    615
+   ],
+   "page": 0,
+   "text": "5"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    841,
+    600,
+    909,
+    617
+   ],
+   "page": 0,
+   "text": "$130.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1045,
+    644,
+    1113,
+    661
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    123,
+    644,
+    344,
+    664
+   ],
+   "page": 0,
+   "text": "Furnace tune-up and filter"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    697,
+    645,
+    705,
+    659
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    841,
+    644,
+    909,
+    661
+   ],
+   "page": 0,
+   "text": "$205.00"
+  },
+  "property_or_unit": {
+   "box": [
+    194,
+    449,
+    493,
+    469
+   ],
+   "page": 0,
+   "text": "Unit 11A, Maple Court Apartments"
+  },
+  "subtotal": {
+   "box": [
+    1045,
+    688,
+    1113,
+    705
+   ],
+   "page": 0,
+   "text": "$855.00"
+  },
+  "tax": {
+   "box": [
+    1056,
+    731,
+    1113,
+    749
+   ],
+   "page": 0,
+   "text": "$61.99"
+  },
+  "total": {
+   "box": [
+    1045,
+    776,
+    1113,
+    793
+   ],
+   "page": 0,
+   "text": "$916.99"
+  },
+  "vendor_address": {
+   "box": [
+    522,
+    167,
+    715,
+    211
+   ],
+   "page": 0,
+   "text": "66 Millrace Court, Springfield, OR 97478"
+  },
+  "vendor_name": {
+   "box": [
+    404,
+    117,
+    834,
+    156
+   ],
+   "page": 0,
+   "text": "Quartzline Countertops"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    637,
+    241,
+    738,
+    255
+   ],
+   "page": 0,
+   "text": "00-0001507"
+  },
+  "work_order_number": {
+   "box": [
+    221,
+    425,
+    303,
+    439
+   ],
+   "page": 0,
+   "text": "WO 1155"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R1": "review",
+   "R2": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     236,
+     400,
+     405,
+     420
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-29"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     228,
+     377,
+     368,
+     396
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-30"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     260,
+     353,
+     290,
+     367
+    ],
+    "word_ids": []
+   },
+   "value": "343"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1045,
+       600,
+       1113,
+       617
+      ],
+      "word_ids": []
+     },
+     "value_cents": 65000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       123,
+       600,
+       229,
+       615
+      ],
+      "word_ids": []
+     },
+     "value": "HVAC labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       697,
+       601,
+       705,
+       615
+      ],
+      "word_ids": []
+     },
+     "value": "5"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       841,
+       600,
+       909,
+       617
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1045,
+       644,
+       1113,
+       661
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       123,
+       644,
+       344,
+       664
+      ],
+      "word_ids": []
+     },
+     "value": "Furnace tune-up and filter"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       697,
+       645,
+       705,
+       659
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       841,
+       644,
+       909,
+       661
+      ],
+      "word_ids": []
+     },
+     "value_cents": 20500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     194,
+     449,
+     493,
+     469
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 11A, Maple Court Apartments"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1045,
+     688,
+     1113,
+     705
+    ],
+    "word_ids": []
+   },
+   "value_cents": 85500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1056,
+     731,
+     1113,
+     749
+    ],
+    "word_ids": []
+   },
+   "value_cents": 6199
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1045,
+     776,
+     1113,
+     793
+    ],
+    "word_ids": []
+   },
+   "value_cents": 91699
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     522,
+     167,
+     715,
+     211
+    ],
+    "word_ids": []
+   },
+   "value": "66 Millrace Court, Springfield, OR 97478"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     404,
+     117,
+     834,
+     156
+    ],
+    "word_ids": []
+   },
+   "value": "Quartzline Countertops"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     637,
+     241,
+     738,
+     255
+    ],
+    "word_ids": []
+   },
+   "value": "1507"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     221,
+     425,
+     303,
+     439
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1155"
+  }
+ },
+ "filename": "core-025.pdf",
+ "hidden_boxes": [],
+ "id": "core-025",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "b472bb6a83d2da67b31f729363e7925b83e4c45a465b325371c5d6201bc00fc9"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "745653549f3f0d9d59ffa9faf1b827c1b0d264588a3baf5f947885dee7e4d24a",
+ "split": "dev",
+ "template": "word",
+ "truth": {
+  "accent": "#444444",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "new_vendor"
+  ],
+  "doc_id": "core-025",
+  "doc_type": "invoice",
+  "due_date": "2026-09-29",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R1": "review",
+    "R2": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-30",
+  "invoice_number": "343",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 65000,
+    "description": "HVAC labor",
+    "quantity": "5",
+    "unit_price_cents": 13000
+   },
+   {
+    "amount_cents": 20500,
+    "description": "Furnace tune-up and filter",
+    "quantity": "1",
+    "unit_price_cents": 20500
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 11A, Maple Court Apartments",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 85500,
+  "tax_cents": 6199,
+  "tax_rate_bps": 725,
+  "template": "word",
+  "total_cents": 91699,
+  "vendor_address": "66 Millrace Court, Springfield, OR 97478",
+  "vendor_email": null,
+  "vendor_id": null,
+  "vendor_name": "Quartzline Countertops",
+  "vendor_phone": "(541) 555-0199",
+  "vendor_slug": null,
+  "vendor_tax_id_last4": "1507",
+  "visible_instructions": [],
+  "work_order_number": "WO-1155",
+  "work_order_printed": "WO 1155"
+ }
+}

@@ -1,0 +1,469 @@
+{
+ "augment": {
+  "blur": 1.233053094892377,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 77.0,
+  "noise": 5.728090700931504,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    180,
+    410,
+    260,
+    444
+   ],
+   "page": 0,
+   "text": "9/17/26"
+  },
+  "invoice_number": {
+   "box": [
+    906,
+    311,
+    1010,
+    331
+   ],
+   "page": 0,
+   "text": "26-7005"
+  },
+  "line_items.0.amount": {
+   "box": [
+    943,
+    570,
+    1014,
+    600
+   ],
+   "page": 0,
+   "text": "110.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    187,
+    570,
+    384,
+    600
+   ],
+   "page": 0,
+   "text": "Rehang interior door"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    683,
+    574,
+    702,
+    601
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    782,
+    571,
+    854,
+    601
+   ],
+   "page": 0,
+   "text": "110.00"
+  },
+  "property_or_unit": {
+   "box": [
+    620,
+    471,
+    700,
+    501
+   ],
+   "page": 0,
+   "text": "Unit C2"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    177,
+    1022,
+    816,
+    1038
+   ],
+   "page": 0,
+   "text": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100"
+  },
+  "subtotal": {
+   "box": [
+    948,
+    860,
+    1015,
+    889
+   ],
+   "page": 0,
+   "text": "110.00"
+  },
+  "tax": {
+   "box": [
+    974,
+    917,
+    1020,
+    943
+   ],
+   "page": 0,
+   "text": "7.98"
+  },
+  "total": {
+   "box": [
+    950,
+    968,
+    1019,
+    994
+   ],
+   "page": 0,
+   "text": "117.98"
+  },
+  "vendor_address": {
+   "box": [
+    161,
+    324,
+    288,
+    356
+   ],
+   "page": 0,
+   "text": "5999 Davis Fields, Springfield, OR 97445"
+  },
+  "vendor_name": {
+   "box": [
+    160,
+    291,
+    487,
+    321
+   ],
+   "page": 0,
+   "text": "Handy Heron Home Repair"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    301,
+    357,
+    368,
+    369
+   ],
+   "page": 0,
+   "text": "00-0004184"
+  },
+  "work_order_number": {
+   "box": [
+    616,
+    408,
+    713,
+    437
+   ],
+   "page": 0,
+   "text": "WO 1939"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R2": "review",
+   "R3": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": true,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     180,
+     410,
+     260,
+     444
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-17"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     906,
+     311,
+     1010,
+     331
+    ],
+    "word_ids": []
+   },
+   "value": "26-7005"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       943,
+       570,
+       1014,
+       600
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       187,
+       570,
+       384,
+       600
+      ],
+      "word_ids": []
+     },
+     "value": "Rehang interior door"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       683,
+       574,
+       702,
+       601
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       782,
+       571,
+       854,
+       601
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     620,
+     471,
+     700,
+     501
+    ],
+    "word_ids": []
+   },
+   "value": "Unit C2"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     177,
+     1022,
+     816,
+     1038
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     948,
+     860,
+     1015,
+     889
+    ],
+    "word_ids": []
+   },
+   "value_cents": 11000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     974,
+     917,
+     1020,
+     943
+    ],
+    "word_ids": []
+   },
+   "value_cents": 798
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     950,
+     968,
+     1019,
+     994
+    ],
+    "word_ids": []
+   },
+   "value_cents": 11798
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     161,
+     324,
+     288,
+     356
+    ],
+    "word_ids": []
+   },
+   "value": "5999 Davis Fields, Springfield, OR 97445"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     160,
+     291,
+     487,
+     321
+    ],
+    "word_ids": []
+   },
+   "value": "Handy Heron Home Repair"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     301,
+     357,
+     368,
+     369
+    ],
+    "word_ids": []
+   },
+   "value": "4184"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     616,
+     408,
+     713,
+     437
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1939"
+  }
+ },
+ "filename": "core-110.jpg",
+ "hidden_boxes": [],
+ "id": "core-110",
+ "medium": "handwritten",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "2b489cf2ffbda4d3cb738ae913dfd6114156b05a3a326803370f68ff0b0b742b"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "ccbf987e00373b4f1d28eac763657dc3689cf57bd3e6acca1309de9a858ea87f",
+ "split": "test",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#7b2d26",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "unknown_wo"
+  ],
+  "doc_id": "core-110",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R2": "review",
+    "R3": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": true,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-17",
+  "invoice_number": "26-7005",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 11000,
+    "description": "Rehang interior door",
+    "quantity": "1",
+    "unit_price_cents": 11000
+   }
+  ],
+  "medium": "handwritten",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit C2",
+  "remit_text": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 11000,
+  "tax_cents": 798,
+  "tax_rate_bps": 725,
+  "template": "carbon_copy",
+  "total_cents": 11798,
+  "vendor_address": "5999 Davis Fields, Springfield, OR 97445",
+  "vendor_email": "billing@handyheron.example",
+  "vendor_id": "dafc6a29-95f4-5b23-896d-5e48970f1dfd",
+  "vendor_name": "Handy Heron Home Repair",
+  "vendor_phone": "(541) 555-0121",
+  "vendor_slug": "handy-heron",
+  "vendor_tax_id_last4": "4184",
+  "visible_instructions": [],
+  "work_order_number": "WO-1939",
+  "work_order_printed": "WO 1939"
+ }
+}

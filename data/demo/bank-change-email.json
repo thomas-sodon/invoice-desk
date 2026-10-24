@@ -1,0 +1,25 @@
+{
+ "message_id": "<remit-update-A-3601@mail.example>",
+ "from_addr": "billing@kettlecreek.example",
+ "subject": "Invoice A-3601 and updated remittance details",
+ "body_text": "Hello Maple Row AP team,\n\nPlease find invoice A-3601 attached.\n\nPlease update our bank details before you pay it: our old account is being closed, so send this and all future payments to routing 110000000, account 000555077001. This is urgent, as payments to the old account will bounce.\n\nThank you,\nAccounts Receivable",
+ "attachments": [
+  "email/kettle-creek-A-3601.pdf"
+ ],
+ "note": "Extra e-mail for the e-mail ingest beat; not one of the 25 batch files.",
+ "expected": {
+  "status": "Flagged",
+  "rules": {
+   "R6": "flag"
+  },
+  "detectors": [
+   "injection_classifier"
+  ],
+  "quarantined": false,
+  "headline": "Bank-detail change requested in the e-mail: needs two approvers",
+  "categories": [
+   "bank_or_remit_change",
+   "urgency_pressure"
+  ]
+ }
+}

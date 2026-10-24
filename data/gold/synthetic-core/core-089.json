@@ -1,0 +1,782 @@
+{
+ "augment": {
+  "blur": 1.2436693134077577,
+  "capture": "photo",
+  "crumple": 0.0,
+  "jpeg_quality": 81.0,
+  "noise": 4.322848962647129,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    261,
+    579,
+    376,
+    598
+   ],
+   "page": 0,
+   "text": "October 1, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    256,
+    558,
+    390,
+    578
+   ],
+   "page": 0,
+   "text": "September 1, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    280,
+    537,
+    339,
+    551
+   ],
+   "page": 0,
+   "text": "26-7001"
+  },
+  "line_items.0.amount": {
+   "box": [
+    938,
+    763,
+    994,
+    779
+   ],
+   "page": 0,
+   "text": "$115.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    167,
+    758,
+    391,
+    774
+   ],
+   "page": 0,
+   "text": "Install towel bars and hardware"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    673,
+    762,
+    680,
+    775
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    781,
+    761,
+    838,
+    778
+   ],
+   "page": 0,
+   "text": "$115.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    937,
+    802,
+    994,
+    818
+   ],
+   "page": 0,
+   "text": "$475.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    168,
+    797,
+    288,
+    817
+   ],
+   "page": 0,
+   "text": "Handyman labor"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    673,
+    801,
+    681,
+    815
+   ],
+   "page": 0,
+   "text": "5"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    790,
+    800,
+    838,
+    817
+   ],
+   "page": 0,
+   "text": "$95.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    937,
+    841,
+    995,
+    857
+   ],
+   "page": 0,
+   "text": "$125.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    168,
+    837,
+    318,
+    856
+   ],
+   "page": 0,
+   "text": "Rehang interior door"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    674,
+    840,
+    681,
+    854
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    781,
+    840,
+    838,
+    856
+   ],
+   "page": 0,
+   "text": "$125.00"
+  },
+  "line_items.3.amount": {
+   "box": [
+    947,
+    879,
+    995,
+    896
+   ],
+   "page": 0,
+   "text": "$47.00"
+  },
+  "line_items.3.description": {
+   "box": [
+    168,
+    876,
+    329,
+    896
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.3.quantity": {
+   "box": [
+    674,
+    879,
+    681,
+    893
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.3.unit_price": {
+   "box": [
+    790,
+    878,
+    839,
+    895
+   ],
+   "page": 0,
+   "text": "$47.00"
+  },
+  "property_or_unit": {
+   "box": [
+    226,
+    623,
+    252,
+    637
+   ],
+   "page": 0,
+   "text": "205"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    159,
+    1057,
+    981,
+    1078
+   ],
+   "page": 0,
+   "text": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100"
+  },
+  "subtotal": {
+   "box": [
+    938,
+    919,
+    995,
+    935
+   ],
+   "page": 0,
+   "text": "$762.00"
+  },
+  "tax": {
+   "box": [
+    947,
+    957,
+    995,
+    974
+   ],
+   "page": 0,
+   "text": "$55.24"
+  },
+  "total": {
+   "box": [
+    938,
+    996,
+    996,
+    1012
+   ],
+   "page": 0,
+   "text": "$817.24"
+  },
+  "vendor_address": {
+   "box": [
+    499,
+    373,
+    661,
+    416
+   ],
+   "page": 0,
+   "text": "5999 Davis Fields, Springfield, OR 97445"
+  },
+  "vendor_name": {
+   "box": [
+    369,
+    327,
+    789,
+    368
+   ],
+   "page": 0,
+   "text": "Handy Heron Home Repair"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    596,
+    440,
+    682,
+    454
+   ],
+   "page": 0,
+   "text": "00-0004184"
+  },
+  "work_order_number": {
+   "box": [
+    249,
+    602,
+    319,
+    616
+   ],
+   "page": 0,
+   "text": "WO 1256"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     261,
+     579,
+     376,
+     598
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-01"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     256,
+     558,
+     390,
+     578
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-01"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     280,
+     537,
+     339,
+     551
+    ],
+    "word_ids": []
+   },
+   "value": "26-7001"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       938,
+       763,
+       994,
+       779
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       167,
+       758,
+       391,
+       774
+      ],
+      "word_ids": []
+     },
+     "value": "Install towel bars and hardware"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       673,
+       762,
+       680,
+       775
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       781,
+       761,
+       838,
+       778
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       937,
+       802,
+       994,
+       818
+      ],
+      "word_ids": []
+     },
+     "value_cents": 47500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       168,
+       797,
+       288,
+       817
+      ],
+      "word_ids": []
+     },
+     "value": "Handyman labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       673,
+       801,
+       681,
+       815
+      ],
+      "word_ids": []
+     },
+     "value": "5"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       790,
+       800,
+       838,
+       817
+      ],
+      "word_ids": []
+     },
+     "value_cents": 9500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       937,
+       841,
+       995,
+       857
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       168,
+       837,
+       318,
+       856
+      ],
+      "word_ids": []
+     },
+     "value": "Rehang interior door"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       674,
+       840,
+       681,
+       854
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       781,
+       840,
+       838,
+       856
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       947,
+       879,
+       995,
+       896
+      ],
+      "word_ids": []
+     },
+     "value_cents": 4700
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       168,
+       876,
+       329,
+       896
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       674,
+       879,
+       681,
+       893
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       790,
+       878,
+       839,
+       895
+      ],
+      "word_ids": []
+     },
+     "value_cents": 4700
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     226,
+     623,
+     252,
+     637
+    ],
+    "word_ids": []
+   },
+   "value": "205"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     159,
+     1057,
+     981,
+     1078
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     938,
+     919,
+     995,
+     935
+    ],
+    "word_ids": []
+   },
+   "value_cents": 76200
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     947,
+     957,
+     995,
+     974
+    ],
+    "word_ids": []
+   },
+   "value_cents": 5524
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     938,
+     996,
+     996,
+     1012
+    ],
+    "word_ids": []
+   },
+   "value_cents": 81724
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     499,
+     373,
+     661,
+     416
+    ],
+    "word_ids": []
+   },
+   "value": "5999 Davis Fields, Springfield, OR 97445"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     369,
+     327,
+     789,
+     368
+    ],
+    "word_ids": []
+   },
+   "value": "Handy Heron Home Repair"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     596,
+     440,
+     682,
+     454
+    ],
+    "word_ids": []
+   },
+   "value": "4184"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     249,
+     602,
+     319,
+     616
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1256"
+  }
+ },
+ "filename": "core-089.jpg",
+ "hidden_boxes": [],
+ "id": "core-089",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "f65a376b8767d43a94da9e967dd307e6156a7204323056156aa2ba530eb912fa"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "fa59a82845d6cdf251d5762829cd657759721a40e7c07158475eb7eb53adec16",
+ "split": "dev",
+ "template": "word",
+ "truth": {
+  "accent": "#7b2d26",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-089",
+  "doc_type": "invoice",
+  "due_date": "2026-10-01",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-01",
+  "invoice_number": "26-7001",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 11500,
+    "description": "Install towel bars and hardware",
+    "quantity": "1",
+    "unit_price_cents": 11500
+   },
+   {
+    "amount_cents": 47500,
+    "description": "Handyman labor",
+    "quantity": "5",
+    "unit_price_cents": 9500
+   },
+   {
+    "amount_cents": 12500,
+    "description": "Rehang interior door",
+    "quantity": "1",
+    "unit_price_cents": 12500
+   },
+   {
+    "amount_cents": 4700,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 4700
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "205",
+  "remit_text": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 76200,
+  "tax_cents": 5524,
+  "tax_rate_bps": 725,
+  "template": "word",
+  "total_cents": 81724,
+  "vendor_address": "5999 Davis Fields, Springfield, OR 97445",
+  "vendor_email": "billing@handyheron.example",
+  "vendor_id": "dafc6a29-95f4-5b23-896d-5e48970f1dfd",
+  "vendor_name": "Handy Heron Home Repair",
+  "vendor_phone": "(541) 555-0121",
+  "vendor_slug": "handy-heron",
+  "vendor_tax_id_last4": "4184",
+  "visible_instructions": [],
+  "work_order_number": "WO-1256",
+  "work_order_printed": "WO 1256"
+ }
+}

@@ -1,0 +1,458 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    618,
+    415,
+    734,
+    430
+   ],
+   "page": 0,
+   "text": "14 Nov 2026"
+  },
+  "invoice_date": {
+   "box": [
+    618,
+    382,
+    729,
+    397
+   ],
+   "page": 0,
+   "text": "15 Oct 2026"
+  },
+  "invoice_number": {
+   "box": [
+    619,
+    349,
+    712,
+    364
+   ],
+   "page": 0,
+   "text": "INV06900"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1075,
+    631,
+    1147,
+    650
+   ],
+   "page": 0,
+   "text": "$195.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    422,
+    633,
+    653,
+    652
+   ],
+   "page": 0,
+   "text": "Texture match and prime"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    853,
+    633,
+    858,
+    648
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    931,
+    631,
+    1003,
+    650
+   ],
+   "page": 0,
+   "text": "$195.00"
+  },
+  "property_or_unit": {
+   "box": [
+    619,
+    482,
+    640,
+    497
+   ],
+   "page": 0,
+   "text": "2L"
+  },
+  "subtotal": {
+   "box": [
+    1075,
+    691,
+    1147,
+    710
+   ],
+   "page": 0,
+   "text": "$195.00"
+  },
+  "tax": {
+   "box": [
+    1092,
+    733,
+    1147,
+    752
+   ],
+   "page": 0,
+   "text": "$11.70"
+  },
+  "total": {
+   "box": [
+    1022,
+    777,
+    1147,
+    805
+   ],
+   "page": 0,
+   "text": "$206.70"
+  },
+  "vendor_address": {
+   "box": [
+    34,
+    349,
+    237,
+    392
+   ],
+   "page": 0,
+   "text": "5647 Adriana Circles, Springfield, OR 97469"
+  },
+  "vendor_name": {
+   "box": [
+    35,
+    256,
+    289,
+    315
+   ],
+   "page": 0,
+   "text": "Pinecone Drywall & Patch"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    34,
+    506,
+    152,
+    521
+   ],
+   "page": 0,
+   "text": "00-0000592"
+  },
+  "work_order_number": {
+   "box": [
+    618,
+    449,
+    700,
+    464
+   ],
+   "page": 0,
+   "text": "WO-1218"
+  }
+ },
+ "category": "prior",
+ "description": "Original (processed first)",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     415,
+     734,
+     430
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-14"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     382,
+     729,
+     397
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-15"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     619,
+     349,
+     712,
+     364
+    ],
+    "word_ids": []
+   },
+   "value": "INV06900"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1075,
+       631,
+       1147,
+       650
+      ],
+      "word_ids": []
+     },
+     "value_cents": 19500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       422,
+       633,
+       653,
+       652
+      ],
+      "word_ids": []
+     },
+     "value": "Texture match and prime"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       853,
+       633,
+       858,
+       648
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       931,
+       631,
+       1003,
+       650
+      ],
+      "word_ids": []
+     },
+     "value_cents": 19500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     619,
+     482,
+     640,
+     497
+    ],
+    "word_ids": []
+   },
+   "value": "2L"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1075,
+     691,
+     1147,
+     710
+    ],
+    "word_ids": []
+   },
+   "value_cents": 19500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1092,
+     733,
+     1147,
+     752
+    ],
+    "word_ids": []
+   },
+   "value_cents": 1170
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1022,
+     777,
+     1147,
+     805
+    ],
+    "word_ids": []
+   },
+   "value_cents": 20670
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     34,
+     349,
+     237,
+     392
+    ],
+    "word_ids": []
+   },
+   "value": "5647 Adriana Circles, Springfield, OR 97469"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     35,
+     256,
+     289,
+     315
+    ],
+    "word_ids": []
+   },
+   "value": "Pinecone Drywall & Patch"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     34,
+     506,
+     152,
+     521
+    ],
+    "word_ids": []
+   },
+   "value": "0592"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     449,
+     700,
+     464
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1218"
+  }
+ },
+ "filename": "adv-019.pdf",
+ "hidden_boxes": [],
+ "id": "adv-019",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "fa6b6532e1580e9cac93f8e0b3a2f4e8d2552e91e503edef5a435072fc8c5749"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "831d09016929def3627f31e5bbe04b610d4a31dfb0fda976978e9c605535dd0b",
+ "split": "adversarial",
+ "template": "modern",
+ "truth": {
+  "accent": "#2d5f8b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "prior"
+  ],
+  "doc_id": "adv-019",
+  "doc_type": "invoice",
+  "due_date": "2026-11-14",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-15",
+  "invoice_number": "INV06900",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 19500,
+    "description": "Texture match and prime",
+    "quantity": "1",
+    "unit_price_cents": 19500
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "2L",
+  "remit_text": null,
+  "set_name": "adversarial",
+  "subtotal_cents": 19500,
+  "tax_cents": 1170,
+  "tax_rate_bps": 600,
+  "template": "modern",
+  "total_cents": 20670,
+  "vendor_address": "5647 Adriana Circles, Springfield, OR 97469",
+  "vendor_email": "billing@pinecone.example",
+  "vendor_id": "fb1ded85-40bc-557b-bfaa-d563512dd76c",
+  "vendor_name": "Pinecone Drywall & Patch",
+  "vendor_phone": "(541) 555-0130",
+  "vendor_slug": "pinecone",
+  "vendor_tax_id_last4": "0592",
+  "visible_instructions": [],
+  "work_order_number": "WO-1218",
+  "work_order_printed": "WO-1218"
+ }
+}

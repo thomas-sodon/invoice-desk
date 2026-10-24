@@ -1,0 +1,29 @@
+{#- Gold markers. Every printed field value is wrapped in an element with data-gold="<field>",
+    so the renderer can read its DOM box at render time. In handwriting mode the value is laid out
+    but transparent, and the handwriting simulator writes it into that box. -#}
+{% macro g(name, text, cls="", hand=False) -%}
+{%- if text is not none and text != "" -%}
+<span class="g {{ cls }}{% if hand %} hand{% endif %}" data-gold="{{ name }}" data-text="{{ text }}">{{ text }}</span>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro gblock(name, lines, full, cls="") -%}
+{%- if lines -%}
+<div class="g {{ cls }}" data-gold="{{ name }}" data-text="{{ full }}">{% for ln in lines %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</div>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro line_rows(doc, hand=False, money_symbol=True) -%}
+{% for ln in doc.lines -%}
+<tr>
+  <td class="desc">{{ g("line_items." ~ loop.index0 ~ ".description", ln.description, hand=hand) }}</td>
+  <td class="num qty">{{ g("line_items." ~ loop.index0 ~ ".quantity", ln.quantity, hand=hand) }}</td>
+  <td class="num">{{ g("line_items." ~ loop.index0 ~ ".unit_price", ln.unit_price, hand=hand) }}</td>
+  <td class="num">{{ g("line_items." ~ loop.index0 ~ ".amount", ln.amount, hand=hand) }}</td>
+</tr>
+{%- endfor %}
+{%- endmacro %}
+
+{% macro adversarial(doc) -%}
+{% for h in doc.hidden_html %}{{ h | safe }}{% endfor %}
+{%- endmacro %}

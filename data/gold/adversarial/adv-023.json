@@ -1,0 +1,545 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    1009,
+    237,
+    1129,
+    255
+   ],
+   "page": 0,
+   "text": "Nov 2, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    1015,
+    214,
+    1129,
+    232
+   ],
+   "page": 0,
+   "text": "Oct 3, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    1046,
+    191,
+    1129,
+    206
+   ],
+   "page": 0,
+   "text": "MR6402"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1038,
+    365,
+    1117,
+    383
+   ],
+   "page": 0,
+   "text": "$290.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    119,
+    365,
+    422,
+    385
+   ],
+   "page": 0,
+   "text": "Clean gutters and downspouts"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    747,
+    365,
+    755,
+    380
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    858,
+    365,
+    937,
+    383
+   ],
+   "page": 0,
+   "text": "$290.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1038,
+    406,
+    1117,
+    424
+   ],
+   "page": 0,
+   "text": "$880.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    119,
+    406,
+    324,
+    426
+   ],
+   "page": 0,
+   "text": "Install gutter guards"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    747,
+    406,
+    755,
+    421
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    858,
+    406,
+    937,
+    424
+   ],
+   "page": 0,
+   "text": "$880.00"
+  },
+  "property_or_unit": {
+   "box": [
+    145,
+    259,
+    420,
+    278
+   ],
+   "page": 0,
+   "text": "Willow Bend Duplexes #1U"
+  },
+  "subtotal": {
+   "box": [
+    1019,
+    459,
+    1117,
+    477
+   ],
+   "page": 0,
+   "text": "$1,170.00"
+  },
+  "tax": {
+   "box": [
+    1063,
+    500,
+    1117,
+    518
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    994,
+    543,
+    1117,
+    565
+   ],
+   "page": 0,
+   "text": "$1,170.00"
+  },
+  "vendor_address": {
+   "box": [
+    525,
+    1482,
+    712,
+    1519
+   ],
+   "page": 0,
+   "text": "9193 Adam Stravenue, Springfield, OR 97458"
+  },
+  "vendor_name": {
+   "box": [
+    365,
+    75,
+    868,
+    104
+   ],
+   "page": 0,
+   "text": "Downspout Gutter Pros"
+  },
+  "work_order_number": {
+   "box": [
+    1021,
+    259,
+    1129,
+    274
+   ],
+   "page": 0,
+   "text": "WO #1216"
+  }
+ },
+ "category": "prior",
+ "description": "Original (processed first)",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1009,
+     237,
+     1129,
+     255
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-02"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1015,
+     214,
+     1129,
+     232
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-03"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1046,
+     191,
+     1129,
+     206
+    ],
+    "word_ids": []
+   },
+   "value": "MR6402"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1038,
+       365,
+       1117,
+       383
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       119,
+       365,
+       422,
+       385
+      ],
+      "word_ids": []
+     },
+     "value": "Clean gutters and downspouts"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       747,
+       365,
+       755,
+       380
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       858,
+       365,
+       937,
+       383
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1038,
+       406,
+       1117,
+       424
+      ],
+      "word_ids": []
+     },
+     "value_cents": 88000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       119,
+       406,
+       324,
+       426
+      ],
+      "word_ids": []
+     },
+     "value": "Install gutter guards"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       747,
+       406,
+       755,
+       421
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       858,
+       406,
+       937,
+       424
+      ],
+      "word_ids": []
+     },
+     "value_cents": 88000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     145,
+     259,
+     420,
+     278
+    ],
+    "word_ids": []
+   },
+   "value": "Willow Bend Duplexes #1U"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1019,
+     459,
+     1117,
+     477
+    ],
+    "word_ids": []
+   },
+   "value_cents": 117000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1063,
+     500,
+     1117,
+     518
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     994,
+     543,
+     1117,
+     565
+    ],
+    "word_ids": []
+   },
+   "value_cents": 117000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     525,
+     1482,
+     712,
+     1519
+    ],
+    "word_ids": []
+   },
+   "value": "9193 Adam Stravenue, Springfield, OR 97458"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     365,
+     75,
+     868,
+     104
+    ],
+    "word_ids": []
+   },
+   "value": "Downspout Gutter Pros"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1021,
+     259,
+     1129,
+     274
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1216"
+  }
+ },
+ "filename": "adv-023.pdf",
+ "hidden_boxes": [],
+ "id": "adv-023",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "e5c634633b0a7c9f8be7bdaf36636e61f6d264044a1c5a665c22b053face112b"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "180e5fee089ccc4db3719949050fd1b26efbf15f3a707421fbda7ddccb0ef197",
+ "split": "adversarial",
+ "template": "letterhead",
+ "truth": {
+  "accent": "#7a1f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "prior"
+  ],
+  "doc_id": "adv-023",
+  "doc_type": "invoice",
+  "due_date": "2026-11-02",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-03",
+  "invoice_number": "MR6402",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 29000,
+    "description": "Clean gutters and downspouts",
+    "quantity": "1",
+    "unit_price_cents": 29000
+   },
+   {
+    "amount_cents": 88000,
+    "description": "Install gutter guards",
+    "quantity": "1",
+    "unit_price_cents": 88000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Willow Bend Duplexes #1U",
+  "remit_text": null,
+  "set_name": "adversarial",
+  "subtotal_cents": 117000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "letterhead",
+  "total_cents": 117000,
+  "vendor_address": "9193 Adam Stravenue, Springfield, OR 97458",
+  "vendor_email": "billing@downspout.example",
+  "vendor_id": "73fc1357-2267-55f8-8937-a3d73ddc0255",
+  "vendor_name": "Downspout Gutter Pros",
+  "vendor_phone": "(541) 555-0123",
+  "vendor_slug": "downspout",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1216",
+  "work_order_printed": "WO #1216"
+ }
+}

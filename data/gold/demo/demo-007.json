@@ -1,0 +1,647 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    997,
+    388,
+    1129,
+    406
+   ],
+   "page": 0,
+   "text": "Nov 17, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    1002,
+    365,
+    1129,
+    383
+   ],
+   "page": 0,
+   "text": "Oct 18, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    1046,
+    343,
+    1129,
+    358
+   ],
+   "page": 0,
+   "text": "MR6500"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1038,
+    517,
+    1117,
+    535
+   ],
+   "page": 0,
+   "text": "$420.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    119,
+    517,
+    324,
+    537
+   ],
+   "page": 0,
+   "text": "Install gutter guards"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    747,
+    517,
+    755,
+    532
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    858,
+    517,
+    937,
+    535
+   ],
+   "page": 0,
+   "text": "$420.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1038,
+    558,
+    1117,
+    576
+   ],
+   "page": 0,
+   "text": "$570.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    119,
+    558,
+    344,
+    578
+   ],
+   "page": 0,
+   "text": "Replace gutter section"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    747,
+    558,
+    755,
+    573
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    858,
+    558,
+    937,
+    576
+   ],
+   "page": 0,
+   "text": "$570.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1038,
+    599,
+    1117,
+    617
+   ],
+   "page": 0,
+   "text": "$270.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    119,
+    599,
+    422,
+    619
+   ],
+   "page": 0,
+   "text": "Clean gutters and downspouts"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    747,
+    599,
+    755,
+    614
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    858,
+    599,
+    937,
+    617
+   ],
+   "page": 0,
+   "text": "$270.00"
+  },
+  "property_or_unit": {
+   "box": [
+    147,
+    411,
+    182,
+    426
+   ],
+   "page": 0,
+   "text": "205"
+  },
+  "subtotal": {
+   "box": [
+    1019,
+    652,
+    1117,
+    670
+   ],
+   "page": 0,
+   "text": "$1,260.00"
+  },
+  "tax": {
+   "box": [
+    1063,
+    693,
+    1117,
+    711
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    994,
+    735,
+    1117,
+    757
+   ],
+   "page": 0,
+   "text": "$1,260.00"
+  },
+  "vendor_address": {
+   "box": [
+    525,
+    1482,
+    712,
+    1519
+   ],
+   "page": 0,
+   "text": "9193 Adam Stravenue, Springfield, OR 97458"
+  },
+  "vendor_name": {
+   "box": [
+    365,
+    227,
+    868,
+    256
+   ],
+   "page": 0,
+   "text": "Downspout Gutter Pros"
+  },
+  "work_order_number": {
+   "box": [
+    1037,
+    411,
+    1129,
+    426
+   ],
+   "page": 0,
+   "text": "WO 1165"
+  }
+ },
+ "category": "clean",
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     997,
+     388,
+     1129,
+     406
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-17"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1002,
+     365,
+     1129,
+     383
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-18"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1046,
+     343,
+     1129,
+     358
+    ],
+    "word_ids": []
+   },
+   "value": "MR6500"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1038,
+       517,
+       1117,
+       535
+      ],
+      "word_ids": []
+     },
+     "value_cents": 42000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       119,
+       517,
+       324,
+       537
+      ],
+      "word_ids": []
+     },
+     "value": "Install gutter guards"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       747,
+       517,
+       755,
+       532
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       858,
+       517,
+       937,
+       535
+      ],
+      "word_ids": []
+     },
+     "value_cents": 42000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1038,
+       558,
+       1117,
+       576
+      ],
+      "word_ids": []
+     },
+     "value_cents": 57000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       119,
+       558,
+       344,
+       578
+      ],
+      "word_ids": []
+     },
+     "value": "Replace gutter section"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       747,
+       558,
+       755,
+       573
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       858,
+       558,
+       937,
+       576
+      ],
+      "word_ids": []
+     },
+     "value_cents": 57000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1038,
+       599,
+       1117,
+       617
+      ],
+      "word_ids": []
+     },
+     "value_cents": 27000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       119,
+       599,
+       422,
+       619
+      ],
+      "word_ids": []
+     },
+     "value": "Clean gutters and downspouts"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       747,
+       599,
+       755,
+       614
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       858,
+       599,
+       937,
+       617
+      ],
+      "word_ids": []
+     },
+     "value_cents": 27000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     147,
+     411,
+     182,
+     426
+    ],
+    "word_ids": []
+   },
+   "value": "205"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1019,
+     652,
+     1117,
+     670
+    ],
+    "word_ids": []
+   },
+   "value_cents": 126000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1063,
+     693,
+     1117,
+     711
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     994,
+     735,
+     1117,
+     757
+    ],
+    "word_ids": []
+   },
+   "value_cents": 126000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     525,
+     1482,
+     712,
+     1519
+    ],
+    "word_ids": []
+   },
+   "value": "9193 Adam Stravenue, Springfield, OR 97458"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     365,
+     227,
+     868,
+     256
+    ],
+    "word_ids": []
+   },
+   "value": "Downspout Gutter Pros"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1037,
+     411,
+     1129,
+     426
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1165"
+  }
+ },
+ "filename": "09-downspout-MR6500-pdf.pdf",
+ "hidden_boxes": [],
+ "id": "demo-007",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "b64ccb54371955f3f5b61ba3412c7fea090e1c89ca5cbcead24841dfc9d02f18"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "9fb0ef013f43dbb10e4dac978ec452f5cf43e825e8644a2c50deab160cd23307",
+ "split": "demo",
+ "template": "letterhead",
+ "truth": {
+  "accent": "#7a1f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "demo-007",
+  "doc_type": "invoice",
+  "due_date": "2026-11-17",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-18",
+  "invoice_number": "MR6500",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 42000,
+    "description": "Install gutter guards",
+    "quantity": "1",
+    "unit_price_cents": 42000
+   },
+   {
+    "amount_cents": 57000,
+    "description": "Replace gutter section",
+    "quantity": "1",
+    "unit_price_cents": 57000
+   },
+   {
+    "amount_cents": 27000,
+    "description": "Clean gutters and downspouts",
+    "quantity": "1",
+    "unit_price_cents": 27000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {
+   "layout_level": 2
+  },
+  "property_or_unit": "205",
+  "remit_text": null,
+  "set_name": "demo",
+  "subtotal_cents": 126000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "letterhead",
+  "total_cents": 126000,
+  "vendor_address": "9193 Adam Stravenue, Springfield, OR 97458",
+  "vendor_email": "billing@downspout.example",
+  "vendor_id": "73fc1357-2267-55f8-8937-a3d73ddc0255",
+  "vendor_name": "Downspout Gutter Pros",
+  "vendor_phone": "(541) 555-0123",
+  "vendor_slug": "downspout",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1165",
+  "work_order_printed": "WO 1165"
+ }
+}

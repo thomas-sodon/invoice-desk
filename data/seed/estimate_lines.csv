@@ -1,0 +1,313 @@
+id,work_order_id,wo_number,description,quantity,unit,amount_cents
+56cce3c8-5d4c-5810-8d53-8cafedd257b7,eb48a5e6-2e5c-5256-ac76-d207b5070827,WO-1100,Replace fence panels,1,each,46500
+b48fbc62-9396-509f-b235-6ba6ea90d0b5,eb48a5e6-2e5c-5256-ac76-d207b5070827,WO-1100,Repair gate latch and hinges,1,each,19500
+88c2f21a-316e-543e-9002-773abb4449c2,eb48a5e6-2e5c-5256-ac76-d207b5070827,WO-1100,Set new fence post,1,each,23000
+8bd4543f-d544-56d6-806c-6fde405b8d0f,85ce07f8-bfcf-5db8-b44c-418f88fbe6e6,WO-1101,Patch potholes,1,each,41500
+59262196-dc0e-5d43-8d84-51cdb1cf5f98,68ea04c7-96da-5e23-8a6f-34052b547a13,WO-1102,Emergency lockout service,1,visit,17000
+56a24fd8-7c07-5631-8819-6a8fdb2efb08,68ea04c7-96da-5e23-8a6f-34052b547a13,WO-1102,Rekey unit locks,1,each,12500
+b4bae92f-aa79-59e9-98b1-219f6e5f5ac1,68ea04c7-96da-5e23-8a6f-34052b547a13,WO-1102,Replace deadbolt,1,each,21500
+34b2ed48-d360-5291-8028-59247da65e6a,cacdd493-2358-5c53-aece-f40a5222454b,WO-1103,Reseal window frame,1,each,14500
+fb49aedf-d4f3-567d-81e9-99c8d57e25c4,f515ae6e-f897-5c14-aa9b-3484ce4b0b5a,WO-1104,"Junk removal, half truck",1,each,29500
+44b30450-4086-56a2-9c01-f7aa1544e683,f515ae6e-f897-5c14-aa9b-3484ce4b0b5a,WO-1104,Appliance haul-away,1,each,9500
+12cd1d34-ddcc-5fd3-ab6e-555476f79f43,f613b98e-ff0c-59f3-9027-ea0bff50e2a9,WO-1105,Appliance interior cleaning,1,each,13000
+b59295c2-ca9f-511f-8a00-7d7fff087023,086280f3-5b30-57c2-9739-a871a397a290,WO-1106,Replace gutter section,1,each,48500
+2dfdd275-1006-5a8d-b232-c6122304a35f,086280f3-5b30-57c2-9739-a871a397a290,WO-1106,Install gutter guards,1,each,76000
+5019df74-efad-57a4-a981-b813ab547b2f,086280f3-5b30-57c2-9739-a871a397a290,WO-1106,Clean gutters and downspouts,1,each,20500
+7a01778b-ec3f-5a47-a980-64b3b619be1e,4d903a0c-24d0-59c1-ab7f-ab4c3b19c979,WO-1107,"Replace flooring, whole unit",1,each,480000
+38e3b690-4e54-51d2-a579-20dae8c6ea62,4d903a0c-24d0-59c1-ab7f-ab4c3b19c979,WO-1107,Haul-away and disposal,1,each,42000
+c8007baf-aa3d-516f-b8e0-3cb54d5d451e,251330ea-24b6-5dd0-b845-cfe414efe538,WO-1108,Move-out deep clean,1,each,36500
+32b26406-ba3f-55a7-9c16-507e4cd29e28,251330ea-24b6-5dd0-b845-cfe414efe538,WO-1108,Common area cleaning,1,visit,24500
+a880ec19-a87a-526e-b3b1-3e7613c6eff9,251330ea-24b6-5dd0-b845-cfe414efe538,WO-1108,Appliance interior cleaning,1,each,7000
+c8a66ca3-c842-5f1c-9f75-6279d564d504,c96788da-b292-5531-be2c-75521ec9b475,WO-1109,Refrigerator compressor diagnosis,1,each,12000
+f828a519-5df2-544a-8b6b-5274dfdefd45,c96788da-b292-5531-be2c-75521ec9b475,WO-1109,Replace oven igniter,1,each,18500
+03c97077-1e9a-588f-99d5-b28a2bce8781,c96788da-b292-5531-be2c-75521ec9b475,WO-1109,Washer drain repair,1,each,20000
+5d15684f-8a74-5a3d-aacd-d01800a4be1f,c667886f-ee4f-515c-bc2f-51dd5fd93b56,WO-1110,Repair concrete steps,1,each,94000
+22e45218-0a1a-5c17-945e-3a5ff5ec2bf8,ebf80c81-962e-5aac-8c48-cf70bbfd5471,WO-1111,Repair cabinet hinges,1,each,8000
+c8f3bc57-6805-596a-aebd-ed59654cb24d,ebf80c81-962e-5aac-8c48-cf70bbfd5471,WO-1111,Rehang interior door,1,each,17500
+48fc805b-e85e-5c77-ada9-dce7b08f5c10,ebf80c81-962e-5aac-8c48-cf70bbfd5471,WO-1111,Install towel bars and hardware,1,each,9500
+2b8aa733-68fc-5547-849b-735111fcf40a,45ed7502-700c-584d-b128-f0964d410fea,WO-1112,Set new fence post,1,each,22000
+6643378f-2e0e-57ec-9e3b-6b58e0f940c5,1d64d1d6-0164-5c6d-a871-51d52c873077,WO-1113,Remove hazard limb,1,each,67000
+5162e562-6029-5086-86e6-5cfb13174df5,999fa114-3bab-5bd6-ac14-1f0b8a8e8081,WO-1114,Seal-coat parking lot,1,each,201500
+f495cd61-b692-5afd-9140-a31d63b33572,999fa114-3bab-5bd6-ac14-1f0b8a8e8081,WO-1114,Patch potholes,1,each,70500
+d06f1dfc-7697-5024-a703-102ec149516d,094df322-8fd2-513c-a754-e758a1408f36,WO-1115,"Snow plowing, parking lot",1,visit,33500
+cc18cbec-d4de-51df-ab01-ec6f2c5a0a78,094df322-8fd2-513c-a754-e758a1408f36,WO-1115,Sidewalk de-icing,1,visit,8000
+e8c9cb15-ac4c-5737-b205-fd71fa6f830e,b81250be-2535-5fff-bc06-530cee266f76,WO-1116,Move-out deep clean,1,each,28000
+107b4afc-099c-5729-8203-e2cd25cabb8d,1ab7cb90-0266-510d-80cb-a59b5e5cfffd,WO-1117,Move-out deep clean,1,each,35000
+da598c80-d64b-5c08-89f1-e0742bfd5c21,1ab7cb90-0266-510d-80cb-a59b5e5cfffd,WO-1117,Appliance interior cleaning,1,each,8500
+62282dce-0033-5bc2-b35a-6d83cf149e17,d3a25873-c24d-55ee-bbe6-10a2fb92b9f5,WO-1118,Replace dishwasher pump,1,each,33500
+ce70dd30-97d6-5f38-a33a-c2030a696778,d3a25873-c24d-55ee-bbe6-10a2fb92b9f5,WO-1118,Refrigerator compressor diagnosis,1,each,12500
+4db7ca4a-e280-57c8-8d1b-d83824c9f456,d3a25873-c24d-55ee-bbe6-10a2fb92b9f5,WO-1118,Replace oven igniter,1,each,24000
+25eedf6e-da35-5d0b-af8a-edd693ad3abf,6e6b61b2-50b6-5489-8d7a-329c3b9e41fd,WO-1119,Handyman labor (6 hr),6,hour,54000
+b0fb5670-e4d2-5fee-832b-2013dc6d3ca1,6e6b61b2-50b6-5489-8d7a-329c3b9e41fd,WO-1119,Install towel bars and hardware,1,each,8500
+98bdcb8e-0372-5f9c-92fe-c67673b92dbe,6e6b61b2-50b6-5489-8d7a-329c3b9e41fd,WO-1119,Rehang interior door,1,each,16000
+9f5227dc-10a3-5b89-bb5f-55f7ce161959,2f52a373-5004-5a82-a6ba-f9d6e87b6736,WO-1120,Stump grinding,1,each,36500
+07740f11-1191-5f7e-8d7a-588572e79515,e30edd03-c9d2-578f-bd4e-72d137109ae7,WO-1121,Quarterly pest treatment,1,visit,13500
+83ed5709-9834-51f0-8d84-3cb7238b9ae2,e30edd03-c9d2-578f-bd4e-72d137109ae7,WO-1121,Rodent exclusion,1,each,51500
+19cfdf9f-0d51-5ae8-af5a-e4b4ae4677f1,f2065958-1fe1-5e2f-85a3-1637151c9588,WO-1122,Appliance interior cleaning,1,each,8000
+c8775d2c-2dc5-5c66-a08a-64dc3db2caea,74bf6c51-ac29-521f-acdb-7ebe4f04d6c4,WO-1123,Repoint brick wall,1,each,70000
+124bd79f-8624-5461-8b42-346558f956a7,74bf6c51-ac29-521f-acdb-7ebe4f04d6c4,WO-1123,Seal retaining wall,1,each,23500
+8881be7d-92ad-588a-8ec4-3fff7a4375f9,74bf6c51-ac29-521f-acdb-7ebe4f04d6c4,WO-1123,Repair concrete steps,1,each,71500
+c14ef007-0411-5608-aaa9-43a5f4b633e2,1e43d75d-c56e-5547-80ac-66fb8dc47c82,WO-1124,Repair cabinet hinges,1,each,7000
+e89b6608-5399-5d39-a815-9bdcdc1946c3,1e43d75d-c56e-5547-80ac-66fb8dc47c82,WO-1124,Rehang interior door,1,each,9000
+7faa0175-da8b-5ad3-9685-358eaebfa180,88587604-f69d-5b69-8c09-42ec6b33857e,WO-1125,Garage opener repair,1,each,24000
+880f0bb1-53be-55c9-bacc-b9dedc5ad07a,66b052cb-9893-58a6-9a94-021fa31a235e,WO-1126,Replace toilet wax ring and flange,1,each,22500
+21d5f753-aedc-5a99-b725-60c2b53f67d1,891863e6-f04f-5680-adc1-f0d6809ffd9c,WO-1127,Steam clean carpets,1,each,33500
+2b1357a6-7d1e-5e93-830c-d8f8da8063ae,891863e6-f04f-5680-adc1-f0d6809ffd9c,WO-1127,Carpet stretching,1,each,17000
+d0520c9a-84d9-5221-b1f3-ab26e4e3fb24,1c003533-1198-5b06-9514-d91358a0de6c,WO-1128,Replace garage door spring,1,each,24500
+8440565f-7f81-5bdf-a52b-df5e74f8389e,1c003533-1198-5b06-9514-d91358a0de6c,WO-1128,Garage opener repair,1,each,27000
+bf4989fa-fd9a-5755-9138-a9d29ad86ebd,44ed9959-a285-5495-949e-1be4a740e448,WO-1129,Repair concrete steps,1,each,57500
+3879eaee-1373-50a1-8ea2-6c68cd2ce327,44ed9959-a285-5495-949e-1be4a740e448,WO-1129,Repoint brick wall,1,each,98000
+c56d551c-2783-5e55-b369-f7119cee7a2b,954800c6-aa05-5cbf-a8a0-33d20c8bc641,WO-1130,Replace rooftop HVAC unit,1,each,610000
+494564b0-6b60-5045-92fb-8452bb4ada79,954800c6-aa05-5cbf-a8a0-33d20c8bc641,WO-1130,Crane rental,1,each,85000
+b35be80b-d204-567d-9dfb-648d89e01a23,739d7cbf-9b51-5968-b083-9e8983f3b40e,WO-1131,Repoint brick wall,1,each,114000
+256df4a6-a7db-5b60-af99-492b43f14b9e,739d7cbf-9b51-5968-b083-9e8983f3b40e,WO-1131,Seal retaining wall,1,each,27000
+bb240942-48d4-5027-996c-b28c80219de2,739d7cbf-9b51-5968-b083-9e8983f3b40e,WO-1131,Repair concrete steps,1,each,84000
+0ff70304-5973-57bb-8416-74f59078eb2b,f7f7e37e-d081-5e2d-bdeb-2d4c635895db,WO-1132,Crown thinning,1,each,45500
+a6926bc0-1b28-59b7-b23b-eb245b11bd8f,f7f7e37e-d081-5e2d-bdeb-2d4c635895db,WO-1132,Remove hazard limb,1,each,60000
+d92bebf1-e4e8-5a21-964b-9f491fdb0d15,2d2bd31a-d7c7-5fef-b65a-cddb0f84d28a,WO-1133,Patch and paint ceiling stain,1,each,37000
+648b9891-40f3-5c4c-8483-59ab4f1f17bc,081be8de-153e-5aa2-821a-95c4104f8649,WO-1134,Replace garage door spring,1,each,27000
+2e1090b4-abbd-579f-b1d2-11e4f9f4ad79,081be8de-153e-5aa2-821a-95c4104f8649,WO-1134,Garage opener repair,1,each,19000
+26591b69-6837-564d-9914-8fb4a80d2914,50c850ce-b9dc-57fe-8ea0-232e3a287dc8,WO-1135,Clear main sewer line,1,each,62000
+7a233632-44e0-5bd4-9883-b30cf712e398,dfaf5b89-2d48-58a1-8a15-9cf8b53d4848,WO-1136,Irrigation repair,1,each,32500
+863c940e-514d-56ed-a03d-f2d68de0dcbd,dfaf5b89-2d48-58a1-8a15-9cf8b53d4848,WO-1136,Hedge trimming,1,each,36500
+696162f3-edb7-5715-ad4e-acca8f1159e7,9796b650-a921-528b-9369-7e26acf2e8f9,WO-1137,Rekey unit locks,1,each,11500
+ebd0dcfa-9949-5e52-bce9-3b52434e8cce,7f12f9ad-ef60-5e40-9e8b-97ed269c520c,WO-1138,Replace chimney cap,1,each,31000
+c09a9211-4c34-5f4b-9e37-0a5cf44dafdb,9b34f001-4c8e-5cca-b040-75da0aa97200,WO-1139,Replace gutter section,1,each,36500
+643139b6-3c92-51de-a950-65a9a3865aad,9b34f001-4c8e-5cca-b040-75da0aa97200,WO-1139,Clean gutters and downspouts,1,each,29000
+5d0ec1b0-3da2-5621-8de5-c2f23ee28a9e,61e6eab7-fcca-5535-93c8-6de4942c1160,WO-1140,Stump grinding,1,each,26500
+d0b17c04-bfd7-5834-868f-4792b8ce27aa,61e6eab7-fcca-5535-93c8-6de4942c1160,WO-1140,Remove hazard limb,1,each,73500
+6f817cc0-38fe-590c-9e90-a4e6c15a84a8,61e6eab7-fcca-5535-93c8-6de4942c1160,WO-1140,Crown thinning,1,each,88500
+57321b4e-31dc-564f-b3d4-6bf9681ddd94,2355e855-1bcd-54ca-8f98-a40c6371100d,WO-1141,Replace vinyl plank flooring,1,each,149500
+055036d1-3786-5b53-803b-447e770039c7,2355e855-1bcd-54ca-8f98-a40c6371100d,WO-1141,Install transition strips,1,each,6000
+8b63a34d-7fd0-5f15-9db3-263118c532f0,c4bb3328-6c84-5ac5-89bb-978c2c6695e4,WO-1142,Repoint brick wall,1,each,65500
+369ca0f1-0184-5119-bbba-09faf4f06e9f,c4bb3328-6c84-5ac5-89bb-978c2c6695e4,WO-1142,Repair concrete steps,1,each,92000
+92324988-1d17-5ee7-bae9-dac82cfb9cdf,8ae02ccd-254e-56c4-a4dd-e1cf416f88d2,WO-1143,Replace kitchen drain trap,1,each,21500
+3b3e6e23-0f30-58a7-aed2-6771f9dde1e5,8ae02ccd-254e-56c4-a4dd-e1cf416f88d2,WO-1143,Repair leaking supply valve,1,each,10500
+4a9642d2-5767-5d6f-84ac-24af691529e5,8ae02ccd-254e-56c4-a4dd-e1cf416f88d2,WO-1143,Replace water heater (40 gal),1,each,206500
+7dfa5a9a-d8e3-5cbc-9406-2bf3d5e6df38,dce8fe9f-e8a7-5f5e-9a1f-a69337b3a456,WO-1144,Replace water-damaged drywall,1,each,67000
+ab9c2934-fc81-53e4-81a9-a9837db2805c,dce8fe9f-e8a7-5f5e-9a1f-a69337b3a456,WO-1144,Texture match and prime,1,each,17000
+2e05d05d-1d7d-5b0e-9d42-77d6be30d13e,c4d495dd-19a8-58b3-a5cd-db92088495f1,WO-1145,Dehumidifier rental (3 days),1,each,40000
+e7529ee2-9085-5f7d-8830-89549d38251d,c4d495dd-19a8-58b3-a5cd-db92088495f1,WO-1145,Water extraction,1,each,87000
+7c4c7c68-e48e-53f8-b86d-2d8950ede13b,d7d9e8ed-7975-5ac7-897e-429acf4591b0,WO-1146,HVAC labor (5 hr),5,hour,55000
+2def45bd-b3f6-5952-9c2e-650b3fa3a05d,7178e29c-6ad3-56d7-b2d8-bfcd42d064cd,WO-1147,Replace thermostat,1,each,33000
+716c09e7-0332-5afa-803c-0ba411eda404,b4d88435-efe9-5a46-af01-44da35e2e0eb,WO-1148,Repair cabinet hinges,1,each,13000
+56d1c455-6ed5-57e5-90e5-483cf744fea3,1cdb42a2-8d31-5a37-b31b-318226d26d99,WO-1149,"Interior repaint, two coats",1,each,208000
+ea1fa2df-28ed-537d-b490-6a48a1685afd,e0b953d2-36a2-5697-9088-934f869d868e,WO-1150,Replace thermostat,1,each,33000
+486bc029-f923-5c3c-aa36-92dee66879b5,e0b953d2-36a2-5697-9088-934f869d868e,WO-1150,Furnace tune-up and filter,1,each,14500
+9c8b8c82-a4f3-5ab0-a6cc-5bd45b4f8533,a12a264d-47cc-5c58-b368-80c85f3b41f1,WO-1151,Bed bug heat treatment,1,each,137500
+4c20428f-132d-5fc5-b805-34cf324a597e,a12a264d-47cc-5c58-b368-80c85f3b41f1,WO-1151,Quarterly pest treatment,1,visit,21500
+4a1cf028-0591-5542-acb8-2e93a7f200a8,a12a264d-47cc-5c58-b368-80c85f3b41f1,WO-1151,Rodent exclusion,1,each,37000
+ad3d3b6c-1d34-5427-b7f1-95c054d4c3f9,f7d1b325-6eb8-559e-b960-4dd5f774842f,WO-1152,Steam clean carpets,1,each,16000
+b097b28f-fec7-5877-85e9-c0d78116e236,f7d1b325-6eb8-559e-b960-4dd5f774842f,WO-1152,Stain treatment,1,each,8000
+7a787bdf-3edd-51b5-aa8d-88835145b7e1,f7d1b325-6eb8-559e-b960-4dd5f774842f,WO-1152,Carpet stretching,1,each,25500
+5732c854-3c5b-5750-b67a-2e9c64b9ec18,4587fbca-fef1-571e-895a-181b84c6757f,WO-1153,Resurface parking lot,1,each,590000
+9f72dc19-fc64-5ec4-8115-cb60e4856b21,4587fbca-fef1-571e-895a-181b84c6757f,WO-1153,Line striping,1,each,38000
+9fd049de-8221-5503-972a-e9a6ee9e083b,15825951-6a27-5b4c-8166-990af07ea81d,WO-1154,Carpet stretching,1,each,25000
+9884e98b-40d2-583c-b44e-1835699b7f95,15825951-6a27-5b4c-8166-990af07ea81d,WO-1154,Steam clean carpets,1,each,18500
+37c17c9e-1c9b-506c-8b58-5e0ff8cd037d,15825951-6a27-5b4c-8166-990af07ea81d,WO-1154,Stain treatment,1,each,7500
+67e6f14f-ac31-56c1-a247-f87100afd466,3b76dbef-8710-5f50-8807-4ebaa9d04721,WO-1155,HVAC labor (5 hr),5,hour,65000
+23d8116b-2c15-5b13-981b-56f3b092086b,3b76dbef-8710-5f50-8807-4ebaa9d04721,WO-1155,Furnace tune-up and filter,1,each,20500
+333c1de9-8ef1-57b2-8fe0-5ddc8945f4ce,85f43ca3-1a1d-5250-8be5-d06df7410973,WO-1156,Patch potholes,1,each,59500
+b2940e08-a650-5b71-8bf0-261220b69ed2,85f43ca3-1a1d-5250-8be5-d06df7410973,WO-1156,Seal-coat parking lot,1,each,213000
+575aafeb-564f-5f80-aeb2-ed7ba661917a,29d8db0d-58ba-59ff-b17a-3e917d840a40,WO-1157,Replace GFCI outlets,1,each,9500
+22bbac56-8b13-5ca2-8b9a-1155e32649f4,29d8db0d-58ba-59ff-b17a-3e917d840a40,WO-1157,Troubleshoot tripping breaker,1,each,19000
+cc513a2e-f338-59ff-96b9-bbbb7f5ab02a,29d8db0d-58ba-59ff-b17a-3e917d840a40,WO-1157,Install LED fixture,1,each,14000
+1416e7b3-79db-5521-b587-f2042537bb1d,31b24905-ea4a-5ca6-aa8a-73b3ec40ae83,WO-1158,Clear main sewer line,1,each,43500
+7b363b70-41f3-5729-bc64-7524a9ac165b,31b24905-ea4a-5ca6-aa8a-73b3ec40ae83,WO-1158,Repair leaking supply valve,1,each,12000
+b6edb105-60d5-5136-91b3-31fbe9a31215,31b24905-ea4a-5ca6-aa8a-73b3ec40ae83,WO-1158,Plumbing labor (2 hr),2,hour,28000
+32bf2e99-7139-59c4-be60-bb415704fbeb,e6e35c1b-6199-5a4a-b5ed-03ff11bb4146,WO-1159,Replace fence panels,1,each,78500
+b3ec315b-c8ba-5089-8965-5c56b27f2d73,e6e35c1b-6199-5a4a-b5ed-03ff11bb4146,WO-1159,Set new fence post,1,each,24500
+10d45ab2-ebb2-53e9-9a0c-1679ebbb211a,e6e35c1b-6199-5a4a-b5ed-03ff11bb4146,WO-1159,Repair gate latch and hinges,1,each,15500
+060c45d9-161d-5265-82a2-a447d6f923ff,c5b9c35a-b589-52c4-87f7-37c653eced90,WO-1160,Paint and supplies,1,lot,17500
+d308a31d-4f61-50fc-a4df-98f00c4fb15e,2d7a9cb3-81e3-505e-8ef5-c1e8e4876bc5,WO-1161,Replace garage door spring,1,each,23500
+7bff26fb-cac8-5479-aa60-98b16de5fdff,2d7a9cb3-81e3-505e-8ef5-c1e8e4876bc5,WO-1161,Garage opener repair,1,each,21500
+609d6161-382d-52c8-a24b-75e791687135,5ab1d695-ea9f-59aa-af86-4a2fb74a1760,WO-1162,Replace garage door spring,1,each,26000
+823ab137-9a7a-528e-a53a-96e3ba83ca40,ad171975-fb44-5594-bb25-775ecf9535d6,WO-1163,Irrigation repair,1,each,13000
+615f73bd-c7fc-5c7a-a3fa-12070fe6cac3,ad171975-fb44-5594-bb25-775ecf9535d6,WO-1163,Monthly grounds maintenance,1,visit,44500
+98561f01-8e11-5bac-b398-20d94a20a3bd,cd97ed9c-719b-5b8b-80df-db812decbe1b,WO-1164,Rehang interior door,1,each,13500
+6fc0a547-ce89-528a-bbc4-70ff1d5f89c5,cd97ed9c-719b-5b8b-80df-db812decbe1b,WO-1164,Install towel bars and hardware,1,each,8500
+7bfbccbe-1876-5fcd-8852-52018e3d0582,cd97ed9c-719b-5b8b-80df-db812decbe1b,WO-1164,Handyman labor (4 hr),4,hour,42000
+579c982f-22fb-5aa7-8214-f401e83807ab,1ffeb971-9c16-5a0b-b430-c7918b7b60c9,WO-1165,Install gutter guards,1,each,42000
+dde42ce7-77a6-5e08-9a8b-61ebad4b9a0c,1ffeb971-9c16-5a0b-b430-c7918b7b60c9,WO-1165,Replace gutter section,1,each,57000
+be8de07f-b2c4-5a39-9b9b-98a8261cf65a,1ffeb971-9c16-5a0b-b430-c7918b7b60c9,WO-1165,Clean gutters and downspouts,1,each,27000
+cff31fd7-1729-5785-b492-e2f3d58ff323,5bab803f-ac56-5506-96f3-99cc67982932,WO-1166,"Snow plowing, parking lot",1,visit,35000
+49fa1b19-c9ee-57ee-93f2-faab73345413,b3bb6267-f806-5c9a-bf35-9b8c6f114088,WO-1167,Furnace tune-up and filter,1,each,20500
+de75b560-2455-5e6d-8294-c78eeec786cb,b3bb6267-f806-5c9a-bf35-9b8c6f114088,WO-1167,Recharge refrigerant,1,each,34000
+aa0819dc-c7af-5036-a8b0-f6ddcf996bbd,ebdc3d8d-5218-55c5-a49d-560a119d1cbf,WO-1168,Paint trim and doors,1,each,34500
+92880db4-d735-519f-ace3-83ab367d8d10,5aa0da60-bcea-5436-9dba-17f13296040f,WO-1169,Replace gutter section,1,each,48500
+eb7d6db2-c65c-534b-ba4f-67beca31a260,5aa0da60-bcea-5436-9dba-17f13296040f,WO-1169,Install gutter guards,1,each,86000
+7583cb13-6e05-5d45-b234-bd161360ad58,735a31cb-d780-59b4-9d53-4f812ef9d3b3,WO-1170,"Snow plowing, parking lot",1,visit,22000
+8757eab1-9ae6-5873-9505-83141732f24d,cf3176db-f1ef-59c8-bdca-bff2550064b3,WO-1171,Set new fence post,1,each,15000
+1f137b8f-4361-5a9e-af8b-222e08489962,cf3176db-f1ef-59c8-bdca-bff2550064b3,WO-1171,Replace fence panels,1,each,46000
+6430390f-98e4-5a50-81a2-5e49e242f15c,6b2feb73-ea1a-5533-973a-563429451f04,WO-1172,Install gutter guards,1,each,81500
+5740b32a-7edb-5634-8f4e-8718797e1914,6b2feb73-ea1a-5533-973a-563429451f04,WO-1172,Clean gutters and downspouts,1,each,19000
+9a67c4f6-9994-5fe6-8046-130b9f12169a,6b2feb73-ea1a-5533-973a-563429451f04,WO-1172,Replace gutter section,1,each,26000
+f22ce092-5327-5c13-9b2a-bb1f8f51b252,2353af38-1b32-5c65-b009-3f534c272052,WO-1173,Repair concrete steps,1,each,69500
+f1e3017e-2616-5e28-805e-7d7135f9d2d3,2353af38-1b32-5c65-b009-3f534c272052,WO-1173,Repoint brick wall,1,each,121000
+77065d27-387d-579e-be31-dfb6afa56e9e,88556f23-488c-50ad-8a46-3c776097257a,WO-1174,Patch potholes,1,each,66500
+26921e32-abb6-56de-b9d7-dea68d4d4a56,631fff77-d6c3-5062-8ab1-6cbc2f229219,WO-1175,Texture match and prime,1,each,20500
+951929ef-3a22-56f0-b31d-d26ee7c945b7,870b4c79-a7a9-5b27-b717-64c97eb9afbd,WO-1176,"Tear-off and re-roof, building section",1,each,520000
+2e8c176f-23a7-50b2-b01b-cd967be13620,870b4c79-a7a9-5b27-b717-64c97eb9afbd,WO-1176,Roofing crew labor,1,each,96000
+4bf43f41-2ead-56c2-a7b1-fa1bb3685e3c,9b1e0fe6-4ea1-5b53-9866-3cf27eb4e17b,WO-1177,Exterior window washing,1,visit,49000
+a0b27f03-8471-5829-9fa8-8b28d069ac93,9b1e0fe6-4ea1-5b53-9866-3cf27eb4e17b,WO-1177,Screen replacement,1,each,4500
+b1d03314-79c5-5678-8766-9ee0483686ea,f6207a40-c60c-5428-a4f1-ee2677783e6f,WO-1178,Replace kitchen drain trap,1,each,31500
+6512fca1-f90b-57c6-903f-30335fd8b448,fd1f99bf-3fd2-5434-add5-685fef8c95e5,WO-1179,Replace kitchen drain trap,1,each,85000
+fc42effe-6c7e-586d-960e-5d2c9658f7cc,fd1f99bf-3fd2-5434-add5-685fef8c95e5,WO-1179,Plumbing labor (2 hr),2,hour,30000
+50848bc4-92a8-56b8-8528-2fb2c2bf316e,080f1bd7-d8e6-5220-9067-8f18a8f3ceec,WO-1180,Screen replacement,1,each,5000
+04370fdc-6984-5d3c-8c23-7b7465b1b1de,080f1bd7-d8e6-5220-9067-8f18a8f3ceec,WO-1180,Exterior window washing,1,visit,29500
+6bcb98d5-856b-54ec-8455-58971ba67a03,5ff82e0f-fb46-5126-8d81-3dcfa90da963,WO-1181,Reseal window frame,1,each,17000
+a10907bd-16b9-511c-845a-4cc774565143,c8681434-094b-58eb-bd2d-0f51cbd6644a,WO-1182,Seal-coat parking lot,1,each,141500
+b0140bf5-12cb-53c9-9b72-7b71c709eaae,c8681434-094b-58eb-bd2d-0f51cbd6644a,WO-1182,Patch potholes,1,each,56000
+0e526913-bc7f-5971-84c1-8508b24534eb,393f99a2-50b5-508f-88e4-d81aa2f01752,WO-1183,Chimney sweep and inspection,1,each,20500
+7fd04398-da99-520b-a201-db54e0da9d5c,393f99a2-50b5-508f-88e4-d81aa2f01752,WO-1183,Replace chimney cap,1,each,28000
+63b3faf5-1823-573a-abc2-3249dba2619e,4ca837d1-4939-509a-8728-e137d12c3b0d,WO-1184,Repair roof leak and flashing,1,each,98500
+e401a48d-68fa-5abb-8d0b-459167c63842,f04daa81-64de-51f9-833c-17690d9e6271,WO-1185,Repair cabinet hinges,1,each,8000
+80e01137-1e62-5756-916b-6e01a002203f,f04daa81-64de-51f9-833c-17690d9e6271,WO-1185,Rehang interior door,1,each,12000
+da8181fe-b4f4-5150-b346-20cae8920a9b,f04daa81-64de-51f9-833c-17690d9e6271,WO-1185,Handyman labor (2 hr),2,hour,17000
+02a55b51-a2d9-5dc2-8ee6-9ebab07dbe4c,5dfa5236-5b2c-5687-a391-0db04dc757ed,WO-1186,Repoint brick wall,1,each,80500
+6a7e9e2c-d177-5f63-9902-efbfeba73f76,5dfa5236-5b2c-5687-a391-0db04dc757ed,WO-1186,Seal retaining wall,1,each,37000
+b593295e-58a9-58f3-998f-b36cb9333422,5dfa5236-5b2c-5687-a391-0db04dc757ed,WO-1186,Repair concrete steps,1,each,59000
+1c6a24d0-e672-5efb-b1e4-7e936426a12d,d790a14a-406c-583b-8d17-30f67c1bb28e,WO-1187,Replace kitchen drain line,1,each,215000
+15f8f2b3-8cba-50c2-9f07-200acf03eb6f,d790a14a-406c-583b-8d17-30f67c1bb28e,WO-1187,Replace P-trap and supply valves,1,each,65000
+8d8a1bac-6b0c-5306-93d7-26329376b741,d790a14a-406c-583b-8d17-30f67c1bb28e,WO-1187,Plumbing labor (4 hr),4,hour,40000
+bb4b6866-22bf-5c1a-bd5c-4f94acb08068,d56d3cb5-6571-5395-a21c-9ee91800cdd1,WO-1188,"Interior repaint, two coats",1,each,153000
+046855be-4cb5-5fc0-92e4-2963757c1405,d56d3cb5-6571-5395-a21c-9ee91800cdd1,WO-1188,Paint and supplies,1,lot,16000
+ab388cad-2271-5a56-bc91-586533718cd5,2cc1be4a-8b4f-5268-8b98-337cb851fab6,WO-1189,Replace water heater (40 gal),1,each,152000
+161f15d1-60f5-5bf6-ba55-4b4272e809a9,2cc1be4a-8b4f-5268-8b98-337cb851fab6,WO-1189,Replace toilet wax ring and flange,1,each,25500
+0b39b688-9809-5459-ab9f-5392a2f33735,2cc1be4a-8b4f-5268-8b98-337cb851fab6,WO-1189,Plumbing labor (6 hr),6,hour,81000
+0aa5dcdf-b871-5884-903c-43468f277108,57b8e8ce-7a23-5829-9e36-fefcb7673d3f,WO-1190,Exterior window washing,1,visit,40000
+4e9278aa-4f16-5f63-9e1d-bd55ab169e8b,5d08193a-e84e-5a45-aae5-2367ad481fb1,WO-1191,Monthly grounds maintenance,1,visit,43000
+9b13d7e8-9322-5c83-add3-37b84a44df2a,5d08193a-e84e-5a45-aae5-2367ad481fb1,WO-1191,Hedge trimming,1,each,35000
+24d7efd1-b45d-54b4-826e-884bd2f17c78,8bafb0c8-b842-5233-a4bb-36332191b9f7,WO-1192,Replace dishwasher pump,1,each,27500
+8f88f9e3-624e-5a1e-9b14-a54f899b2da0,8bafb0c8-b842-5233-a4bb-36332191b9f7,WO-1192,Refrigerator compressor diagnosis,1,each,13500
+83d786a6-1346-52c6-90cf-95bf391da0e7,443bd483-01b9-574f-9284-4d535732fbb1,WO-1193,Replace fence panels,1,each,75500
+5d1eecbd-df35-577f-b61b-06c86a8b6927,443bd483-01b9-574f-9284-4d535732fbb1,WO-1193,Repair gate latch and hinges,1,each,17000
+ed2f8f69-c28b-5409-a3e0-4b612565e909,443bd483-01b9-574f-9284-4d535732fbb1,WO-1193,Set new fence post,1,each,29000
+2d591f8c-1b1c-595e-b747-3858f212d109,ed898b7e-af91-5e76-b3c1-ee6debf19602,WO-1194,Mulch installation,1,each,40500
+78e98dbb-2d00-5217-b420-f4757bf85d50,4f17252e-8b8f-5982-89a1-16666913d97d,WO-1195,HVAC labor (4 hr),4,hour,62000
+c3d7f7fe-0566-5eb7-b30b-901cf013484a,4f17252e-8b8f-5982-89a1-16666913d97d,WO-1195,Furnace tune-up and filter,1,each,21500
+bd465d63-1e74-5cfd-b63a-eb766dd2ad82,4f17252e-8b8f-5982-89a1-16666913d97d,WO-1195,Replace thermostat,1,each,32000
+09808602-037b-5fc5-a304-822b4049ac7f,bab5ad9f-b5d8-5834-bc01-53d6449900dd,WO-1196,Furnace tune-up and filter,1,each,20500
+767eb98a-9f8c-51b7-a18c-fc9bdbfc94b7,bab5ad9f-b5d8-5834-bc01-53d6449900dd,WO-1196,Recharge refrigerant,1,each,37500
+d3728b99-0ef4-5b7d-9c83-29653c7089e3,bab5ad9f-b5d8-5834-bc01-53d6449900dd,WO-1196,Replace condenser fan motor,1,each,46000
+fcac684a-b1ef-5b7b-9b18-49f05b117508,749a0097-21dd-5afb-97f6-62679a5cac33,WO-1197,Handyman labor (5 hr),5,hour,45000
+7682b0f2-9972-58c7-8ee8-b05c91c989a2,6c5ac9fd-f4c3-5877-b4fc-8ee1187d8298,WO-1198,Sidewalk de-icing,1,visit,11000
+4484067b-4ed6-50d7-8fb2-86d6743857b3,6c5ac9fd-f4c3-5877-b4fc-8ee1187d8298,WO-1198,"Snow plowing, parking lot",1,visit,34000
+818c8718-6426-5585-9d82-0ac176423429,23c216f0-c12e-5a17-9296-051b96ce9c60,WO-1199,"Replace flooring, whole unit",1,each,480000
+3103fc27-6858-54a9-9615-4701aadc9079,23c216f0-c12e-5a17-9296-051b96ce9c60,WO-1199,Haul-away and disposal,1,each,42000
+e20a4feb-6814-557b-aa5c-09810050670c,6e5785a4-2f82-5a37-aa8c-c231a312323c,WO-1200,Monthly grounds maintenance,1,visit,65000
+4d410c67-c2a8-57e6-bef0-1e681ba33552,f796e545-1916-5160-a167-a884d0dcb4e6,WO-1201,Chimney sweep and inspection,1,each,30000
+35ad8ec0-8803-5f31-9d11-66d1eb680db7,f796e545-1916-5160-a167-a884d0dcb4e6,WO-1201,Replace chimney cap,1,each,27000
+63c6e07c-030c-5a4a-9f71-8e33fc531f26,65a5f45a-f655-56d7-9bab-71faf766a81e,WO-1202,Rehang interior door,1,each,11000
+3bde48af-ca55-529e-9f97-e2691ff16910,dafdf1c7-677e-5785-b104-1899cea767f1,WO-1203,Emergency lockout service,1,visit,17000
+55f84608-f915-5515-9ebc-e48f895647bb,dafdf1c7-677e-5785-b104-1899cea767f1,WO-1203,Replace deadbolt,1,each,19000
+73638af7-3dc4-5158-985a-c159196e7603,696f2ef4-44c7-5bf0-af11-9590ac2147a9,WO-1204,Rehang interior door,1,each,13500
+fa29b66d-94a0-5cec-a935-21f1b68e9f4d,8946015d-6cc9-5a83-ada9-881f0fec81c3,WO-1205,Replace toilet wax ring and flange,1,each,23500
+50317ce3-b44d-5709-ad47-e10c2ca221a5,f0888135-5832-5994-a468-d51f5beca15d,WO-1206,"Junk removal, half truck",1,each,26000
+81ff4e7c-2da3-5ed5-9c22-bb339bc670f3,f0888135-5832-5994-a468-d51f5beca15d,WO-1206,Appliance haul-away,1,each,9500
+eaa7b880-8e21-5bcb-a0bf-6d6794eb6f21,7e54bda2-f57b-5cae-b706-38c1b119fe35,WO-1207,Monthly grounds maintenance,1,visit,43000
+a5649720-2d2d-577c-953b-9a004f656e58,7e54bda2-f57b-5cae-b706-38c1b119fe35,WO-1207,Mulch installation,1,each,32000
+9771cd35-10f8-5f8c-9f3d-d9f1287b7afc,7ec1575d-4d96-54ac-9495-4959854ebd1b,WO-1208,Quarterly pest treatment,1,visit,15500
+6350d4ed-50e4-59e5-a8c4-54c76f29558c,7ec1575d-4d96-54ac-9495-4959854ebd1b,WO-1208,Bed bug heat treatment,1,each,157000
+0154d328-f835-5de3-b2f1-53ccc1958055,865c5c9d-b069-5fb3-8b6a-2dcb124cb774,WO-1209,Seal retaining wall,1,each,37000
+3a275b0b-2c1b-5838-81fe-44513d7f2c42,865c5c9d-b069-5fb3-8b6a-2dcb124cb774,WO-1209,Repoint brick wall,1,each,110500
+a736b90f-1b00-5159-b6cc-37cc09a6c011,8e9d30cc-b808-57c1-85e6-099b08640cc7,WO-1210,Roofing crew labor (5 hr),5,hour,70000
+f3c4f1e5-9a8b-5444-861b-068a106bd9be,8e9d30cc-b808-57c1-85e6-099b08640cc7,WO-1210,Seal skylight,1,each,30000
+a5f33f1d-ed98-55c8-8bbc-5e0afb24f370,8e9d30cc-b808-57c1-85e6-099b08640cc7,WO-1210,Repair roof leak and flashing,1,each,54500
+62b98bc7-8076-56b0-ab1a-153ebfb95638,80eb02b8-fcdb-5afe-ae1b-f00cbc51b30d,WO-1211,Install gutter guards,1,each,85000
+9ea3e504-f010-5e03-939b-41422dec369b,80eb02b8-fcdb-5afe-ae1b-f00cbc51b30d,WO-1211,Clean gutters and downspouts,1,each,26500
+00194289-cbc1-5e0b-939a-384cefecb0dd,71f09066-c74c-5b47-826e-a9bc76227fda,WO-1212,Seal-coat parking lot,1,each,208000
+ba211bf5-616e-51a1-8ebc-f48819a6cc08,ba37316b-d0cc-5fe4-88c5-2ca21ac22a4d,WO-1213,Stain treatment,1,each,8500
+71de38dc-9f3c-5635-a9bb-007356a28236,4db6fcfd-5f8c-50fa-9aeb-ec038a8bd82d,WO-1214,Repair concrete steps,1,each,52500
+fc44057c-bf44-5d8e-80b8-a7528c51741c,83977e2d-093b-5ea2-8d2e-fab73c5166a9,WO-1215,Replace kitchen drain trap,1,each,40500
+2f5a74a0-e27a-50f4-b0ef-7a02b103574c,a1fcbe8c-db6c-528f-8416-0e82d0dc2370,WO-1216,Clean gutters and downspouts,1,each,29000
+d6d96bd5-596b-5d1b-b8fc-4f3b0cb2f18f,a1fcbe8c-db6c-528f-8416-0e82d0dc2370,WO-1216,Install gutter guards,1,each,88000
+a1ee6e6f-2113-5460-b64c-8cb702e02b27,9e0f383b-a01d-58f9-ac4e-337810def8ef,WO-1217,HVAC labor (4 hr),4,hour,56000
+aeaf7aea-0f22-5928-b995-3a2ec3012cd8,9e0f383b-a01d-58f9-ac4e-337810def8ef,WO-1217,Replace thermostat,1,each,23000
+8bd0bb3d-ccea-552e-b3b3-03d099f9617e,870f4583-2822-5f32-bb67-b79f608e4519,WO-1218,Texture match and prime,1,each,19500
+986785c7-adfa-5760-9c05-96bbeb580635,e88c454a-b2f2-5528-afa6-5aa5f984f6ee,WO-1219,Rodent exclusion,1,each,35000
+41fc9fd7-ab8a-5f83-a1fa-7ddab5377b6f,e88c454a-b2f2-5528-afa6-5aa5f984f6ee,WO-1219,Bed bug heat treatment,1,each,157500
+47f2dd65-91e1-5791-9875-bd4c749f3543,29991540-c708-5128-b6a4-65293ae78623,WO-1220,Seal retaining wall,1,each,24000
+856110d0-3fe0-5eaf-b272-a6147b953d44,29991540-c708-5128-b6a4-65293ae78623,WO-1220,Repoint brick wall,1,each,130500
+093b09b3-84e4-5231-963e-7de0a331d5de,29991540-c708-5128-b6a4-65293ae78623,WO-1220,Repair concrete steps,1,each,69500
+38115569-9563-53ca-8688-9c643a45151a,4dceeac0-6204-5757-bb42-b1aaff1d0fa4,WO-1221,Quarterly pest treatment,1,visit,22000
+2b3ad383-e309-5b36-8f1b-b76e1f0c9d1d,4dceeac0-6204-5757-bb42-b1aaff1d0fa4,WO-1221,Bed bug heat treatment,1,each,106500
+d69912f6-25f2-5dd3-b643-72731275df9c,4dceeac0-6204-5757-bb42-b1aaff1d0fa4,WO-1221,Rodent exclusion,1,each,43000
+ec2c9b07-2125-56a9-8e97-040b6249bf2e,8b6a0a99-0b04-5ae3-b393-1f4d7ef8b972,WO-1222,Replace rooftop HVAC unit,1,each,610000
+960ed8c1-b2e2-5ea0-a58c-b0fc342ace14,8b6a0a99-0b04-5ae3-b393-1f4d7ef8b972,WO-1222,Crane rental,1,each,85000
+35d26bbe-8316-5ad6-bcc2-fa2c98954b80,49397ea1-7533-597d-a2b7-958ffe81d25b,WO-1223,Appliance interior cleaning,1,each,11500
+b1487737-ca33-5817-99c4-7dbb12ae70ee,49397ea1-7533-597d-a2b7-958ffe81d25b,WO-1223,Common area cleaning,1,visit,19500
+3a542833-f054-5c70-b802-131a3a7d0715,49397ea1-7533-597d-a2b7-958ffe81d25b,WO-1223,Move-out deep clean,1,each,41000
+a63f2829-62b4-5b85-90c2-6bc12c935986,fd88390c-5cb2-5990-b30d-e6d67736f307,WO-1224,Seal-coat parking lot,1,each,260000
+c4a51c18-d68d-5d66-a356-853e0eb6f63d,98ecc6f4-fb6d-53d2-8737-1edec8a319b2,WO-1225,Seal-coat parking lot,1,each,236500
+5f18dcf6-ecae-58db-be9f-4d684fa7faf5,60ecd819-a7b0-5e27-8343-a3cd34a93dc4,WO-1226,"Interior repaint, two coats",1,each,121000
+7650e2dc-f937-5e69-b454-49b386a84db0,60ecd819-a7b0-5e27-8343-a3cd34a93dc4,WO-1226,Paint and supplies,1,lot,13000
+7df2d703-a0ef-510b-bcfc-6df6df18a66d,60ecd819-a7b0-5e27-8343-a3cd34a93dc4,WO-1226,Paint trim and doors,1,each,45500
+73d95bf2-7734-5277-bd20-273ba1f80d63,ec41e00b-f8cd-586b-a6a2-94058b0f1af5,WO-1227,Replace broken window pane,1,each,33500
+cd4ffa7c-315a-5226-838d-bddf42a8805d,ec41e00b-f8cd-586b-a6a2-94058b0f1af5,WO-1227,Reseal window frame,1,each,10000
+b0e28f19-6e2d-5ad2-ba98-3b574ef74d92,e91fa420-5bc4-550e-986b-5d36337fac9a,WO-1228,Emergency lockout service,1,visit,13500
+206db00c-714b-52dc-bfeb-78c0ccfe2b33,e91fa420-5bc4-550e-986b-5d36337fac9a,WO-1228,Rekey unit locks,1,each,11500
+4356b899-6135-5844-b742-a43ff10e4d9e,089a1aa8-bf98-5135-894c-3b22829315d6,WO-1229,Replace smoke/CO detector,1,each,11500
+88c6cac5-d45e-5e89-9d3f-f3b68363e714,7b7873ac-186d-57cb-8a37-bba30b87de4b,WO-1230,Mulch installation,1,each,20000
+bfa89ffd-ea4c-574b-96d7-6d0142a3323f,3e27765b-9c52-5cfb-8168-0928e1bf718c,WO-1231,Refrigerator compressor diagnosis,1,each,15500
+e0a83f5e-f03e-5c05-8ae5-1b44a28b0667,3e27765b-9c52-5cfb-8168-0928e1bf718c,WO-1231,Replace oven igniter,1,each,20000
+32754293-4dc8-52e3-ab1f-e296141abe66,3e27765b-9c52-5cfb-8168-0928e1bf718c,WO-1231,Replace dishwasher pump,1,each,35000
+536765db-69e8-5430-aa55-fc4938b47d1a,e6e262ba-9ad6-5fd1-b643-c90ed7db665a,WO-1232,Repair concrete steps,1,each,51000
+57ea0a4a-46a3-52d7-8cb8-0ab7cb4945dc,e6e262ba-9ad6-5fd1-b643-c90ed7db665a,WO-1232,Repoint brick wall,1,each,114000
+a69a5793-76bb-50a9-8d54-b1950dae87e3,597451aa-908d-5760-a572-65b260dd8faa,WO-1233,Replace gutter section,1,each,30500
+ae908f76-ba0b-514e-85c5-e369c5d07a05,597451aa-908d-5760-a572-65b260dd8faa,WO-1233,Install gutter guards,1,each,60500
+4411c59e-49b7-58ab-b02e-ef12b7526760,597451aa-908d-5760-a572-65b260dd8faa,WO-1233,Clean gutters and downspouts,1,each,28000
+41ed1802-4563-575b-9c0c-1547508080bb,9aa87a6d-5a7a-51bc-9ee8-9dcc41679be1,WO-1234,Replace kitchen drain trap,1,each,39000
+881953d6-75da-5171-b2d1-9c40555cbd91,9aa87a6d-5a7a-51bc-9ee8-9dcc41679be1,WO-1234,Replace toilet wax ring and flange,1,each,14000
+2a55b5a4-6e0c-5984-a732-728e9b18df61,b805586a-485d-5be8-ad91-5eb2026a76f7,WO-1235,Emergency lockout service,1,visit,16000
+557c6dd4-2ccd-5dba-8058-0d11b0a4833d,b805586a-485d-5be8-ad91-5eb2026a76f7,WO-1235,Rekey unit locks,1,each,13000
+c3312a83-528b-53ec-87ea-53bbcbd3539d,b2eec7d2-452e-5353-a81c-92e736219504,WO-1236,"Snow plowing, parking lot",1,visit,39000
+ba16006d-f45d-5db1-b736-1c961a58e11b,180fce78-2ae8-5c82-8da0-9c7a763150a1,WO-1237,Reseal window frame,1,each,13500
+e1d0a863-2710-505a-9288-200eb070ea95,180fce78-2ae8-5c82-8da0-9c7a763150a1,WO-1237,Replace broken window pane,1,each,29500
+32789d1d-9a60-5107-9f6b-5ed89e725e1c,b66e8add-bab8-5e64-82af-a4c5ae75a990,WO-1238,Install gutter guards,1,each,82000
+293c579b-9fe9-5930-ad20-53d93be572b4,b66e8add-bab8-5e64-82af-a4c5ae75a990,WO-1238,Replace gutter section,1,each,46500
+a28c7b15-dfd2-57b7-960e-267b0d48cea4,6fea0fd9-578d-5b7a-afc8-254508c88833,WO-1239,Screen replacement,1,each,9000
+bd3ce3cb-f635-5afa-ac28-5b7ba28b8c55,6fea0fd9-578d-5b7a-afc8-254508c88833,WO-1239,Exterior window washing,1,visit,27500
+eae71a0c-c710-5590-9a59-016786c7fb24,b882d2e7-2299-54ac-a2ba-5d7672dcd19f,WO-1240,Paint trim and doors,1,each,31000
+6fa5a53c-0e52-5d7f-985f-714e225dc772,d853165c-7f76-5357-b100-50cac8dc2a3b,WO-1241,Monthly grounds maintenance,1,visit,37000
+2292e99a-a781-5f41-9745-77d326dc80ee,d853165c-7f76-5357-b100-50cac8dc2a3b,WO-1241,Irrigation repair,1,each,17500
+bfc16ac2-c647-5013-a0e4-ddcc4aa97051,d853165c-7f76-5357-b100-50cac8dc2a3b,WO-1241,Mulch installation,1,each,22500
+d65bc049-c430-5fbd-81ad-3b0e29a555e7,64ce06d8-33df-5e7d-a3d2-21cc336ac31a,WO-1242,Patch potholes,1,each,64500
+50ca09bf-a782-59e6-96ef-a153670d7cdd,145c3b13-e91d-5267-a348-aa39d045a8cd,WO-1243,Roofing crew labor (2 hr),2,hour,27000
+a8319c72-c907-5795-92c5-7249125af711,5dc2c3e1-1db6-5a95-83e9-e3a9b7e6038b,WO-1244,Repoint brick wall,1,each,99000
+2cdd7fdc-a693-53f6-a5fa-679b752d0681,5dc2c3e1-1db6-5a95-83e9-e3a9b7e6038b,WO-1244,Seal retaining wall,1,each,30500
+6fbf9a92-5b17-5a54-b252-c2d5d9334f4d,961c4737-c688-5fb9-a5bf-0e8deac569f7,WO-1245,Resurface parking lot,1,each,590000
+c4e86115-0c2e-52f7-b1c0-d04ae5ba8c72,961c4737-c688-5fb9-a5bf-0e8deac569f7,WO-1245,Line striping,1,each,38000
+b8aba281-f157-5458-8286-1933b824b4fb,fcb164ba-8895-5a8d-89a4-a110e96d9a7e,WO-1246,Repair roof leak and flashing,1,each,86500
+5efa2f23-9d1f-5e9f-89e9-e1b3463436f0,fcb164ba-8895-5a8d-89a4-a110e96d9a7e,WO-1246,Roofing crew labor (3 hr),3,hour,51000
+de48f984-1878-5839-903e-a8f7f8261488,fcb164ba-8895-5a8d-89a4-a110e96d9a7e,WO-1246,Replace damaged shingles,1,each,82500
+c1fa5c18-51a6-5755-b77a-76391b3f6bc9,6e4fb111-5e36-517f-91e5-ff2217cccf94,WO-1247,Refrigerator compressor diagnosis,1,each,9500
+fc853a81-860b-5f80-9e4a-8052e5c77740,a0bf96d0-e5d7-57a9-93c9-4e177e2352cd,WO-1248,"Junk removal, half truck",1,each,24500
+09acc126-209a-5612-accc-8cc156c4c549,a0bf96d0-e5d7-57a9-93c9-4e177e2352cd,WO-1248,Appliance haul-away,1,each,8000
+a0c0f616-ef05-5191-8638-d3c78e5aba05,90a30cf6-f149-5df8-93a3-6d6a78a80288,WO-1249,Emergency lockout service,1,visit,17000
+20c7fe4d-d9b6-5fff-903f-0a98b41d8f11,d8093aaa-30aa-5ec0-9797-42b20c46a193,WO-1250,"Snow plowing, parking lot",1,visit,34000
+a1950f60-6570-58b4-ba97-af886dbb29f0,d8093aaa-30aa-5ec0-9797-42b20c46a193,WO-1250,Sidewalk de-icing,1,visit,8000
+4a61c317-8bcd-5cd3-96ca-d595dc7996a8,72c33962-1a63-5356-ae5b-6172684a2893,WO-1251,Troubleshoot tripping breaker,1,each,15000
+26888497-81fd-54cc-946d-0404d8529baf,72c33962-1a63-5356-ae5b-6172684a2893,WO-1251,Replace smoke/CO detector,1,each,9000
+e570b220-b61d-58cf-8f77-844097a1d5d3,72c33962-1a63-5356-ae5b-6172684a2893,WO-1251,Replace GFCI outlets,1,each,8000
+1a674cc8-72ee-5e58-8bf3-7339d0eebc60,4499c5e1-8cb0-57d3-a8a7-8de933482aa5,WO-1252,Rodent exclusion,1,each,48000
+cae141b6-0d1d-5472-9a57-47d697a3126b,4499c5e1-8cb0-57d3-a8a7-8de933482aa5,WO-1252,Bed bug heat treatment,1,each,91500
+87d15146-385f-56d1-84e5-06ed358273c3,4f18f34f-e93f-5b1d-b7f2-223f30fcb4b7,WO-1253,Washer drain repair,1,each,21000
+edc81975-9bab-5b10-bf2a-82c5b8603091,4f18f34f-e93f-5b1d-b7f2-223f30fcb4b7,WO-1253,Replace oven igniter,1,each,20000
+cd9d5b4d-7b8a-5e12-b9b3-183f58f80dc8,8d04a6f0-79df-59f2-8c08-2335fdcfb01d,WO-1254,Clean gutters and downspouts,1,each,27500
+0d0729bb-bfa2-557e-9f80-0359bc31a45b,8d04a6f0-79df-59f2-8c08-2335fdcfb01d,WO-1254,Replace gutter section,1,each,39500
+11001d08-7c9d-521e-b809-1c3357e7f8aa,c05d62ae-4241-57e2-831e-89803535d368,WO-1255,Patch and paint ceiling stain,1,each,28000
+5d30eeec-a347-530f-8321-6ca49577f8c2,c05d62ae-4241-57e2-831e-89803535d368,WO-1255,"Interior repaint, two coats",1,each,188500
+533fe600-e8d4-5d72-968b-5ab1c2e6b154,c05d62ae-4241-57e2-831e-89803535d368,WO-1255,Paint trim and doors,1,each,46000
+32a6491c-10d7-5412-9f6c-934f7aef3e37,8a333d2b-5ca9-5efe-bfa8-f8c2aedf9f77,WO-1256,Install towel bars and hardware,1,each,11500
+740824d8-3b65-5d02-a4db-fb226f3b2e0f,8a333d2b-5ca9-5efe-bfa8-f8c2aedf9f77,WO-1256,Handyman labor (5 hr),5,hour,47500
+628a4cd8-75e6-5fd1-adb6-ad8f67493896,8a333d2b-5ca9-5efe-bfa8-f8c2aedf9f77,WO-1256,Rehang interior door,1,each,12500
+49b6847d-ef0c-5724-a6f8-5563d0e9fefa,a82d0de8-e2ab-549b-b83f-c3bbc0a3f9a4,WO-1257,Replace fence panels,1,each,42500
+c405aa27-b816-5a12-ae56-86177d26269f,a82d0de8-e2ab-549b-b83f-c3bbc0a3f9a4,WO-1257,Set new fence post,1,each,29000
+84a06f60-610a-51fb-aced-8d65db14aa5f,a82d0de8-e2ab-549b-b83f-c3bbc0a3f9a4,WO-1257,Repair gate latch and hinges,1,each,20000
+d64c86e8-9359-56e1-83ee-dfe84baf242f,145016f5-2995-5624-9786-a701ee03bcbf,WO-1258,Install transition strips,1,each,12000
+6911464a-23ea-5315-bfc2-cecd3dafb448,145016f5-2995-5624-9786-a701ee03bcbf,WO-1258,Repair subfloor section,1,each,67000
+418fe8f1-3343-539c-9f84-a5b38ee69880,145016f5-2995-5624-9786-a701ee03bcbf,WO-1258,Replace vinyl plank flooring,1,each,220000
+c2544f81-d27a-542a-9653-c351706dde1f,bedfd68c-16bb-5eee-9eb8-111bbe97194f,WO-1259,Repair cabinet hinges,1,each,8500
+34c3a5f5-1536-5db0-8d58-f65421ca9824,bedfd68c-16bb-5eee-9eb8-111bbe97194f,WO-1259,Install towel bars and hardware,1,each,13500
+ebbad580-4500-578f-b3ce-f55f29842dd4,bedfd68c-16bb-5eee-9eb8-111bbe97194f,WO-1259,Handyman labor (6 hr),6,hour,63000

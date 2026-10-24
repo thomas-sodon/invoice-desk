@@ -1,0 +1,36 @@
+{%- import "_macros.html.j2" as m -%}
+<!doctype html><html><head><meta charset="utf-8"><style>
+{{ base_css | safe }}
+body { font-family: "Liberation Mono", "DejaVu Sans Mono", monospace; font-size: 13px; }
+.slip { position: absolute; left: 150px; width: 516px; top: {{ 50 + doc.top_pad }}px; border: 1px solid #333; padding: 22px 26px; }
+.c { text-align: center; }
+.dash { border-top: 1px dashed #333; margin: 10px 0; }
+td { padding: 2px 0; }
+.items td { padding: 3px 0; }
+.big { font-size: 17px; font-weight: 700; }
+</style></head><body><div class="slip">
+<div class="c big">{{ m.g("vendor_name", doc.vendor_name) }}</div>
+<div class="c">{{ m.gblock("vendor_address", doc.address_lines, doc.vendor_address) }}</div>
+<div class="c">{{ doc.phone }}</div>
+{% if doc.tax_id_printed %}<div class="c">TAX ID {{ m.g("vendor_tax_id_last4", doc.tax_id_printed) }}</div>{% endif %}
+<div class="dash"></div>
+<table>
+<tr><td>INVOICE</td><td class="num">{{ m.g("invoice_number", doc.invoice_number) }}</td></tr>
+<tr><td>DATE</td><td class="num">{{ m.g("invoice_date", doc.invoice_date) }}</td></tr>
+{% if doc.wo %}<tr><td>WORK ORDER</td><td class="num">{{ m.g("work_order_number", doc.wo) }}</td></tr>{% endif %}
+{% if doc.unit %}<tr><td>LOCATION</td><td class="num">{{ m.g("property_or_unit", doc.unit) }}</td></tr>{% endif %}
+<tr><td>CUSTOMER</td><td class="num">MAPLE ROW PM</td></tr>
+</table>
+<div class="dash"></div>
+<table class="items"><tr><td>ITEM</td><td class="num">QTY</td><td class="num">EACH</td><td class="num">AMT</td></tr>
+{{ m.line_rows(doc) }}</table>
+<div class="dash"></div>
+<table>
+<tr><td>SUBTOTAL</td><td class="num">{{ m.g("subtotal", doc.subtotal) }}</td></tr>
+<tr><td>TAX</td><td class="num">{{ m.g("tax", doc.tax) }}</td></tr>
+<tr class="big"><td>TOTAL</td><td class="num">{{ m.g("total", doc.total) }}</td></tr>
+</table>
+<div class="dash"></div>
+{% if doc.remit %}<div class="small">{{ m.g("remit_to_bank_details", doc.remit) }}</div>{% endif %}
+<div class="c small">{{ doc.terms }}. THANK YOU</div>
+</div>{{ m.adversarial(doc) }}</body></html>

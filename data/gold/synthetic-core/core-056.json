@@ -1,0 +1,550 @@
+{
+ "augment": {
+  "angle": 0.06235413511127019,
+  "blur": 0.8382467813185681,
+  "capture": "scan",
+  "jpeg_quality": 73.0,
+  "noise": 2.0317005426633594,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 3.811779864528056,
+  "ty": -1.2423580087990427
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    854,
+    376,
+    971,
+    390
+   ],
+   "page": 0,
+   "text": "2026-09-04"
+  },
+  "invoice_number": {
+   "box": [
+    889,
+    347,
+    971,
+    361
+   ],
+   "page": 0,
+   "text": "SR-7706"
+  },
+  "line_items.0.amount": {
+   "box": [
+    902,
+    556,
+    971,
+    570
+   ],
+   "page": 0,
+   "text": "390.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    272,
+    555,
+    566,
+    575
+   ],
+   "page": 0,
+   "text": "Snow plowing, parking lot"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    751,
+    556,
+    761,
+    570
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    797,
+    556,
+    866,
+    570
+   ],
+   "page": 0,
+   "text": "390.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    913,
+    588,
+    971,
+    602
+   ],
+   "page": 0,
+   "text": "28.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    272,
+    587,
+    531,
+    607
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    751,
+    588,
+    761,
+    602
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    808,
+    588,
+    866,
+    602
+   ],
+   "page": 0,
+   "text": "28.00"
+  },
+  "property_or_unit": {
+   "box": [
+    878,
+    432,
+    971,
+    447
+   ],
+   "page": 0,
+   "text": "Unit 201"
+  },
+  "subtotal": {
+   "box": [
+    901,
+    650,
+    971,
+    664
+   ],
+   "page": 0,
+   "text": "418.00"
+  },
+  "tax": {
+   "box": [
+    913,
+    679,
+    971,
+    693
+   ],
+   "page": 0,
+   "text": "30.30"
+  },
+  "total": {
+   "box": [
+    879,
+    708,
+    971,
+    727
+   ],
+   "page": 0,
+   "text": "448.30"
+  },
+  "vendor_address": {
+   "box": [
+    498,
+    220,
+    745,
+    262
+   ],
+   "page": 0,
+   "text": "54 Kemp Roads, Springfield, OR 97465"
+  },
+  "vendor_name": {
+   "box": [
+    468,
+    191,
+    775,
+    211
+   ],
+   "page": 0,
+   "text": "Frostline Snow & Ice"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    604,
+    290,
+    721,
+    304
+   ],
+   "page": 0,
+   "text": "00-0004962"
+  },
+  "work_order_number": {
+   "box": [
+    876,
+    405,
+    971,
+    419
+   ],
+   "page": 0,
+   "text": "WO #1236"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     854,
+     376,
+     971,
+     390
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-04"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     889,
+     347,
+     971,
+     361
+    ],
+    "word_ids": []
+   },
+   "value": "SR-7706"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       902,
+       556,
+       971,
+       570
+      ],
+      "word_ids": []
+     },
+     "value_cents": 39000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       272,
+       555,
+       566,
+       575
+      ],
+      "word_ids": []
+     },
+     "value": "Snow plowing, parking lot"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       751,
+       556,
+       761,
+       570
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       797,
+       556,
+       866,
+       570
+      ],
+      "word_ids": []
+     },
+     "value_cents": 39000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       913,
+       588,
+       971,
+       602
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2800
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       272,
+       587,
+       531,
+       607
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       751,
+       588,
+       761,
+       602
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       808,
+       588,
+       866,
+       602
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2800
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     878,
+     432,
+     971,
+     447
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 201"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     901,
+     650,
+     971,
+     664
+    ],
+    "word_ids": []
+   },
+   "value_cents": 41800
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     913,
+     679,
+     971,
+     693
+    ],
+    "word_ids": []
+   },
+   "value_cents": 3030
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     879,
+     708,
+     971,
+     727
+    ],
+    "word_ids": []
+   },
+   "value_cents": 44830
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     498,
+     220,
+     745,
+     262
+    ],
+    "word_ids": []
+   },
+   "value": "54 Kemp Roads, Springfield, OR 97465"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     468,
+     191,
+     775,
+     211
+    ],
+    "word_ids": []
+   },
+   "value": "Frostline Snow & Ice"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     604,
+     290,
+     721,
+     304
+    ],
+    "word_ids": []
+   },
+   "value": "4962"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     876,
+     405,
+     971,
+     419
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1236"
+  }
+ },
+ "filename": "core-056.pdf",
+ "hidden_boxes": [],
+ "id": "core-056",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "63dbf416140103de13439ff8f97e22ddfe6b77139b144989bddb999ea899a4bb"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "81a8ad1f7c1de2f7e2f075dc870eee80722429cd1989eae7404cf9bb0ec5535a",
+ "split": "test",
+ "template": "compact",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-056",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-04",
+  "invoice_number": "SR-7706",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 39000,
+    "description": "Snow plowing, parking lot",
+    "quantity": "1",
+    "unit_price_cents": 39000
+   },
+   {
+    "amount_cents": 2800,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 2800
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 201",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 41800,
+  "tax_cents": 3030,
+  "tax_rate_bps": 725,
+  "template": "compact",
+  "total_cents": 44830,
+  "vendor_address": "54 Kemp Roads, Springfield, OR 97465",
+  "vendor_email": "billing@frostline.example",
+  "vendor_id": "3ec030da-b192-5173-acb6-4ed55dd03266",
+  "vendor_name": "Frostline Snow & Ice",
+  "vendor_phone": "(541) 555-0124",
+  "vendor_slug": "frostline",
+  "vendor_tax_id_last4": "4962",
+  "visible_instructions": [],
+  "work_order_number": "WO-1236",
+  "work_order_printed": "WO #1236"
+ }
+}

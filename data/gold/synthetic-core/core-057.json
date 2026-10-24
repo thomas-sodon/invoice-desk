@@ -1,0 +1,688 @@
+{
+ "augment": {
+  "angle": -0.7382345202387293,
+  "blur": 0.5976687742392328,
+  "capture": "scan",
+  "jpeg_quality": 73.0,
+  "noise": 5.938657386518978,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 2.8005779870224643,
+  "ty": 6.875861727933078
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    871,
+    481,
+    971,
+    497
+   ],
+   "page": 0,
+   "text": "09/13/2026"
+  },
+  "invoice_date": {
+   "box": [
+    872,
+    449,
+    971,
+    465
+   ],
+   "page": 0,
+   "text": "08/14/2026"
+  },
+  "invoice_number": {
+   "box": [
+    873,
+    417,
+    954,
+    433
+   ],
+   "page": 0,
+   "text": "INV-3801"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1066,
+    668,
+    1138,
+    687
+   ],
+   "page": 0,
+   "text": "$335.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    108,
+    657,
+    287,
+    678
+   ],
+   "page": 0,
+   "text": "Steam clean carpets"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    750,
+    665,
+    760,
+    680
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    874,
+    666,
+    946,
+    685
+   ],
+   "page": 0,
+   "text": "$335.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1065,
+    711,
+    1138,
+    730
+   ],
+   "page": 0,
+   "text": "$170.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    107,
+    700,
+    257,
+    721
+   ],
+   "page": 0,
+   "text": "Carpet stretching"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    749,
+    708,
+    760,
+    723
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    873,
+    709,
+    946,
+    728
+   ],
+   "page": 0,
+   "text": "$170.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1065,
+    753,
+    1137,
+    772
+   ],
+   "page": 0,
+   "text": "$290.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    106,
+    742,
+    374,
+    760
+   ],
+   "page": 0,
+   "text": "Additional work not in estimate"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    749,
+    750,
+    759,
+    765
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    873,
+    751,
+    945,
+    770
+   ],
+   "page": 0,
+   "text": "$290.00"
+  },
+  "property_or_unit": {
+   "box": [
+    872,
+    544,
+    944,
+    560
+   ],
+   "page": 0,
+   "text": "Unit 201"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    109,
+    958,
+    1004,
+    987
+   ],
+   "page": 0,
+   "text": "Remit to: Thistledown Carpet Care, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999161695"
+  },
+  "subtotal": {
+   "box": [
+    1064,
+    811,
+    1136,
+    830
+   ],
+   "page": 0,
+   "text": "$795.00"
+  },
+  "tax": {
+   "box": [
+    1086,
+    845,
+    1136,
+    864
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1041,
+    884,
+    1134,
+    907
+   ],
+   "page": 0,
+   "text": "$795.00"
+  },
+  "vendor_address": {
+   "box": [
+    112,
+    354,
+    305,
+    398
+   ],
+   "page": 0,
+   "text": "1055 Ricardo Fords, Springfield, OR 97434"
+  },
+  "vendor_name": {
+   "box": [
+    101,
+    194,
+    581,
+    238
+   ],
+   "page": 0,
+   "text": "Thistledown Carpet Care"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    163,
+    399,
+    251,
+    414
+   ],
+   "page": 0,
+   "text": "00-0000963"
+  },
+  "work_order_number": {
+   "box": [
+    871,
+    513,
+    954,
+    529
+   ],
+   "page": 0,
+   "text": "WO-1127"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R3": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     871,
+     481,
+     971,
+     497
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-13"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     872,
+     449,
+     971,
+     465
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-14"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     873,
+     417,
+     954,
+     433
+    ],
+    "word_ids": []
+   },
+   "value": "INV-3801"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1066,
+       668,
+       1138,
+       687
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       108,
+       657,
+       287,
+       678
+      ],
+      "word_ids": []
+     },
+     "value": "Steam clean carpets"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       750,
+       665,
+       760,
+       680
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       874,
+       666,
+       946,
+       685
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1065,
+       711,
+       1138,
+       730
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       107,
+       700,
+       257,
+       721
+      ],
+      "word_ids": []
+     },
+     "value": "Carpet stretching"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       749,
+       708,
+       760,
+       723
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       873,
+       709,
+       946,
+       728
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1065,
+       753,
+       1137,
+       772
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       106,
+       742,
+       374,
+       760
+      ],
+      "word_ids": []
+     },
+     "value": "Additional work not in estimate"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       749,
+       750,
+       759,
+       765
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       873,
+       751,
+       945,
+       770
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     872,
+     544,
+     944,
+     560
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 201"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     109,
+     958,
+     1004,
+     987
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Thistledown Carpet Care, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999161695"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1064,
+     811,
+     1136,
+     830
+    ],
+    "word_ids": []
+   },
+   "value_cents": 79500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1086,
+     845,
+     1136,
+     864
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1041,
+     884,
+     1134,
+     907
+    ],
+    "word_ids": []
+   },
+   "value_cents": 79500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     112,
+     354,
+     305,
+     398
+    ],
+    "word_ids": []
+   },
+   "value": "1055 Ricardo Fords, Springfield, OR 97434"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     101,
+     194,
+     581,
+     238
+    ],
+    "word_ids": []
+   },
+   "value": "Thistledown Carpet Care"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     163,
+     399,
+     251,
+     414
+    ],
+    "word_ids": []
+   },
+   "value": "0963"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     871,
+     513,
+     954,
+     529
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1127"
+  }
+ },
+ "filename": "core-057.pdf",
+ "hidden_boxes": [],
+ "id": "core-057",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "48df9a7e5db3aa593430b63fd1cee4530eb39f6b1e7eb0fc7de352037b854034"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "c5c9dc8878a101ac121708fdeb53b60081f7a7b7c0051d5fec29089e28bc6672",
+ "split": "test",
+ "template": "trades",
+ "truth": {
+  "accent": "#8a5a00",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "over_estimate"
+  ],
+  "doc_id": "core-057",
+  "doc_type": "invoice",
+  "due_date": "2026-09-13",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R3": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-14",
+  "invoice_number": "INV-3801",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 33500,
+    "description": "Steam clean carpets",
+    "quantity": "1",
+    "unit_price_cents": 33500
+   },
+   {
+    "amount_cents": 17000,
+    "description": "Carpet stretching",
+    "quantity": "1",
+    "unit_price_cents": 17000
+   },
+   {
+    "amount_cents": 29000,
+    "description": "Additional work not in estimate",
+    "quantity": "1",
+    "unit_price_cents": 29000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 201",
+  "remit_text": "Remit to: Thistledown Carpet Care, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999161695",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 79500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "trades",
+  "total_cents": 79500,
+  "vendor_address": "1055 Ricardo Fords, Springfield, OR 97434",
+  "vendor_email": "billing@thistledown.example",
+  "vendor_id": "e7cb111d-eb38-597e-bdd9-0253f467f01e",
+  "vendor_name": "Thistledown Carpet Care",
+  "vendor_phone": "(541) 555-0126",
+  "vendor_slug": "thistledown",
+  "vendor_tax_id_last4": "0963",
+  "visible_instructions": [],
+  "work_order_number": "WO-1127",
+  "work_order_printed": "WO-1127"
+ }
+}

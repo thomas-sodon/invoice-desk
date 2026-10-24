@@ -1,0 +1,660 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    865,
+    618,
+    963,
+    632
+   ],
+   "page": 0,
+   "text": "09/28/2026"
+  },
+  "invoice_date": {
+   "box": [
+    865,
+    586,
+    963,
+    600
+   ],
+   "page": 0,
+   "text": "08/14/2026"
+  },
+  "invoice_number": {
+   "box": [
+    866,
+    554,
+    946,
+    568
+   ],
+   "page": 0,
+   "text": "INV-7200"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1062,
+    803,
+    1133,
+    820
+   ],
+   "page": 0,
+   "text": "$135.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    804,
+    338,
+    822
+   ],
+   "page": 0,
+   "text": "Emergency lockout service"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    723,
+    804,
+    732,
+    818
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    859,
+    803,
+    929,
+    819
+   ],
+   "page": 0,
+   "text": "$135.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1064,
+    846,
+    1133,
+    862
+   ],
+   "page": 0,
+   "text": "$115.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    104,
+    847,
+    246,
+    865
+   ],
+   "page": 0,
+   "text": "Rekey unit locks"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    723,
+    847,
+    732,
+    861
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    860,
+    846,
+    929,
+    863
+   ],
+   "page": 0,
+   "text": "$115.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1073,
+    888,
+    1133,
+    905
+   ],
+   "page": 0,
+   "text": "$17.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    104,
+    889,
+    299,
+    907
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    723,
+    889,
+    732,
+    903
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    870,
+    888,
+    929,
+    904
+   ],
+   "page": 0,
+   "text": "$17.00"
+  },
+  "property_or_unit": {
+   "box": [
+    865,
+    681,
+    932,
+    699
+   ],
+   "page": 0,
+   "text": "Apt 205"
+  },
+  "subtotal": {
+   "box": [
+    1062,
+    946,
+    1133,
+    963
+   ],
+   "page": 0,
+   "text": "$267.00"
+  },
+  "tax": {
+   "box": [
+    1073,
+    980,
+    1133,
+    997
+   ],
+   "page": 0,
+   "text": "$19.36"
+  },
+  "total": {
+   "box": [
+    1040,
+    1019,
+    1133,
+    1040
+   ],
+   "page": 0,
+   "text": "$286.36"
+  },
+  "vendor_address": {
+   "box": [
+    103,
+    501,
+    296,
+    542
+   ],
+   "page": 0,
+   "text": "4622 Lewis Islands, Springfield, OR 97471"
+  },
+  "vendor_name": {
+   "box": [
+    91,
+    341,
+    482,
+    378
+   ],
+   "page": 0,
+   "text": "Tumbler Lock & Key"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    156,
+    546,
+    243,
+    558
+   ],
+   "page": 0,
+   "text": "00-0005844"
+  },
+  "work_order_number": {
+   "box": [
+    865,
+    650,
+    947,
+    664
+   ],
+   "page": 0,
+   "text": "WO 1228"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     618,
+     963,
+     632
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-28"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     586,
+     963,
+     600
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-14"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     554,
+     946,
+     568
+    ],
+    "word_ids": []
+   },
+   "value": "INV-7200"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       803,
+       1133,
+       820
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       804,
+       338,
+       822
+      ],
+      "word_ids": []
+     },
+     "value": "Emergency lockout service"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       723,
+       804,
+       732,
+       818
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       859,
+       803,
+       929,
+       819
+      ],
+      "word_ids": []
+     },
+     "value_cents": 13500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1064,
+       846,
+       1133,
+       862
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       847,
+       246,
+       865
+      ],
+      "word_ids": []
+     },
+     "value": "Rekey unit locks"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       723,
+       847,
+       732,
+       861
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       860,
+       846,
+       929,
+       863
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1073,
+       888,
+       1133,
+       905
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1700
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       889,
+       299,
+       907
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       723,
+       889,
+       732,
+       903
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       870,
+       888,
+       929,
+       904
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1700
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     681,
+     932,
+     699
+    ],
+    "word_ids": []
+   },
+   "value": "Apt 205"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1062,
+     946,
+     1133,
+     963
+    ],
+    "word_ids": []
+   },
+   "value_cents": 26700
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1073,
+     980,
+     1133,
+     997
+    ],
+    "word_ids": []
+   },
+   "value_cents": 1936
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1040,
+     1019,
+     1133,
+     1040
+    ],
+    "word_ids": []
+   },
+   "value_cents": 28636
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     103,
+     501,
+     296,
+     542
+    ],
+    "word_ids": []
+   },
+   "value": "4622 Lewis Islands, Springfield, OR 97471"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     91,
+     341,
+     482,
+     378
+    ],
+    "word_ids": []
+   },
+   "value": "Tumbler Lock & Key"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     156,
+     546,
+     243,
+     558
+    ],
+    "word_ids": []
+   },
+   "value": "5844"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     650,
+     947,
+     664
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1228"
+  }
+ },
+ "filename": "core-013.pdf",
+ "hidden_boxes": [],
+ "id": "core-013",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "82f5fe54bcc197e1938df61110a6b07bbf11194057c2523665e734142e2108f4"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "8674f8c10882ac52b927bf0c3dff53953e6331a4cd6cf496373fc5ef99fd23e5",
+ "split": "dev",
+ "template": "trades",
+ "truth": {
+  "accent": "#2d5f8b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-013",
+  "doc_type": "invoice",
+  "due_date": "2026-09-28",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-14",
+  "invoice_number": "INV-7200",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 13500,
+    "description": "Emergency lockout service",
+    "quantity": "1",
+    "unit_price_cents": 13500
+   },
+   {
+    "amount_cents": 11500,
+    "description": "Rekey unit locks",
+    "quantity": "1",
+    "unit_price_cents": 11500
+   },
+   {
+    "amount_cents": 1700,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 1700
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Apt 205",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 26700,
+  "tax_cents": 1936,
+  "tax_rate_bps": 725,
+  "template": "trades",
+  "total_cents": 28636,
+  "vendor_address": "4622 Lewis Islands, Springfield, OR 97471",
+  "vendor_email": "billing@tumbler.example",
+  "vendor_id": "675ae200-5ec8-5116-81c2-edf9ef5f21cb",
+  "vendor_name": "Tumbler Lock & Key",
+  "vendor_phone": "(541) 555-0118",
+  "vendor_slug": "tumbler",
+  "vendor_tax_id_last4": "5844",
+  "visible_instructions": [],
+  "work_order_number": "WO-1228",
+  "work_order_printed": "WO 1228"
+ }
+}

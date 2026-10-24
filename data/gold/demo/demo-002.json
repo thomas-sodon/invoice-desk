@@ -1,0 +1,458 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    866,
+    622,
+    961,
+    636
+   ],
+   "page": 0,
+   "text": "11/28/2026"
+  },
+  "invoice_date": {
+   "box": [
+    866,
+    591,
+    963,
+    605
+   ],
+   "page": 0,
+   "text": "10/14/2026"
+  },
+  "invoice_number": {
+   "box": [
+    866,
+    559,
+    946,
+    573
+   ],
+   "page": 0,
+   "text": "INV-7400"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1062,
+    808,
+    1133,
+    825
+   ],
+   "page": 0,
+   "text": "$170.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    809,
+    338,
+    827
+   ],
+   "page": 0,
+   "text": "Emergency lockout service"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    723,
+    809,
+    732,
+    823
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    859,
+    808,
+    929,
+    824
+   ],
+   "page": 0,
+   "text": "$170.00"
+  },
+  "property_or_unit": {
+   "box": [
+    865,
+    686,
+    932,
+    704
+   ],
+   "page": 0,
+   "text": "Apt 206"
+  },
+  "subtotal": {
+   "box": [
+    1062,
+    865,
+    1133,
+    882
+   ],
+   "page": 0,
+   "text": "$170.00"
+  },
+  "tax": {
+   "box": [
+    1073,
+    900,
+    1132,
+    917
+   ],
+   "page": 0,
+   "text": "$12.32"
+  },
+  "total": {
+   "box": [
+    1040,
+    939,
+    1133,
+    960
+   ],
+   "page": 0,
+   "text": "$182.32"
+  },
+  "vendor_address": {
+   "box": [
+    103,
+    506,
+    296,
+    546
+   ],
+   "page": 0,
+   "text": "4622 Lewis Islands, Springfield, OR 97471"
+  },
+  "vendor_name": {
+   "box": [
+    91,
+    345,
+    482,
+    382
+   ],
+   "page": 0,
+   "text": "Tumbler Lock & Key"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    156,
+    550,
+    243,
+    562
+   ],
+   "page": 0,
+   "text": "00-0005844"
+  },
+  "work_order_number": {
+   "box": [
+    865,
+    654,
+    948,
+    668
+   ],
+   "page": 0,
+   "text": "WO-1249"
+  }
+ },
+ "category": "clean",
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     622,
+     961,
+     636
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-28"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     591,
+     963,
+     605
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-14"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     559,
+     946,
+     573
+    ],
+    "word_ids": []
+   },
+   "value": "INV-7400"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       808,
+       1133,
+       825
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       809,
+       338,
+       827
+      ],
+      "word_ids": []
+     },
+     "value": "Emergency lockout service"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       723,
+       809,
+       732,
+       823
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       859,
+       808,
+       929,
+       824
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     686,
+     932,
+     704
+    ],
+    "word_ids": []
+   },
+   "value": "Apt 206"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1062,
+     865,
+     1133,
+     882
+    ],
+    "word_ids": []
+   },
+   "value_cents": 17000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1073,
+     900,
+     1132,
+     917
+    ],
+    "word_ids": []
+   },
+   "value_cents": 1232
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1040,
+     939,
+     1133,
+     960
+    ],
+    "word_ids": []
+   },
+   "value_cents": 18232
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     103,
+     506,
+     296,
+     546
+    ],
+    "word_ids": []
+   },
+   "value": "4622 Lewis Islands, Springfield, OR 97471"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     91,
+     345,
+     482,
+     382
+    ],
+    "word_ids": []
+   },
+   "value": "Tumbler Lock & Key"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     156,
+     550,
+     243,
+     562
+    ],
+    "word_ids": []
+   },
+   "value": "5844"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     654,
+     948,
+     668
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1249"
+  }
+ },
+ "filename": "14-tumbler-INV-7400-pdf.pdf",
+ "hidden_boxes": [],
+ "id": "demo-002",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "e405df9780e332b6fe1a0b15a54c810411308fb441b7628add4337b5683fb75b"
+ ],
+ "priors": [],
+ "set": "demo",
+ "sha256": "865aa918438d75b3974d825dc0402157a0887d15baa62d0b58d9ec64bfb4886c",
+ "split": "demo",
+ "template": "trades",
+ "truth": {
+  "accent": "#2d5f8b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "demo-002",
+  "doc_type": "invoice",
+  "due_date": "2026-11-28",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-14",
+  "invoice_number": "INV-7400",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 17000,
+    "description": "Emergency lockout service",
+    "quantity": "1",
+    "unit_price_cents": 17000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {
+   "layout_level": 4
+  },
+  "property_or_unit": "Apt 206",
+  "remit_text": null,
+  "set_name": "demo",
+  "subtotal_cents": 17000,
+  "tax_cents": 1232,
+  "tax_rate_bps": 725,
+  "template": "trades",
+  "total_cents": 18232,
+  "vendor_address": "4622 Lewis Islands, Springfield, OR 97471",
+  "vendor_email": "billing@tumbler.example",
+  "vendor_id": "675ae200-5ec8-5116-81c2-edf9ef5f21cb",
+  "vendor_name": "Tumbler Lock & Key",
+  "vendor_phone": "(541) 555-0118",
+  "vendor_slug": "tumbler",
+  "vendor_tax_id_last4": "5844",
+  "visible_instructions": [],
+  "work_order_number": "WO-1249",
+  "work_order_printed": "WO-1249"
+ }
+}

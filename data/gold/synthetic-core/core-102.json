@@ -1,0 +1,563 @@
+{
+ "augment": {
+  "blur": 0.5670055931848348,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 78.0,
+  "noise": 6.280203247102563,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    593,
+    461,
+    698,
+    484
+   ],
+   "page": 0,
+   "text": "30 Sep 2026"
+  },
+  "invoice_date": {
+   "box": [
+    593,
+    429,
+    695,
+    451
+   ],
+   "page": 0,
+   "text": "31 Aug 2026"
+  },
+  "invoice_number": {
+   "box": [
+    592,
+    398,
+    671,
+    416
+   ],
+   "page": 0,
+   "text": "INV06801"
+  },
+  "line_items.0.amount": {
+   "box": [
+    993,
+    655,
+    1061,
+    676
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    425,
+    667,
+    685,
+    693
+   ],
+   "page": 0,
+   "text": "Replace water-damaged drywall"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    824,
+    663,
+    831,
+    678
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    878,
+    658,
+    946,
+    679
+   ],
+   "page": 0,
+   "text": "$670.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    996,
+    697,
+    1060,
+    717
+   ],
+   "page": 0,
+   "text": "$170.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    425,
+    710,
+    626,
+    733
+   ],
+   "page": 0,
+   "text": "Texture match and prime"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    824,
+    704,
+    831,
+    719
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    881,
+    700,
+    945,
+    720
+   ],
+   "page": 0,
+   "text": "$170.00"
+  },
+  "property_or_unit": {
+   "box": [
+    593,
+    526,
+    621,
+    542
+   ],
+   "page": 0,
+   "text": "102"
+  },
+  "subtotal": {
+   "box": [
+    990,
+    752,
+    1060,
+    772
+   ],
+   "page": 0,
+   "text": "$840.00"
+  },
+  "tax": {
+   "box": [
+    1001,
+    791,
+    1059,
+    811
+   ],
+   "page": 0,
+   "text": "$50.40"
+  },
+  "total": {
+   "box": [
+    942,
+    832,
+    1059,
+    861
+   ],
+   "page": 0,
+   "text": "$890.40"
+  },
+  "vendor_address": {
+   "box": [
+    83,
+    412,
+    260,
+    459
+   ],
+   "page": 0,
+   "text": "5647 Adriana Circles, Springfield, OR 97469"
+  },
+  "vendor_name": {
+   "box": [
+    81,
+    322,
+    304,
+    387
+   ],
+   "page": 0,
+   "text": "Pinecone Drywall & Patch"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    88,
+    563,
+    190,
+    580
+   ],
+   "page": 0,
+   "text": "00-0000592"
+  },
+  "work_order_number": {
+   "box": [
+    592,
+    493,
+    675,
+    511
+   ],
+   "page": 0,
+   "text": "WO #1144"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     593,
+     461,
+     698,
+     484
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-30"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     593,
+     429,
+     695,
+     451
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-31"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     592,
+     398,
+     671,
+     416
+    ],
+    "word_ids": []
+   },
+   "value": "INV06801"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       993,
+       655,
+       1061,
+       676
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       425,
+       667,
+       685,
+       693
+      ],
+      "word_ids": []
+     },
+     "value": "Replace water-damaged drywall"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       824,
+       663,
+       831,
+       678
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       878,
+       658,
+       946,
+       679
+      ],
+      "word_ids": []
+     },
+     "value_cents": 67000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       996,
+       697,
+       1060,
+       717
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       425,
+       710,
+       626,
+       733
+      ],
+      "word_ids": []
+     },
+     "value": "Texture match and prime"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       824,
+       704,
+       831,
+       719
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       881,
+       700,
+       945,
+       720
+      ],
+      "word_ids": []
+     },
+     "value_cents": 17000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     593,
+     526,
+     621,
+     542
+    ],
+    "word_ids": []
+   },
+   "value": "102"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     990,
+     752,
+     1060,
+     772
+    ],
+    "word_ids": []
+   },
+   "value_cents": 84000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1001,
+     791,
+     1059,
+     811
+    ],
+    "word_ids": []
+   },
+   "value_cents": 5040
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     942,
+     832,
+     1059,
+     861
+    ],
+    "word_ids": []
+   },
+   "value_cents": 89040
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     83,
+     412,
+     260,
+     459
+    ],
+    "word_ids": []
+   },
+   "value": "5647 Adriana Circles, Springfield, OR 97469"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     81,
+     322,
+     304,
+     387
+    ],
+    "word_ids": []
+   },
+   "value": "Pinecone Drywall & Patch"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     88,
+     563,
+     190,
+     580
+    ],
+    "word_ids": []
+   },
+   "value": "0592"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     592,
+     493,
+     675,
+     511
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1144"
+  }
+ },
+ "filename": "core-102.jpg",
+ "hidden_boxes": [],
+ "id": "core-102",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "9d05c0f6a43d15603f94a168d826ac494f8728d724dc75855fef64a43f10d97a"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "15518a56787369457440ecf0391d240ff103574d7de4a3cbdd624059f9c46030",
+ "split": "test",
+ "template": "modern",
+ "truth": {
+  "accent": "#2d5f8b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-102",
+  "doc_type": "invoice",
+  "due_date": "2026-09-30",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-31",
+  "invoice_number": "INV06801",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 67000,
+    "description": "Replace water-damaged drywall",
+    "quantity": "1",
+    "unit_price_cents": 67000
+   },
+   {
+    "amount_cents": 17000,
+    "description": "Texture match and prime",
+    "quantity": "1",
+    "unit_price_cents": 17000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "102",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 84000,
+  "tax_cents": 5040,
+  "tax_rate_bps": 600,
+  "template": "modern",
+  "total_cents": 89040,
+  "vendor_address": "5647 Adriana Circles, Springfield, OR 97469",
+  "vendor_email": "billing@pinecone.example",
+  "vendor_id": "fb1ded85-40bc-557b-bfaa-d563512dd76c",
+  "vendor_name": "Pinecone Drywall & Patch",
+  "vendor_phone": "(541) 555-0130",
+  "vendor_slug": "pinecone",
+  "vendor_tax_id_last4": "0592",
+  "visible_instructions": [],
+  "work_order_number": "WO-1144",
+  "work_order_printed": "WO #1144"
+ }
+}

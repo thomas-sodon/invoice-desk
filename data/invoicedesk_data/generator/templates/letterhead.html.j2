@@ -1,0 +1,37 @@
+{%- import "_macros.html.j2" as m -%}
+<!doctype html><html><head><meta charset="utf-8"><style>
+{{ base_css | safe }}
+body { font-family: "DejaVu Serif", serif; font-size: 13px; }
+.lh { text-align: center; padding-top: {{ 40 + doc.top_pad }}px; }
+.lh .vn { font-size: 25px; font-variant: small-caps; color: {{ doc.accent }}; letter-spacing: 2px; }
+.rule { border-top: 3px double {{ doc.accent }}; margin: 10px 60px 0; }
+.content { padding: 24px 70px; }
+.two { display: flex; justify-content: space-between; }
+.items { margin-top: 20px; }
+.items th { border-bottom: 1px solid {{ doc.accent }}; border-top: 1px solid {{ doc.accent }}; text-align: left; font-style: italic; font-weight: 400; }
+.sum { width: 300px; margin-left: auto; margin-top: 8px; }
+.sum .t td { border-top: 1px solid #000; font-weight: 700; font-size: 15px; }
+.foot { position: absolute; bottom: 40px; left: 0; right: 0; text-align: center; font-size: 11px; color: #555; }
+</style></head><body>
+<div class="lh"><div class="vn">{{ m.g("vendor_name", doc.vendor_name) }}</div>
+<div class="small">{{ doc.tagline }}</div></div><div class="rule"></div>
+<div class="content">
+<div class="two"><div>Billed to:<br><b>{{ doc.bill_to_name }}</b><br>{{ doc.bill_to_address }}
+{% if doc.unit %}<br>Re: {{ m.g("property_or_unit", doc.unit) }}{% endif %}</div>
+<div style="text-align:right">Invoice {{ m.g("invoice_number", doc.invoice_number) }}<br>
+{{ m.g("invoice_date", doc.invoice_date) }}<br>
+{% if doc.due_date %}Due {{ m.g("due_date", doc.due_date) }}<br>{% endif %}
+{% if doc.wo %}Work order {{ m.g("work_order_number", doc.wo) }}{% endif %}</div></div>
+<table class="items"><tr><th>Service</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amount</th></tr>
+{{ m.line_rows(doc) }}</table>
+<table class="sum">
+<tr><td>Subtotal</td><td class="num">{{ m.g("subtotal", doc.subtotal) }}</td></tr>
+<tr><td>{{ doc.tax_label }}</td><td class="num">{{ m.g("tax", doc.tax) }}</td></tr>
+<tr class="t"><td>Amount due</td><td class="num">{{ m.g("total", doc.total) }}</td></tr>
+</table>
+{% if doc.remit %}<p style="margin-top:30px" class="small">{{ m.g("remit_to_bank_details", doc.remit) }}</p>{% endif %}
+{% for n in doc.notes %}<p class="small">{{ n }}</p>{% endfor %}
+</div>
+<div class="foot">{{ m.gblock("vendor_address", doc.address_lines, doc.vendor_address) }}
+{{ doc.phone }}{% if doc.tax_id_printed %} &middot; EIN {{ m.g("vendor_tax_id_last4", doc.tax_id_printed) }}{% endif %}</div>
+{{ m.adversarial(doc) }}</body></html>

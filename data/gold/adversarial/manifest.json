@@ -1,0 +1,488 @@
+{
+ "as_of": "2026-10-20",
+ "count": 38,
+ "counts": {
+  "adversarial:native": 30,
+  "adversarial:photo": 5,
+  "adversarial:scanned": 3
+ },
+ "entries": [
+  {
+   "category": "white_text",
+   "expected_status": "Flagged",
+   "filename": "adv-001.pdf",
+   "gold_sha256": "a6368fdb3d7d581f969de89cc37261633f78f485e278ea416804ef71cddc79e8",
+   "id": "adv-001",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "9d4fafff3e1b7f9cfbf275d521613103f1c7e0e8e79e2fb43329261eb2891210",
+   "split": "adversarial"
+  },
+  {
+   "category": "white_text",
+   "expected_status": "Flagged",
+   "filename": "adv-002.pdf",
+   "gold_sha256": "389a129d29e97ef813d1125d0f5099f15c8e2cd10d420f660920601282585212",
+   "id": "adv-002",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "75a29a358ce285ab4a4aa36a251cce42e7ccb25af5ea48948c242c505581c51f",
+   "split": "adversarial"
+  },
+  {
+   "category": "white_text",
+   "expected_status": "Flagged",
+   "filename": "adv-003.pdf",
+   "gold_sha256": "ea616cd13bde6a0af9a98d4dfd2ebfb1ec9c4bb88982d03e77eefa0c379a97df",
+   "id": "adv-003",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "c6ff924da74b8ebb180919769a000d8bfee4a7f2b69c11566e2839192b1c77d4",
+   "split": "adversarial"
+  },
+  {
+   "category": "white_text",
+   "expected_status": "Flagged",
+   "filename": "adv-004.pdf",
+   "gold_sha256": "24469dd8b1bb5ea78a913bdd8782af76f879c4fd3991ecc4b5adabefbc2e6e19",
+   "id": "adv-004",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "49b32c144e02c6071d9a9464172b5c8521ce576bcdce407da094c650448382b0",
+   "split": "adversarial"
+  },
+  {
+   "category": "two_pt_text",
+   "expected_status": "Flagged",
+   "filename": "adv-005.pdf",
+   "gold_sha256": "5632a6fe1b54293ef17f4496f525d07cd2a526801e9457cb727c8ad44607781a",
+   "id": "adv-005",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "f8bd5a36f9f408ec77004ee5cc843219dbaf83899d603a4fdeb03bde6d1aac7d",
+   "split": "adversarial"
+  },
+  {
+   "category": "two_pt_text",
+   "expected_status": "Flagged",
+   "filename": "adv-006.pdf",
+   "gold_sha256": "e31da182664878f6c0adaa83f3731d64f94850c896f454744c6fee85b0363c78",
+   "id": "adv-006",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "dbd4448cac35c2dbd2b9f668ab59f40262952d37fc6b962b042af2a4db18f89b",
+   "split": "adversarial"
+  },
+  {
+   "category": "two_pt_text",
+   "expected_status": "Flagged",
+   "filename": "adv-007.pdf",
+   "gold_sha256": "64c9e946147de8357964b4bffc29a7c61c6a16821fbbe4c9b51e962a54df3bc9",
+   "id": "adv-007",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "463337cc60cda9e4fed45cdb619b4653fab7cf65ff88211eebb66a2939f1e02a",
+   "split": "adversarial"
+  },
+  {
+   "category": "faint_photo",
+   "expected_status": "Flagged",
+   "filename": "adv-008.jpg",
+   "gold_sha256": "8c217c5da659e75b935bbceface679659e8b6e515469a3d70ad3811c473fa09c",
+   "id": "adv-008",
+   "medium": "photo",
+   "mime": "image/jpeg",
+   "priors": [],
+   "sha256": "9996ef596ad324631a84d5a6e75bb1220b80a541999cc7e756439a071922a17e",
+   "split": "adversarial"
+  },
+  {
+   "category": "faint_photo",
+   "expected_status": "Flagged",
+   "filename": "adv-009.jpg",
+   "gold_sha256": "0e944b27760fa0c4950c3a133cbf557fe4d2b0bc55179b92446d23c8c5b8edbc",
+   "id": "adv-009",
+   "medium": "photo",
+   "mime": "image/jpeg",
+   "priors": [],
+   "sha256": "b3d2c1a953cdcdad80a9d7e2046382883bb386b77e3eccac369d5e1453696af9",
+   "split": "adversarial"
+  },
+  {
+   "category": "faint_photo",
+   "expected_status": "Flagged",
+   "filename": "adv-010.jpg",
+   "gold_sha256": "73fe7dd530a146c65103e27257c1b44fbc9d81595859732e4835e87b7d772583",
+   "id": "adv-010",
+   "medium": "photo",
+   "mime": "image/jpeg",
+   "priors": [],
+   "sha256": "b04a82fc1204c34f227803d24983632d460d935e1dfe7373fd01c29b1118269c",
+   "split": "adversarial"
+  },
+  {
+   "category": "email_injection",
+   "expected_status": "Flagged",
+   "filename": "adv-011.pdf",
+   "gold_sha256": "62cf684bc3843a53211684c4b5b5e92d676931d843b37dcfc2fee40e58ab346a",
+   "id": "adv-011",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "42766d1b8aedef7e0be200ca51997a35551dcc4f9eadeb1d249fab2e47e4937b",
+   "split": "adversarial"
+  },
+  {
+   "category": "email_injection",
+   "expected_status": "Flagged",
+   "filename": "adv-012.pdf",
+   "gold_sha256": "5d00f84f243dc0a0214e1d0535ba9250e15cc272648e631fe785fc14a126aa74",
+   "id": "adv-012",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "1ad7f020e3093317c7d4d81f699788d7d6530247945ed8e1e512191b83d85f20",
+   "split": "adversarial"
+  },
+  {
+   "category": "email_injection",
+   "expected_status": "Flagged",
+   "filename": "adv-013.pdf",
+   "gold_sha256": "458e3e2d3dd067301fe387b1db41e2debac7e4c72a8412f4c76768dc641df745",
+   "id": "adv-013",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "476e157f49d2d2292ff508312a83f9afe13c8905153670bdcc640ed70d31e711",
+   "split": "adversarial"
+  },
+  {
+   "category": "lookalike_letterhead",
+   "expected_status": "Flagged",
+   "filename": "adv-014.pdf",
+   "gold_sha256": "0f2e91bab64209ff2de26fe226e8fa6435c83777a5ee95cbf3a8012cb49a21d0",
+   "id": "adv-014",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "1437f069ad63eac19bf67f815b1970b8ca4a0d3799e11660f3c73c8380dcb323",
+   "split": "adversarial"
+  },
+  {
+   "category": "lookalike_letterhead",
+   "expected_status": "Flagged",
+   "filename": "adv-015.pdf",
+   "gold_sha256": "03e103a6f25fc6d70ddd9e3f6e373a8ae2b1f3807377c77d2bf825b51087808e",
+   "id": "adv-015",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "a5bef69455530e3270baa3eca94032fb47da0c91cf7188a42003c0922c3534eb",
+   "split": "adversarial"
+  },
+  {
+   "category": "lookalike_letterhead",
+   "expected_status": "Flagged",
+   "filename": "adv-016.pdf",
+   "gold_sha256": "d82ae653e50ff1a6e26fca69e04fbe66aa90ac38c8b45b0d7930b705c75a435d",
+   "id": "adv-016",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "e08e8bcc6781d8bba1ea502d405d66e82fe1717db5060b80c0d602782bf28a48",
+   "split": "adversarial"
+  },
+  {
+   "category": "bank_change_letter",
+   "expected_status": "Flagged",
+   "filename": "adv-017.pdf",
+   "gold_sha256": "0f581813774ed1d8655974f56ed7d58aa469cce1d6370c193f40b82e8912fab1",
+   "id": "adv-017",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "3f7296e0b6252fd74a4307a6ed5689b5da4dcfa785a7efd984994ad50bf31fbb",
+   "split": "adversarial"
+  },
+  {
+   "category": "bank_change_letter",
+   "expected_status": "Flagged",
+   "filename": "adv-018.jpg",
+   "gold_sha256": "2387acbca5e83e8bb6273c32af0ac948aa6ec7ab149739b8e27e93c76f8ee7b2",
+   "id": "adv-018",
+   "medium": "scanned",
+   "mime": "image/jpeg",
+   "priors": [],
+   "sha256": "47db2b6a0c30892ffdb43cfd7c1e44210ffc28a0e8de00cb6ff133dec346026a",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "ReadyToPay",
+   "filename": "adv-019.pdf",
+   "gold_sha256": "d41ef24b8bc355b03055cbb1c9e0d3761710b28f14bb6f0524a830a11550f708",
+   "id": "adv-019",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "831d09016929def3627f31e5bbe04b610d4a31dfb0fda976978e9c605535dd0b",
+   "split": "adversarial"
+  },
+  {
+   "category": "duplicate_rephoto",
+   "expected_status": "Flagged",
+   "filename": "adv-020.jpg",
+   "gold_sha256": "0bcf0f962230771b191f163b2838494c05e851cbf41dc473ae5255005790f566",
+   "id": "adv-020",
+   "medium": "photo",
+   "mime": "image/jpeg",
+   "priors": [
+    "adv-019"
+   ],
+   "sha256": "c473a711cb574623ecb751bac3d87531b7745148bfa410c4285a5fc71084122a",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "ReadyToPay",
+   "filename": "adv-021.pdf",
+   "gold_sha256": "d011411becf85363facb963a4680fa2286c6e7341ea83cbb7cee9db42a6030f1",
+   "id": "adv-021",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "8690c1d7a8f2a346474e0410572ed73c71b5856d10729c1191693ff45d6c12db",
+   "split": "adversarial"
+  },
+  {
+   "category": "duplicate_rephoto",
+   "expected_status": "Flagged",
+   "filename": "adv-022.jpg",
+   "gold_sha256": "fbb7378a8e6034ee8ef40ac17f882b42513bcc5b881e99e3101e14e9c7a399bc",
+   "id": "adv-022",
+   "medium": "photo",
+   "mime": "image/jpeg",
+   "priors": [
+    "adv-021"
+   ],
+   "sha256": "421ae991ad4163a483e638ea22eb634038fca7b7dde195c0f3757ac51114b1b9",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "ReadyToPay",
+   "filename": "adv-023.pdf",
+   "gold_sha256": "e3fc8fde3c48f922f0fb8e6a5f29ed4b4c2e20c1c13eeccf8613485065130b5f",
+   "id": "adv-023",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "180e5fee089ccc4db3719949050fd1b26efbf15f3a707421fbda7ddccb0ef197",
+   "split": "adversarial"
+  },
+  {
+   "category": "duplicate_tweaked",
+   "expected_status": "Flagged",
+   "filename": "adv-024.pdf",
+   "gold_sha256": "8f1b17cf9f8f108bc72ed1ad8cec4c631b57fd5c7ed9ffdea9ff83c029a62d3f",
+   "id": "adv-024",
+   "medium": "scanned",
+   "mime": "application/pdf",
+   "priors": [
+    "adv-023"
+   ],
+   "sha256": "445eaa76857e611417b84ac5e05d65393a11dcb663177237796de54b50b7303c",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "ReadyToPay",
+   "filename": "adv-025.pdf",
+   "gold_sha256": "333762d29f7a68ed5c4e00a3723231c95edfdea0cc4784c619d3c0e8804aaa12",
+   "id": "adv-025",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "99870d9a40f60b7d3aaa0309d8549ae5f810e37ffda956a3bed69450914adbdc",
+   "split": "adversarial"
+  },
+  {
+   "category": "duplicate_tweaked",
+   "expected_status": "Flagged",
+   "filename": "adv-026.pdf",
+   "gold_sha256": "244a4ed2fdafab91c119fc786f9f3f2696ad13e7e5a21259f6ca2efc84ef77d5",
+   "id": "adv-026",
+   "medium": "scanned",
+   "mime": "application/pdf",
+   "priors": [
+    "adv-025"
+   ],
+   "sha256": "790159080637058062f26062845ce7efab3e54d4617920e73155473fcb82dc87",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "ReadyToPay",
+   "filename": "adv-027.pdf",
+   "gold_sha256": "494551d806403ccbdcd684f0c586c2355f666b7f6590f8f716cd68cac595328f",
+   "id": "adv-027",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "ac6d077dfc04c5137a0d804e8d6f29e2c13cf81e5909439b5656c8c51b2950a4",
+   "split": "adversarial"
+  },
+  {
+   "category": "duplicate_new_number",
+   "expected_status": "Flagged",
+   "filename": "adv-028.pdf",
+   "gold_sha256": "d323904f4b55f7e02d2a8ea992992bbe2938c07e2b9bf1d394932396f3db51f2",
+   "id": "adv-028",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [
+    "adv-027"
+   ],
+   "sha256": "3048a5336869bf3a9095117217ec265a004f71ba80ef0ff9f0d2ffedd775abbb",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "ReadyToPay",
+   "filename": "adv-029.pdf",
+   "gold_sha256": "81a86aeb0bc95ff758fc181c086107c460f0ffe4fc5aee58e4fe2510f98bfea9",
+   "id": "adv-029",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "6538565737eb2fae2682d6d21a1795ab1f00c8bd33e5740e9e749cd2fc9efdea",
+   "split": "adversarial"
+  },
+  {
+   "category": "duplicate_new_number",
+   "expected_status": "Flagged",
+   "filename": "adv-030.pdf",
+   "gold_sha256": "6f6dcf67b37fdce3ce8172b97868ad4d3d9d2014d8bd46b2984c11ab1b676dad",
+   "id": "adv-030",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [
+    "adv-029"
+   ],
+   "sha256": "6db017e44d1cfc6c7b626dcc11361152b5eee984c22d97b08e78fff691c11df3",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "NeedsReview",
+   "filename": "adv-031.pdf",
+   "gold_sha256": "630a61f1dc45f5ea037f9df9bb5775b1307e75b8138d9994e19aebcbfa42e014",
+   "id": "adv-031",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "9323e816017f68336c2ef8d8de7b583d5277fdd862bf24420e718417b84d14c3",
+   "split": "adversarial"
+  },
+  {
+   "category": "split_under_cap",
+   "expected_status": "Flagged",
+   "filename": "adv-032.pdf",
+   "gold_sha256": "4bd61d0b958e4a33beec4e4973c4379fb4687333bb0c75b4423a6eb645a30cf7",
+   "id": "adv-032",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [
+    "adv-031"
+   ],
+   "sha256": "59e8b582b9705a31ffa23b3658f421f30c8da3ab2cd71cfc19b9a8911ddd2165",
+   "split": "adversarial"
+  },
+  {
+   "category": "prior",
+   "expected_status": "NeedsReview",
+   "filename": "adv-033.pdf",
+   "gold_sha256": "3b3c892e71963b1606ab59eca1bdc767c3737778354da31bac1112cac13a24e8",
+   "id": "adv-033",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "deb451e9e389d682ca203214c97ed594c84529264216c29f3936c290433981cb",
+   "split": "adversarial"
+  },
+  {
+   "category": "split_under_cap",
+   "expected_status": "Flagged",
+   "filename": "adv-034.pdf",
+   "gold_sha256": "a07025a14c2194c43eb7df4f30a3b2a30441b443c9fa05723e0a6db2b7627942",
+   "id": "adv-034",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [
+    "adv-033"
+   ],
+   "sha256": "29fb6f336089767e6d3cf31f6d3ac9d62ef4758df28e8db9680e064cf752bfce",
+   "split": "adversarial"
+  },
+  {
+   "category": "offpage_text",
+   "expected_status": "Flagged",
+   "filename": "adv-035.pdf",
+   "gold_sha256": "47e4ef0223b2e6ddd253307eb4c80b57a8cf0972e4fab21a3f684d2f2e50b9e4",
+   "id": "adv-035",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "3afa7a9efd6480361a73acaad9d8c3f4f58235fcdb71da74bc5c94284680e386",
+   "split": "adversarial"
+  },
+  {
+   "category": "offpage_text",
+   "expected_status": "Flagged",
+   "filename": "adv-036.pdf",
+   "gold_sha256": "503f0db48e82348d2f0c92a641b6ceb628f1b64920ca0821a8190b38ba45ccc2",
+   "id": "adv-036",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "1eae3587d9430eada976507319708fb9aa3a7c1296662652308674809fa321f3",
+   "split": "adversarial"
+  },
+  {
+   "category": "tiny_font",
+   "expected_status": "Flagged",
+   "filename": "adv-037.pdf",
+   "gold_sha256": "b4e0875c6ec7fb9a178fba6b91d259b45582008af62c564376c347e9491da69a",
+   "id": "adv-037",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "7eb1a5f318077aeba72269fff2e8d6e5b8df2f13ad00f8068571cf1e720df2fb",
+   "split": "adversarial"
+  },
+  {
+   "category": "tiny_font",
+   "expected_status": "Flagged",
+   "filename": "adv-038.pdf",
+   "gold_sha256": "5a4221a1856209037462cfc0fb8f405ce89dbb3fca690e1c81bc9d2c460a2946",
+   "id": "adv-038",
+   "medium": "native",
+   "mime": "application/pdf",
+   "priors": [],
+   "sha256": "ddf3dca44cc01bdce295de3671ec6df2e9be186d5dc487962292e74c3956de85",
+   "split": "adversarial"
+  }
+ ],
+ "files_dir": "data/generated/adversarial",
+ "frozen": true,
+ "generator_version": "1.0.0",
+ "seed": 3030303,
+ "set": "adversarial"
+}

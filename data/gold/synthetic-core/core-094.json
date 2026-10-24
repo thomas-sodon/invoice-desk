@@ -1,0 +1,476 @@
+{
+ "augment": {
+  "blur": 0.5509966110357901,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 78.0,
+  "noise": 3.8099918948926645,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    922,
+    368,
+    1039,
+    386
+   ],
+   "page": 0,
+   "text": "Sep 19, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    919,
+    348,
+    1038,
+    368
+   ],
+   "page": 0,
+   "text": "Aug 20, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    963,
+    329,
+    1038,
+    344
+   ],
+   "page": 0,
+   "text": "MR2505"
+  },
+  "line_items.0.amount": {
+   "box": [
+    958,
+    476,
+    1030,
+    494
+   ],
+   "page": 0,
+   "text": "$405.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    142,
+    488,
+    302,
+    504
+   ],
+   "page": 0,
+   "text": "Mulch installation"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    614,
+    483,
+    623,
+    497
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    755,
+    480,
+    827,
+    497
+   ],
+   "page": 0,
+   "text": "$405.00"
+  },
+  "property_or_unit": {
+   "box": [
+    168,
+    399,
+    246,
+    414
+   ],
+   "page": 0,
+   "text": "Unit 12B"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    127,
+    662,
+    986,
+    690
+   ],
+   "page": 0,
+   "text": "Remit to: Greenwhistle Landscaping, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999054586"
+  },
+  "subtotal": {
+   "box": [
+    958,
+    521,
+    1030,
+    539
+   ],
+   "page": 0,
+   "text": "$405.00"
+  },
+  "tax": {
+   "box": [
+    981,
+    555,
+    1031,
+    573
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    941,
+    593,
+    1032,
+    612
+   ],
+   "page": 0,
+   "text": "$405.00"
+  },
+  "vendor_address": {
+   "box": [
+    495,
+    1398,
+    669,
+    1433
+   ],
+   "page": 0,
+   "text": "9330 Vanessa Union, Springfield, OR 97487"
+  },
+  "vendor_name": {
+   "box": [
+    339,
+    236,
+    828,
+    270
+   ],
+   "page": 0,
+   "text": "Greenwhistle Landscaping"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    621,
+    1434,
+    714,
+    1447
+   ],
+   "page": 0,
+   "text": "00-0002270"
+  },
+  "work_order_number": {
+   "box": [
+    955,
+    386,
+    1039,
+    401
+   ],
+   "page": 0,
+   "text": "WO-1194"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     922,
+     368,
+     1039,
+     386
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-19"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     919,
+     348,
+     1038,
+     368
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-20"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     963,
+     329,
+     1038,
+     344
+    ],
+    "word_ids": []
+   },
+   "value": "MR2505"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       958,
+       476,
+       1030,
+       494
+      ],
+      "word_ids": []
+     },
+     "value_cents": 40500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       142,
+       488,
+       302,
+       504
+      ],
+      "word_ids": []
+     },
+     "value": "Mulch installation"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       614,
+       483,
+       623,
+       497
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       755,
+       480,
+       827,
+       497
+      ],
+      "word_ids": []
+     },
+     "value_cents": 40500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     168,
+     399,
+     246,
+     414
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 12B"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     662,
+     986,
+     690
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Greenwhistle Landscaping, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999054586"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     958,
+     521,
+     1030,
+     539
+    ],
+    "word_ids": []
+   },
+   "value_cents": 40500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     981,
+     555,
+     1031,
+     573
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     941,
+     593,
+     1032,
+     612
+    ],
+    "word_ids": []
+   },
+   "value_cents": 40500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     495,
+     1398,
+     669,
+     1433
+    ],
+    "word_ids": []
+   },
+   "value": "9330 Vanessa Union, Springfield, OR 97487"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     339,
+     236,
+     828,
+     270
+    ],
+    "word_ids": []
+   },
+   "value": "Greenwhistle Landscaping"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     621,
+     1434,
+     714,
+     1447
+    ],
+    "word_ids": []
+   },
+   "value": "2270"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     955,
+     386,
+     1039,
+     401
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1194"
+  }
+ },
+ "filename": "core-094.jpg",
+ "hidden_boxes": [],
+ "id": "core-094",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "a7aecd858c307cb935df999265d174bd03a181f1cab6b3a5ef317251d689d8d6"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "b478a1604440f59b6c252fcfc46334af3baedb68dc523d5bf5dbba0446d06a57",
+ "split": "dev",
+ "template": "letterhead",
+ "truth": {
+  "accent": "#0f6b6b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-094",
+  "doc_type": "invoice",
+  "due_date": "2026-09-19",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-20",
+  "invoice_number": "MR2505",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 40500,
+    "description": "Mulch installation",
+    "quantity": "1",
+    "unit_price_cents": 40500
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 12B",
+  "remit_text": "Remit to: Greenwhistle Landscaping, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999054586",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 40500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "letterhead",
+  "total_cents": 40500,
+  "vendor_address": "9330 Vanessa Union, Springfield, OR 97487",
+  "vendor_email": "billing@greenwhistle.example",
+  "vendor_id": "f38242d8-1bc3-5322-bae8-4584b1df97a7",
+  "vendor_name": "Greenwhistle Landscaping",
+  "vendor_phone": "(541) 555-0115",
+  "vendor_slug": "greenwhistle",
+  "vendor_tax_id_last4": "2270",
+  "visible_instructions": [],
+  "work_order_number": "WO-1194",
+  "work_order_printed": "WO-1194"
+ }
+}

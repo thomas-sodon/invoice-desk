@@ -1,0 +1,754 @@
+{
+ "augment": {
+  "angle": 0.28017571527262497,
+  "blur": 0.8332526409757814,
+  "capture": "scan",
+  "jpeg_quality": 79.0,
+  "noise": 4.02853901774831,
+  "output": "png",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 9.832499415980138,
+  "ty": 6.256224110201053
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    243,
+    389,
+    413,
+    411
+   ],
+   "page": 0,
+   "text": "September 24, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    237,
+    365,
+    396,
+    387
+   ],
+   "page": 0,
+   "text": "September 9, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    266,
+    341,
+    336,
+    357
+   ],
+   "page": 0,
+   "text": "26-6701"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1053,
+    585,
+    1122,
+    604
+   ],
+   "page": 0,
+   "text": "$265.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    132,
+    590,
+    264,
+    611
+   ],
+   "page": 0,
+   "text": "Stump grinding"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    684,
+    588,
+    692,
+    603
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    839,
+    585,
+    907,
+    605
+   ],
+   "page": 0,
+   "text": "$265.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1053,
+    629,
+    1123,
+    648
+   ],
+   "page": 0,
+   "text": "$735.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    131,
+    633,
+    309,
+    650
+   ],
+   "page": 0,
+   "text": "Remove hazard limb"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    684,
+    632,
+    693,
+    647
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    839,
+    629,
+    908,
+    649
+   ],
+   "page": 0,
+   "text": "$735.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1054,
+    673,
+    1123,
+    692
+   ],
+   "page": 0,
+   "text": "$885.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    132,
+    678,
+    266,
+    699
+   ],
+   "page": 0,
+   "text": "Crown thinning"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    685,
+    676,
+    693,
+    691
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    840,
+    673,
+    908,
+    693
+   ],
+   "page": 0,
+   "text": "$885.00"
+  },
+  "line_items.3.amount": {
+   "box": [
+    1065,
+    716,
+    1123,
+    736
+   ],
+   "page": 0,
+   "text": "$21.00"
+  },
+  "line_items.3.description": {
+   "box": [
+    132,
+    721,
+    323,
+    743
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.3.quantity": {
+   "box": [
+    685,
+    720,
+    693,
+    735
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.3.unit_price": {
+   "box": [
+    850,
+    718,
+    908,
+    737
+   ],
+   "page": 0,
+   "text": "$21.00"
+  },
+  "property_or_unit": {
+   "box": [
+    202,
+    437,
+    462,
+    459
+   ],
+   "page": 0,
+   "text": "Unit C5, Birch Street Cottages"
+  },
+  "subtotal": {
+   "box": [
+    1038,
+    761,
+    1123,
+    781
+   ],
+   "page": 0,
+   "text": "$1,906.00"
+  },
+  "tax": {
+   "box": [
+    1076,
+    804,
+    1123,
+    824
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1039,
+    849,
+    1124,
+    869
+   ],
+   "page": 0,
+   "text": "$1,906.00"
+  },
+  "vendor_address": {
+   "box": [
+    528,
+    178,
+    722,
+    224
+   ],
+   "page": 0,
+   "text": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "box": [
+    445,
+    130,
+    804,
+    171
+   ],
+   "page": 0,
+   "text": "Mossgate Tree Care"
+  },
+  "work_order_number": {
+   "box": [
+    228,
+    414,
+    322,
+    430
+   ],
+   "page": 0,
+   "text": "WO #1140"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     243,
+     389,
+     413,
+     411
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-24"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     237,
+     365,
+     396,
+     387
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-09"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     266,
+     341,
+     336,
+     357
+    ],
+    "word_ids": []
+   },
+   "value": "26-6701"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1053,
+       585,
+       1122,
+       604
+      ],
+      "word_ids": []
+     },
+     "value_cents": 26500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       132,
+       590,
+       264,
+       611
+      ],
+      "word_ids": []
+     },
+     "value": "Stump grinding"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       684,
+       588,
+       692,
+       603
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       839,
+       585,
+       907,
+       605
+      ],
+      "word_ids": []
+     },
+     "value_cents": 26500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1053,
+       629,
+       1123,
+       648
+      ],
+      "word_ids": []
+     },
+     "value_cents": 73500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       131,
+       633,
+       309,
+       650
+      ],
+      "word_ids": []
+     },
+     "value": "Remove hazard limb"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       684,
+       632,
+       693,
+       647
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       839,
+       629,
+       908,
+       649
+      ],
+      "word_ids": []
+     },
+     "value_cents": 73500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1054,
+       673,
+       1123,
+       692
+      ],
+      "word_ids": []
+     },
+     "value_cents": 88500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       132,
+       678,
+       266,
+       699
+      ],
+      "word_ids": []
+     },
+     "value": "Crown thinning"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       685,
+       676,
+       693,
+       691
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       840,
+       673,
+       908,
+       693
+      ],
+      "word_ids": []
+     },
+     "value_cents": 88500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1065,
+       716,
+       1123,
+       736
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2100
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       132,
+       721,
+       323,
+       743
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       685,
+       720,
+       693,
+       735
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       850,
+       718,
+       908,
+       737
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2100
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     202,
+     437,
+     462,
+     459
+    ],
+    "word_ids": []
+   },
+   "value": "Unit C5, Birch Street Cottages"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1038,
+     761,
+     1123,
+     781
+    ],
+    "word_ids": []
+   },
+   "value_cents": 190600
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1076,
+     804,
+     1123,
+     824
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1039,
+     849,
+     1124,
+     869
+    ],
+    "word_ids": []
+   },
+   "value_cents": 190600
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     528,
+     178,
+     722,
+     224
+    ],
+    "word_ids": []
+   },
+   "value": "617 Allen Brook, Springfield, OR 97437"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     445,
+     130,
+     804,
+     171
+    ],
+    "word_ids": []
+   },
+   "value": "Mossgate Tree Care"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     228,
+     414,
+     322,
+     430
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1140"
+  }
+ },
+ "filename": "core-053.png",
+ "hidden_boxes": [],
+ "id": "core-053",
+ "medium": "scanned",
+ "mime": "image/png",
+ "page_sha256": [
+  "02c5e8ed4a4961e3c1ab9f0f496c6e806a5dbb03449d2493a9af8711e633a15b"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "c30a3a611598133dc3ca76e82cd9a47814ab2120d6fcc0d6664e7526cf813da7",
+ "split": "dev",
+ "template": "word",
+ "truth": {
+  "accent": "#a23b72",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-053",
+  "doc_type": "invoice",
+  "due_date": "2026-09-24",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-09",
+  "invoice_number": "26-6701",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 26500,
+    "description": "Stump grinding",
+    "quantity": "1",
+    "unit_price_cents": 26500
+   },
+   {
+    "amount_cents": 73500,
+    "description": "Remove hazard limb",
+    "quantity": "1",
+    "unit_price_cents": 73500
+   },
+   {
+    "amount_cents": 88500,
+    "description": "Crown thinning",
+    "quantity": "1",
+    "unit_price_cents": 88500
+   },
+   {
+    "amount_cents": 2100,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 2100
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit C5, Birch Street Cottages",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 190600,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "word",
+  "total_cents": 190600,
+  "vendor_address": "617 Allen Brook, Springfield, OR 97437",
+  "vendor_email": "billing@mossgate.example",
+  "vendor_id": "615b7da3-1a81-5c11-b6da-205980a7680b",
+  "vendor_name": "Mossgate Tree Care",
+  "vendor_phone": "(541) 555-0129",
+  "vendor_slug": "mossgate",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1140",
+  "work_order_printed": "WO #1140"
+ }
+}

@@ -1,0 +1,558 @@
+{
+ "augment": {
+  "angle": -1.3026803930653672,
+  "blur": 0.4674516348503417,
+  "capture": "scan",
+  "jpeg_quality": 68.0,
+  "noise": 3.0857761187182073,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -6.579326368694629,
+  "ty": -6.81929865235273
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    892,
+    715,
+    983,
+    731
+   ],
+   "page": 0,
+   "text": "09/09/2026"
+  },
+  "invoice_date": {
+   "box": [
+    894,
+    660,
+    984,
+    676
+   ],
+   "page": 0,
+   "text": "07/26/2026"
+  },
+  "invoice_number": {
+   "box": [
+    893,
+    633,
+    953,
+    648
+   ],
+   "page": 0,
+   "text": "A-3401"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1059,
+    850,
+    1126,
+    867
+   ],
+   "page": 0,
+   "text": "$620.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    96,
+    829,
+    270,
+    847
+   ],
+   "page": 0,
+   "text": "Clear main sewer line"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    684,
+    842,
+    694,
+    857
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    842,
+    846,
+    909,
+    862
+   ],
+   "page": 0,
+   "text": "$620.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1068,
+    892,
+    1125,
+    908
+   ],
+   "page": 0,
+   "text": "$20.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    95,
+    870,
+    275,
+    892
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    683,
+    883,
+    693,
+    898
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    852,
+    887,
+    908,
+    903
+   ],
+   "page": 0,
+   "text": "$20.00"
+  },
+  "property_or_unit": {
+   "box": [
+    447,
+    550,
+    467,
+    564
+   ],
+   "page": 0,
+   "text": "2L"
+  },
+  "subtotal": {
+   "box": [
+    1060,
+    948,
+    1126,
+    965
+   ],
+   "page": 0,
+   "text": "$640.00"
+  },
+  "tax": {
+   "box": [
+    1069,
+    979,
+    1126,
+    995
+   ],
+   "page": 0,
+   "text": "$38.40"
+  },
+  "total": {
+   "box": [
+    1037,
+    1010,
+    1125,
+    1033
+   ],
+   "page": 0,
+   "text": "$678.40"
+  },
+  "vendor_address": {
+   "box": [
+    93,
+    395,
+    272,
+    438
+   ],
+   "page": 0,
+   "text": "2459 Gibson Mount, Springfield, OR 97447"
+  },
+  "vendor_name": {
+   "box": [
+    95,
+    364,
+    449,
+    393
+   ],
+   "page": 0,
+   "text": "Kettle Creek Drain Services"
+  },
+  "work_order_number": {
+   "box": [
+    891,
+    742,
+    969,
+    758
+   ],
+   "page": 0,
+   "text": "WO-1923"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R2": "review",
+   "R3": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     892,
+     715,
+     983,
+     731
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-09"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     894,
+     660,
+     984,
+     676
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-07-26"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     893,
+     633,
+     953,
+     648
+    ],
+    "word_ids": []
+   },
+   "value": "A-3401"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1059,
+       850,
+       1126,
+       867
+      ],
+      "word_ids": []
+     },
+     "value_cents": 62000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       96,
+       829,
+       270,
+       847
+      ],
+      "word_ids": []
+     },
+     "value": "Clear main sewer line"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       684,
+       842,
+       694,
+       857
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       842,
+       846,
+       909,
+       862
+      ],
+      "word_ids": []
+     },
+     "value_cents": 62000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       892,
+       1125,
+       908
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       95,
+       870,
+       275,
+       892
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       683,
+       883,
+       693,
+       898
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       852,
+       887,
+       908,
+       903
+      ],
+      "word_ids": []
+     },
+     "value_cents": 2000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     447,
+     550,
+     467,
+     564
+    ],
+    "word_ids": []
+   },
+   "value": "2L"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1060,
+     948,
+     1126,
+     965
+    ],
+    "word_ids": []
+   },
+   "value_cents": 64000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1069,
+     979,
+     1126,
+     995
+    ],
+    "word_ids": []
+   },
+   "value_cents": 3840
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1037,
+     1010,
+     1125,
+     1033
+    ],
+    "word_ids": []
+   },
+   "value_cents": 67840
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     93,
+     395,
+     272,
+     438
+    ],
+    "word_ids": []
+   },
+   "value": "2459 Gibson Mount, Springfield, OR 97447"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     95,
+     364,
+     449,
+     393
+    ],
+    "word_ids": []
+   },
+   "value": "Kettle Creek Drain Services"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     891,
+     742,
+     969,
+     758
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1923"
+  }
+ },
+ "filename": "core-045.pdf",
+ "hidden_boxes": [],
+ "id": "core-045",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "ce7c10ec0e68f78e2a46cf8a62119da8a6a82d99bddd8e7fcb77e5eaa753eae0"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "2ae8b871ed441b14a0ec39afb839875dd16d897177660d446ed17bda40208ca9",
+ "split": "test",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#3d3d3d",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "unknown_wo"
+  ],
+  "doc_id": "core-045",
+  "doc_type": "invoice",
+  "due_date": "2026-09-09",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R2": "review",
+    "R3": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-07-26",
+  "invoice_number": "A-3401",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 62000,
+    "description": "Clear main sewer line",
+    "quantity": "1",
+    "unit_price_cents": 62000
+   },
+   {
+    "amount_cents": 2000,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 2000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "2L",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 64000,
+  "tax_cents": 3840,
+  "tax_rate_bps": 600,
+  "template": "quickbooks",
+  "total_cents": 67840,
+  "vendor_address": "2459 Gibson Mount, Springfield, OR 97447",
+  "vendor_email": "billing@kettlecreek.example",
+  "vendor_id": "8d898d60-13b7-5896-a8d5-718cc7e6c4fa",
+  "vendor_name": "Kettle Creek Drain Services",
+  "vendor_phone": "(541) 555-0128",
+  "vendor_slug": "kettle-creek",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1923",
+  "work_order_printed": "WO-1923"
+ }
+}

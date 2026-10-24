@@ -1,0 +1,46 @@
+{%- import "_macros.html.j2" as m -%}
+<!doctype html><html><head><meta charset="utf-8"><style>
+{{ base_css | safe }}
+body { background: {{ doc.paper }}; font-family: "Liberation Serif", "DejaVu Serif", serif; }
+.form { position: absolute; left: 50px; right: 50px; top: {{ 46 + doc.top_pad }}px; border: 2px solid #8a1c1c; padding: 14px 18px; color: #8a1c1c; }
+.hdr { display: flex; justify-content: space-between; align-items: flex-start; }
+.vname { font-size: 22px; font-weight: 700; }
+.no { font-size: 20px; color: #c0161b; font-family: "Liberation Mono", monospace; }
+.field { border-bottom: 1px solid #8a1c1c; min-height: 26px; padding: 4px 6px 2px; color: #1d2a6b; font-size: 16px; }
+.lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+.items { margin-top: 16px; border: 1px solid #8a1c1c; }
+.items th { font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #8a1c1c; text-align: left; font-weight: 400; }
+.items td { border-bottom: 1px solid #c99; height: 40px; color: #1d2a6b; font-size: 16px; }
+.items td + td, .items th + th { border-left: 1px solid #c99; }
+.totals { width: 320px; margin-left: auto; margin-top: 10px; border: 1px solid #8a1c1c; }
+.totals td { border-bottom: 1px solid #c99; height: 38px; font-size: 16px; color: #1d2a6b; }
+.totals td:first-child { color: #8a1c1c; font-size: 12px; text-transform: uppercase; width: 110px; }
+.sig { margin-top: 26px; font-size: 11px; }
+</style></head><body>
+<div class="form">
+<div class="hdr"><div><div class="vname">{{ m.g("vendor_name", doc.vendor_name) }}</div>
+<div class="small">{{ m.gblock("vendor_address", doc.address_lines, doc.vendor_address) }}</div>
+<div class="small">{{ doc.phone }}{% if doc.tax_id_printed %} &middot; Tax ID {{ m.g("vendor_tax_id_last4", doc.tax_id_printed) }}{% endif %}</div></div>
+<div style="text-align:right"><div style="font-size:15px;letter-spacing:2px">INVOICE</div>
+<div class="no">No. {{ m.g("invoice_number", doc.invoice_number) }}</div></div></div>
+<div class="grid">
+<div><div class="lbl">Date</div><div class="field">{{ m.g("invoice_date", doc.invoice_date, hand=doc.hand) }}</div></div>
+<div><div class="lbl">Work order no.</div><div class="field">{{ m.g("work_order_number", doc.wo, hand=doc.hand) }}</div></div>
+<div><div class="lbl">Customer</div><div class="field">{{ doc.bill_to_name }}</div></div>
+<div><div class="lbl">Job location / unit</div><div class="field">{{ m.g("property_or_unit", doc.unit, hand=doc.hand) }}</div></div>
+</div>
+<table class="items"><tr><th style="width:52%">Description of work</th><th>Qty</th><th>Price</th><th>Amount</th></tr>
+{{ m.line_rows(doc, hand=doc.hand) }}
+{% for _ in range(5 - doc.lines|length) %}<tr><td></td><td></td><td></td><td></td></tr>{% endfor %}
+</table>
+<table class="totals">
+<tr><td>Subtotal</td><td class="num">{{ m.g("subtotal", doc.subtotal, hand=doc.hand) }}</td></tr>
+<tr><td>Tax</td><td class="num">{{ m.g("tax", doc.tax, hand=doc.hand) }}</td></tr>
+<tr><td>Total</td><td class="num">{{ m.g("total", doc.total, hand=doc.hand) }}</td></tr>
+</table>
+{% if doc.remit %}<div class="small" style="margin-top:10px">{{ m.g("remit_to_bank_details", doc.remit) }}</div>{% endif %}
+<div class="sig">Received by ______________________ &nbsp; Thank you! &nbsp; WHITE: Customer &middot; YELLOW: Office</div>
+</div>
+{{ m.adversarial(doc) }}
+</body></html>

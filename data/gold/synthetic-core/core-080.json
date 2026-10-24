@@ -1,0 +1,643 @@
+{
+ "augment": {
+  "angle": 0.6252872257007076,
+  "blur": 0.5904432888218678,
+  "capture": "scan",
+  "jpeg_quality": 80.0,
+  "noise": 2.1788049134879706,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -3.185244256999347,
+  "ty": -2.218677347436449
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    107,
+    327,
+    169,
+    345
+   ],
+   "page": 0,
+   "text": "8/3/26"
+  },
+  "invoice_number": {
+   "box": [
+    1050,
+    213,
+    1119,
+    234
+   ],
+   "page": 0,
+   "text": "6906"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1044,
+    493,
+    1110,
+    511
+   ],
+   "page": 0,
+   "text": "695.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    113,
+    501,
+    320,
+    526
+   ],
+   "page": 0,
+   "text": "Repair concrete steps"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    714,
+    497,
+    723,
+    514
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    851,
+    495,
+    917,
+    513
+   ],
+   "page": 0,
+   "text": "695.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1028,
+    553,
+    1111,
+    575
+   ],
+   "page": 0,
+   "text": "1,210.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    114,
+    561,
+    295,
+    586
+   ],
+   "page": 0,
+   "text": "Repoint brick wall"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    715,
+    557,
+    724,
+    574
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    835,
+    555,
+    918,
+    577
+   ],
+   "page": 0,
+   "text": "1,210.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1045,
+    614,
+    1112,
+    632
+   ],
+   "page": 0,
+   "text": "310.50"
+  },
+  "line_items.2.description": {
+   "box": [
+    114,
+    620,
+    424,
+    642
+   ],
+   "page": 0,
+   "text": "Additional work not in estimate"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    715,
+    618,
+    725,
+    635
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    852,
+    616,
+    919,
+    634
+   ],
+   "page": 0,
+   "text": "310.50"
+  },
+  "property_or_unit": {
+   "box": [
+    638,
+    388,
+    957,
+    413
+   ],
+   "page": 0,
+   "text": "Unit A4, Alder Row Townhomes"
+  },
+  "subtotal": {
+   "box": [
+    1030,
+    812,
+    1114,
+    834
+   ],
+   "page": 0,
+   "text": "2,215.50"
+  },
+  "tax": {
+   "box": [
+    1072,
+    870,
+    1114,
+    887
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    1031,
+    928,
+    1115,
+    950
+   ],
+   "page": 0,
+   "text": "2,215.50"
+  },
+  "vendor_address": {
+   "box": [
+    97,
+    233,
+    250,
+    270
+   ],
+   "page": 0,
+   "text": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "box": [
+    98,
+    197,
+    405,
+    232
+   ],
+   "page": 0,
+   "text": "Stonebridge Masonry"
+  },
+  "work_order_number": {
+   "box": [
+    636,
+    321,
+    731,
+    339
+   ],
+   "page": 0,
+   "text": "WO 1173"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R3": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     107,
+     327,
+     169,
+     345
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-03"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1050,
+     213,
+     1119,
+     234
+    ],
+    "word_ids": []
+   },
+   "value": "6906"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1044,
+       493,
+       1110,
+       511
+      ],
+      "word_ids": []
+     },
+     "value_cents": 69500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       113,
+       501,
+       320,
+       526
+      ],
+      "word_ids": []
+     },
+     "value": "Repair concrete steps"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       714,
+       497,
+       723,
+       514
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       851,
+       495,
+       917,
+       513
+      ],
+      "word_ids": []
+     },
+     "value_cents": 69500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1028,
+       553,
+       1111,
+       575
+      ],
+      "word_ids": []
+     },
+     "value_cents": 121000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       114,
+       561,
+       295,
+       586
+      ],
+      "word_ids": []
+     },
+     "value": "Repoint brick wall"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       715,
+       557,
+       724,
+       574
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       835,
+       555,
+       918,
+       577
+      ],
+      "word_ids": []
+     },
+     "value_cents": 121000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1045,
+       614,
+       1112,
+       632
+      ],
+      "word_ids": []
+     },
+     "value_cents": 31050
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       114,
+       620,
+       424,
+       642
+      ],
+      "word_ids": []
+     },
+     "value": "Additional work not in estimate"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       715,
+       618,
+       725,
+       635
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       852,
+       616,
+       919,
+       634
+      ],
+      "word_ids": []
+     },
+     "value_cents": 31050
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     638,
+     388,
+     957,
+     413
+    ],
+    "word_ids": []
+   },
+   "value": "Unit A4, Alder Row Townhomes"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1030,
+     812,
+     1114,
+     834
+    ],
+    "word_ids": []
+   },
+   "value_cents": 221550
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1072,
+     870,
+     1114,
+     887
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1031,
+     928,
+     1115,
+     950
+    ],
+    "word_ids": []
+   },
+   "value_cents": 221550
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     97,
+     233,
+     250,
+     270
+    ],
+    "word_ids": []
+   },
+   "value": "856 Juan Neck, Springfield, OR 97474"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     98,
+     197,
+     405,
+     232
+    ],
+    "word_ids": []
+   },
+   "value": "Stonebridge Masonry"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     636,
+     321,
+     731,
+     339
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1173"
+  }
+ },
+ "filename": "core-080.pdf",
+ "hidden_boxes": [],
+ "id": "core-080",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "5df78db798e52b365cddb8b2f4af74cc30b08e11549f6795b469c3b418416698"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "cdcdc9bcb026c9794a3672a2b6297c5f05a74c7cd6570ce6f80af97a67aa7bd1",
+ "split": "test",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#0f6b6b",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "over_estimate"
+  ],
+  "doc_id": "core-080",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R3": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-03",
+  "invoice_number": "6906",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 69500,
+    "description": "Repair concrete steps",
+    "quantity": "1",
+    "unit_price_cents": 69500
+   },
+   {
+    "amount_cents": 121000,
+    "description": "Repoint brick wall",
+    "quantity": "1",
+    "unit_price_cents": 121000
+   },
+   {
+    "amount_cents": 31050,
+    "description": "Additional work not in estimate",
+    "quantity": "1",
+    "unit_price_cents": 31050
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit A4, Alder Row Townhomes",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 221550,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 221550,
+  "vendor_address": "856 Juan Neck, Springfield, OR 97474",
+  "vendor_email": "billing@stonebridge.example",
+  "vendor_id": "04d3b8e2-c66d-5b7e-905c-50747ff8aca5",
+  "vendor_name": "Stonebridge Masonry",
+  "vendor_phone": "(541) 555-0127",
+  "vendor_slug": "stonebridge",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1173",
+  "work_order_printed": "WO 1173"
+ }
+}

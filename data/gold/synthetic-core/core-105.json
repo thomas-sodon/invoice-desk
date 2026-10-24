@@ -1,0 +1,673 @@
+{
+ "augment": {
+  "blur": 0.8008103849133532,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 79.0,
+  "noise": 5.749454483496849,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    604,
+    442,
+    700,
+    462
+   ],
+   "page": 0,
+   "text": "25 Sep 2026"
+  },
+  "invoice_date": {
+   "box": [
+    604,
+    412,
+    702,
+    432
+   ],
+   "page": 0,
+   "text": "26 Aug 2026"
+  },
+  "invoice_number": {
+   "box": [
+    604,
+    383,
+    633,
+    399
+   ],
+   "page": 0,
+   "text": "473"
+  },
+  "line_items.0.amount": {
+   "box": [
+    966,
+    631,
+    1027,
+    651
+   ],
+   "page": 0,
+   "text": "$435.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    442,
+    643,
+    604,
+    661
+   ],
+   "page": 0,
+   "text": "Clear main sewer line"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    794,
+    638,
+    799,
+    653
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    851,
+    634,
+    914,
+    653
+   ],
+   "page": 0,
+   "text": "$435.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    969,
+    671,
+    1027,
+    691
+   ],
+   "page": 0,
+   "text": "$120.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    443,
+    682,
+    648,
+    705
+   ],
+   "page": 0,
+   "text": "Repair leaking supply valve"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    793,
+    678,
+    799,
+    693
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    855,
+    674,
+    914,
+    693
+   ],
+   "page": 0,
+   "text": "$120.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    965,
+    711,
+    1027,
+    731
+   ],
+   "page": 0,
+   "text": "$280.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    442,
+    725,
+    555,
+    746
+   ],
+   "page": 0,
+   "text": "Plumbing labor"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    791,
+    718,
+    799,
+    733
+   ],
+   "page": 0,
+   "text": "2"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    854,
+    714,
+    914,
+    734
+   ],
+   "page": 0,
+   "text": "$140.00"
+  },
+  "property_or_unit": {
+   "box": [
+    603,
+    504,
+    631,
+    520
+   ],
+   "page": 0,
+   "text": "12A"
+  },
+  "subtotal": {
+   "box": [
+    965,
+    765,
+    1027,
+    784
+   ],
+   "page": 0,
+   "text": "$835.00"
+  },
+  "tax": {
+   "box": [
+    984,
+    804,
+    1027,
+    823
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    922,
+    843,
+    1026,
+    872
+   ],
+   "page": 0,
+   "text": "$835.00"
+  },
+  "vendor_address": {
+   "box": [
+    128,
+    390,
+    295,
+    433
+   ],
+   "page": 0,
+   "text": "1380 Kiln Avenue, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "box": [
+    130,
+    306,
+    295,
+    369
+   ],
+   "page": 0,
+   "text": "Bramblewood Fireproofing"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    126,
+    535,
+    223,
+    552
+   ],
+   "page": 0,
+   "text": "00-0006738"
+  },
+  "work_order_number": {
+   "box": [
+    603,
+    474,
+    668,
+    490
+   ],
+   "page": 0,
+   "text": "WO 1158"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R1": "review",
+   "R2": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     604,
+     442,
+     700,
+     462
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-25"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     604,
+     412,
+     702,
+     432
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-26"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     604,
+     383,
+     633,
+     399
+    ],
+    "word_ids": []
+   },
+   "value": "473"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       966,
+       631,
+       1027,
+       651
+      ],
+      "word_ids": []
+     },
+     "value_cents": 43500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       442,
+       643,
+       604,
+       661
+      ],
+      "word_ids": []
+     },
+     "value": "Clear main sewer line"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       794,
+       638,
+       799,
+       653
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       851,
+       634,
+       914,
+       653
+      ],
+      "word_ids": []
+     },
+     "value_cents": 43500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       969,
+       671,
+       1027,
+       691
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       443,
+       682,
+       648,
+       705
+      ],
+      "word_ids": []
+     },
+     "value": "Repair leaking supply valve"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       793,
+       678,
+       799,
+       693
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       855,
+       674,
+       914,
+       693
+      ],
+      "word_ids": []
+     },
+     "value_cents": 12000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       965,
+       711,
+       1027,
+       731
+      ],
+      "word_ids": []
+     },
+     "value_cents": 28000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       442,
+       725,
+       555,
+       746
+      ],
+      "word_ids": []
+     },
+     "value": "Plumbing labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       791,
+       718,
+       799,
+       733
+      ],
+      "word_ids": []
+     },
+     "value": "2"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       854,
+       714,
+       914,
+       734
+      ],
+      "word_ids": []
+     },
+     "value_cents": 14000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     603,
+     504,
+     631,
+     520
+    ],
+    "word_ids": []
+   },
+   "value": "12A"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     965,
+     765,
+     1027,
+     784
+    ],
+    "word_ids": []
+   },
+   "value_cents": 83500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     984,
+     804,
+     1027,
+     823
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     922,
+     843,
+     1026,
+     872
+    ],
+    "word_ids": []
+   },
+   "value_cents": 83500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     128,
+     390,
+     295,
+     433
+    ],
+    "word_ids": []
+   },
+   "value": "1380 Kiln Avenue, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     130,
+     306,
+     295,
+     369
+    ],
+    "word_ids": []
+   },
+   "value": "Bramblewood Fireproofing"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     126,
+     535,
+     223,
+     552
+    ],
+    "word_ids": []
+   },
+   "value": "6738"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     603,
+     474,
+     668,
+     490
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1158"
+  }
+ },
+ "filename": "core-105.jpg",
+ "hidden_boxes": [],
+ "id": "core-105",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "f3c0dc1deef76acf1ad2c6f88c8563d7e48f0b7565019c18bc06522c6bfbd52b"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "5e8ad9902c66bb2b3a5874ce88ad6df52f8cb23b43ce70fee94ca20d49d814e2",
+ "split": "test",
+ "template": "modern",
+ "truth": {
+  "accent": "#444444",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "new_vendor"
+  ],
+  "doc_id": "core-105",
+  "doc_type": "invoice",
+  "due_date": "2026-09-25",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R1": "review",
+    "R2": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-26",
+  "invoice_number": "473",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 43500,
+    "description": "Clear main sewer line",
+    "quantity": "1",
+    "unit_price_cents": 43500
+   },
+   {
+    "amount_cents": 12000,
+    "description": "Repair leaking supply valve",
+    "quantity": "1",
+    "unit_price_cents": 12000
+   },
+   {
+    "amount_cents": 28000,
+    "description": "Plumbing labor",
+    "quantity": "2",
+    "unit_price_cents": 14000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "12A",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 83500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "modern",
+  "total_cents": 83500,
+  "vendor_address": "1380 Kiln Avenue, Springfield, OR 97477",
+  "vendor_email": null,
+  "vendor_id": null,
+  "vendor_name": "Bramblewood Fireproofing",
+  "vendor_phone": "(541) 555-0199",
+  "vendor_slug": null,
+  "vendor_tax_id_last4": "6738",
+  "visible_instructions": [],
+  "work_order_number": "WO-1158",
+  "work_order_printed": "WO 1158"
+ }
+}

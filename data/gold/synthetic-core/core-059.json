@@ -1,0 +1,463 @@
+{
+ "augment": {
+  "angle": -0.4509794609588358,
+  "blur": 0.6549649196943926,
+  "capture": "scan",
+  "jpeg_quality": 56.0,
+  "noise": 3.344638334055239,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 2.138963758033171,
+  "ty": -6.625608595092764
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    919,
+    316,
+    984,
+    333
+   ],
+   "page": 0,
+   "text": "8/28/26"
+  },
+  "invoice_date": {
+   "box": [
+    920,
+    273,
+    985,
+    290
+   ],
+   "page": 0,
+   "text": "8/13/26"
+  },
+  "invoice_number": {
+   "box": [
+    920,
+    232,
+    977,
+    247
+   ],
+   "page": 0,
+   "text": "2700-B"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1071,
+    547,
+    1136,
+    564
+   ],
+   "page": 0,
+   "text": "$310.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    109,
+    539,
+    276,
+    558
+   ],
+   "page": 0,
+   "text": "Replace chimney cap"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    683,
+    544,
+    693,
+    558
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    849,
+    546,
+    914,
+    562
+   ],
+   "page": 0,
+   "text": "$310.00"
+  },
+  "property_or_unit": {
+   "box": [
+    918,
+    401,
+    1102,
+    440
+   ],
+   "page": 0,
+   "text": "Alder Row Townhomes #A2"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    94,
+    758,
+    1006,
+    784
+   ],
+   "page": 0,
+   "text": "Remit to: Ember Hearth Chimney Sweep, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999237128"
+  },
+  "subtotal": {
+   "box": [
+    1071,
+    609,
+    1135,
+    626
+   ],
+   "page": 0,
+   "text": "$310.00"
+  },
+  "tax": {
+   "box": [
+    1091,
+    652,
+    1135,
+    668
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1055,
+    695,
+    1134,
+    716
+   ],
+   "page": 0,
+   "text": "$310.00"
+  },
+  "vendor_address": {
+   "box": [
+    97,
+    254,
+    270,
+    297
+   ],
+   "page": 0,
+   "text": "4254 Steven Trail, Springfield, OR 97413"
+  },
+  "vendor_name": {
+   "box": [
+    99,
+    218,
+    498,
+    250
+   ],
+   "page": 0,
+   "text": "Ember Hearth Chimney Sweep"
+  },
+  "work_order_number": {
+   "box": [
+    919,
+    358,
+    995,
+    374
+   ],
+   "page": 0,
+   "text": "WO-1138"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     919,
+     316,
+     984,
+     333
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-28"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     920,
+     273,
+     985,
+     290
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-13"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     920,
+     232,
+     977,
+     247
+    ],
+    "word_ids": []
+   },
+   "value": "2700-B"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1071,
+       547,
+       1136,
+       564
+      ],
+      "word_ids": []
+     },
+     "value_cents": 31000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       109,
+       539,
+       276,
+       558
+      ],
+      "word_ids": []
+     },
+     "value": "Replace chimney cap"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       683,
+       544,
+       693,
+       558
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       849,
+       546,
+       914,
+       562
+      ],
+      "word_ids": []
+     },
+     "value_cents": 31000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     918,
+     401,
+     1102,
+     440
+    ],
+    "word_ids": []
+   },
+   "value": "Alder Row Townhomes #A2"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     94,
+     758,
+     1006,
+     784
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Ember Hearth Chimney Sweep, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999237128"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1071,
+     609,
+     1135,
+     626
+    ],
+    "word_ids": []
+   },
+   "value_cents": 31000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1091,
+     652,
+     1135,
+     668
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1055,
+     695,
+     1134,
+     716
+    ],
+    "word_ids": []
+   },
+   "value_cents": 31000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     97,
+     254,
+     270,
+     297
+    ],
+    "word_ids": []
+   },
+   "value": "4254 Steven Trail, Springfield, OR 97413"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     99,
+     218,
+     498,
+     250
+    ],
+    "word_ids": []
+   },
+   "value": "Ember Hearth Chimney Sweep"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     919,
+     358,
+     995,
+     374
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1138"
+  }
+ },
+ "filename": "core-059.jpg",
+ "hidden_boxes": [],
+ "id": "core-059",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "f7bceb5bd8586e54d18c047a89ee818a6f095562b7a8391420f00bfd154c9f2b"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "4288946b40477dffb9f916f0e15ad654dff3acbfbe44d9ce383535408f8b12a6",
+ "split": "test",
+ "template": "statement",
+ "truth": {
+  "accent": "#7b2d26",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-059",
+  "doc_type": "invoice",
+  "due_date": "2026-08-28",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-13",
+  "invoice_number": "2700-B",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 31000,
+    "description": "Replace chimney cap",
+    "quantity": "1",
+    "unit_price_cents": 31000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Alder Row Townhomes #A2",
+  "remit_text": "Remit to: Ember Hearth Chimney Sweep, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999237128",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 31000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "statement",
+  "total_cents": 31000,
+  "vendor_address": "4254 Steven Trail, Springfield, OR 97413",
+  "vendor_email": "billing@emberhearth.example",
+  "vendor_id": "dd778c17-5b32-546c-b7a8-ab68de7f6a88",
+  "vendor_name": "Ember Hearth Chimney Sweep",
+  "vendor_phone": "(541) 555-0133",
+  "vendor_slug": "ember-hearth",
+  "vendor_tax_id_last4": null,
+  "visible_instructions": [],
+  "work_order_number": "WO-1138",
+  "work_order_printed": "WO-1138"
+ }
+}

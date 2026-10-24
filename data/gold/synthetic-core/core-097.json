@@ -1,0 +1,548 @@
+{
+ "augment": {
+  "blur": 1.1643889392120985,
+  "capture": "photo",
+  "crumple": 1.0,
+  "jpeg_quality": 76.0,
+  "noise": 6.401228273541246,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    157,
+    297,
+    223,
+    314
+   ],
+   "page": 0,
+   "text": "8/27/26"
+  },
+  "invoice_number": {
+   "box": [
+    998,
+    177,
+    1061,
+    199
+   ],
+   "page": 0,
+   "text": "3903"
+  },
+  "line_items.0.amount": {
+   "box": [
+    990,
+    444,
+    1049,
+    461
+   ],
+   "page": 0,
+   "text": "350.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    165,
+    459,
+    314,
+    479
+   ],
+   "page": 0,
+   "text": "Rodent exclusion"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    695,
+    451,
+    704,
+    467
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    817,
+    447,
+    876,
+    465
+   ],
+   "page": 0,
+   "text": "350.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    974,
+    501,
+    1049,
+    522
+   ],
+   "page": 0,
+   "text": "1,575.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    167,
+    515,
+    365,
+    540
+   ],
+   "page": 0,
+   "text": "Bed bug heat treatment"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    696,
+    508,
+    704,
+    524
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    802,
+    505,
+    876,
+    526
+   ],
+   "page": 0,
+   "text": "1,575.00"
+  },
+  "property_or_unit": {
+   "box": [
+    628,
+    351,
+    704,
+    369
+   ],
+   "page": 0,
+   "text": "Unit 103"
+  },
+  "subtotal": {
+   "box": [
+    973,
+    742,
+    1047,
+    763
+   ],
+   "page": 0,
+   "text": "1,925.00"
+  },
+  "tax": {
+   "box": [
+    1010,
+    795,
+    1047,
+    812
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    973,
+    848,
+    1047,
+    868
+   ],
+   "page": 0,
+   "text": "1,925.00"
+  },
+  "vendor_address": {
+   "box": [
+    147,
+    208,
+    283,
+    245
+   ],
+   "page": 0,
+   "text": "269 Larry Rapids, Springfield, OR 97412"
+  },
+  "vendor_name": {
+   "box": [
+    145,
+    169,
+    460,
+    207
+   ],
+   "page": 0,
+   "text": "Antwhisper Pest Control"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    296,
+    241,
+    368,
+    254
+   ],
+   "page": 0,
+   "text": "00-0008536"
+  },
+  "work_order_number": {
+   "box": [
+    626,
+    285,
+    723,
+    303
+   ],
+   "page": 0,
+   "text": "WO #1219"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     157,
+     297,
+     223,
+     314
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-27"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     998,
+     177,
+     1061,
+     199
+    ],
+    "word_ids": []
+   },
+   "value": "3903"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       990,
+       444,
+       1049,
+       461
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       165,
+       459,
+       314,
+       479
+      ],
+      "word_ids": []
+     },
+     "value": "Rodent exclusion"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       695,
+       451,
+       704,
+       467
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       817,
+       447,
+       876,
+       465
+      ],
+      "word_ids": []
+     },
+     "value_cents": 35000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       974,
+       501,
+       1049,
+       522
+      ],
+      "word_ids": []
+     },
+     "value_cents": 157500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       167,
+       515,
+       365,
+       540
+      ],
+      "word_ids": []
+     },
+     "value": "Bed bug heat treatment"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       696,
+       508,
+       704,
+       524
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       802,
+       505,
+       876,
+       526
+      ],
+      "word_ids": []
+     },
+     "value_cents": 157500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     628,
+     351,
+     704,
+     369
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 103"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     973,
+     742,
+     1047,
+     763
+    ],
+    "word_ids": []
+   },
+   "value_cents": 192500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1010,
+     795,
+     1047,
+     812
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     973,
+     848,
+     1047,
+     868
+    ],
+    "word_ids": []
+   },
+   "value_cents": 192500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     147,
+     208,
+     283,
+     245
+    ],
+    "word_ids": []
+   },
+   "value": "269 Larry Rapids, Springfield, OR 97412"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     145,
+     169,
+     460,
+     207
+    ],
+    "word_ids": []
+   },
+   "value": "Antwhisper Pest Control"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     296,
+     241,
+     368,
+     254
+    ],
+    "word_ids": []
+   },
+   "value": "8536"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     626,
+     285,
+     723,
+     303
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1219"
+  }
+ },
+ "filename": "core-097.jpg",
+ "hidden_boxes": [],
+ "id": "core-097",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "747b2071f4766432b42008d12b6b10e915e9dcff3f56591dde8205d8f7e49c8b"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "009d120038bebe4cf3240419f9e8b26fbc76158194bcf2f41c5a1122e1c5481d",
+ "split": "test",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#6b4f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-097",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-27",
+  "invoice_number": "3903",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 35000,
+    "description": "Rodent exclusion",
+    "quantity": "1",
+    "unit_price_cents": 35000
+   },
+   {
+    "amount_cents": 157500,
+    "description": "Bed bug heat treatment",
+    "quantity": "1",
+    "unit_price_cents": 157500
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 103",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 192500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 192500,
+  "vendor_address": "269 Larry Rapids, Springfield, OR 97412",
+  "vendor_email": "billing@antwhisper.example",
+  "vendor_id": "30f25fce-7bd2-5dd8-8a9c-4090b1299348",
+  "vendor_name": "Antwhisper Pest Control",
+  "vendor_phone": "(541) 555-0119",
+  "vendor_slug": "antwhisper",
+  "vendor_tax_id_last4": "8536",
+  "visible_instructions": [],
+  "work_order_number": "WO-1219",
+  "work_order_printed": "WO #1219"
+ }
+}

@@ -1,0 +1,586 @@
+{
+ "augment": {
+  "blur": 0.9636384563777654,
+  "capture": "photo",
+  "crumple": 0.0,
+  "jpeg_quality": 72.0,
+  "noise": 4.970050216077956,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    906,
+    354,
+    1005,
+    373
+   ],
+   "page": 0,
+   "text": "Oct 13, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    904,
+    333,
+    1005,
+    353
+   ],
+   "page": 0,
+   "text": "Sep 28, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    940,
+    312,
+    1005,
+    328
+   ],
+   "page": 0,
+   "text": "MR9100"
+  },
+  "line_items.0.amount": {
+   "box": [
+    942,
+    472,
+    994,
+    490
+   ],
+   "page": 0,
+   "text": "$50.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    215,
+    486,
+    374,
+    508
+   ],
+   "page": 0,
+   "text": "Screen replacement"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    682,
+    479,
+    689,
+    494
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    790,
+    475,
+    842,
+    494
+   ],
+   "page": 0,
+   "text": "$50.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    932,
+    508,
+    994,
+    527
+   ],
+   "page": 0,
+   "text": "$295.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    215,
+    522,
+    415,
+    546
+   ],
+   "page": 0,
+   "text": "Exterior window washing"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    681,
+    515,
+    689,
+    530
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    780,
+    512,
+    842,
+    531
+   ],
+   "page": 0,
+   "text": "$295.00"
+  },
+  "property_or_unit": {
+   "box": [
+    235,
+    388,
+    303,
+    405
+   ],
+   "page": 0,
+   "text": "Unit 201"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    207,
+    707,
+    942,
+    743
+   ],
+   "page": 0,
+   "text": "Remit to: Bluejay Window Washing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999211290"
+  },
+  "subtotal": {
+   "box": [
+    932,
+    556,
+    993,
+    575
+   ],
+   "page": 0,
+   "text": "$345.00"
+  },
+  "tax": {
+   "box": [
+    950,
+    593,
+    993,
+    612
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    915,
+    633,
+    992,
+    654
+   ],
+   "page": 0,
+   "text": "$345.00"
+  },
+  "vendor_address": {
+   "box": [
+    524,
+    1412,
+    689,
+    1452
+   ],
+   "page": 0,
+   "text": "1737 Michelle Extensions, Springfield, OR 97418"
+  },
+  "vendor_name": {
+   "box": [
+    400,
+    208,
+    812,
+    248
+   ],
+   "page": 0,
+   "text": "Bluejay Window Washing"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    638,
+    1445,
+    714,
+    1461
+   ],
+   "page": 0,
+   "text": "00-0008481"
+  },
+  "work_order_number": {
+   "box": [
+    920,
+    374,
+    1005,
+    391
+   ],
+   "page": 0,
+   "text": "WO #1180"
+  }
+ },
+ "category": "duplicate_rephoto",
+ "description": "Re-photographed copy of a processed invoice",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "Duplicate of MR9100",
+  "quarantined": false,
+  "rules": {
+   "R4": "flag"
+  },
+  "status": "Flagged"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     906,
+     354,
+     1005,
+     373
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-13"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     904,
+     333,
+     1005,
+     353
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-28"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     940,
+     312,
+     1005,
+     328
+    ],
+    "word_ids": []
+   },
+   "value": "MR9100"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       942,
+       472,
+       994,
+       490
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       215,
+       486,
+       374,
+       508
+      ],
+      "word_ids": []
+     },
+     "value": "Screen replacement"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       682,
+       479,
+       689,
+       494
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       790,
+       475,
+       842,
+       494
+      ],
+      "word_ids": []
+     },
+     "value_cents": 5000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       932,
+       508,
+       994,
+       527
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       215,
+       522,
+       415,
+       546
+      ],
+      "word_ids": []
+     },
+     "value": "Exterior window washing"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       681,
+       515,
+       689,
+       530
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       780,
+       512,
+       842,
+       531
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     235,
+     388,
+     303,
+     405
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 201"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     207,
+     707,
+     942,
+     743
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Bluejay Window Washing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999211290"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     932,
+     556,
+     993,
+     575
+    ],
+    "word_ids": []
+   },
+   "value_cents": 34500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     950,
+     593,
+     993,
+     612
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     915,
+     633,
+     992,
+     654
+    ],
+    "word_ids": []
+   },
+   "value_cents": 34500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     524,
+     1412,
+     689,
+     1452
+    ],
+    "word_ids": []
+   },
+   "value": "1737 Michelle Extensions, Springfield, OR 97418"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     400,
+     208,
+     812,
+     248
+    ],
+    "word_ids": []
+   },
+   "value": "Bluejay Window Washing"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     638,
+     1445,
+     714,
+     1461
+    ],
+    "word_ids": []
+   },
+   "value": "8481"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     920,
+     374,
+     1005,
+     391
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1180"
+  }
+ },
+ "filename": "adv-022.jpg",
+ "hidden_boxes": [],
+ "id": "adv-022",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "57fc14c9d878000ebbf87e98596f92b697049ff7627d614f5a489a7004e0dd17"
+ ],
+ "priors": [
+  "adv-021"
+ ],
+ "set": "adversarial",
+ "sha256": "421ae991ad4163a483e638ea22eb634038fca7b7dde195c0f3757ac51114b1b9",
+ "split": "adversarial",
+ "template": "letterhead",
+ "truth": {
+  "accent": "#6b4f1f",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "duplicate_rephoto"
+  ],
+  "doc_id": "adv-022",
+  "doc_type": "invoice",
+  "due_date": "2026-10-13",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "Duplicate of MR9100",
+   "quarantined": false,
+   "rules": {
+    "R4": "flag"
+   },
+   "status": "Flagged"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-28",
+  "invoice_number": "MR9100",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 5000,
+    "description": "Screen replacement",
+    "quantity": "1",
+    "unit_price_cents": 5000
+   },
+   {
+    "amount_cents": 29500,
+    "description": "Exterior window washing",
+    "quantity": "1",
+    "unit_price_cents": 29500
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 201",
+  "remit_text": "Remit to: Bluejay Window Washing, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999211290",
+  "set_name": "adversarial",
+  "subtotal_cents": 34500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "letterhead",
+  "total_cents": 34500,
+  "vendor_address": "1737 Michelle Extensions, Springfield, OR 97418",
+  "vendor_email": "billing@bluejay.example",
+  "vendor_id": "e092e0e3-2402-5abc-b8cf-b3b9fffc4e7e",
+  "vendor_name": "Bluejay Window Washing",
+  "vendor_phone": "(541) 555-0131",
+  "vendor_slug": "bluejay",
+  "vendor_tax_id_last4": "8481",
+  "visible_instructions": [],
+  "work_order_number": "WO-1180",
+  "work_order_printed": "WO #1180"
+ }
+}

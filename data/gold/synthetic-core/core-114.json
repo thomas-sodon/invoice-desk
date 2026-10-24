@@ -1,0 +1,652 @@
+{
+ "augment": {
+  "angle": -1.147872923136687,
+  "blur": 0.38035077397595907,
+  "capture": "scan",
+  "jpeg_quality": 65.0,
+  "noise": 5.925453697097943,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 3.403763340206627,
+  "ty": 1.9520985699629296
+ },
+ "box_eval": false,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    137,
+    226,
+    231,
+    260
+   ],
+   "page": 0,
+   "text": "8/27/26"
+  },
+  "invoice_number": {
+   "box": [
+    1037,
+    140,
+    1145,
+    163
+   ],
+   "page": 0,
+   "text": "A-3407"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1054,
+    423,
+    1142,
+    458
+   ],
+   "page": 0,
+   "text": "330.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    138,
+    405,
+    358,
+    443
+   ],
+   "page": 0,
+   "text": "Replace thermostat"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    742,
+    419,
+    761,
+    443
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    859,
+    419,
+    947,
+    455
+   ],
+   "page": 0,
+   "text": "330.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1052,
+    483,
+    1135,
+    513
+   ],
+   "page": 0,
+   "text": "145.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    143,
+    466,
+    443,
+    508
+   ],
+   "page": 0,
+   "text": "Furnace tune-up and filter"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    743,
+    476,
+    759,
+    501
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    860,
+    477,
+    940,
+    505
+   ],
+   "page": 0,
+   "text": "145.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1062,
+    543,
+    1134,
+    572
+   ],
+   "page": 0,
+   "text": "15.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    135,
+    524,
+    393,
+    563
+   ],
+   "page": 0,
+   "text": "Materials and supplies"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    739,
+    537,
+    761,
+    566
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    873,
+    539,
+    942,
+    570
+   ],
+   "page": 0,
+   "text": "15.00"
+  },
+  "property_or_unit": {
+   "box": [
+    669,
+    306,
+    918,
+    346
+   ],
+   "page": 0,
+   "text": "Unit 201, Cedar Flats"
+  },
+  "subtotal": {
+   "box": [
+    1045,
+    741,
+    1132,
+    775
+   ],
+   "page": 0,
+   "text": "490.00"
+  },
+  "tax": {
+   "box": [
+    1072,
+    801,
+    1135,
+    835
+   ],
+   "page": 0,
+   "text": "0.00"
+  },
+  "total": {
+   "box": [
+    1043,
+    857,
+    1132,
+    894
+   ],
+   "page": 0,
+   "text": "490.00"
+  },
+  "vendor_address": {
+   "box": [
+    123,
+    133,
+    275,
+    170
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    123,
+    96,
+    495,
+    137
+   ],
+   "page": 0,
+   "text": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    289,
+    173,
+    370,
+    186
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    672,
+    238,
+    786,
+    268
+   ],
+   "page": 0,
+   "text": "WO-1150"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": true,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     137,
+     226,
+     231,
+     260
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-27"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     1037,
+     140,
+     1145,
+     163
+    ],
+    "word_ids": []
+   },
+   "value": "A-3407"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1054,
+       423,
+       1142,
+       458
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       138,
+       405,
+       358,
+       443
+      ],
+      "word_ids": []
+     },
+     "value": "Replace thermostat"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       742,
+       419,
+       761,
+       443
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       859,
+       419,
+       947,
+       455
+      ],
+      "word_ids": []
+     },
+     "value_cents": 33000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1052,
+       483,
+       1135,
+       513
+      ],
+      "word_ids": []
+     },
+     "value_cents": 14500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       143,
+       466,
+       443,
+       508
+      ],
+      "word_ids": []
+     },
+     "value": "Furnace tune-up and filter"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       743,
+       476,
+       759,
+       501
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       860,
+       477,
+       940,
+       505
+      ],
+      "word_ids": []
+     },
+     "value_cents": 14500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       543,
+       1134,
+       572
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       135,
+       524,
+       393,
+       563
+      ],
+      "word_ids": []
+     },
+     "value": "Materials and supplies"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       739,
+       537,
+       761,
+       566
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       873,
+       539,
+       942,
+       570
+      ],
+      "word_ids": []
+     },
+     "value_cents": 1500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     669,
+     306,
+     918,
+     346
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 201, Cedar Flats"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1045,
+     741,
+     1132,
+     775
+    ],
+    "word_ids": []
+   },
+   "value_cents": 49000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1072,
+     801,
+     1135,
+     835
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1043,
+     857,
+     1132,
+     894
+    ],
+    "word_ids": []
+   },
+   "value_cents": 49000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     123,
+     133,
+     275,
+     170
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     123,
+     96,
+     495,
+     137
+    ],
+    "word_ids": []
+   },
+   "value": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     289,
+     173,
+     370,
+     186
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     672,
+     238,
+     786,
+     268
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1150"
+  }
+ },
+ "filename": "core-114.pdf",
+ "hidden_boxes": [],
+ "id": "core-114",
+ "medium": "handwritten",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "9478120059022af213db64c4df8b3b694799cfc9ede8e0f1ce9e3bfbbe1e9106"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "bc59fc1fd40ab260a7b14f4b3fa7076b6a28e7c429fb24b15588ef6604e6476a",
+ "split": "test",
+ "template": "carbon_copy",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-114",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": true,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-27",
+  "invoice_number": "A-3407",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 33000,
+    "description": "Replace thermostat",
+    "quantity": "1",
+    "unit_price_cents": 33000
+   },
+   {
+    "amount_cents": 14500,
+    "description": "Furnace tune-up and filter",
+    "quantity": "1",
+    "unit_price_cents": 14500
+   },
+   {
+    "amount_cents": 1500,
+    "description": "Materials and supplies",
+    "quantity": "1",
+    "unit_price_cents": 1500
+   }
+  ],
+  "medium": "handwritten",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 201, Cedar Flats",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 49000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "carbon_copy",
+  "total_cents": 49000,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": "billing@copperleaf.example",
+  "vendor_id": "be39ac95-ef89-520d-aeb1-9b7f6eed3e23",
+  "vendor_name": "Copperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": "copperleaf",
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1150",
+  "work_order_printed": "WO-1150"
+ }
+}

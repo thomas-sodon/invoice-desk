@@ -1,0 +1,550 @@
+{
+ "augment": {
+  "angle": -1.1170345144754252,
+  "blur": 0.5786441117978609,
+  "capture": "scan",
+  "jpeg_quality": 77.0,
+  "noise": 3.773006857718556,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 5.171922886684101,
+  "ty": 7.14044091370528
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    865,
+    316,
+    982,
+    333
+   ],
+   "page": 0,
+   "text": "2026-08-10"
+  },
+  "invoice_number": {
+   "box": [
+    901,
+    288,
+    983,
+    304
+   ],
+   "page": 0,
+   "text": "SR-5002"
+  },
+  "line_items.0.amount": {
+   "box": [
+    910,
+    497,
+    979,
+    512
+   ],
+   "page": 0,
+   "text": "150.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    280,
+    484,
+    491,
+    507
+   ],
+   "page": 0,
+   "text": "Set new fence post"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    729,
+    494,
+    739,
+    508
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    790,
+    495,
+    859,
+    510
+   ],
+   "page": 0,
+   "text": "150.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    908,
+    529,
+    978,
+    544
+   ],
+   "page": 0,
+   "text": "460.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    280,
+    516,
+    514,
+    539
+   ],
+   "page": 0,
+   "text": "Replace fence panels"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    728,
+    526,
+    738,
+    540
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    788,
+    527,
+    858,
+    542
+   ],
+   "page": 0,
+   "text": "460.00"
+  },
+  "property_or_unit": {
+   "box": [
+    793,
+    372,
+    981,
+    391
+   ],
+   "page": 0,
+   "text": "Cedar Flats #204"
+  },
+  "subtotal": {
+   "box": [
+    907,
+    591,
+    977,
+    606
+   ],
+   "page": 0,
+   "text": "610.00"
+  },
+  "tax": {
+   "box": [
+    918,
+    620,
+    976,
+    635
+   ],
+   "page": 0,
+   "text": "36.60"
+  },
+  "total": {
+   "box": [
+    884,
+    650,
+    976,
+    669
+   ],
+   "page": 0,
+   "text": "646.60"
+  },
+  "vendor_address": {
+   "box": [
+    512,
+    154,
+    759,
+    200
+   ],
+   "page": 0,
+   "text": "2150 Darren Vista, Springfield, OR 97485"
+  },
+  "vendor_name": {
+   "box": [
+    476,
+    124,
+    798,
+    150
+   ],
+   "page": 0,
+   "text": "Ironwood Fence & Gate"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    617,
+    225,
+    734,
+    242
+   ],
+   "page": 0,
+   "text": "00-0009476"
+  },
+  "work_order_number": {
+   "box": [
+    898,
+    346,
+    982,
+    362
+   ],
+   "page": 0,
+   "text": "WO-1171"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     316,
+     982,
+     333
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-10"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     901,
+     288,
+     983,
+     304
+    ],
+    "word_ids": []
+   },
+   "value": "SR-5002"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       910,
+       497,
+       979,
+       512
+      ],
+      "word_ids": []
+     },
+     "value_cents": 15000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       280,
+       484,
+       491,
+       507
+      ],
+      "word_ids": []
+     },
+     "value": "Set new fence post"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       729,
+       494,
+       739,
+       508
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       790,
+       495,
+       859,
+       510
+      ],
+      "word_ids": []
+     },
+     "value_cents": 15000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       908,
+       529,
+       978,
+       544
+      ],
+      "word_ids": []
+     },
+     "value_cents": 46000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       280,
+       516,
+       514,
+       539
+      ],
+      "word_ids": []
+     },
+     "value": "Replace fence panels"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       728,
+       526,
+       738,
+       540
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       788,
+       527,
+       858,
+       542
+      ],
+      "word_ids": []
+     },
+     "value_cents": 46000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     793,
+     372,
+     981,
+     391
+    ],
+    "word_ids": []
+   },
+   "value": "Cedar Flats #204"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     907,
+     591,
+     977,
+     606
+    ],
+    "word_ids": []
+   },
+   "value_cents": 61000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     918,
+     620,
+     976,
+     635
+    ],
+    "word_ids": []
+   },
+   "value_cents": 3660
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     884,
+     650,
+     976,
+     669
+    ],
+    "word_ids": []
+   },
+   "value_cents": 64660
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     512,
+     154,
+     759,
+     200
+    ],
+    "word_ids": []
+   },
+   "value": "2150 Darren Vista, Springfield, OR 97485"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     476,
+     124,
+     798,
+     150
+    ],
+    "word_ids": []
+   },
+   "value": "Ironwood Fence & Gate"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     617,
+     225,
+     734,
+     242
+    ],
+    "word_ids": []
+   },
+   "value": "9476"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     346,
+     982,
+     362
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1171"
+  }
+ },
+ "filename": "core-050.jpg",
+ "hidden_boxes": [],
+ "id": "core-050",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "4268ea20cb20b6d4dd6e7a00786cd9d75fb2da522c9cc1a12db188899410c338"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "a1d6f5aee72a8e5e95e655a8dfd6b10eea7ce457abe082632c22cf24bcdd2e9f",
+ "split": "test",
+ "template": "compact",
+ "truth": {
+  "accent": "#245c4c",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-050",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-10",
+  "invoice_number": "SR-5002",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 15000,
+    "description": "Set new fence post",
+    "quantity": "1",
+    "unit_price_cents": 15000
+   },
+   {
+    "amount_cents": 46000,
+    "description": "Replace fence panels",
+    "quantity": "1",
+    "unit_price_cents": 46000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Cedar Flats #204",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 61000,
+  "tax_cents": 3660,
+  "tax_rate_bps": 600,
+  "template": "compact",
+  "total_cents": 64660,
+  "vendor_address": "2150 Darren Vista, Springfield, OR 97485",
+  "vendor_email": "billing@ironwood.example",
+  "vendor_id": "01a5ae7b-3a30-5f35-bda9-2a05b40867b6",
+  "vendor_name": "Ironwood Fence & Gate",
+  "vendor_phone": "(541) 555-0132",
+  "vendor_slug": "ironwood",
+  "vendor_tax_id_last4": "9476",
+  "visible_instructions": [],
+  "work_order_number": "WO-1171",
+  "work_order_printed": "WO-1171"
+ }
+}

@@ -1,0 +1,581 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    866,
+    621,
+    963,
+    635
+   ],
+   "page": 0,
+   "text": "10/30/2026"
+  },
+  "invoice_date": {
+   "box": [
+    865,
+    589,
+    963,
+    603
+   ],
+   "page": 0,
+   "text": "09/30/2026"
+  },
+  "invoice_number": {
+   "box": [
+    866,
+    557,
+    946,
+    571
+   ],
+   "page": 0,
+   "text": "INV-9100"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1064,
+    806,
+    1133,
+    822
+   ],
+   "page": 0,
+   "text": "$110.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    807,
+    255,
+    825
+   ],
+   "page": 0,
+   "text": "Sidewalk de-icing"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    713,
+    807,
+    722,
+    821
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    855,
+    806,
+    924,
+    823
+   ],
+   "page": 0,
+   "text": "$110.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1062,
+    849,
+    1133,
+    866
+   ],
+   "page": 0,
+   "text": "$340.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    104,
+    850,
+    327,
+    868
+   ],
+   "page": 0,
+   "text": "Snow plowing, parking lot"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    713,
+    850,
+    722,
+    864
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    854,
+    849,
+    924,
+    865
+   ],
+   "page": 0,
+   "text": "$340.00"
+  },
+  "property_or_unit": {
+   "box": [
+    865,
+    684,
+    923,
+    702
+   ],
+   "page": 0,
+   "text": "Apt A4"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    109,
+    1066,
+    1018,
+    1083
+   ],
+   "page": 0,
+   "text": "Remit to: Rapid Rotor Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040000"
+  },
+  "subtotal": {
+   "box": [
+    1062,
+    906,
+    1133,
+    923
+   ],
+   "page": 0,
+   "text": "$450.00"
+  },
+  "tax": {
+   "box": [
+    1084,
+    941,
+    1133,
+    958
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1040,
+    979,
+    1132,
+    1000
+   ],
+   "page": 0,
+   "text": "$450.00"
+  },
+  "vendor_address": {
+   "box": [
+    104,
+    504,
+    296,
+    545
+   ],
+   "page": 0,
+   "text": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "box": [
+    93,
+    344,
+    610,
+    381
+   ],
+   "page": 0,
+   "text": "Rapid Rotor Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    156,
+    549,
+    243,
+    561
+   ],
+   "page": 0,
+   "text": "00-0004821"
+  },
+  "work_order_number": {
+   "box": [
+    865,
+    653,
+    947,
+    667
+   ],
+   "page": 0,
+   "text": "WO-1198"
+  }
+ },
+ "category": "lookalike_letterhead",
+ "description": "Lookalike letterhead: edit distance 2 from 'Rapid Rooter Plumbing LLC'",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R1": "flag",
+   "R6": "flag"
+  },
+  "status": "Flagged"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     621,
+     963,
+     635
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-30"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     589,
+     963,
+     603
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-30"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     866,
+     557,
+     946,
+     571
+    ],
+    "word_ids": []
+   },
+   "value": "INV-9100"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1064,
+       806,
+       1133,
+       822
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       807,
+       255,
+       825
+      ],
+      "word_ids": []
+     },
+     "value": "Sidewalk de-icing"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       713,
+       807,
+       722,
+       821
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       855,
+       806,
+       924,
+       823
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1062,
+       849,
+       1133,
+       866
+      ],
+      "word_ids": []
+     },
+     "value_cents": 34000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       850,
+       327,
+       868
+      ],
+      "word_ids": []
+     },
+     "value": "Snow plowing, parking lot"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       713,
+       850,
+       722,
+       864
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       854,
+       849,
+       924,
+       865
+      ],
+      "word_ids": []
+     },
+     "value_cents": 34000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     684,
+     923,
+     702
+    ],
+    "word_ids": []
+   },
+   "value": "Apt A4"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     109,
+     1066,
+     1018,
+     1083
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Rapid Rotor Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040000"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1062,
+     906,
+     1133,
+     923
+    ],
+    "word_ids": []
+   },
+   "value_cents": 45000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1084,
+     941,
+     1133,
+     958
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1040,
+     979,
+     1132,
+     1000
+    ],
+    "word_ids": []
+   },
+   "value_cents": 45000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     104,
+     504,
+     296,
+     545
+    ],
+    "word_ids": []
+   },
+   "value": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     93,
+     344,
+     610,
+     381
+    ],
+    "word_ids": []
+   },
+   "value": "Rapid Rotor Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     156,
+     549,
+     243,
+     561
+    ],
+    "word_ids": []
+   },
+   "value": "4821"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     865,
+     653,
+     947,
+     667
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1198"
+  }
+ },
+ "filename": "adv-014.pdf",
+ "hidden_boxes": [],
+ "id": "adv-014",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "2cc893c34e17d0cff52369fa6b84accaa4be3a91ef315cd1ebbe53b7e1d89cb1"
+ ],
+ "priors": [],
+ "set": "adversarial",
+ "sha256": "1437f069ad63eac19bf67f815b1970b8ca4a0d3799e11660f3c73c8380dcb323",
+ "split": "adversarial",
+ "template": "trades",
+ "truth": {
+  "accent": "#1f4e79",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "lookalike_letterhead"
+  ],
+  "doc_id": "adv-014",
+  "doc_type": "invoice",
+  "due_date": "2026-10-30",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R1": "flag",
+    "R6": "flag"
+   },
+   "status": "Flagged"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-30",
+  "invoice_number": "INV-9100",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 11000,
+    "description": "Sidewalk de-icing",
+    "quantity": "1",
+    "unit_price_cents": 11000
+   },
+   {
+    "amount_cents": 34000,
+    "description": "Snow plowing, parking lot",
+    "quantity": "1",
+    "unit_price_cents": 34000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Apt A4",
+  "remit_text": "Remit to: Rapid Rotor Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000555040000",
+  "set_name": "adversarial",
+  "subtotal_cents": 45000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "trades",
+  "total_cents": 45000,
+  "vendor_address": "118 Alder Way, Springfield, OR 97477",
+  "vendor_email": null,
+  "vendor_id": null,
+  "vendor_name": "Rapid Rotor Plumbing LLC",
+  "vendor_phone": "(541) 555-0110",
+  "vendor_slug": null,
+  "vendor_tax_id_last4": "4821",
+  "visible_instructions": [],
+  "work_order_number": "WO-1198",
+  "work_order_printed": "WO-1198"
+ }
+}

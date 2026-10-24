@@ -1,0 +1,478 @@
+{
+ "augment": {
+  "angle": 0.181715639568111,
+  "blur": 0.551487532741472,
+  "capture": "scan",
+  "jpeg_quality": 78.0,
+  "noise": 2.3431151876585266,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": -0.8069955873663055,
+  "ty": 8.818691309065962
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    234,
+    576,
+    371,
+    596
+   ],
+   "page": 0,
+   "text": "October 8, 2026"
+  },
+  "invoice_date": {
+   "box": [
+    228,
+    552,
+    387,
+    574
+   ],
+   "page": 0,
+   "text": "September 8, 2026"
+  },
+  "invoice_number": {
+   "box": [
+    257,
+    528,
+    328,
+    543
+   ],
+   "page": 0,
+   "text": "26-7000"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1045,
+    774,
+    1113,
+    792
+   ],
+   "page": 0,
+   "text": "$110.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    122,
+    776,
+    300,
+    798
+   ],
+   "page": 0,
+   "text": "Rehang interior door"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    664,
+    776,
+    672,
+    791
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    825,
+    773,
+    893,
+    793
+   ],
+   "page": 0,
+   "text": "$110.00"
+  },
+  "property_or_unit": {
+   "box": [
+    192,
+    624,
+    413,
+    646
+   ],
+   "page": 0,
+   "text": "Birch Street Cottages #C2"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    109,
+    977,
+    1095,
+    1001
+   ],
+   "page": 0,
+   "text": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100"
+  },
+  "subtotal": {
+   "box": [
+    1045,
+    818,
+    1113,
+    836
+   ],
+   "page": 0,
+   "text": "$110.00"
+  },
+  "tax": {
+   "box": [
+    1066,
+    861,
+    1113,
+    880
+   ],
+   "page": 0,
+   "text": "$7.98"
+  },
+  "total": {
+   "box": [
+    1045,
+    906,
+    1113,
+    924
+   ],
+   "page": 0,
+   "text": "$117.98"
+  },
+  "vendor_address": {
+   "box": [
+    519,
+    341,
+    712,
+    388
+   ],
+   "page": 0,
+   "text": "5999 Davis Fields, Springfield, OR 97445"
+  },
+  "vendor_name": {
+   "box": [
+    364,
+    292,
+    867,
+    333
+   ],
+   "page": 0,
+   "text": "Handy Heron Home Repair"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    634,
+    415,
+    737,
+    430
+   ],
+   "page": 0,
+   "text": "00-0004184"
+  },
+  "work_order_number": {
+   "box": [
+    219,
+    601,
+    304,
+    617
+   ],
+   "page": 0,
+   "text": "WO-1202"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     234,
+     576,
+     371,
+     596
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-08"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     228,
+     552,
+     387,
+     574
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-08"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     257,
+     528,
+     328,
+     543
+    ],
+    "word_ids": []
+   },
+   "value": "26-7000"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1045,
+       774,
+       1113,
+       792
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       122,
+       776,
+       300,
+       798
+      ],
+      "word_ids": []
+     },
+     "value": "Rehang interior door"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       664,
+       776,
+       672,
+       791
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       825,
+       773,
+       893,
+       793
+      ],
+      "word_ids": []
+     },
+     "value_cents": 11000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     192,
+     624,
+     413,
+     646
+    ],
+    "word_ids": []
+   },
+   "value": "Birch Street Cottages #C2"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     109,
+     977,
+     1095,
+     1001
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1045,
+     818,
+     1113,
+     836
+    ],
+    "word_ids": []
+   },
+   "value_cents": 11000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1066,
+     861,
+     1113,
+     880
+    ],
+    "word_ids": []
+   },
+   "value_cents": 798
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1045,
+     906,
+     1113,
+     924
+    ],
+    "word_ids": []
+   },
+   "value_cents": 11798
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     519,
+     341,
+     712,
+     388
+    ],
+    "word_ids": []
+   },
+   "value": "5999 Davis Fields, Springfield, OR 97445"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     364,
+     292,
+     867,
+     333
+    ],
+    "word_ids": []
+   },
+   "value": "Handy Heron Home Repair"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     634,
+     415,
+     737,
+     430
+    ],
+    "word_ids": []
+   },
+   "value": "4184"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     219,
+     601,
+     304,
+     617
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1202"
+  }
+ },
+ "filename": "core-073.jpg",
+ "hidden_boxes": [],
+ "id": "core-073",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "44045a02afa9b85f3702b135c6b3b8b2488e8656e364c23a8ed9f3a9fad133d3"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "3214d6d3a7cf0af6997e3c6a64a0ad2f767a9c175515b727aa3f509dc403d998",
+ "split": "test",
+ "template": "word",
+ "truth": {
+  "accent": "#7b2d26",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-073",
+  "doc_type": "invoice",
+  "due_date": "2026-10-08",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-08",
+  "invoice_number": "26-7000",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 11000,
+    "description": "Rehang interior door",
+    "quantity": "1",
+    "unit_price_cents": 11000
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Birch Street Cottages #C2",
+  "remit_text": "Remit to: Handy Heron Home Repair, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999112100",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 11000,
+  "tax_cents": 798,
+  "tax_rate_bps": 725,
+  "template": "word",
+  "total_cents": 11798,
+  "vendor_address": "5999 Davis Fields, Springfield, OR 97445",
+  "vendor_email": "billing@handyheron.example",
+  "vendor_id": "dafc6a29-95f4-5b23-896d-5e48970f1dfd",
+  "vendor_name": "Handy Heron Home Repair",
+  "vendor_phone": "(541) 555-0121",
+  "vendor_slug": "handy-heron",
+  "vendor_tax_id_last4": "4184",
+  "visible_instructions": [],
+  "work_order_number": "WO-1202",
+  "work_order_printed": "WO-1202"
+ }
+}

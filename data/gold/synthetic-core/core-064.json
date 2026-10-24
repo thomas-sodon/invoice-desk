@@ -1,0 +1,682 @@
+{
+ "augment": {
+  "angle": -0.6230807121316446,
+  "blur": 0.8367963792365005,
+  "capture": "scan",
+  "jpeg_quality": 66.0,
+  "noise": 4.351944320320724,
+  "output": "image_pdf",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 4.838751108620334,
+  "ty": -9.723642604929791
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    874,
+    310,
+    974,
+    327
+   ],
+   "page": 0,
+   "text": "09/28/2026"
+  },
+  "invoice_date": {
+   "box": [
+    875,
+    278,
+    974,
+    295
+   ],
+   "page": 0,
+   "text": "08/29/2026"
+  },
+  "invoice_number": {
+   "box": [
+    876,
+    247,
+    957,
+    262
+   ],
+   "page": 0,
+   "text": "INV-2500"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1069,
+    498,
+    1142,
+    516
+   ],
+   "page": 0,
+   "text": "$215.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    111,
+    488,
+    340,
+    510
+   ],
+   "page": 0,
+   "text": "Replace kitchen drain trap"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    713,
+    495,
+    724,
+    510
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    860,
+    495,
+    933,
+    514
+   ],
+   "page": 0,
+   "text": "$215.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1069,
+    541,
+    1141,
+    559
+   ],
+   "page": 0,
+   "text": "$105.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    111,
+    531,
+    350,
+    553
+   ],
+   "page": 0,
+   "text": "Repair leaking supply valve"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    713,
+    538,
+    723,
+    553
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    860,
+    538,
+    932,
+    557
+   ],
+   "page": 0,
+   "text": "$105.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1052,
+    582,
+    1141,
+    602
+   ],
+   "page": 0,
+   "text": "$2,065.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    110,
+    573,
+    370,
+    595
+   ],
+   "page": 0,
+   "text": "Replace water heater (40 gal)"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    712,
+    580,
+    723,
+    595
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    843,
+    580,
+    932,
+    600
+   ],
+   "page": 0,
+   "text": "$2,065.00"
+  },
+  "property_or_unit": {
+   "box": [
+    874,
+    373,
+    931,
+    393
+   ],
+   "page": 0,
+   "text": "Apt 1L"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    113,
+    789,
+    1033,
+    817
+   ],
+   "page": 0,
+   "text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "box": [
+    1052,
+    640,
+    1140,
+    660
+   ],
+   "page": 0,
+   "text": "$2,385.00"
+  },
+  "tax": {
+   "box": [
+    1067,
+    675,
+    1139,
+    693
+   ],
+   "page": 0,
+   "text": "$172.91"
+  },
+  "total": {
+   "box": [
+    1024,
+    713,
+    1139,
+    738
+   ],
+   "page": 0,
+   "text": "$2,557.91"
+  },
+  "vendor_address": {
+   "box": [
+    114,
+    185,
+    308,
+    229
+   ],
+   "page": 0,
+   "text": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "box": [
+    105,
+    25,
+    647,
+    69
+   ],
+   "page": 0,
+   "text": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    166,
+    231,
+    254,
+    245
+   ],
+   "page": 0,
+   "text": "00-0004821"
+  },
+  "work_order_number": {
+   "box": [
+    874,
+    342,
+    957,
+    358
+   ],
+   "page": 0,
+   "text": "WO-1143"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     874,
+     310,
+     974,
+     327
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-28"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     875,
+     278,
+     974,
+     295
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-29"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     876,
+     247,
+     957,
+     262
+    ],
+    "word_ids": []
+   },
+   "value": "INV-2500"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1069,
+       498,
+       1142,
+       516
+      ],
+      "word_ids": []
+     },
+     "value_cents": 21500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       111,
+       488,
+       340,
+       510
+      ],
+      "word_ids": []
+     },
+     "value": "Replace kitchen drain trap"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       713,
+       495,
+       724,
+       510
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       860,
+       495,
+       933,
+       514
+      ],
+      "word_ids": []
+     },
+     "value_cents": 21500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1069,
+       541,
+       1141,
+       559
+      ],
+      "word_ids": []
+     },
+     "value_cents": 10500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       111,
+       531,
+       350,
+       553
+      ],
+      "word_ids": []
+     },
+     "value": "Repair leaking supply valve"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       713,
+       538,
+       723,
+       553
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       860,
+       538,
+       932,
+       557
+      ],
+      "word_ids": []
+     },
+     "value_cents": 10500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1052,
+       582,
+       1141,
+       602
+      ],
+      "word_ids": []
+     },
+     "value_cents": 206500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       110,
+       573,
+       370,
+       595
+      ],
+      "word_ids": []
+     },
+     "value": "Replace water heater (40 gal)"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       712,
+       580,
+       723,
+       595
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       843,
+       580,
+       932,
+       600
+      ],
+      "word_ids": []
+     },
+     "value_cents": 206500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     874,
+     373,
+     931,
+     393
+    ],
+    "word_ids": []
+   },
+   "value": "Apt 1L"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     113,
+     789,
+     1033,
+     817
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1052,
+     640,
+     1140,
+     660
+    ],
+    "word_ids": []
+   },
+   "value_cents": 238500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1067,
+     675,
+     1139,
+     693
+    ],
+    "word_ids": []
+   },
+   "value_cents": 17291
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1024,
+     713,
+     1139,
+     738
+    ],
+    "word_ids": []
+   },
+   "value_cents": 255791
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     114,
+     185,
+     308,
+     229
+    ],
+    "word_ids": []
+   },
+   "value": "118 Alder Way, Springfield, OR 97477"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     105,
+     25,
+     647,
+     69
+    ],
+    "word_ids": []
+   },
+   "value": "Rapid Rooter Plumbing LLC"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     166,
+     231,
+     254,
+     245
+    ],
+    "word_ids": []
+   },
+   "value": "4821"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     874,
+     342,
+     957,
+     358
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1143"
+  }
+ },
+ "filename": "core-064.pdf",
+ "hidden_boxes": [],
+ "id": "core-064",
+ "medium": "scanned",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "730c5d941cd3675d5794f6006377da5103f2ead3ca3e5784f1c27db20ae6a014"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "84f6591ed64664b49cd4797506bec53a9e0ca5ff01dd30e319bfc13de24aabd4",
+ "split": "test",
+ "template": "trades",
+ "truth": {
+  "accent": "#1f4e79",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-064",
+  "doc_type": "invoice",
+  "due_date": "2026-09-28",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-29",
+  "invoice_number": "INV-2500",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 21500,
+    "description": "Replace kitchen drain trap",
+    "quantity": "1",
+    "unit_price_cents": 21500
+   },
+   {
+    "amount_cents": 10500,
+    "description": "Repair leaking supply valve",
+    "quantity": "1",
+    "unit_price_cents": 10500
+   },
+   {
+    "amount_cents": 206500,
+    "description": "Replace water heater (40 gal)",
+    "quantity": "1",
+    "unit_price_cents": 206500
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Apt 1L",
+  "remit_text": "Remit to: Rapid Rooter Plumbing LLC, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999004991",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 238500,
+  "tax_cents": 17291,
+  "tax_rate_bps": 725,
+  "template": "trades",
+  "total_cents": 255791,
+  "vendor_address": "118 Alder Way, Springfield, OR 97477",
+  "vendor_email": "billing@rapidrooter.example",
+  "vendor_id": "cb828b2b-5dfc-5147-b209-1c638ffac3c7",
+  "vendor_name": "Rapid Rooter Plumbing LLC",
+  "vendor_phone": "(541) 555-0110",
+  "vendor_slug": "rapid-rooter",
+  "vendor_tax_id_last4": "4821",
+  "visible_instructions": [],
+  "work_order_number": "WO-1143",
+  "work_order_printed": "WO-1143"
+ }
+}

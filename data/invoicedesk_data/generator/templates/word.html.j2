@@ -1,0 +1,33 @@
+{%- import "_macros.html.j2" as m -%}
+<!doctype html><html><head><meta charset="utf-8"><style>
+{{ base_css | safe }}
+body { font-family: "Liberation Serif", "Times New Roman", serif; font-size: 14px; }
+.page { padding: {{ 72 + doc.top_pad }}px 72px 72px; }
+h1 { font-size: 28px; margin: 0 0 4px; font-weight: 700; }
+.center { text-align: center; }
+.items { margin-top: 18px; }
+.items th, .items td { border: 1px solid #000; }
+.items th { font-weight: 700; text-align: left; }
+.tot td { border: 1px solid #000; }
+</style></head><body><div class="page">
+<div class="center"><h1>{{ m.g("vendor_name", doc.vendor_name) }}</h1>
+{{ m.gblock("vendor_address", doc.address_lines, doc.vendor_address) }}
+<div>Phone {{ doc.phone }}</div>
+{% if doc.tax_id_printed %}<div>Federal Tax ID: {{ m.g("vendor_tax_id_last4", doc.tax_id_printed) }}</div>{% endif %}</div>
+<p style="margin-top:28px"><b>INVOICE</b></p>
+<p>Invoice Number: {{ m.g("invoice_number", doc.invoice_number) }}<br>
+Invoice Date: {{ m.g("invoice_date", doc.invoice_date) }}<br>
+{% if doc.due_date %}Payment Due: {{ m.g("due_date", doc.due_date) }}<br>{% endif %}
+{% if doc.wo %}Work Order: {{ m.g("work_order_number", doc.wo) }}<br>{% endif %}
+{% if doc.unit %}Property: {{ m.g("property_or_unit", doc.unit) }}{% endif %}</p>
+<p>To: {{ doc.bill_to_name }}, {{ doc.bill_to_address }}</p>
+<table class="items"><tr><th>Description</th><th class="num">Quantity</th><th class="num">Unit Price</th><th class="num">Line Total</th></tr>
+{{ m.line_rows(doc) }}
+<tr class="tot"><td colspan="3" class="num">Subtotal</td><td class="num">{{ m.g("subtotal", doc.subtotal) }}</td></tr>
+<tr class="tot"><td colspan="3" class="num">{{ doc.tax_label }}</td><td class="num">{{ m.g("tax", doc.tax) }}</td></tr>
+<tr class="tot"><td colspan="3" class="num"><b>TOTAL</b></td><td class="num"><b>{{ m.g("total", doc.total) }}</b></td></tr>
+</table>
+{% if doc.remit %}<p style="margin-top:24px">{{ m.g("remit_to_bank_details", doc.remit) }}</p>{% endif %}
+<p>Please make checks payable to {{ doc.vendor_name }}. {{ doc.terms }}.</p>
+{% for n in doc.notes %}<p>{{ n }}</p>{% endfor %}
+</div>{{ m.adversarial(doc) }}</body></html>

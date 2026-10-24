@@ -1,0 +1,466 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    898,
+    516,
+    986,
+    529
+   ],
+   "page": 0,
+   "text": "11/21/2026"
+  },
+  "invoice_date": {
+   "box": [
+    898,
+    461,
+    987,
+    474
+   ],
+   "page": 0,
+   "text": "10/07/2026"
+  },
+  "invoice_number": {
+   "box": [
+    897,
+    434,
+    955,
+    447
+   ],
+   "page": 0,
+   "text": "A-7401"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1053,
+    647,
+    1133,
+    663
+   ],
+   "page": 0,
+   "text": "$2,620.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    648,
+    443,
+    665
+   ],
+   "page": 0,
+   "text": "Replace flooring, whole unit (phase 2 of 2)"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    773,
+    648,
+    781,
+    661
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    877,
+    647,
+    957,
+    663
+   ],
+   "page": 0,
+   "text": "$2,620.00"
+  },
+  "property_or_unit": {
+   "box": [
+    449,
+    361,
+    478,
+    374
+   ],
+   "page": 0,
+   "text": "203"
+  },
+  "subtotal": {
+   "box": [
+    1056,
+    704,
+    1136,
+    720
+   ],
+   "page": 0,
+   "text": "$2,620.00"
+  },
+  "tax": {
+   "box": [
+    1071,
+    734,
+    1136,
+    749
+   ],
+   "page": 0,
+   "text": "$216.15"
+  },
+  "total": {
+   "box": [
+    1029,
+    767,
+    1136,
+    789
+   ],
+   "page": 0,
+   "text": "$2,836.15"
+  },
+  "vendor_address": {
+   "box": [
+    92,
+    193,
+    278,
+    231
+   ],
+   "page": 0,
+   "text": "1909 Christopher Cape, Springfield, OR 97491"
+  },
+  "vendor_name": {
+   "box": [
+    92,
+    162,
+    344,
+    188
+   ],
+   "page": 0,
+   "text": "Oakhollow Flooring"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    127,
+    278,
+    223,
+    291
+   ],
+   "page": 0,
+   "text": "00-0002877"
+  },
+  "work_order_number": {
+   "box": [
+    897,
+    543,
+    982,
+    556
+   ],
+   "page": 0,
+   "text": "WO #1107"
+  }
+ },
+ "category": "split_under_cap",
+ "description": "Large job split into two invoices under the cap",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "Duplicate of A-7400",
+  "quarantined": false,
+  "rules": {
+   "R3": "review",
+   "R4": "flag"
+  },
+  "status": "Flagged"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     516,
+     986,
+     529
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-11-21"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     461,
+     987,
+     474
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-07"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     434,
+     955,
+     447
+    ],
+    "word_ids": []
+   },
+   "value": "A-7401"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1053,
+       647,
+       1133,
+       663
+      ],
+      "word_ids": []
+     },
+     "value_cents": 262000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       648,
+       443,
+       665
+      ],
+      "word_ids": []
+     },
+     "value": "Replace flooring, whole unit (phase 2 of 2)"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       773,
+       648,
+       781,
+       661
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       877,
+       647,
+       957,
+       663
+      ],
+      "word_ids": []
+     },
+     "value_cents": 262000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     449,
+     361,
+     478,
+     374
+    ],
+    "word_ids": []
+   },
+   "value": "203"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1056,
+     704,
+     1136,
+     720
+    ],
+    "word_ids": []
+   },
+   "value_cents": 262000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1071,
+     734,
+     1136,
+     749
+    ],
+    "word_ids": []
+   },
+   "value_cents": 21615
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1029,
+     767,
+     1136,
+     789
+    ],
+    "word_ids": []
+   },
+   "value_cents": 283615
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     193,
+     278,
+     231
+    ],
+    "word_ids": []
+   },
+   "value": "1909 Christopher Cape, Springfield, OR 97491"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     162,
+     344,
+     188
+    ],
+    "word_ids": []
+   },
+   "value": "Oakhollow Flooring"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     278,
+     223,
+     291
+    ],
+    "word_ids": []
+   },
+   "value": "2877"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     543,
+     982,
+     556
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1107"
+  }
+ },
+ "filename": "adv-034.pdf",
+ "hidden_boxes": [],
+ "id": "adv-034",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "12d66638edf04518ea6e3b9ce8ac5328848024819a4d60e69c50dc4733f49ce1"
+ ],
+ "priors": [
+  "adv-033"
+ ],
+ "set": "adversarial",
+ "sha256": "29fb6f336089767e6d3cf31f6d3ac9d62ef4758df28e8db9680e064cf752bfce",
+ "split": "adversarial",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#245c4c",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "split_under_cap"
+  ],
+  "doc_id": "adv-034",
+  "doc_type": "invoice",
+  "due_date": "2026-11-21",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "Duplicate of A-7400",
+   "quarantined": false,
+   "rules": {
+    "R3": "review",
+    "R4": "flag"
+   },
+   "status": "Flagged"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-10-07",
+  "invoice_number": "A-7401",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 262000,
+    "description": "Replace flooring, whole unit (phase 2 of 2)",
+    "quantity": "1",
+    "unit_price_cents": 262000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "203",
+  "remit_text": null,
+  "set_name": "adversarial",
+  "subtotal_cents": 262000,
+  "tax_cents": 21615,
+  "tax_rate_bps": 825,
+  "template": "quickbooks",
+  "total_cents": 283615,
+  "vendor_address": "1909 Christopher Cape, Springfield, OR 97491",
+  "vendor_email": "billing@oakhollow.example",
+  "vendor_id": "ec0d355d-af22-5f15-88a9-1e3e53138a4a",
+  "vendor_name": "Oakhollow Flooring",
+  "vendor_phone": "(541) 555-0120",
+  "vendor_slug": "oakhollow",
+  "vendor_tax_id_last4": "2877",
+  "visible_instructions": [],
+  "work_order_number": "WO-1107",
+  "work_order_printed": "WO #1107"
+ }
+}

@@ -1,0 +1,579 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    898,
+    585,
+    987,
+    598
+   ],
+   "page": 0,
+   "text": "10/17/2026"
+  },
+  "invoice_date": {
+   "box": [
+    898,
+    531,
+    987,
+    544
+   ],
+   "page": 0,
+   "text": "09/17/2026"
+  },
+  "invoice_number": {
+   "box": [
+    897,
+    504,
+    955,
+    517
+   ],
+   "page": 0,
+   "text": "A-8800"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1068,
+    716,
+    1133,
+    731
+   ],
+   "page": 0,
+   "text": "$295.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    103,
+    717,
+    295,
+    733
+   ],
+   "page": 0,
+   "text": "Junk removal, half truck"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    703,
+    717,
+    711,
+    730
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    856,
+    716,
+    921,
+    731
+   ],
+   "page": 0,
+   "text": "$295.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1078,
+    758,
+    1133,
+    772
+   ],
+   "page": 0,
+   "text": "$95.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    103,
+    758,
+    271,
+    775
+   ],
+   "page": 0,
+   "text": "Appliance haul-away"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    703,
+    758,
+    711,
+    771
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    866,
+    757,
+    921,
+    772
+   ],
+   "page": 0,
+   "text": "$95.00"
+  },
+  "property_or_unit": {
+   "box": [
+    450,
+    431,
+    643,
+    448
+   ],
+   "page": 0,
+   "text": "Unit 105, Juniper House"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    92,
+    952,
+    967,
+    969
+   ],
+   "page": 0,
+   "text": "Remit to: Larkspur Junk Haulers, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999260885"
+  },
+  "subtotal": {
+   "box": [
+    1071,
+    815,
+    1136,
+    830
+   ],
+   "page": 0,
+   "text": "$390.00"
+  },
+  "tax": {
+   "box": [
+    1081,
+    846,
+    1136,
+    860
+   ],
+   "page": 0,
+   "text": "$32.18"
+  },
+  "total": {
+   "box": [
+    1049,
+    877,
+    1136,
+    897
+   ],
+   "page": 0,
+   "text": "$422.18"
+  },
+  "vendor_address": {
+   "box": [
+    91,
+    263,
+    269,
+    301
+   ],
+   "page": 0,
+   "text": "4398 Hill Shores, Springfield, OR 97413"
+  },
+  "vendor_name": {
+   "box": [
+    93,
+    232,
+    386,
+    258
+   ],
+   "page": 0,
+   "text": "Larkspur Junk Haulers"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    127,
+    348,
+    223,
+    361
+   ],
+   "page": 0,
+   "text": "00-0006102"
+  },
+  "work_order_number": {
+   "box": [
+    897,
+    613,
+    982,
+    626
+   ],
+   "page": 0,
+   "text": "WO #1104"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R1": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     585,
+     987,
+     598
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-17"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     531,
+     987,
+     544
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-17"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     504,
+     955,
+     517
+    ],
+    "word_ids": []
+   },
+   "value": "A-8800"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       716,
+       1133,
+       731
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       103,
+       717,
+       295,
+       733
+      ],
+      "word_ids": []
+     },
+     "value": "Junk removal, half truck"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       703,
+       717,
+       711,
+       730
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       856,
+       716,
+       921,
+       731
+      ],
+      "word_ids": []
+     },
+     "value_cents": 29500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1078,
+       758,
+       1133,
+       772
+      ],
+      "word_ids": []
+     },
+     "value_cents": 9500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       103,
+       758,
+       271,
+       775
+      ],
+      "word_ids": []
+     },
+     "value": "Appliance haul-away"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       703,
+       758,
+       711,
+       771
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       866,
+       757,
+       921,
+       772
+      ],
+      "word_ids": []
+     },
+     "value_cents": 9500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     450,
+     431,
+     643,
+     448
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 105, Juniper House"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     952,
+     967,
+     969
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Larkspur Junk Haulers, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999260885"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1071,
+     815,
+     1136,
+     830
+    ],
+    "word_ids": []
+   },
+   "value_cents": 39000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1081,
+     846,
+     1136,
+     860
+    ],
+    "word_ids": []
+   },
+   "value_cents": 3218
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1049,
+     877,
+     1136,
+     897
+    ],
+    "word_ids": []
+   },
+   "value_cents": 42218
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     91,
+     263,
+     269,
+     301
+    ],
+    "word_ids": []
+   },
+   "value": "4398 Hill Shores, Springfield, OR 97413"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     93,
+     232,
+     386,
+     258
+    ],
+    "word_ids": []
+   },
+   "value": "Larkspur Junk Haulers"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     348,
+     223,
+     361
+    ],
+    "word_ids": []
+   },
+   "value": "6102"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     613,
+     982,
+     626
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1104"
+  }
+ },
+ "filename": "core-001.pdf",
+ "hidden_boxes": [],
+ "id": "core-001",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "64ede2bf1e2c98283bbb53b4635a582e4e26f46b3a3c90df7585ce8930994266"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "3c67c0bccfe6fdf55012b1ac8dc351528f946c41b53b54e02fb0f312da4e92f3",
+ "split": "test",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "pending_vendor"
+  ],
+  "doc_id": "core-001",
+  "doc_type": "invoice",
+  "due_date": "2026-10-17",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R1": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-17",
+  "invoice_number": "A-8800",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 29500,
+    "description": "Junk removal, half truck",
+    "quantity": "1",
+    "unit_price_cents": 29500
+   },
+   {
+    "amount_cents": 9500,
+    "description": "Appliance haul-away",
+    "quantity": "1",
+    "unit_price_cents": 9500
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 105, Juniper House",
+  "remit_text": "Remit to: Larkspur Junk Haulers, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999260885",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 39000,
+  "tax_cents": 3218,
+  "tax_rate_bps": 825,
+  "template": "quickbooks",
+  "total_cents": 42218,
+  "vendor_address": "4398 Hill Shores, Springfield, OR 97413",
+  "vendor_email": "billing@larkspur.example",
+  "vendor_id": "1ed78505-5c85-5c8d-844d-28a5255f746d",
+  "vendor_name": "Larkspur Junk Haulers",
+  "vendor_phone": "(541) 555-0136",
+  "vendor_slug": "larkspur",
+  "vendor_tax_id_last4": "6102",
+  "visible_instructions": [],
+  "work_order_number": "WO-1104",
+  "work_order_printed": "WO #1104"
+ }
+}

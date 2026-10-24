@@ -1,0 +1,566 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    618,
+    262,
+    729,
+    277
+   ],
+   "page": 0,
+   "text": "15 Oct 2026"
+  },
+  "invoice_date": {
+   "box": [
+    618,
+    229,
+    732,
+    248
+   ],
+   "page": 0,
+   "text": "15 Sep 2026"
+  },
+  "invoice_number": {
+   "box": [
+    618,
+    196,
+    653,
+    211
+   ],
+   "page": 0,
+   "text": "426"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1071,
+    478,
+    1147,
+    497
+   ],
+   "page": 0,
+   "text": "$655.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    423,
+    480,
+    585,
+    499
+   ],
+   "page": 0,
+   "text": "Repoint brick wall"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    827,
+    480,
+    833,
+    495
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    914,
+    478,
+    991,
+    497
+   ],
+   "page": 0,
+   "text": "$655.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1071,
+    522,
+    1147,
+    541
+   ],
+   "page": 0,
+   "text": "$920.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    423,
+    524,
+    624,
+    543
+   ],
+   "page": 0,
+   "text": "Repair concrete steps"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    827,
+    524,
+    833,
+    539
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    914,
+    522,
+    991,
+    541
+   ],
+   "page": 0,
+   "text": "$920.00"
+  },
+  "property_or_unit": {
+   "box": [
+    618,
+    329,
+    691,
+    348
+   ],
+   "page": 0,
+   "text": "Apt 203"
+  },
+  "subtotal": {
+   "box": [
+    1059,
+    581,
+    1147,
+    602
+   ],
+   "page": 0,
+   "text": "$1,575.00"
+  },
+  "tax": {
+   "box": [
+    1085,
+    624,
+    1147,
+    643
+   ],
+   "page": 0,
+   "text": "$114.19"
+  },
+  "total": {
+   "box": [
+    1005,
+    667,
+    1147,
+    698
+   ],
+   "page": 0,
+   "text": "$1,689.19"
+  },
+  "vendor_address": {
+   "box": [
+    34,
+    196,
+    236,
+    239
+   ],
+   "page": 0,
+   "text": "66 Millrace Court, Springfield, OR 97478"
+  },
+  "vendor_name": {
+   "box": [
+    35,
+    103,
+    218,
+    168
+   ],
+   "page": 0,
+   "text": "Quartzline Countertops"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    34,
+    353,
+    144,
+    368
+   ],
+   "page": 0,
+   "text": "00-0001091"
+  },
+  "work_order_number": {
+   "box": [
+    618,
+    296,
+    710,
+    311
+   ],
+   "page": 0,
+   "text": "WO #1142"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R1": "review",
+   "R2": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     262,
+     729,
+     277
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-15"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     229,
+     732,
+     248
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-15"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     196,
+     653,
+     211
+    ],
+    "word_ids": []
+   },
+   "value": "426"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1071,
+       478,
+       1147,
+       497
+      ],
+      "word_ids": []
+     },
+     "value_cents": 65500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       423,
+       480,
+       585,
+       499
+      ],
+      "word_ids": []
+     },
+     "value": "Repoint brick wall"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       827,
+       480,
+       833,
+       495
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       914,
+       478,
+       991,
+       497
+      ],
+      "word_ids": []
+     },
+     "value_cents": 65500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1071,
+       522,
+       1147,
+       541
+      ],
+      "word_ids": []
+     },
+     "value_cents": 92000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       423,
+       524,
+       624,
+       543
+      ],
+      "word_ids": []
+     },
+     "value": "Repair concrete steps"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       827,
+       524,
+       833,
+       539
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       914,
+       522,
+       991,
+       541
+      ],
+      "word_ids": []
+     },
+     "value_cents": 92000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     329,
+     691,
+     348
+    ],
+    "word_ids": []
+   },
+   "value": "Apt 203"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1059,
+     581,
+     1147,
+     602
+    ],
+    "word_ids": []
+   },
+   "value_cents": 157500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1085,
+     624,
+     1147,
+     643
+    ],
+    "word_ids": []
+   },
+   "value_cents": 11419
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1005,
+     667,
+     1147,
+     698
+    ],
+    "word_ids": []
+   },
+   "value_cents": 168919
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     34,
+     196,
+     236,
+     239
+    ],
+    "word_ids": []
+   },
+   "value": "66 Millrace Court, Springfield, OR 97478"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     35,
+     103,
+     218,
+     168
+    ],
+    "word_ids": []
+   },
+   "value": "Quartzline Countertops"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     34,
+     353,
+     144,
+     368
+    ],
+    "word_ids": []
+   },
+   "value": "1091"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     618,
+     296,
+     710,
+     311
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1142"
+  }
+ },
+ "filename": "core-020.pdf",
+ "hidden_boxes": [],
+ "id": "core-020",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "3ccf99e40cd9878ef3eb0abec110e1e0fc29d1475cc7b568e34c53ffe040029f"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "578f9daa6befba39c43cec0a3c97911d46574d819c6de85e4063f23acc776136",
+ "split": "dev",
+ "template": "modern",
+ "truth": {
+  "accent": "#444444",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "new_vendor"
+  ],
+  "doc_id": "core-020",
+  "doc_type": "invoice",
+  "due_date": "2026-10-15",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R1": "review",
+    "R2": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-15",
+  "invoice_number": "426",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 65500,
+    "description": "Repoint brick wall",
+    "quantity": "1",
+    "unit_price_cents": 65500
+   },
+   {
+    "amount_cents": 92000,
+    "description": "Repair concrete steps",
+    "quantity": "1",
+    "unit_price_cents": 92000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Apt 203",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 157500,
+  "tax_cents": 11419,
+  "tax_rate_bps": 725,
+  "template": "modern",
+  "total_cents": 168919,
+  "vendor_address": "66 Millrace Court, Springfield, OR 97478",
+  "vendor_email": null,
+  "vendor_id": null,
+  "vendor_name": "Quartzline Countertops",
+  "vendor_phone": "(541) 555-0199",
+  "vendor_slug": null,
+  "vendor_tax_id_last4": "1091",
+  "visible_instructions": [],
+  "work_order_number": "WO-1142",
+  "work_order_printed": "WO #1142"
+ }
+}

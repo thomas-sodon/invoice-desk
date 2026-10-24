@@ -1,0 +1,569 @@
+{
+ "augment": {
+  "blur": 0.7677254683183352,
+  "capture": "photo",
+  "crumple": 0.0,
+  "jpeg_quality": 79.0,
+  "noise": 6.434356615152485,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    824,
+    467,
+    904,
+    481
+   ],
+   "page": 0,
+   "text": "10/13/2026"
+  },
+  "invoice_date": {
+   "box": [
+    824,
+    418,
+    904,
+    432
+   ],
+   "page": 0,
+   "text": "09/13/2026"
+  },
+  "invoice_number": {
+   "box": [
+    824,
+    394,
+    876,
+    407
+   ],
+   "page": 0,
+   "text": "A-3406"
+  },
+  "line_items.0.amount": {
+   "box": [
+    960,
+    586,
+    1032,
+    602
+   ],
+   "page": 0,
+   "text": "$6,100.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    133,
+    593,
+    320,
+    611
+   ],
+   "page": 0,
+   "text": "Replace rooftop HVAC unit"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    638,
+    590,
+    646,
+    603
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    766,
+    588,
+    838,
+    604
+   ],
+   "page": 0,
+   "text": "$6,100.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    973,
+    623,
+    1031,
+    638
+   ],
+   "page": 0,
+   "text": "$850.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    133,
+    631,
+    218,
+    644
+   ],
+   "page": 0,
+   "text": "Crane rental"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    637,
+    627,
+    645,
+    640
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    779,
+    626,
+    838,
+    640
+   ],
+   "page": 0,
+   "text": "$850.00"
+  },
+  "property_or_unit": {
+   "box": [
+    433,
+    333,
+    484,
+    347
+   ],
+   "page": 0,
+   "text": "Unit 1U"
+  },
+  "subtotal": {
+   "box": [
+    961,
+    676,
+    1033,
+    692
+   ],
+   "page": 0,
+   "text": "$6,950.00"
+  },
+  "tax": {
+   "box": [
+    992,
+    704,
+    1033,
+    718
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    937,
+    732,
+    1033,
+    754
+   ],
+   "page": 0,
+   "text": "$6,950.00"
+  },
+  "vendor_address": {
+   "box": [
+    124,
+    184,
+    281,
+    222
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    124,
+    154,
+    402,
+    184
+   ],
+   "page": 0,
+   "text": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    154,
+    262,
+    237,
+    276
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    823,
+    493,
+    892,
+    507
+   ],
+   "page": 0,
+   "text": "WO-1222"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R7": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     824,
+     467,
+     904,
+     481
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-13"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     824,
+     418,
+     904,
+     432
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-13"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     824,
+     394,
+     876,
+     407
+    ],
+    "word_ids": []
+   },
+   "value": "A-3406"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       960,
+       586,
+       1032,
+       602
+      ],
+      "word_ids": []
+     },
+     "value_cents": 610000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       133,
+       593,
+       320,
+       611
+      ],
+      "word_ids": []
+     },
+     "value": "Replace rooftop HVAC unit"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       638,
+       590,
+       646,
+       603
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       766,
+       588,
+       838,
+       604
+      ],
+      "word_ids": []
+     },
+     "value_cents": 610000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       973,
+       623,
+       1031,
+       638
+      ],
+      "word_ids": []
+     },
+     "value_cents": 85000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       133,
+       631,
+       218,
+       644
+      ],
+      "word_ids": []
+     },
+     "value": "Crane rental"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       637,
+       627,
+       645,
+       640
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       779,
+       626,
+       838,
+       640
+      ],
+      "word_ids": []
+     },
+     "value_cents": 85000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     433,
+     333,
+     484,
+     347
+    ],
+    "word_ids": []
+   },
+   "value": "Unit 1U"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     961,
+     676,
+     1033,
+     692
+    ],
+    "word_ids": []
+   },
+   "value_cents": 695000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     992,
+     704,
+     1033,
+     718
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     937,
+     732,
+     1033,
+     754
+    ],
+    "word_ids": []
+   },
+   "value_cents": 695000
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     124,
+     184,
+     281,
+     222
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     124,
+     154,
+     402,
+     184
+    ],
+    "word_ids": []
+   },
+   "value": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     154,
+     262,
+     237,
+     276
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     823,
+     493,
+     892,
+     507
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1222"
+  }
+ },
+ "filename": "core-086.jpg",
+ "hidden_boxes": [],
+ "id": "core-086",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "0c764d45d757d687e9b7608eae9b07a04ba710c77c51757428cafd97a9b94920"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "4af3ce65c219730234b5721bb4eabb5406d54ebd40781d1acd8604d2ece2150b",
+ "split": "dev",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "over_cap"
+  ],
+  "doc_id": "core-086",
+  "doc_type": "invoice",
+  "due_date": "2026-10-13",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R7": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-13",
+  "invoice_number": "A-3406",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 610000,
+    "description": "Replace rooftop HVAC unit",
+    "quantity": "1",
+    "unit_price_cents": 610000
+   },
+   {
+    "amount_cents": 85000,
+    "description": "Crane rental",
+    "quantity": "1",
+    "unit_price_cents": 85000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Unit 1U",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 695000,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "quickbooks",
+  "total_cents": 695000,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": "billing@copperleaf.example",
+  "vendor_id": "be39ac95-ef89-520d-aeb1-9b7f6eed3e23",
+  "vendor_name": "Copperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": "copperleaf",
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1222",
+  "work_order_printed": "WO-1222"
+ }
+}

@@ -1,0 +1,478 @@
+{
+ "augment": {
+  "angle": -1.2459248649938421,
+  "blur": 0.4746177149201377,
+  "capture": "scan",
+  "jpeg_quality": 73.0,
+  "noise": 5.712154954434826,
+  "output": "jpeg",
+  "size": [
+   1237,
+   1600
+  ],
+  "tx": 1.6828066615616066,
+  "ty": -8.934921986486795
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    624,
+    558,
+    729,
+    576
+   ],
+   "page": 0,
+   "text": "4 Oct 2026"
+  },
+  "invoice_date": {
+   "box": [
+    626,
+    524,
+    746,
+    546
+   ],
+   "page": 0,
+   "text": "20 Aug 2026"
+  },
+  "invoice_number": {
+   "box": [
+    626,
+    491,
+    721,
+    509
+   ],
+   "page": 0,
+   "text": "INV04800"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1076,
+    783,
+    1149,
+    805
+   ],
+   "page": 0,
+   "text": "$145.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    424,
+    771,
+    623,
+    792
+   ],
+   "page": 0,
+   "text": "Reseal window frame"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    833,
+    780,
+    840,
+    796
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    921,
+    780,
+    995,
+    802
+   ],
+   "page": 0,
+   "text": "$145.00"
+  },
+  "property_or_unit": {
+   "box": [
+    622,
+    624,
+    692,
+    645
+   ],
+   "page": 0,
+   "text": "Apt 201"
+  },
+  "remit_to_bank_details": {
+   "box": [
+    35,
+    701,
+    299,
+    785
+   ],
+   "page": 0,
+   "text": "Remit to: Clearpane Glass Works, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999120019"
+  },
+  "subtotal": {
+   "box": [
+    1075,
+    842,
+    1148,
+    864
+   ],
+   "page": 0,
+   "text": "$145.00"
+  },
+  "tax": {
+   "box": [
+    1091,
+    886,
+    1147,
+    907
+   ],
+   "page": 0,
+   "text": "$10.51"
+  },
+  "total": {
+   "box": [
+    1031,
+    928,
+    1146,
+    959
+   ],
+   "page": 0,
+   "text": "$155.51"
+  },
+  "vendor_address": {
+   "box": [
+    41,
+    478,
+    246,
+    526
+   ],
+   "page": 0,
+   "text": "7203 Ray Walks, Springfield, OR 97490"
+  },
+  "vendor_name": {
+   "box": [
+    43,
+    385,
+    286,
+    451
+   ],
+   "page": 0,
+   "text": "Clearpane Glass Works"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    38,
+    636,
+    149,
+    654
+   ],
+   "page": 0,
+   "text": "00-0001491"
+  },
+  "work_order_number": {
+   "box": [
+    623,
+    591,
+    717,
+    609
+   ],
+   "page": 0,
+   "text": "WO #1103"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     624,
+     558,
+     729,
+     576
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-04"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     626,
+     524,
+     746,
+     546
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-20"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     626,
+     491,
+     721,
+     509
+    ],
+    "word_ids": []
+   },
+   "value": "INV04800"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1076,
+       783,
+       1149,
+       805
+      ],
+      "word_ids": []
+     },
+     "value_cents": 14500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       424,
+       771,
+       623,
+       792
+      ],
+      "word_ids": []
+     },
+     "value": "Reseal window frame"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       833,
+       780,
+       840,
+       796
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       921,
+       780,
+       995,
+       802
+      ],
+      "word_ids": []
+     },
+     "value_cents": 14500
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     622,
+     624,
+     692,
+     645
+    ],
+    "word_ids": []
+   },
+   "value": "Apt 201"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     35,
+     701,
+     299,
+     785
+    ],
+    "word_ids": []
+   },
+   "value": "Remit to: Clearpane Glass Works, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999120019"
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1075,
+     842,
+     1148,
+     864
+    ],
+    "word_ids": []
+   },
+   "value_cents": 14500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1091,
+     886,
+     1147,
+     907
+    ],
+    "word_ids": []
+   },
+   "value_cents": 1051
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1031,
+     928,
+     1146,
+     959
+    ],
+    "word_ids": []
+   },
+   "value_cents": 15551
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     41,
+     478,
+     246,
+     526
+    ],
+    "word_ids": []
+   },
+   "value": "7203 Ray Walks, Springfield, OR 97490"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     43,
+     385,
+     286,
+     451
+    ],
+    "word_ids": []
+   },
+   "value": "Clearpane Glass Works"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     38,
+     636,
+     149,
+     654
+    ],
+    "word_ids": []
+   },
+   "value": "1491"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     623,
+     591,
+     717,
+     609
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1103"
+  }
+ },
+ "filename": "core-048.jpg",
+ "hidden_boxes": [],
+ "id": "core-048",
+ "medium": "scanned",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "2ab4fe54f7cd2429c8acb98ff877d715b41aa9928e4e3ef982cf91ac505bb9d2"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "9c94bc5355c189cd6166e08d4b76523adc335a7ca329046e43ae6b1183adb9c7",
+ "split": "test",
+ "template": "modern",
+ "truth": {
+  "accent": "#1f4e79",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-048",
+  "doc_type": "invoice",
+  "due_date": "2026-10-04",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-20",
+  "invoice_number": "INV04800",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 14500,
+    "description": "Reseal window frame",
+    "quantity": "1",
+    "unit_price_cents": 14500
+   }
+  ],
+  "medium": "scanned",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Apt 201",
+  "remit_text": "Remit to: Clearpane Glass Works, Fictional Test Bank (TEST ONLY), Routing 110000000, Acct 000999120019",
+  "set_name": "synthetic-core",
+  "subtotal_cents": 14500,
+  "tax_cents": 1051,
+  "tax_rate_bps": 725,
+  "template": "modern",
+  "total_cents": 15551,
+  "vendor_address": "7203 Ray Walks, Springfield, OR 97490",
+  "vendor_email": "billing@clearpane.example",
+  "vendor_id": "1220761e-8d8c-5d27-a575-1da028782800",
+  "vendor_name": "Clearpane Glass Works",
+  "vendor_phone": "(541) 555-0122",
+  "vendor_slug": "clearpane",
+  "vendor_tax_id_last4": "1491",
+  "visible_instructions": [],
+  "work_order_number": "WO-1103",
+  "work_order_printed": "WO #1103"
+ }
+}

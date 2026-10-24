@@ -1,0 +1,569 @@
+{
+ "augment": {
+  "blur": 1.0268053969693711,
+  "capture": "photo",
+  "crumple": 0.0,
+  "jpeg_quality": 83.0,
+  "noise": 3.9976659299253954,
+  "output": "jpeg",
+  "size": [
+   1200,
+   1600
+  ]
+ },
+ "box_eval": false,
+ "boxes": {
+  "due_date": {
+   "box": [
+    839,
+    552,
+    915,
+    566
+   ],
+   "page": 0,
+   "text": "09/15/2026"
+  },
+  "invoice_date": {
+   "box": [
+    840,
+    500,
+    916,
+    514
+   ],
+   "page": 0,
+   "text": "08/01/2026"
+  },
+  "invoice_number": {
+   "box": [
+    840,
+    474,
+    890,
+    488
+   ],
+   "page": 0,
+   "text": "A-7300"
+  },
+  "line_items.0.amount": {
+   "box": [
+    965,
+    674,
+    1034,
+    691
+   ],
+   "page": 0,
+   "text": "$4,800.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    178,
+    679,
+    362,
+    697
+   ],
+   "page": 0,
+   "text": "Replace flooring, whole unit"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    664,
+    677,
+    673,
+    691
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    785,
+    675,
+    853,
+    692
+   ],
+   "page": 0,
+   "text": "$4,800.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    977,
+    712,
+    1033,
+    727
+   ],
+   "page": 0,
+   "text": "$420.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    178,
+    717,
+    336,
+    734
+   ],
+   "page": 0,
+   "text": "Haul-away and disposal"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    663,
+    715,
+    672,
+    728
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    797,
+    713,
+    852,
+    728
+   ],
+   "page": 0,
+   "text": "$420.00"
+  },
+  "property_or_unit": {
+   "box": [
+    465,
+    408,
+    582,
+    422
+   ],
+   "page": 0,
+   "text": "Cedar Flats #203"
+  },
+  "subtotal": {
+   "box": [
+    965,
+    766,
+    1034,
+    782
+   ],
+   "page": 0,
+   "text": "$5,220.00"
+  },
+  "tax": {
+   "box": [
+    977,
+    794,
+    1033,
+    809
+   ],
+   "page": 0,
+   "text": "$430.65"
+  },
+  "total": {
+   "box": [
+    941,
+    824,
+    1032,
+    846
+   ],
+   "page": 0,
+   "text": "$5,650.65"
+  },
+  "vendor_address": {
+   "box": [
+    167,
+    250,
+    324,
+    289
+   ],
+   "page": 0,
+   "text": "1909 Christopher Cape, Springfield, OR 97491"
+  },
+  "vendor_name": {
+   "box": [
+    167,
+    219,
+    379,
+    248
+   ],
+   "page": 0,
+   "text": "Oakhollow Flooring"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    196,
+    332,
+    277,
+    346
+   ],
+   "page": 0,
+   "text": "00-0002877"
+  },
+  "work_order_number": {
+   "box": [
+    837,
+    577,
+    902,
+    591
+   ],
+   "page": 0,
+   "text": "WO-1107"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {
+   "R7": "review"
+  },
+  "status": "NeedsReview"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     839,
+     552,
+     915,
+     566
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-15"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     840,
+     500,
+     916,
+     514
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-01"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     840,
+     474,
+     890,
+     488
+    ],
+    "word_ids": []
+   },
+   "value": "A-7300"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       965,
+       674,
+       1034,
+       691
+      ],
+      "word_ids": []
+     },
+     "value_cents": 480000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       178,
+       679,
+       362,
+       697
+      ],
+      "word_ids": []
+     },
+     "value": "Replace flooring, whole unit"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       664,
+       677,
+       673,
+       691
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       785,
+       675,
+       853,
+       692
+      ],
+      "word_ids": []
+     },
+     "value_cents": 480000
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       977,
+       712,
+       1033,
+       727
+      ],
+      "word_ids": []
+     },
+     "value_cents": 42000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       178,
+       717,
+       336,
+       734
+      ],
+      "word_ids": []
+     },
+     "value": "Haul-away and disposal"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       663,
+       715,
+       672,
+       728
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       797,
+       713,
+       852,
+       728
+      ],
+      "word_ids": []
+     },
+     "value_cents": 42000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     465,
+     408,
+     582,
+     422
+    ],
+    "word_ids": []
+   },
+   "value": "Cedar Flats #203"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     965,
+     766,
+     1034,
+     782
+    ],
+    "word_ids": []
+   },
+   "value_cents": 522000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     977,
+     794,
+     1033,
+     809
+    ],
+    "word_ids": []
+   },
+   "value_cents": 43065
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     941,
+     824,
+     1032,
+     846
+    ],
+    "word_ids": []
+   },
+   "value_cents": 565065
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     167,
+     250,
+     324,
+     289
+    ],
+    "word_ids": []
+   },
+   "value": "1909 Christopher Cape, Springfield, OR 97491"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     167,
+     219,
+     379,
+     248
+    ],
+    "word_ids": []
+   },
+   "value": "Oakhollow Flooring"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     196,
+     332,
+     277,
+     346
+    ],
+    "word_ids": []
+   },
+   "value": "2877"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     837,
+     577,
+     902,
+     591
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1107"
+  }
+ },
+ "filename": "core-088.jpg",
+ "hidden_boxes": [],
+ "id": "core-088",
+ "medium": "photo",
+ "mime": "image/jpeg",
+ "page_sha256": [
+  "36e993747e796545a569da7c13aeb0923954eeec916fd1916aaa002ffe1f1e73"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "c8ca14f2d62bf470404b0107cbc21f8fbd0e739fd834b1c20bd5947a492a26da",
+ "split": "dev",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#245c4c",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [
+   "over_cap"
+  ],
+  "doc_id": "core-088",
+  "doc_type": "invoice",
+  "due_date": "2026-09-15",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {
+    "R7": "review"
+   },
+   "status": "NeedsReview"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-01",
+  "invoice_number": "A-7300",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 480000,
+    "description": "Replace flooring, whole unit",
+    "quantity": "1",
+    "unit_price_cents": 480000
+   },
+   {
+    "amount_cents": 42000,
+    "description": "Haul-away and disposal",
+    "quantity": "1",
+    "unit_price_cents": 42000
+   }
+  ],
+  "medium": "photo",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Cedar Flats #203",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 522000,
+  "tax_cents": 43065,
+  "tax_rate_bps": 825,
+  "template": "quickbooks",
+  "total_cents": 565065,
+  "vendor_address": "1909 Christopher Cape, Springfield, OR 97491",
+  "vendor_email": "billing@oakhollow.example",
+  "vendor_id": "ec0d355d-af22-5f15-88a9-1e3e53138a4a",
+  "vendor_name": "Oakhollow Flooring",
+  "vendor_phone": "(541) 555-0120",
+  "vendor_slug": "oakhollow",
+  "vendor_tax_id_last4": "2877",
+  "visible_instructions": [],
+  "work_order_number": "WO-1107",
+  "work_order_printed": "WO-1107"
+ }
+}

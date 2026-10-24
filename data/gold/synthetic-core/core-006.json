@@ -1,0 +1,660 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "due_date": {
+   "box": [
+    898,
+    437,
+    987,
+    450
+   ],
+   "page": 0,
+   "text": "10/08/2026"
+  },
+  "invoice_date": {
+   "box": [
+    898,
+    382,
+    987,
+    395
+   ],
+   "page": 0,
+   "text": "09/08/2026"
+  },
+  "invoice_number": {
+   "box": [
+    897,
+    355,
+    955,
+    368
+   ],
+   "page": 0,
+   "text": "A-3401"
+  },
+  "line_items.0.amount": {
+   "box": [
+    1068,
+    568,
+    1133,
+    583
+   ],
+   "page": 0,
+   "text": "$620.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    104,
+    569,
+    197,
+    582
+   ],
+   "page": 0,
+   "text": "HVAC labor"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    717,
+    569,
+    726,
+    582
+   ],
+   "page": 0,
+   "text": "4"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    864,
+    568,
+    929,
+    583
+   ],
+   "page": 0,
+   "text": "$155.00"
+  },
+  "line_items.1.amount": {
+   "box": [
+    1068,
+    609,
+    1133,
+    624
+   ],
+   "page": 0,
+   "text": "$215.00"
+  },
+  "line_items.1.description": {
+   "box": [
+    104,
+    610,
+    311,
+    627
+   ],
+   "page": 0,
+   "text": "Furnace tune-up and filter"
+  },
+  "line_items.1.quantity": {
+   "box": [
+    718,
+    610,
+    726,
+    623
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.1.unit_price": {
+   "box": [
+    864,
+    609,
+    929,
+    624
+   ],
+   "page": 0,
+   "text": "$215.00"
+  },
+  "line_items.2.amount": {
+   "box": [
+    1068,
+    650,
+    1133,
+    665
+   ],
+   "page": 0,
+   "text": "$320.00"
+  },
+  "line_items.2.description": {
+   "box": [
+    104,
+    651,
+    261,
+    668
+   ],
+   "page": 0,
+   "text": "Replace thermostat"
+  },
+  "line_items.2.quantity": {
+   "box": [
+    718,
+    651,
+    726,
+    664
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.2.unit_price": {
+   "box": [
+    864,
+    650,
+    929,
+    665
+   ],
+   "page": 0,
+   "text": "$320.00"
+  },
+  "property_or_unit": {
+   "box": [
+    449,
+    282,
+    671,
+    295
+   ],
+   "page": 0,
+   "text": "Alder Row Townhomes #A4"
+  },
+  "subtotal": {
+   "box": [
+    1056,
+    707,
+    1136,
+    723
+   ],
+   "page": 0,
+   "text": "$1,155.00"
+  },
+  "tax": {
+   "box": [
+    1091,
+    739,
+    1136,
+    753
+   ],
+   "page": 0,
+   "text": "$0.00"
+  },
+  "total": {
+   "box": [
+    1029,
+    770,
+    1136,
+    792
+   ],
+   "page": 0,
+   "text": "$1,155.00"
+  },
+  "vendor_address": {
+   "box": [
+    92,
+    114,
+    273,
+    152
+   ],
+   "page": 0,
+   "text": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "box": [
+    92,
+    83,
+    412,
+    109
+   ],
+   "page": 0,
+   "text": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    127,
+    199,
+    223,
+    212
+   ],
+   "page": 0,
+   "text": "00-0000638"
+  },
+  "work_order_number": {
+   "box": [
+    897,
+    464,
+    973,
+    477
+   ],
+   "page": 0,
+   "text": "WO-1195"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     437,
+     987,
+     450
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-10-08"
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     898,
+     382,
+     987,
+     395
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-09-08"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     355,
+     955,
+     368
+    ],
+    "word_ids": []
+   },
+   "value": "A-3401"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       568,
+       1133,
+       583
+      ],
+      "word_ids": []
+     },
+     "value_cents": 62000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       569,
+       197,
+       582
+      ],
+      "word_ids": []
+     },
+     "value": "HVAC labor"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       717,
+       569,
+       726,
+       582
+      ],
+      "word_ids": []
+     },
+     "value": "4"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       864,
+       568,
+       929,
+       583
+      ],
+      "word_ids": []
+     },
+     "value_cents": 15500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       609,
+       1133,
+       624
+      ],
+      "word_ids": []
+     },
+     "value_cents": 21500
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       610,
+       311,
+       627
+      ],
+      "word_ids": []
+     },
+     "value": "Furnace tune-up and filter"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       718,
+       610,
+       726,
+       623
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       864,
+       609,
+       929,
+       624
+      ],
+      "word_ids": []
+     },
+     "value_cents": 21500
+    }
+   },
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       1068,
+       650,
+       1133,
+       665
+      ],
+      "word_ids": []
+     },
+     "value_cents": 32000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       104,
+       651,
+       261,
+       668
+      ],
+      "word_ids": []
+     },
+     "value": "Replace thermostat"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       718,
+       651,
+       726,
+       664
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       864,
+       650,
+       929,
+       665
+      ],
+      "word_ids": []
+     },
+     "value_cents": 32000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     449,
+     282,
+     671,
+     295
+    ],
+    "word_ids": []
+   },
+   "value": "Alder Row Townhomes #A4"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1056,
+     707,
+     1136,
+     723
+    ],
+    "word_ids": []
+   },
+   "value_cents": 115500
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1091,
+     739,
+     1136,
+     753
+    ],
+    "word_ids": []
+   },
+   "value_cents": 0
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     1029,
+     770,
+     1136,
+     792
+    ],
+    "word_ids": []
+   },
+   "value_cents": 115500
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     114,
+     273,
+     152
+    ],
+    "word_ids": []
+   },
+   "value": "2528 Tammy Crescent, Springfield, OR 97416"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     92,
+     83,
+     412,
+     109
+    ],
+    "word_ids": []
+   },
+   "value": "Copperleaf Heating & Air"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     127,
+     199,
+     223,
+     212
+    ],
+    "word_ids": []
+   },
+   "value": "0638"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     897,
+     464,
+     973,
+     477
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1195"
+  }
+ },
+ "filename": "core-006.pdf",
+ "hidden_boxes": [],
+ "id": "core-006",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "5e5084040f0d773a13a1b3d8d84938d4406d7185a78b4af3954319491d3dccc5"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "d4c607569196d2ded447bea49dbd6c4f32f92605cd04d0353ab70ff60008e600",
+ "split": "test",
+ "template": "quickbooks",
+ "truth": {
+  "accent": "#1f6b3a",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-006",
+  "doc_type": "invoice",
+  "due_date": "2026-10-08",
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-09-08",
+  "invoice_number": "A-3401",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 62000,
+    "description": "HVAC labor",
+    "quantity": "4",
+    "unit_price_cents": 15500
+   },
+   {
+    "amount_cents": 21500,
+    "description": "Furnace tune-up and filter",
+    "quantity": "1",
+    "unit_price_cents": 21500
+   },
+   {
+    "amount_cents": 32000,
+    "description": "Replace thermostat",
+    "quantity": "1",
+    "unit_price_cents": 32000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Alder Row Townhomes #A4",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 115500,
+  "tax_cents": 0,
+  "tax_rate_bps": 0,
+  "template": "quickbooks",
+  "total_cents": 115500,
+  "vendor_address": "2528 Tammy Crescent, Springfield, OR 97416",
+  "vendor_email": "billing@copperleaf.example",
+  "vendor_id": "be39ac95-ef89-520d-aeb1-9b7f6eed3e23",
+  "vendor_name": "Copperleaf Heating & Air",
+  "vendor_phone": "(541) 555-0112",
+  "vendor_slug": "copperleaf",
+  "vendor_tax_id_last4": "0638",
+  "visible_instructions": [],
+  "work_order_number": "WO-1195",
+  "work_order_printed": "WO-1195"
+ }
+}

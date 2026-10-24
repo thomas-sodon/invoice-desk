@@ -1,0 +1,14 @@
+@page { size: 8.5in 11in; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { width: 816px; height: 1056px; position: relative; overflow: hidden; background: #fff;
+       color: #1d1d1d; font-family: "Liberation Sans", "DejaVu Sans", sans-serif; font-size: 13px;
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { position: absolute; inset: 0; padding: 56px 60px; }
+table { border-collapse: collapse; width: 100%; }
+td, th { padding: 6px 8px; vertical-align: top; }
+.num { text-align: right; white-space: nowrap; }
+.muted { color: #666; }
+.hand { color: transparent !important; }
+.small { font-size: 11px; }
+.adv { position: absolute; }

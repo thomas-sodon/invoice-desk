@@ -1,0 +1,441 @@
+{
+ "augment": {
+  "capture": "none",
+  "size": [
+   1237,
+   1600
+  ]
+ },
+ "box_eval": true,
+ "boxes": {
+  "invoice_date": {
+   "box": [
+    851,
+    299,
+    967,
+    312
+   ],
+   "page": 0,
+   "text": "2026-08-06"
+  },
+  "invoice_number": {
+   "box": [
+    886,
+    270,
+    967,
+    283
+   ],
+   "page": 0,
+   "text": "SR-5000"
+  },
+  "line_items.0.amount": {
+   "box": [
+    898,
+    479,
+    967,
+    492
+   ],
+   "page": 0,
+   "text": "220.00"
+  },
+  "line_items.0.description": {
+   "box": [
+    269,
+    478,
+    479,
+    496
+   ],
+   "page": 0,
+   "text": "Set new fence post"
+  },
+  "line_items.0.quantity": {
+   "box": [
+    703,
+    479,
+    713,
+    492
+   ],
+   "page": 0,
+   "text": "1"
+  },
+  "line_items.0.unit_price": {
+   "box": [
+    771,
+    479,
+    840,
+    492
+   ],
+   "page": 0,
+   "text": "220.00"
+  },
+  "property_or_unit": {
+   "box": [
+    674,
+    356,
+    967,
+    374
+   ],
+   "page": 0,
+   "text": "Birch Street Cottages #C5"
+  },
+  "subtotal": {
+   "box": [
+    898,
+    542,
+    967,
+    555
+   ],
+   "page": 0,
+   "text": "220.00"
+  },
+  "tax": {
+   "box": [
+    910,
+    570,
+    967,
+    583
+   ],
+   "page": 0,
+   "text": "13.20"
+  },
+  "total": {
+   "box": [
+    877,
+    600,
+    967,
+    618
+   ],
+   "page": 0,
+   "text": "233.20"
+  },
+  "vendor_address": {
+   "box": [
+    495,
+    144,
+    741,
+    184
+   ],
+   "page": 0,
+   "text": "2150 Darren Vista, Springfield, OR 97485"
+  },
+  "vendor_name": {
+   "box": [
+    458,
+    114,
+    779,
+    133
+   ],
+   "page": 0,
+   "text": "Ironwood Fence & Gate"
+  },
+  "vendor_tax_id_last4": {
+   "box": [
+    601,
+    213,
+    717,
+    226
+   ],
+   "page": 0,
+   "text": "00-0009476"
+  },
+  "work_order_number": {
+   "box": [
+    885,
+    328,
+    967,
+    341
+   ],
+   "page": 0,
+   "text": "WO 1112"
+  }
+ },
+ "category": null,
+ "description": "",
+ "email": null,
+ "expected": {
+  "categories": [],
+  "detectors": [],
+  "headline": "",
+  "quarantined": false,
+  "rules": {},
+  "status": "ReadyToPay"
+ },
+ "extraction": {
+  "doc_type": "invoice",
+  "due_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value_iso": null
+  },
+  "embedded_instructions": [],
+  "handwriting_present": false,
+  "invoice_date": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     851,
+     299,
+     967,
+     312
+    ],
+    "word_ids": []
+   },
+   "value_iso": "2026-08-06"
+  },
+  "invoice_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     886,
+     270,
+     967,
+     283
+    ],
+    "word_ids": []
+   },
+   "value": "SR-5000"
+  },
+  "legibility_issues": [],
+  "line_items": [
+   {
+    "amount": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       898,
+       479,
+       967,
+       492
+      ],
+      "word_ids": []
+     },
+     "value_cents": 22000
+    },
+    "description": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       269,
+       478,
+       479,
+       496
+      ],
+      "word_ids": []
+     },
+     "value": "Set new fence post"
+    },
+    "quantity": {
+     "confidence": 1.0,
+     "source": {
+      "fallback_box": [
+       703,
+       479,
+       713,
+       492
+      ],
+      "word_ids": []
+     },
+     "value": "1"
+    },
+    "unit_price": {
+     "confidence": 1.0,
+     "currency": "USD",
+     "source": {
+      "fallback_box": [
+       771,
+       479,
+       840,
+       492
+      ],
+      "word_ids": []
+     },
+     "value_cents": 22000
+    }
+   }
+  ],
+  "property_or_unit": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     674,
+     356,
+     967,
+     374
+    ],
+    "word_ids": []
+   },
+   "value": "Birch Street Cottages #C5"
+  },
+  "remit_to_bank_details": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": null,
+    "word_ids": []
+   },
+   "value": null
+  },
+  "subtotal": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     898,
+     542,
+     967,
+     555
+    ],
+    "word_ids": []
+   },
+   "value_cents": 22000
+  },
+  "tax": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     910,
+     570,
+     967,
+     583
+    ],
+    "word_ids": []
+   },
+   "value_cents": 1320
+  },
+  "total": {
+   "confidence": 1.0,
+   "currency": "USD",
+   "source": {
+    "fallback_box": [
+     877,
+     600,
+     967,
+     618
+    ],
+    "word_ids": []
+   },
+   "value_cents": 23320
+  },
+  "vendor_address": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     495,
+     144,
+     741,
+     184
+    ],
+    "word_ids": []
+   },
+   "value": "2150 Darren Vista, Springfield, OR 97485"
+  },
+  "vendor_name": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     458,
+     114,
+     779,
+     133
+    ],
+    "word_ids": []
+   },
+   "value": "Ironwood Fence & Gate"
+  },
+  "vendor_tax_id_last4": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     601,
+     213,
+     717,
+     226
+    ],
+    "word_ids": []
+   },
+   "value": "9476"
+  },
+  "work_order_number": {
+   "confidence": 1.0,
+   "source": {
+    "fallback_box": [
+     885,
+     328,
+     967,
+     341
+    ],
+    "word_ids": []
+   },
+   "value": "WO-1112"
+  }
+ },
+ "filename": "core-018.pdf",
+ "hidden_boxes": [],
+ "id": "core-018",
+ "medium": "native",
+ "mime": "application/pdf",
+ "page_sha256": [
+  "1e5a0cef4e5e052f9692199c3960e3c4730fea392bf1f61343935ed6638f7fde"
+ ],
+ "priors": [],
+ "set": "synthetic-core",
+ "sha256": "93f8d24275e54f057f42bdad6be2edb21bddd214ce19b933d3d91f1a358b5642",
+ "split": "test",
+ "template": "compact",
+ "truth": {
+  "accent": "#245c4c",
+  "bill_to_address": "PO Box 4410, Springfield, OR 97477",
+  "bill_to_name": "Maple Row Property Management",
+  "defects": [],
+  "doc_id": "core-018",
+  "doc_type": "invoice",
+  "due_date": null,
+  "expected": {
+   "categories": [],
+   "detectors": [],
+   "headline": "",
+   "quarantined": false,
+   "rules": {},
+   "status": "ReadyToPay"
+  },
+  "handwriting_present": false,
+  "hidden": [],
+  "illegible_fields": [],
+  "invoice_date": "2026-08-06",
+  "invoice_number": "SR-5000",
+  "letter_body": [],
+  "lines": [
+   {
+    "amount_cents": 22000,
+    "description": "Set new fence post",
+    "quantity": "1",
+    "unit_price_cents": 22000
+   }
+  ],
+  "medium": "native",
+  "notes": [],
+  "params": {},
+  "property_or_unit": "Birch Street Cottages #C5",
+  "remit_text": null,
+  "set_name": "synthetic-core",
+  "subtotal_cents": 22000,
+  "tax_cents": 1320,
+  "tax_rate_bps": 600,
+  "template": "compact",
+  "total_cents": 23320,
+  "vendor_address": "2150 Darren Vista, Springfield, OR 97485",
+  "vendor_email": "billing@ironwood.example",
+  "vendor_id": "01a5ae7b-3a30-5f35-bda9-2a05b40867b6",
+  "vendor_name": "Ironwood Fence & Gate",
+  "vendor_phone": "(541) 555-0132",
+  "vendor_slug": "ironwood",
+  "vendor_tax_id_last4": "9476",
+  "visible_instructions": [],
+  "work_order_number": "WO-1112",
+  "work_order_printed": "WO 1112"
+ }
+}
