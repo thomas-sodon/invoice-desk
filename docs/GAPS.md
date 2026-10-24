@@ -282,3 +282,31 @@ don't delete entries. Mark them **closed** when resolved.
 - The classifier now fails closed: a refusal, missing output or schema mismatch returns `malicious` / category `none` with a `classifier_unavailable` span, so the document is quarantined (R10) instead of passing unscreened. R10's user-facing wording ("contains an instruction aimed at an automated system") does not distinguish this case yet; the span text explains it.
 - The Haiku-refusal escalation to Sonnet (CLAUDE.md) is coded (`InjectionClassifier(escalation_role=...)`) but inactive until `config.models` defines `ModelRole.INJECTION_CLASSIFIER_T2` (Sonnet 5.5, effort low, server-side fallback) and the offline responder answers that role. Until then a Haiku refusal quarantines.
 - Classifier input is no longer truncated: text is split across up to 4 calls of 24k characters each, and anything larger fails closed. Real Haiku recall on split/`part="i of n"` sections has not been measured.
+
+## Pipeline, worker, review, approvals, posting, naive baseline (2026-10-24)
+
+- **Worker kill is simulated in-process.** The day-9 "survives a worker kill mid-run" check is a
+  test that raises a `BaseException` inside a node (nothing in the pipeline can swallow it) and
+  then resumes the same document with a fresh `PostgresSaver` and compiled graph. A second test
+  kills the process *after* a node committed but *before* LangGraph saved the checkpoint. A
+  stale-job test claims a job as a "dead worker" and has another worker requeue it. No OS-level
+  `SIGKILL` of a separate worker process was performed. *Close by:* a docker-compose chaos run
+  (`docker kill` the worker during a 25-invoice batch) once a Docker daemon is available.
+- **Quarantine trace not seen in Langfuse.** The detector -> block -> audit-row chain
+  (`screen.hidden_text` -> `pipeline.quarantine` carrying the audit row id and hash) is asserted
+  with the OpenTelemetry in-memory exporter only. *Close by:* setting the Langfuse keys and
+  screenshotting the trace of the white-text demo invoice.
+- **n8n follow-up webhook untested against n8n.** `send_followup` is tested with an httpx
+  MockTransport; the URL comes from `N8N_FOLLOWUP_WEBHOOK_URL` (not yet in `.env.example`) and
+  the job is a no-op without it.
+- **QBO expense account is a default.** Bill lines use `QBO_EXPENSE_ACCOUNT_REF` (default `"7"`)
+  because no tenant expense-account mapping exists in `rules.yaml`/`Settings` yet.
+- **Comparison-mode grading defaults to InvoiceDesk's own evidence.** Without gold labels,
+  `compare_batch` takes R4/R6/R10 failures and quarantining screen results as the truth, which
+  makes InvoiceDesk's own grade circular. Evals must pass gold `truth`; the demo view should say so.
+- **No before/after smoke eval.** Routing code is new; with no API key there is no live
+  extraction to evaluate. Integration tests use FakeLLM with the real guardrails, extractor,
+  calibrator and rules.
+- **Supabase Realtime broadcast not wired.** Board events go through `pg_notify`
+  (`invoicedesk_events`, read by the API's SSE). The hosted Supabase broadcast channel is not
+  published to by the pipeline.
