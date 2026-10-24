@@ -22,3 +22,20 @@ don't delete entries. Mark them **closed** when resolved.
   semantics. The QBO adapter is unit-tested against recorded HTTP shapes only.
 - **No running Docker daemon.** `docker-compose.yml` is validated with `docker compose config`,
   but the stack was not started here.
+
+## Rules engine R1-R10 (2026-10-24)
+
+- **No before/after smoke eval for the rules.** CLAUDE.md asks for one on any rules change. With no
+  API key there is no extraction to feed the rules, so only unit and property tests ran (136
+  tests, 100% branch coverage of `invoicedesk.rules`). *Close by:* running the smoke set once the
+  extractor and an API key exist, and recording the result for R1-R10.
+- **Homoglyph table is curated, not full Unicode TR39.** R1's `skeleton()` folds the common
+  Cyrillic and Greek lookalikes plus `0/o`, `1/l/i`, `rn/m`, `vv/w` and `cl/d`, and flags any name
+  that mixes Latin with Cyrillic or Greek. It does not ship the full `confusables.txt`. *Close
+  by:* vendoring TR39 data if the adversarial set shows a miss.
+- **Demo-data dependency (R3, R6).** R3 compares the **pre-tax** amount with the approved
+  estimate and its tolerance is inclusive, so "$340 over" is held only when the estimate is
+  below $3,400. R6 flags any remit-to details on an invoice whose vendor does not resolve. The
+  demo seed must use an estimate below $3,400 for the Unit 12B beat, and must keep remit-to
+  details off the new-vendor invoice if that card is meant to land in Needs review rather than
+  Flagged.

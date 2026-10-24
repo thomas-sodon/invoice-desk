@@ -10,7 +10,7 @@ vendor:                           # R1
   lookalike_max_edit_distance: 2
   check_homoglyphs: true
 
-three_way:                        # R3: tolerance max(10 %, $100)
+three_way:                        # R3: pre-tax amount vs approved estimate, tolerance max(10 %, $100) inclusive
   tolerance_bps: 1000
   tolerance_min_cents: 10000
 
@@ -28,8 +28,11 @@ dates:                            # R8
   max_age_days: 90
   allow_future_days: 0
 
-confidence:                       # R9; tau values are tuned on the DEV split only
+confidence:                       # R9; tau values are tuned on the DEV split only; no calibrated conf -> held
   required_fields: [vendor_name, invoice_number, invoice_date, work_order_number, property_or_unit, total]
   tau_field: 0.90
   tau_hi: 0.95
   per_field: {}
+
+# R6 (bank/remit-to change) and R10 (injection) have no settings on purpose: they always flag,
+# and only two approvers plus a callback attestation release the document (CLAUDE.md invariant 3).
