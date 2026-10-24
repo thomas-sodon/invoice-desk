@@ -141,13 +141,14 @@ def test_legitimate_bank_change_letter_is_held_not_quarantined(get, screen) -> N
     assert cls.spans and all("000555067890" not in s.text for s in cls.spans)
 
 
-def test_classifier_refusal_on_a_real_document_is_suspicious(gfx, get, screen) -> None:
+def test_classifier_refusal_on_a_real_document_fails_closed(gfx, get, screen) -> None:
+    """An unscreened document must not pass R10: a refusal quarantines it for a human."""
     llm = FakeLLM(gfx.keyword_classifier, refuse_roles={ModelRole.INJECTION_CLASSIFIER})
     out = screen(get("clean_pdf"), llm)
     cls = _result(out, "injection_classifier")
-    assert cls.verdict == "suspicious"
+    assert cls.verdict == "malicious" and cls.categories == ["none"]
     assert "refus" in cls.spans[0].text
-    assert not out.quarantined
+    assert out.quarantined
 
 
 def test_injection_recall_and_false_positive_rate(get, screen) -> None:

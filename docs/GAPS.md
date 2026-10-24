@@ -276,3 +276,9 @@ don't delete entries. Mark them **closed** when resolved.
 - **Known detector limit.** Dark text placed under an opaque picture passes the ink check, so
   it is not flagged as hidden. The classifier still reads it, in the `unseen_text_layer`
   section.
+
+## Guardrails review (M8 follow-up)
+
+- The classifier now fails closed: a refusal, missing output or schema mismatch returns `malicious` / category `none` with a `classifier_unavailable` span, so the document is quarantined (R10) instead of passing unscreened. R10's user-facing wording ("contains an instruction aimed at an automated system") does not distinguish this case yet; the span text explains it.
+- The Haiku-refusal escalation to Sonnet (CLAUDE.md) is coded (`InjectionClassifier(escalation_role=...)`) but inactive until `config.models` defines `ModelRole.INJECTION_CLASSIFIER_T2` (Sonnet 5.5, effort low, server-side fallback) and the offline responder answers that role. Until then a Haiku refusal quarantines.
+- Classifier input is no longer truncated: text is split across up to 4 calls of 24k characters each, and anything larger fails closed. Real Haiku recall on split/`part="i of n"` sections has not been measured.

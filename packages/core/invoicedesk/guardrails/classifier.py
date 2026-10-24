@@ -9,6 +9,11 @@ Reads every piece of vendor-supplied text, each in its own section marked untrus
   text-layer content is ever dropped before a model sees it);
 * ``email_body``: the email the document came with.
 
+Nothing is truncated: text that does not fit one call (:data:`CALL_CHAR_BUDGET`) is split at
+line boundaries into ``part="i of n"`` sections across up to :data:`MAX_CLASSIFIER_CALLS` calls
+(token cap per call, OWASP #6), and the strictest verdict wins. A document with more text than
+that is not screened partially; it fails closed (quarantined for a human).
+
 Calls go through the :class:`~invoicedesk.contracts.llm.LLMClient` Protocol only (this module
 never imports ``anthropic``), with :attr:`ModelRole.INJECTION_CLASSIFIER`, whose model, effort
 and thinking settings live in :mod:`invoicedesk.config.models`. The system prompt is the frozen
@@ -18,8 +23,11 @@ close its own section.
 
 The model only labels; code decides. The verdict is normalised so it can only get stricter:
 ``instruction_to_ai``/``approval_override`` imply ``malicious``, any other category implies at
-least ``suspicious``. A refusal (``stop_reason == "refusal"``) or an output that does not fit
-the schema becomes ``suspicious`` with a span saying so. Transport errors
+least ``suspicious``. Haiku 5.5 has no server-side fallback, so a refusal is re-asked of the
+Sonnet escalation role when one is configured (``ModelRole.INJECTION_CLASSIFIER_T2``). When no
+usable answer comes back (refusal, no output, output that does not fit the schema) the document
+was NOT screened, so the result fails closed: verdict ``malicious`` with category ``none`` and a
+``classifier_unavailable`` span, which quarantines it for a human (R10). Transport errors
 (:class:`~invoicedesk.contracts.llm.LLMCallError` of kind rate_limit/status/connection/timeout)
 propagate so the job is retried; screening never silently passes a document it did not screen.
 """
@@ -27,6 +35,7 @@ propagate so the job is retried; screening never silently passes a document it d
 from __future__ import annotations
 
 from collections.abc import Iterable
+from decimal import Decimal
 from typing import Literal
 
 from pydantic import ValidationError
@@ -51,19 +60,23 @@ from invoicedesk.guardrails.prompts import CLASSIFIER_SYSTEM_PROMPT
 from invoicedesk.masking import mask_text
 
 __all__ = [
-    "MAX_DOCUMENT_CHARS",
-    "MAX_SECTION_CHARS",
+    "CALL_CHAR_BUDGET",
+    "MAX_CLASSIFIER_CALLS",
     "OUTPUT_SCHEMA",
     "InjectionClassifier",
-    "build_classifier_request",
+    "build_classifier_requests",
     "normalise_verdict",
 ]
 
 OUTPUT_SCHEMA = "invoicedesk.contracts.screening.InjectionVerdict"
-#: Token caps per call (OWASP #6): ~6k tokens of document text, ~2k per other section.
-MAX_DOCUMENT_CHARS = 24_000
-MAX_SECTION_CHARS = 8_000
+#: Token cap per call (OWASP #6): ~6k tokens of untrusted text per classifier call.
+CALL_CHAR_BUDGET = 24_000
+#: Most calls one document may take; more text than this fails closed instead of being skipped.
+MAX_CLASSIFIER_CALLS = 4
 _MAX_SPAN_CHARS = 300
+#: Sonnet escalation for a Haiku refusal (CLAUDE.md: Haiku 5.5 has no server-side fallback).
+#: Picked up automatically once ``config.models`` defines the role.
+DEFAULT_ESCALATION_ROLE: ModelRole | None = getattr(ModelRole, "INJECTION_CLASSIFIER_T2", None)
 
 _RANK: dict[Verdict, int] = {"clean": 0, "suspicious": 1, "malicious": 2}
 _MALICIOUS_CATS: frozenset[str] = frozenset({"instruction_to_ai", "approval_override"})
@@ -72,13 +85,7 @@ SpanSource = Literal["pdf_text", "ocr", "ocr_enhanced", "email_body"]
 
 # ----------------------------------------------------------------------------- request
 def _escape(text: str) -> str:
-    return text.replace("<", "&lt;").replace(">", "&gt;")
-
-
-def _clip(text: str, limit: int) -> str:
-    if len(text) <= limit:
-        return text
-    return text[:limit] + f"\n[... {len(text) - limit} more characters not shown]"
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 def _lines(words: Iterable[OcrWord]) -> list[tuple[int, str]]:
@@ -97,58 +104,103 @@ def _lines(words: Iterable[OcrWord]) -> list[tuple[int, str]]:
     return [(p, " ".join(t)) for p, t, _ in out]
 
 
-def _section(tag: str, body: str, limit: int, **attrs: str) -> TextBlock:
-    attr = "".join(f' {k}="{v}"' for k, v in attrs.items())
-    content = _clip(_escape(mask_text(body) or ""), limit)
-    return TextBlock(text=f'<{tag} untrusted="true"{attr}>\n{content}\n</{tag}>')
+def _split(body: str, limit: int) -> list[str]:
+    """Split at line boundaries into pieces of at most ``limit`` characters (a single longer
+    line is hard-split). Never drops text."""
+    pieces: list[str] = []
+    cur = ""
+    for raw in body.split("\n"):
+        line = raw
+        while len(line) > limit:
+            if cur:
+                pieces.append(cur)
+                cur = ""
+            pieces.append(line[:limit])
+            line = line[limit:]
+        if cur and len(cur) + 1 + len(line) > limit:
+            pieces.append(cur)
+            cur = line
+        else:
+            cur = f"{cur}\n{line}" if cur else line
+    if cur or not pieces:
+        pieces.append(cur)
+    return pieces
+
+
+def _sections(tag: str, body: str, budget: int, **attrs: str) -> list[str]:
+    """Masked, escaped section(s) for one source; split into parts when over ``budget``."""
+    content = _escape(mask_text(body) or "")
+    overhead = 2 * len(tag) + 80 + sum(len(k) + len(v) + 4 for k, v in attrs.items())
+    pieces = _split(content, max(1, budget - overhead))
+    out: list[str] = []
+    for i, piece in enumerate(pieces, 1):
+        a = dict(attrs)
+        if len(pieces) > 1:
+            a["part"] = f"{i} of {len(pieces)}"
+        attr = "".join(f' {k}="{v}"' for k, v in a.items())
+        out.append(f'<{tag} untrusted="true"{attr}>\n{piece}\n</{tag}>')
+    return out
 
 
 def _group_lines(groups: Iterable[Group]) -> str:
     return "\n".join(f"[page {g.page + 1}; {'; '.join(g.reasons)}] {g.text}" for g in groups)
 
 
-def build_classifier_request(
+def build_classifier_requests(
     doc: PreprocessedDocument,
     *,
     hidden: HiddenTextReport,
     faint: FaintTextReport,
     email_body: str | None,
-) -> LLMRequest | None:
-    """The classifier call, or ``None`` when there is no text at all to classify."""
-    blocks: list[TextBlock] = []
+    budget: int = CALL_CHAR_BUDGET,
+) -> list[LLMRequest]:
+    """The classifier call(s) covering ALL vendor-supplied text (empty when there is none).
+
+    Each call holds at most ``budget`` characters of untrusted text; sections that do not fit
+    are split into parts across calls. Callers must refuse to screen partially when the list
+    is longer than :data:`MAX_CLASSIFIER_CALLS`."""
+    texts: list[str] = []
     page_count = len({p.index for p in doc.pages}) or 1
     doc_lines = _lines(doc.words)
     if doc_lines:
         body = "\n".join((f"[page {p + 1}] " if page_count > 1 else "") + t for p, t in doc_lines)
-        blocks.append(_section("document_text", body, MAX_DOCUMENT_CHARS))
+        texts += _sections("document_text", body, budget)
     if hidden.flagged:
-        blocks.append(_section("hidden_text", _group_lines(hidden.flagged), MAX_SECTION_CHARS))
+        texts += _sections("hidden_text", _group_lines(hidden.flagged), budget)
     if faint.flagged:
-        blocks.append(_section("faint_text", _group_lines(faint.flagged), MAX_SECTION_CHARS))
+        texts += _sections("faint_text", _group_lines(faint.flagged), budget)
     if hidden.unconfirmed:
-        blocks.append(
-            _section("unseen_text_layer", _group_lines(hidden.unconfirmed), MAX_SECTION_CHARS)
-        )
+        texts += _sections("unseen_text_layer", _group_lines(hidden.unconfirmed), budget)
     if faint.unconfirmed:
-        blocks.append(
-            _section(
-                "faint_text",
-                _group_lines(faint.unconfirmed),
-                MAX_SECTION_CHARS,
-                note="low-confidence fragments",
-            )
+        texts += _sections(
+            "faint_text", _group_lines(faint.unconfirmed), budget, note="low-confidence fragments"
         )
     if email_body and email_body.strip():
-        blocks.append(_section("email_body", email_body.strip(), MAX_SECTION_CHARS))
-    if not blocks:
-        return None
-    return LLMRequest(
-        role=ModelRole.INJECTION_CLASSIFIER,
-        system=(SystemBlock(text=CLASSIFIER_SYSTEM_PROMPT, cache=True),),
-        user=tuple(blocks),
-        output_schema=OUTPUT_SCHEMA,
-        metadata={"document_id": doc.document_id, "detector": "injection_classifier"},
-    )
+        texts += _sections("email_body", email_body.strip(), budget)
+
+    calls: list[list[str]] = []
+    size = 0
+    for t in texts:
+        if calls and size + len(t) <= budget:
+            calls[-1].append(t)
+            size += len(t)
+        else:
+            calls.append([t])
+            size = len(t)
+    return [
+        LLMRequest(
+            role=ModelRole.INJECTION_CLASSIFIER,
+            system=(SystemBlock(text=CLASSIFIER_SYSTEM_PROMPT, cache=True),),
+            user=tuple(TextBlock(text=t) for t in call),
+            output_schema=OUTPUT_SCHEMA,
+            metadata={
+                "document_id": doc.document_id,
+                "detector": "injection_classifier",
+                "part": f"{i} of {len(calls)}",
+            },
+        )
+        for i, call in enumerate(calls, 1)
+    ]
 
 
 # ----------------------------------------------------------------------------- response
@@ -215,7 +267,7 @@ class _Locator:
 
     def span(self, text: str, category: str) -> ScreenSpan:
         n = norm(text)
-        quoted = mask_text(text[:_MAX_SPAN_CHARS]) or ""
+        quoted = (mask_text(text) or "")[:_MAX_SPAN_CHARS]
         source: SpanSource = "ocr"
         page: int | None = None
         box: Box | None = None
@@ -237,57 +289,99 @@ class InjectionClassifier:
 
     name = "injection_classifier"
 
-    def __init__(self, llm: LLMClient, *, storage: Storage | None = None) -> None:
+    def __init__(
+        self,
+        llm: LLMClient,
+        *,
+        storage: Storage | None = None,
+        escalation_role: ModelRole | None = DEFAULT_ESCALATION_ROLE,
+    ) -> None:
         self.llm = llm
         self.storage = storage
+        self.escalation_role = escalation_role
 
     def screen(self, doc: PreprocessedDocument, *, email_body: str | None) -> ScreenResult:
         ink = PageInk(self.storage, doc)
         hidden = find_hidden_text(doc, ink=ink)
         faint = find_faint_text(doc, ink=ink)
-        request = build_classifier_request(doc, hidden=hidden, faint=faint, email_body=email_body)
-        if request is None:
+        requests = build_classifier_requests(doc, hidden=hidden, faint=faint, email_body=email_body)
+        if not requests:
             return ScreenResult(
                 detector="injection_classifier", verdict="clean", categories=["none"]
             )
+        if len(requests) > MAX_CLASSIFIER_CALLS:
+            return _undecided(
+                f"too much text to screen ({len(requests)} classifier calls needed, cap "
+                f"{MAX_CLASSIFIER_CALLS}); quarantined rather than screened partially",
+                Decimal(0),
+            )
+
+        locate = _Locator(doc, hidden, faint, email_body)
+        verdict: Verdict = "clean"
+        cats: list[InjectionCategory] = []
+        spans: list[ScreenSpan] = []
+        cost = Decimal(0)
+        for request in requests:
+            parsed, call_cost, failure = self._ask(request)
+            cost += call_cost
+            if parsed is None:
+                return _undecided(failure, cost)
+            v, c = normalise_verdict(parsed)
+            if _RANK[v] > _RANK[verdict]:
+                verdict = v
+            for x in c:
+                if x != "none" and x not in cats:
+                    cats.append(x)
+            spans += [locate.span(s.text, s.category) for s in parsed.spans if s.text.strip()]
+        return ScreenResult(
+            detector="injection_classifier",
+            verdict=verdict,
+            categories=cats or ["none"],
+            spans=spans,
+            cost_usd=str(cost),
+        )
+
+    def _ask(self, request: LLMRequest) -> tuple[InjectionVerdict | None, Decimal, str]:
+        """One classifier call (plus the Sonnet escalation on a Haiku refusal).
+        Returns (verdict or None, cost, failure note)."""
+        parsed, cost, failure, refused = self._call(request)
+        if refused and self.escalation_role is not None:
+            esc = request.model_copy(update={"role": self.escalation_role})
+            parsed, esc_cost, esc_failure, _ = self._call(esc)
+            cost += esc_cost
+            failure = f"{failure}; escalation: {esc_failure}" if parsed is None else ""
+        return parsed, cost, failure
+
+    def _call(self, request: LLMRequest) -> tuple[InjectionVerdict | None, Decimal, str, bool]:
         try:
             response = self.llm.parse(request, InjectionVerdict)
         except LLMCallError as exc:
             if exc.kind != "validation":
                 raise
-            return _undecided("classifier output did not fit the schema", "0")
-        cost = str(response.cost_usd)
+            return None, Decimal(0), "classifier output did not fit the schema", False
+        cost = Decimal(response.cost_usd)
         if response.refused:
-            return _undecided(
-                f"classifier refused to answer (stop_reason=refusal, model {response.model_id})",
-                cost,
-            )
+            note = f"classifier refused to answer (stop_reason=refusal, model {response.model_id})"
+            return None, cost, note, True
         if response.parsed is None:
-            return _undecided(
-                f"classifier returned no output (stop_reason={response.stop_reason})", cost
+            return (
+                None,
+                cost,
+                f"classifier returned no output (stop_reason={response.stop_reason})",
+                False,
             )
         try:
-            parsed = InjectionVerdict.model_validate(response.parsed)
+            return InjectionVerdict.model_validate(response.parsed), cost, "", False
         except ValidationError:
-            return _undecided("classifier output did not fit the schema", cost)
-
-        verdict, cats = normalise_verdict(parsed)
-        locate = _Locator(doc, hidden, faint, email_body)
-        spans = [locate.span(s.text, s.category) for s in parsed.spans if s.text.strip()]
-        return ScreenResult(
-            detector="injection_classifier",
-            verdict=verdict,
-            categories=cats,
-            spans=spans,
-            cost_usd=cost,
-        )
+            return None, cost, "classifier output did not fit the schema", False
 
 
-def _undecided(note: str, cost: str) -> ScreenResult:
+def _undecided(note: str, cost: Decimal) -> ScreenResult:
+    """The document was not screened: fail closed (``malicious`` quarantines under R10)."""
     return ScreenResult(
         detector="injection_classifier",
-        verdict="suspicious",
+        verdict="malicious",
         categories=["none"],
-        spans=[ScreenSpan(text=note, reason="classifier_unavailable")],
-        cost_usd=cost,
+        spans=[ScreenSpan(text=f"{note}; quarantined to be safe", reason="classifier_unavailable")],
+        cost_usd=str(cost),
     )
