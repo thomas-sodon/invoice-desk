@@ -33,6 +33,8 @@ def test_r2_normalized_wo_and_unit_forms(make_ctx: CtxFactory) -> None:
         ("wo 1187", "Unit 12B"),
         ("Work Order #01187", "Maple Court #12B"),
         ("1187", "12-B"),
+        ("WO-1187", "Unit 12-B, Maple Court"),
+        ("WO-1187", "Maple Court-12B"),
         ("WO-1187", "Apt 12B, 400 Elm St"),
     ]:
         res = r02_work_order.check(
@@ -90,6 +92,9 @@ def test_r2_unit_mismatch(make_ctx: CtxFactory) -> None:
     assert res.severity == "review" and "Birch Terrace" in res.message
     res = r02_work_order.check(make_ctx(property_or_unit=text(None)))
     assert "does not name a property or unit" in res.message
+    # hyphen folding never turns a different unit into a match
+    res = r02_work_order.check(make_ctx(property_or_unit=text("Unit 1-2C, Maple Court")))
+    assert res.severity == "review" and res.fields == ["property_or_unit"]
 
 
 def test_r2_unit_record_missing(make_ctx: CtxFactory, universe: Universe) -> None:

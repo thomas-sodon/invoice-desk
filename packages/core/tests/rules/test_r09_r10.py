@@ -60,6 +60,21 @@ def test_r9_empty_string_and_multiple_fields(make_ctx: CtxFactory) -> None:
     assert res.fields == ["vendor_name", "invoice_number"]
 
 
+def test_r9_non_finite_or_out_of_range_calibration_fails_closed(make_ctx: CtxFactory) -> None:
+    # NaN compares False against the threshold; it must not read as "not below" and pass.
+    for bad in (float("nan"), float("inf"), -0.1, 1.5):
+        conf = dict.fromkeys(REQ, 0.99) | {"total": bad}
+        res = r09_confidence.check(make_ctx(conf=conf))
+        assert res.severity == "review" and res.fields == ["total"], bad
+        assert "total has an invalid calibrated confidence" in res.message
+
+
+def test_r9_whitespace_value_is_missing(make_ctx: CtxFactory) -> None:
+    res = r09_confidence.check(make_ctx(invoice_number=text("   ")))
+    assert res.fields == ["invoice_number"]
+    assert "invoice number is missing or unreadable" in res.message
+
+
 def test_r9_custom_required_fields(make_ctx: CtxFactory, config: RulesConfig) -> None:
     cfg = config.model_copy(
         update={"confidence": ConfidenceConfig(required_fields=("subtotal", "not_a_field"))}

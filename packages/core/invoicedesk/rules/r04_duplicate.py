@@ -9,7 +9,9 @@ Checks against ``TenantData.prior_invoices`` (historical bills and earlier docum
   invoice dates within ``fuzzy_window_days``;
 * ``image``: page-0 pHash Hamming distance <= ``phash_max_distance``.
 
-Vendor-keyed checks need a resolved vendor (R1); file and image checks do not.
+Vendor-keyed checks need a resolved vendor (R1); file and image checks do not. The document
+itself is skipped if it appears in ``prior_invoices`` (so a re-run never flags it as its own
+duplicate).
 """
 
 from __future__ import annotations
@@ -55,6 +57,8 @@ def check(ctx: RuleContext) -> RuleResult:
 
     hits: list[dict[str, Any]] = []
     for p in ctx.tenant.prior_invoices:
+        if p.source == "document" and p.ref_id == ctx.document.document_id:
+            continue  # the document itself (e.g. rules re-run after an approval)
         kind: str | None = None
         reason = ""
         same_vendor = vendor_id is not None and p.vendor_id == vendor_id

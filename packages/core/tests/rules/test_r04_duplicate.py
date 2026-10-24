@@ -130,3 +130,17 @@ def test_phash_distance() -> None:
     assert phash_distance("ff", "") is None
     assert phash_distance("ff", "fff") is None
     assert phash_distance("zz", "ff") is None
+
+
+def test_document_never_duplicates_itself(make_ctx: CtxFactory, universe: Universe) -> None:
+    """A re-run that sees the document in ``prior_invoices`` must not flag it as its own copy."""
+    doc = DocumentInfo(document_id="d-new", sha256="sha-new", phash="0000ffff0000ffff")
+    me = prior(ref_id="d-new", sha256="sha-new", phash="0000ffff0000ffff")
+    assert run(make_ctx, universe, me, document=doc).passed
+    # ...but a historical bill with the same id string is still compared
+    hist = prior(source="history", ref_id="d-new")
+    res = run(make_ctx, universe, hist, document=doc)
+    assert res.severity == "flag" and res.details["duplicate_of"] == "d-new"
+    # ...and a real copy alongside it is still caught
+    res = run(make_ctx, universe, me, prior(), document=doc)
+    assert res.severity == "flag" and res.details["duplicate_of"] == "d-2231"

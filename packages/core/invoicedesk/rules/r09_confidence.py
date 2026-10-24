@@ -1,8 +1,12 @@
 """R9 confidence: every required field must be present and at or above its calibrated
 threshold (``config.confidence.threshold(name)``). A required field with no calibrated
-probability fails closed: the raw model self-report never clears this rule."""
+probability fails closed: the raw model self-report never clears this rule. So does a calibrated
+value that is not a finite probability in [0, 1] (NaN would otherwise compare as "not below"
+the threshold and pass), and a value that is only whitespace counts as missing."""
 
 from __future__ import annotations
+
+import math
 
 from invoicedesk.contracts.extraction import InvoiceExtraction, field_value
 from invoicedesk.contracts.rules import RuleContext, RuleResult
@@ -38,12 +42,15 @@ def check(ctx: RuleContext) -> RuleResult:
         conf = ctx.calibrated_conf.get(name)
         scores[name] = conf
         value = _value(ctx.extraction, name)
-        if value is None or value == "":
+        if value is None or (isinstance(value, str) and not value.strip()):
             low.append(name)
             parts.append(f"{label} is missing or unreadable")
         elif conf is None:
             low.append(name)
             parts.append(f"{label} has no calibrated confidence")
+        elif not (math.isfinite(conf) and 0.0 <= conf <= 1.0):
+            low.append(name)
+            parts.append(f"{label} has an invalid calibrated confidence")
         elif conf < tau:
             low.append(name)
             parts.append(f"{label} confidence {conf:.2f} is below {tau:.2f}")

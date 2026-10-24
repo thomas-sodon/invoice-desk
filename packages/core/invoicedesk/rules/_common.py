@@ -99,14 +99,16 @@ def unit_matches(tenant: TenantData, wo: WorkOrder, text: str) -> tuple[bool, st
     """Does free text such as ``"Unit 12B, Maple Court"`` name the work order's unit?
 
     The unit label must appear as a token, and the text must not name a different property.
-    Returns ``(ok, reason)``.
+    A hyphen inside a unit label is ignored (``"Unit 12-B"`` names unit ``12B``). Returns
+    ``(ok, reason)``.
     """
     unit = tenant.unit(wo.unit_id)
     if unit is None:
         return False, "the work order's unit is not in the property list"
-    label = "".join(tokens(unit.label))
+    label = "".join(tokens(unit.label.replace("-", "")))
     toks = tokens(text)
-    if label not in toks and label != "".join(toks):
+    joined = tokens(text.replace("-", ""))
+    if label not in toks and label not in joined and label != "".join(toks):
         return False, f"invoice names {text!r}, work order is for Unit {unit.label}"
     norm_text = basic_norm(text)
     for prop in tenant.properties:
