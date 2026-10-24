@@ -1,0 +1,62 @@
+# InvoiceDesk API gateway (FastAPI) on Fly.io. Deploy from the REPO ROOT so the build context is
+# the whole workspace:
+#   fly deploy . --config infra/fly/api.toml
+# `dockerfile` below is resolved relative to this file. Secrets (keys, DATABASE_URL, signing
+# secrets) are set with `fly secrets set` and never committed: see infra/fly/README.md.
+app = "invoicedesk-api"
+primary_region = "iad"
+kill_signal = "SIGTERM"
+kill_timeout = "30s"
+
+[build]
+  dockerfile = "../docker/python.Dockerfile"
+
+[deploy]
+  # Apply infra/supabase/migrations before new machines take traffic.
+  release_command = "invoicedesk migrate"
+  strategy = "rolling"
+
+[env]
+  INVOICEDESK_MODE = "live"
+  INVOICEDESK_TENANT = "maple_row"
+  STORAGE_BACKEND = "supabase"
+  QBO_ENVIRONMENT = "sandbox"            # the adapter refuses anything else
+  API_PIPELINE_MODE = "worker"           # documents are processed by invoicedesk-worker
+  API_EMBEDDED_WORKER = "false"
+  API_BASE_URL = "https://invoicedesk-api.fly.dev"
+  WEB_ORIGINS = "https://invoicedesk.vercel.app"
+  COOKIE_SECURE = "true"
+  # Left at false on purpose: the API would trust the left-most X-Forwarded-For hop, which a
+  # client can set. With false, per-IP limits apply to the whole proxy (stricter, not looser).
+  TRUST_FORWARDED_FOR = "false"
+  PUBLIC_DAILY_SPEND_CAP_USD = "3.00"
+  WORKER_CONCURRENCY = "8"
+  N8N_FOLLOWUP_WEBHOOK_URL = "http://invoicedesk-n8n.internal:5678/webhook/invoicedesk-followup"
+
+[processes]
+  app = "uvicorn invoicedesk_api.main:app --host :: --port 8000 --proxy-headers --forwarded-allow-ips *"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1               # keeps cold start out of the demo (DESIGN §8 day 19)
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 50
+    hard_limit = 100
+
+  [[http_service.checks]]
+    grace_period = "20s"
+    interval = "15s"
+    method = "GET"
+    path = "/healthz"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"                         # /agent/extract preprocesses (render + OCR) in-process
+  processes = ["app"]

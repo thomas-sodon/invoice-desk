@@ -1,0 +1,28 @@
+# InvoiceDesk pipeline worker (LangGraph + PostgresSaver, Postgres SKIP LOCKED queue) on Fly.io.
+#   fly deploy . --config infra/fly/worker.toml        (from the repo root)
+# No public service: the worker only talks to Postgres, Supabase Storage, Claude, QBO sandbox,
+# Langfuse and (over the private network) n8n. Secrets via `fly secrets set`; see README.md.
+app = "invoicedesk-worker"
+primary_region = "iad"
+kill_signal = "SIGTERM"
+kill_timeout = "60s"                      # let in-flight documents checkpoint before exit
+
+[build]
+  dockerfile = "../docker/python.Dockerfile"
+
+[env]
+  INVOICEDESK_MODE = "live"
+  INVOICEDESK_TENANT = "maple_row"
+  STORAGE_BACKEND = "supabase"
+  QBO_ENVIRONMENT = "sandbox"
+  WORKER_CONCURRENCY = "8"
+  API_BASE_URL = "https://invoicedesk-api.fly.dev"
+  N8N_FOLLOWUP_WEBHOOK_URL = "http://invoicedesk-n8n.internal:5678/webhook/invoicedesk-followup"
+
+[processes]
+  worker = "invoicedesk-worker"
+
+[[vm]]
+  size = "shared-cpu-2x"
+  memory = "2gb"                          # RapidOCR + PyMuPDF renders, 8 documents in flight
+  processes = ["worker"]

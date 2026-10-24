@@ -1,0 +1,197 @@
+{
+  "name": "InvoiceDesk: vendor follow-up",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "invoicedesk-followup",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "7c1e8b1f-2a8f-4d2b-8b9f-3a4b5c6d0001",
+      "name": "Approved follow-up (webhook)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "7c1e8b1f-2a8f-4d2b-8b9f-3a4b5c6d00ff"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "// InvoiceDesk: validate the approved follow-up from POST /webhook/invoicedesk-followup before\n// any e-mail is sent. The API sends {followup_id, document_id, to, subject, body}; the recipient\n// came from the vendor master, never from the invoice. Defense in depth: header-injection\n// checks, an optional recipient-domain allow-list, and long digit runs masked to the last 4.\nconst EMAIL = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;\nconst allowed = String($env.FOLLOWUP_ALLOWED_RECIPIENT_DOMAINS || '')\n  .split(',').map((d) => d.trim().toLowerCase()).filter(Boolean);\n\nfunction maskDigits(s) {\n  return s.replace(/\\d{6,}/g, (run) => '••••' + run.slice(-4));\n}\n\nreturn $input.all().map((item) => {\n  const b = (item.json && item.json.body) || {};\n  const errors = [];\n  const str = (v) => (typeof v === 'string' ? v : '');\n  const to = str(b.to).trim();\n  const subject = str(b.subject).trim();\n  const text = str(b.body).trim();\n  const followupId = str(b.followup_id).trim();\n  const documentId = str(b.document_id).trim();\n\n  if (!followupId) errors.push('followup_id is missing');\n  if (!EMAIL.test(to) || to.length > 320) errors.push('to is not a single e-mail address');\n  if (allowed.length > 0 && !allowed.includes(to.split('@').pop().toLowerCase())) {\n    errors.push('recipient domain is not on FOLLOWUP_ALLOWED_RECIPIENT_DOMAINS');\n  }\n  if (!subject || subject.length > 200 || /[\\r\\n]/.test(subject)) errors.push('subject is empty, too long or multi-line');\n  if (!text || text.length > 5000) errors.push('body is empty or too long');\n\n  return {\n    json: {\n      ok: errors.length === 0,\n      errors,\n      followup_id: followupId,\n      document_id: documentId,\n      to,\n      subject: maskDigits(subject),\n      text: maskDigits(text),\n    },\n  };\n});\n"
+      },
+      "id": "7c1e8b1f-2a8f-4d2b-8b9f-3a4b5c6d0002",
+      "name": "Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "0f9a1d2e-ok",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7c1e8b1f-2a8f-4d2b-8b9f-3a4b5c6d0003",
+      "name": "Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.FOLLOWUP_FROM_ADDRESS || 'ap@maplerow.example' }}",
+        "toEmail": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "emailFormat": "text",
+        "text": "={{ $json.text }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "7c1e8b1f-2a8f-4d2b-8b9f-3a4b5c6d0004",
+      "name": "Send via SMTP",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        720,
+        -100
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "REPLACE_ON_IMPORT",
+          "name": "InvoiceDesk SMTP (Mailpit in dev)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ sent: true, followup_id: $('Validate').item.json.followup_id }) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "7c1e8b1f-2a8f-4d2b-8b9f-3a4b5c6d0005",
+      "name": "Respond: sent",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ sent: false, errors: $json.errors }) }}",
+        "options": {
+          "responseCode": 422
+        }
+      },
+      "id": "7c1e8b1f-2a8f-4d2b-8b9f-3a4b5c6d0006",
+      "name": "Respond: rejected",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        120
+      ]
+    }
+  ],
+  "connections": {
+    "Approved follow-up (webhook)": {
+      "main": [
+        [
+          {
+            "node": "Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate": {
+      "main": [
+        [
+          {
+            "node": "Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid?": {
+      "main": [
+        [
+          {
+            "node": "Send via SMTP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond: rejected",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send via SMTP": {
+      "main": [
+        [
+          {
+            "node": "Respond: sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "all",
+    "saveManualExecutions": false,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "pinData": {},
+  "tags": [],
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "description": "Webhook from the InvoiceDesk API -> validate -> SMTP (Mailpit in dev) (M15)"
+  }
+}

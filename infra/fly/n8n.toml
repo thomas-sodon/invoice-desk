@@ -1,0 +1,39 @@
+# n8n (email ingest + vendor follow-up workflows) on Fly.io. Uses the official image, not the
+# Python Dockerfile. PRIVATE ONLY: no [http_service], so nothing is reachable from the internet.
+# Open the editor with `fly proxy 5678 -a invoicedesk-n8n`, then import
+# integrations/n8n/workflows/*.json. The API reaches the follow-up webhook at
+# http://invoicedesk-n8n.internal:5678/webhook/invoicedesk-followup.
+#   fly volumes create n8n_data --region iad --size 1 -a invoicedesk-n8n
+#   fly deploy --config infra/fly/n8n.toml
+# Secrets (N8N_ENCRYPTION_KEY, INGEST_WEBHOOK_SECRET) via `fly secrets set`; see README.md.
+app = "invoicedesk-n8n"
+primary_region = "iad"
+kill_signal = "SIGTERM"
+kill_timeout = "30s"
+
+[build]
+  image = "n8nio/n8n:1.80.0"
+
+[env]
+  N8N_PORT = "5678"
+  N8N_LISTEN_ADDRESS = "::"                    # Fly private networking is IPv6
+  N8N_PROTOCOL = "http"
+  N8N_SECURE_COOKIE = "false"                  # the editor is only reached through `fly proxy`
+  WEBHOOK_URL = "http://invoicedesk-n8n.internal:5678/"
+  INVOICEDESK_API = "http://invoicedesk-api.internal:8000"
+  NODE_FUNCTION_ALLOW_BUILTIN = "crypto"       # email-ingest signs its payload with HMAC
+  N8N_BLOCK_ENV_ACCESS_IN_NODE = "false"
+  FOLLOWUP_FROM_ADDRESS = "ap@maplerow.example"
+  N8N_DIAGNOSTICS_ENABLED = "false"
+  N8N_PERSONALIZATION_ENABLED = "false"
+  EXECUTIONS_DATA_PRUNE = "true"
+  EXECUTIONS_DATA_MAX_AGE = "168"              # hours; failed executions can hold e-mail bodies
+  GENERIC_TIMEZONE = "UTC"
+
+[[mounts]]
+  source = "n8n_data"
+  destination = "/home/node/.n8n"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

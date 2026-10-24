@@ -1,0 +1,116 @@
+{
+  "name": "InvoiceDesk: email ingest",
+  "nodes": [
+    {
+      "parameters": {
+        "mailbox": "INBOX",
+        "postProcessAction": "read",
+        "format": "resolved",
+        "dataPropertyAttachmentsPrefixName": "attachment_",
+        "options": {
+          "customEmailConfig": "[\"UNSEEN\"]"
+        }
+      },
+      "id": "5b0d7a0e-1f7e-4c1a-9a8e-2f3f4e6a0001",
+      "name": "Vendor inbox (IMAP)",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "imap": {
+          "id": "REPLACE_ON_IMPORT",
+          "name": "InvoiceDesk AP inbox (IMAP)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "// InvoiceDesk: turn each IMAP message into the POST /api/v1/ingest/email payload and sign it.\n// The signature is HMAC-SHA256 over the exact body string the next node sends (raw body).\n// Needs NODE_FUNCTION_ALLOW_BUILTIN=crypto and INGEST_WEBHOOK_SECRET in the n8n environment.\nconst crypto = require('crypto');\n\nconst ALLOWED_TYPES = new Set(['application/pdf', 'image/jpeg', 'image/png', 'image/heic', 'image/heif']);\nconst MAX_BYTES = 10 * 1024 * 1024; // API limit per file\nconst MAX_ATTACHMENTS = 10;         // API limit per e-mail\nconst secret = $env.INGEST_WEBHOOK_SECRET;\nif (!secret) {\n  throw new Error('INGEST_WEBHOOK_SECRET is not set in the n8n environment');\n}\n\nfunction addressOf(from) {\n  if (!from) return '';\n  if (typeof from === 'string') {\n    const m = from.match(/<([^<>\\s]+@[^<>\\s]+)>/);\n    return (m ? m[1] : from).trim();\n  }\n  if (Array.isArray(from.value) && from.value.length > 0 && from.value[0].address) {\n    return String(from.value[0].address).trim();\n  }\n  if (typeof from.text === 'string') return addressOf(from.text);\n  return '';\n}\n\nfunction bodyText(mail) {\n  if (typeof mail.text === 'string' && mail.text.trim() !== '') return mail.text;\n  if (typeof mail.html === 'string') {\n    return mail.html.replace(/<(script|style)[\\s\\S]*?<\\/\\1>/gi, ' ').replace(/<[^>]+>/g, ' ')\n      .replace(/&nbsp;/g, ' ').replace(/[ \\t]+/g, ' ').trim();\n  }\n  return '';\n}\n\nconst out = [];\nconst items = $input.all();\nfor (let i = 0; i < items.length; i++) {\n  const mail = items[i].json || {};\n  const binary = items[i].binary || {};\n  const attachments = [];\n  const skipped = [];\n  for (const key of Object.keys(binary).sort()) {\n    const meta = binary[key] || {};\n    const type = String(meta.mimeType || '').toLowerCase().split(';')[0].trim();\n    const filename = String(meta.fileName || key).slice(0, 255);\n    if (!ALLOWED_TYPES.has(type)) { skipped.push({ filename, reason: 'type ' + (type || 'unknown') }); continue; }\n    if (attachments.length >= MAX_ATTACHMENTS) { skipped.push({ filename, reason: 'too many attachments' }); continue; }\n    const data = await this.helpers.getBinaryDataBuffer(i, key);\n    if (data.length > MAX_BYTES) { skipped.push({ filename, reason: 'over 10 MB' }); continue; }\n    attachments.push({ filename, content_type: type, content_b64: data.toString('base64') });\n  }\n\n  const from = addressOf(mail.from).slice(0, 320) || 'unknown@invalid';\n  const subject = String(mail.subject || '').slice(0, 998);\n  const text = bodyText(mail).slice(0, 200000);\n  const date = mail.date ? new Date(mail.date) : null;\n  let messageId = String(mail.messageId || '').trim();\n  if (!messageId) {\n    // Stable fallback so an n8n retry of the same message maps to the same record.\n    const h = crypto.createHash('sha256').update([from, subject, String(mail.date || ''), text].join('\\n')).digest('hex');\n    messageId = '<n8n-' + h.slice(0, 32) + '@invoicedesk.local>';\n  }\n\n  const payload = {\n    message_id: messageId.slice(0, 998),\n    from,\n    subject,\n    body_text: text,\n    received_at: date && !isNaN(date.getTime()) ? date.toISOString() : null,\n    attachments,\n  };\n  const body = JSON.stringify(payload);\n  const signature = 'sha256=' + crypto.createHmac('sha256', secret).update(body, 'utf8').digest('hex');\n  out.push({ json: { body, signature, message_id: payload.message_id, attachments: attachments.length, skipped } });\n}\nreturn out;\n"
+      },
+      "id": "5b0d7a0e-1f7e-4c1a-9a8e-2f3f4e6a0002",
+      "name": "Build signed payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.INVOICEDESK_API }}/api/v1/ingest/email",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-InvoiceDesk-Signature",
+              "value": "={{ $json.signature }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ $json.body }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "5b0d7a0e-1f7e-4c1a-9a8e-2f3f4e6a0003",
+      "name": "POST /api/v1/ingest/email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    }
+  ],
+  "connections": {
+    "Vendor inbox (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "Build signed payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build signed payload": {
+      "main": [
+        [
+          {
+            "node": "POST /api/v1/ingest/email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "all",
+    "saveManualExecutions": false,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "pinData": {},
+  "tags": [],
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "description": "IMAP trigger -> HMAC-signed POST /api/v1/ingest/email (InvoiceDesk M2)"
+  }
+}

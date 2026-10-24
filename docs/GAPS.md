@@ -448,3 +448,53 @@ don't delete entries. Mark them **closed** when resolved.
 - **Not tested with a real MCP host** (Claude Desktop / claude.ai connectors) or deployed
   (`infra/fly/mcp.toml` not written); tests drive the SDK's own client over an ASGI transport,
   plus a manual uvicorn smoke run (PRM, 401 with `resource_metadata`, `tools/list`).
+
+## Docs, integrations, deploy configs (2026-10-24)
+
+- **No real deployment (§8 day 19).** `infra/fly/{api,worker,mcp,n8n}.toml` parse with `tomllib`
+  and are checked by `integrations/tests`. They follow Fly's documented format, but nothing has
+  been deployed to Fly.io or Vercel, so "public URL green; cold-start < 3 s" is unverified. Two
+  details are written from memory of flyctl and untested: `[build] dockerfile` is resolved
+  relative to the config file, and the scheduled purge machine command. `infra/fly/mcp.toml` now
+  exists (updates the MCP entry above). *Close by:* `fly deploy . --config infra/fly/<app>.toml`
+  for each app, the Vercel project for `apps/web`, then a cold-start measurement.
+- **n8n workflows not run in n8n.** `email-ingest.json` and `vendor-followup.json` are hand-written
+  n8n 1.80 exports. Their Code-node JavaScript runs under Node with a stub of the n8n runtime, and
+  its output passes the API's real `verify_ingest_signature` and `EmailIngest` schema. Not
+  verified in a real n8n:
+  - the IMAP node's `resolved` output shape (`from.value[0].address`, `messageId`, binary keys);
+  - that the HTTP Request node's raw body is sent byte for byte;
+  - parameter names on import.
+
+  Mailpit has no IMAP server, so the local inbox needs another test mailbox. Until then,
+  `integrations/n8n/scripts/post_demo_email.py` sends the demo bank-change email with the
+  same signature. *Close by:* importing both workflows into the compose n8n, pointing IMAP at a
+  test mailbox, and sending the demo email and one approved follow-up through to Mailpit.
+- **Follow-up webhook is unsigned.** The API and worker `POST` the approved follow-up to n8n
+  without a signature or auth header, so the n8n webhook relies on network isolation (no public
+  Fly service). *Close by:* the API signing the call (as `/ingest/email` does) and the workflow
+  checking it.
+- **Compose n8n lacks the ingest env.** `docker-compose.yml` does not pass
+  `INGEST_WEBHOOK_SECRET` or `NODE_FUNCTION_ALLOW_BUILTIN=crypto` to n8n, and `.env.example` lacks
+  `N8N_FOLLOWUP_WEBHOOK_URL`, so the email-ingest workflow cannot sign in compose yet (raised for
+  the owners).
+- **No video, Loom or demo GIF (§8 day 20, §9).** The 90 s captioned demo video, the 3-minute Loom
+  walkthrough and `docs/media/demo.gif` need screen recording and a live, deployed demo.
+- **No hero screenshot in `docs/media/`.** The web app's `hero.png` shows score tiles filled from
+  mock-fixture sample values (97% / 76% / $0.011 / 4.1 s, the DESIGN placeholders) under the label
+  "benchmark, synthetic data". That would state unmeasured numbers, so it is not used. The
+  README uses the comparison and hidden-text screenshots, captioned as offline mock mode.
+  *Close by:* re-shooting `hero.png` (1000x750) after a live run, with tiles from `/scorecard/latest`.
+- **No real photographed or handwritten documents.** This restates the data entries above for the
+  case study. The README and eval methodology describe photos and handwriting as simulated, and
+  §11's main mitigation ("real printed-and-photographed and handwritten docs") is still open.
+- **No GitHub profile README, Upwork portfolio item or Project Catalog listing (§10, §12).** These
+  live outside this repo and need the owner's accounts. They also need measured numbers: the
+  DESIGN §10 title and description figures are placeholders until a live test-split run.
+- **README results are offline-only.** The results table quotes only safety and routing outcomes
+  from `evals/reports/2026-10-24-dev_adversarial-D-N-offline.json`, and states that no live
+  benchmark exists. `integrations/tests/test_docs.py` fails if the README quotes field accuracy,
+  cost or latency from an oracle run, or a number that is not in the latest report.
+- **OWASP LLM Top 10 (2026) numbering is secondhand.** SECURITY.md maps controls to the risk
+  numbers DESIGN §5.5 took from Cloud Security Alliance summaries (#1, #3, #6, #8). These were not
+  checked against the primary OWASP list here.
