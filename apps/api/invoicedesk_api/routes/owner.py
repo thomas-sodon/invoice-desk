@@ -147,7 +147,12 @@ async def comparison(
             raise ApiError(401, "unauthenticated", "Sign in to see this batch.")
         bid = str(batch["id"])
         if _naive_missing(rt, bid):
-            svc = rt.services(rt.pipeline_kind_for_batch(bid))
+            kind = rt.pipeline_kind_for_batch(bid)
+            if staff is None and kind != "default":
+                # Anonymous callers never cause paid LLM calls (US-8 is always the recorded
+                # run): the naive baseline of a live demo batch runs on the replay oracle.
+                kind = "demo_replay"
+            svc = rt.services(kind)
             run_naive(rt.db, bid, svc.deps.llm, storage=rt.storage)
         return svc_compare(rt, bid)
 

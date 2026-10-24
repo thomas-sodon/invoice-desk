@@ -44,9 +44,10 @@ def main(argv: list[str] | None = None) -> int:
         report = purge_expired(db, wiring.storage(settings), limit=args.limit)
     print(
         f"purged {len(report.documents)} document(s), {report.objects_deleted} object(s),"
-        f" {report.batches_deleted} empty try-it batch(es); skipped {len(report.skipped)}"
+        f" {report.batches_deleted} empty try-it batch(es); skipped {len(report.skipped)},"
+        f" storage failures {len(report.failed)} (retried next run)"
     )
-    return 1 if report.skipped else 0
+    return 1 if report.skipped or report.failed else 0
 
 
 if __name__ == "__main__":

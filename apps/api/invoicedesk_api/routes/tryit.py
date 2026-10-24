@@ -24,7 +24,7 @@ from invoicedesk_api.auth import (
     ip_key,
     session_serializer,
 )
-from invoicedesk_api.demo import latest_demo_batch, start_demo_run
+from invoicedesk_api.demo import ensure_replay_batch
 from invoicedesk_api.errors import ApiError
 from invoicedesk_api.runtime import Runtime
 from invoicedesk_api.settings import TRYIT_BANNER
@@ -46,13 +46,7 @@ def _remaining(rt: Runtime, v: Visitor | None) -> int:
 def replay_batch_id(rt: Runtime) -> str:
     """The recorded replay shown when the cap is hit: the current demo batch (a replay run is
     started if none exists; it costs nothing)."""
-    with rt.db.tx() as conn:
-        bid = latest_demo_batch(conn, rt)
-    if bid is not None:
-        return bid
-    return start_demo_run(
-        rt, requested="replay", actor=Actor.system("tryit"), uploaded_by=None
-    ).batch_id
+    return ensure_replay_batch(rt, actor=Actor.system("tryit"))
 
 
 @router.post("/session", response_model=sc.TryitSession)

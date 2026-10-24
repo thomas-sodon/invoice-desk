@@ -6,6 +6,10 @@ the jobs, and the ``documents`` row (fields, extractions, screen and rule result
 steps cascade). ``audit_log`` rows stay: they have no foreign key, and one ``document.purged``
 row per document records the deletion. Visitor documents are never posted, so no bill can
 block the delete; if one ever exists the document is skipped and reported.
+
+Storage first, row last: if listing or deleting any of a document's objects fails, its row is
+kept (reported in ``failed``) so the next run retries. Deleting the row anyway would orphan
+the objects past 24h with nothing left to find them by.
 """
 
 from __future__ import annotations
@@ -29,16 +33,31 @@ class PurgeReport:
     documents: list[str] = field(default_factory=list)
     objects_deleted: int = 0
     skipped: list[str] = field(default_factory=list)
+    #: Storage could not be listed or cleaned: the row is kept for the next run.
+    failed: list[str] = field(default_factory=list)
     batches_deleted: int = 0
 
 
 def _objects_for(storage: Storage, session_id: str, document_id: str, original: str) -> list[str]:
+    """Every stored object of the document. Raises when storage cannot be listed."""
     keys = {original} if original and original != "pending" else set()
-    try:
-        keys.update(k for k in storage.list(f"visitor/{session_id}/") if f"/{document_id}/" in k)
-    except (OSError, ValueError):
-        log.warning("could not list visitor objects for a purge")
+    keys.update(k for k in storage.list(f"visitor/{session_id}/") if f"/{document_id}/" in k)
     return sorted(keys)
+
+
+def _delete_objects(storage: Storage, keys: list[str]) -> tuple[int, bool]:
+    """``(deleted, all_ok)``. Any storage backend error (local OS error, Supabase HTTP error,
+    network failure) counts as a failure for this document only."""
+    deleted = 0
+    ok = True
+    for key in keys:
+        try:
+            storage.delete(key)
+            deleted += 1
+        except Exception as exc:
+            log.warning("could not delete a visitor object: %s", type(exc).__name__)
+            ok = False
+    return deleted, ok
 
 
 def purge_expired(
@@ -57,12 +76,17 @@ def purge_expired(
         ).fetchall()
     for r in rows:
         doc_id = str(r["id"])
-        for key in _objects_for(storage, r["session_id"], doc_id, r["storage_path"]):
-            try:
-                storage.delete(key)
-                report.objects_deleted += 1
-            except (OSError, ValueError, KeyError):
-                log.warning("could not delete a visitor object")
+        try:
+            keys = _objects_for(storage, r["session_id"], doc_id, r["storage_path"])
+        except Exception as exc:
+            log.warning("could not list visitor objects for a purge: %s", type(exc).__name__)
+            report.failed.append(doc_id)
+            continue
+        deleted, ok = _delete_objects(storage, keys)
+        report.objects_deleted += deleted
+        if not ok:
+            report.failed.append(doc_id)
+            continue
         with db.tx() as conn:
             billed = conn.execute(
                 "select 1 from bills where document_id = %s limit 1", (doc_id,)

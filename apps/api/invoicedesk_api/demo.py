@@ -25,10 +25,18 @@ from invoicedesk_api.errors import ApiError
 from invoicedesk_api.runtime import Runtime
 from invoicedesk_api.uploads import check_upload, create_document, publish_created
 
-__all__ = ["DemoRun", "delete_checkpoints", "ensure_seeded", "latest_demo_batch", "start_demo_run"]
+__all__ = [
+    "DemoRun",
+    "delete_checkpoints",
+    "ensure_replay_batch",
+    "ensure_seeded",
+    "latest_demo_batch",
+    "start_demo_run",
+]
 
 log = logging.getLogger("invoicedesk.api.demo")
-_RUN_LOCK = threading.Lock()
+#: Reentrant: ``ensure_replay_batch`` holds it across its check and ``start_demo_run``.
+_RUN_LOCK = threading.RLock()
 
 
 @dataclass(frozen=True, slots=True)
@@ -147,3 +155,17 @@ def start_demo_run(
         rt.dispatch_process(d, demo=True)
         publish_created(rt, d, batch_id)
     return DemoRun(batch_id=batch_id, document_ids=doc_ids, llm=llm)
+
+
+def ensure_replay_batch(rt: Runtime, *, actor: Actor) -> str:
+    """The current demo batch, or a new no-cost replay run when there is none.
+
+    The check and the start happen under the run lock, so concurrent capped try-it requests
+    start one run between them, not one each (each run would wipe the one before it, and the
+    batch id handed to the earlier caller would 404)."""
+    with _RUN_LOCK:
+        with rt.db.tx() as conn:
+            bid = latest_demo_batch(conn, rt)
+        if bid is not None:
+            return bid
+        return start_demo_run(rt, requested="replay", actor=actor, uploaded_by=None).batch_id

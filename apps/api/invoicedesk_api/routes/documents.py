@@ -11,6 +11,7 @@ from typing import Annotated, Any, LiteralString
 from fastapi import APIRouter, Query
 from fastapi.responses import Response
 from invoicedesk.audit.chain import verify as audit_verify
+from invoicedesk.masking import mask_payload
 from invoicedesk.status import KANBAN_COLUMNS, DocStatus
 from invoicedesk.storage import LocalStorage, safe_key
 
@@ -160,8 +161,9 @@ def get_audit(
                 ts=iso(r["ts"]) or "",
                 actor=r["actor"],
                 action=r["action"],
-                before=r["before_json"],
-                after=r["after_json"],
+                # Rows are written masked; mask again on the way out (invariant 9, everywhere).
+                before=mask_payload(r["before_json"]),
+                after=mask_payload(r["after_json"]),
                 row_hash=r["row_hash"],
             )
             for r in conn.execute(

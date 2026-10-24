@@ -391,8 +391,13 @@ def test_embedded_job_threads_process_uploads(env) -> None:
         ):
             time.sleep(0.25)
         assert env.status(doc_id) == "ReadyToPay"
-        assert (
-            env.sql("select status::text as s from jobs where document_id = %s", (doc_id,))[0]["s"]
-            == "done"
-        )
+
+        def job_status() -> str:
+            q = "select status::text as s from jobs where document_id = %s"
+            return env.sql(q, (doc_id,))[0]["s"]
+
+        # the job is completed just after the pipeline returns: poll, do not race it
+        while job_status() == "running" and time.monotonic() < deadline:
+            time.sleep(0.05)
+        assert job_status() == "done"
     assert env.rt.runner is None  # stopped with the app

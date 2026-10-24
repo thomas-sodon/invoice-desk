@@ -13,7 +13,7 @@ import asyncio
 import contextlib
 import re
 import uuid
-from typing import Annotated
+from typing import Annotated, Any
 
 from fastapi import APIRouter, File, UploadFile
 from fastapi.concurrency import run_in_threadpool
@@ -36,6 +36,42 @@ router = APIRouter(prefix="/agent")
 
 EXTRACT_TIMEOUT_S = 60.0
 _NOT_FOR_AGENTS = frozenset({"vendor_id", "remit_to_bank_details"})
+#: Rule ``details`` keys that quote untrusted document text (screening spans, the embedded
+#: instructions themselves) or bank details: never handed to a component with tools (inv. 2).
+_DOC_TEXT_DETAIL_KEYS = frozenset(
+    {"spans", "screen_spans", "embedded_instructions", "remit_to_masked"}
+)
+_DETECTOR_WORDS = {
+    "hidden_text": "hidden text",
+    "faint_text": "faint text",
+    "injection_classifier": "an instruction aimed at an automated system",
+}
+
+
+def agent_rule_out(row: dict[str, Any]) -> sc.RuleResultOut:
+    """A rule result for the agent facade: no quoted document text (invariant 2).
+
+    R10's message quotes the hidden/injected span, and R6/R10 details list spans and embedded
+    instructions; those become counts and a message rebuilt from detector names only."""
+    out = rule_result_out(row)
+    details: dict[str, Any] = {}
+    for k, v in out.details.items():
+        if k in _DOC_TEXT_DETAIL_KEYS:
+            if isinstance(v, list):
+                details[f"{k}_count"] = len(v)
+            continue
+        details[k] = v
+    message = out.message
+    if out.rule_id == "R10" and not out.passed:
+        raw = (row.get("details_json") or {}).get("detectors") or []
+        found = sorted({_DETECTOR_WORDS.get(str(d), "a screening finding") for d in raw}) or [
+            "a screening finding"
+        ]
+        message = (
+            f"Quarantined: the document contains {' and '.join(found)}. "
+            "It was not processed further and needs human review."
+        )
+    return out.model_copy(update={"details": details, "message": message})
 
 
 def _handle_prefix(rt: Runtime) -> str:
@@ -123,7 +159,7 @@ async def agent_extract(
     doc_id = await run_in_threadpool(_create)
 
     def _run() -> None:
-        rt.services_for(doc_id).process(doc_id)
+        rt.services_for(doc_id).process(doc_id, auto_post=False)
 
     # On timeout the run continues; the response reports the status reached so far.
     with contextlib.suppress(TimeoutError):
@@ -150,7 +186,7 @@ def agent_validation(
     ]
     return sc.AgentValidation(
         status=str(doc["status"]),
-        rule_results=[rule_result_out(r) for r in rows],
+        rule_results=[agent_rule_out(r) for r in rows],
         variance_explanations=variance,
     )
 

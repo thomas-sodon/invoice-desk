@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import base64
 import binascii
+import datetime as dt
+import email.utils
 import json
 from typing import Annotated
 
@@ -44,6 +46,8 @@ from invoicedesk_api.uploads import (
 router = APIRouter()
 
 MAX_FILES_PER_REQUEST = 50
+#: Batch modes a staff upload may join (``POST /batches`` creates only these).
+UPLOAD_BATCH_MODES = frozenset({"live", "replay"})
 
 
 @router.post("/batches", status_code=201, response_model=sc.BatchCreated)
@@ -86,7 +90,16 @@ async def upload_documents(
     def _store() -> tuple[str, list[sc.UploadedDoc]]:
         with rt.db.tx() as conn:
             if batch_id:
-                bid = str(batch_row(conn, rt, batch_id)["id"])
+                batch = batch_row(conn, rt, batch_id)
+                if batch["mode"] not in UPLOAD_BATCH_MODES:
+                    # Demo batches are publicly readable and wiped by the next demo run;
+                    # try-it batches are purged after 24h. Staff uploads never go there.
+                    raise ApiError(
+                        409,
+                        "illegal_batch",
+                        "Invoices can only be uploaded to batches you created.",
+                    )
+                bid = str(batch["id"])
             else:
                 bid = repo.create_batch(
                     conn, tenant_id=rt.tenant, label="Upload", mode="live", created_by=staff.id
@@ -141,6 +154,22 @@ def demo_run(
     return sc.DemoRunResponse(batch_id=run.batch_id, document_ids=run.document_ids)
 
 
+def _received_at(value: str | None) -> dt.datetime | None:
+    """ISO 8601 or RFC 2822 (an IMAP ``Date`` header); anything else falls back to now().
+    A bad date must not 500 the webhook: n8n would retry the delivery forever."""
+    if not value or not value.strip():
+        return None
+    v = value.strip()
+    try:
+        parsed = dt.datetime.fromisoformat(v.replace("Z", "+00:00"))
+    except ValueError:
+        try:
+            parsed = email.utils.parsedate_to_datetime(v)
+        except (TypeError, ValueError, IndexError):
+            return None
+    return parsed if parsed.tzinfo is not None else parsed.replace(tzinfo=dt.UTC)
+
+
 def _decode_attachment(a: sc.EmailAttachment) -> bytes:
     if len(a.content_b64) > (MAX_BYTES * 4) // 3 + 8:
         raise RejectedInput(f"The file is over the {MAX_BYTES // 1_048_576} MB limit.")
@@ -176,7 +205,7 @@ async def ingest_email(
                     msg.from_,
                     msg.subject,
                     msg.body_text,
-                    msg.received_at,
+                    _received_at(msg.received_at),
                 ),
             ).fetchone()
             if row is None:  # n8n retried a delivery we already have: same record back

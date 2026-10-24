@@ -268,8 +268,16 @@ def build_cards(conn: Conn, rt: Runtime, docs: Sequence[dict[str, Any]]) -> list
 
 
 # ---------------------------------------------------------------------------- detail
-def rule_result_out(row: dict[str, Any]) -> sc.RuleResultOut:
+#: Rule ``details`` keys that carry remit-to bank details (masked); withheld from anonymous
+#: callers along with the ``remit_to_bank_details`` field (contract, Conventions).
+_REMIT_DETAIL_KEYS = frozenset({"remit_to_masked"})
+
+
+def rule_result_out(row: dict[str, Any], *, anonymous: bool = False) -> sc.RuleResultOut:
     details = dict(mask_payload(row["details_json"] or {}))
+    if anonymous:
+        for k in _REMIT_DETAIL_KEYS:
+            details.pop(k, None)
     fields = details.pop("fields", [])
     return sc.RuleResultOut(
         rule_id=row["rule_id"],
@@ -479,7 +487,10 @@ def _trace_url(rt: Runtime, conn: Conn, document_id: str) -> str | None:
 
 
 def _redactions(
-    fields: dict[str, dict[str, Any]], screens: Sequence[dict[str, Any]]
+    fields: dict[str, dict[str, Any]],
+    screens: Sequence[dict[str, Any]],
+    *,
+    anonymous: bool = False,
 ) -> list[sc.Redaction]:
     """Page regions printing bank/account numbers; the viewer paints a bar over each."""
     out: list[sc.Redaction] = []
@@ -489,7 +500,7 @@ def _redactions(
             sc.Redaction(
                 page=int(remit.get("page") or 0),
                 box=_box(remit["box"]),  # type: ignore[arg-type]
-                label=mask_text(remit.get("value")),
+                label=None if anonymous else mask_text(remit.get("value")),
             )
         )
     for s in screens:
@@ -568,14 +579,14 @@ def build_detail(
     embedded = [
         mask_text(str(t)) or "" for t in (extraction or {}).get("embedded_instructions") or []
     ]
-    redactions = _redactions(fields, screens)
+    redactions = _redactions(fields, screens, anonymous=anonymous)
     return sc.DocumentDetail(
         **card.model_dump(),
         pages=pages,
         original_url=None if anonymous else _signed(rt, doc["storage_path"]),
         fields=[_field_out(n, fields[n], cfg, rules) for n in shown],
         line_items=_line_items(extraction, words),
-        rule_results=[rule_result_out(r) for r in rules],
+        rule_results=[rule_result_out(r, anonymous=anonymous) for r in rules],
         screen_results=[_screen_out(s) for s in screens],
         embedded_instructions=embedded,
         extractions=extractions,
