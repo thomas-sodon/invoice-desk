@@ -116,7 +116,11 @@ def build_core(
     truths = core_truths()
     splits = assign_splits(truths)
     if limit is not None:
+        # A partial build must never overwrite the frozen, committed gold (it would delete the
+        # other labels, test split included): its gold goes next to the partial binaries.
         truths = truths[:limit]
+        if gold_dir == GOLD_DIR:
+            gold_dir = out_dir / "partial-gold"
     out_dir.mkdir(parents=True, exist_ok=True)
     docs: list[GeneratedDoc] = []
     with Renderer() as r:
@@ -133,7 +137,7 @@ def build_core(
         files_dir=str(out_dir.relative_to(REPO_ROOT))
         if out_dir.is_relative_to(REPO_ROOT)
         else str(out_dir),
-        frozen=True,
+        frozen=limit is None,
         gold_dir=gold_dir,
     )
     return manifest, docs

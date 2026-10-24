@@ -47,6 +47,7 @@ class PublicRecord:
     invoice_date: str | None  # ISO
     total_cents: int | None
     currency: str
+    vendor_address: str | None = None  # SROIE Task 3 "address" (CORD has none)
 
     def to_json(self) -> dict[str, Any]:
         return asdict(self)
@@ -128,6 +129,7 @@ def map_sroie(sample: dict[str, Any]) -> PublicRecord:
         invoice_date=normalize_date(_label(sample.get("date"))),
         total_cents=parse_total_cents(_label(sample.get("total"))),
         currency="MYR",
+        vendor_address=_label(sample.get("address")),
     )
 
 
@@ -171,7 +173,7 @@ def to_gold_extraction(r: PublicRecord) -> InvoiceExtraction:
         {
             "doc_type": "invoice",
             "vendor_name": text(r.vendor_name),
-            "vendor_address": text(None),
+            "vendor_address": text(r.vendor_address),
             "vendor_tax_id_last4": text(None),
             "invoice_number": text(None),
             "invoice_date": date(r.invoice_date),

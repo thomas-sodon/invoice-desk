@@ -57,20 +57,22 @@ def test_parse_total_cents(raw: str | None, decimals: int, cents: int | None) ->
 def test_map_sroie_sample(tmp_path) -> None:
     sample = {
         "filepath": "data/X51005442376.jpg",
-        "company": "UNIHAKKA INTERNATIONAL SDN BHD",
+        "company": "FICTIONAL TEST KEDAI SDN BHD",
         "date": "22 MAR 2018",
-        "address": "12, JALAN TAMPOI",
+        "address": "1, JALAN CONTOH (FICTIONAL)",
         "total": "$7.60",
     }
     r = map_sroie(sample)
     assert (r.id, r.vendor_name, r.invoice_date, r.total_cents) == (
         "X51005442376",
-        "UNIHAKKA INTERNATIONAL SDN BHD",
+        "FICTIONAL TEST KEDAI SDN BHD",
         "2018-03-22",
         760,
     )
+    assert r.vendor_address == "1, JALAN CONTOH (FICTIONAL)"
     ex = to_gold_extraction(r)
     assert isinstance(ex, InvoiceExtraction) and ex.total.value_cents == 760
+    assert ex.vendor_address.value == "1, JALAN CONTOH (FICTIONAL)"
     path = tmp_path / "samples.json"
     path.write_text(json.dumps({"samples": [sample, {**sample, "filepath": "data/B.jpg"}]}))
     assert [x.id for x in build_index(path)] == ["X51005442376", "B"]

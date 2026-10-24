@@ -129,3 +129,13 @@ def test_reserved_formats_only() -> None:
         assert "Acct 000999" in remit_text(v.slug, v.legal_name)
     for s in u.staff:
         assert s.email.endswith("@maplerow.example")
+
+
+def test_seed_refuses_a_tenant_the_universe_was_not_built_for() -> None:
+    from typing import Any, cast
+
+    import pytest
+    from invoicedesk_data.seed import seed_into
+
+    with pytest.raises(ValueError, match="cannot seed"):
+        seed_into(cast(Any, None), build_universe(), tenant_id="other_tenant")

@@ -179,8 +179,13 @@ def _insert(conn: Conn, sql: LiteralString, params: tuple[Any, ...]) -> int:
 
 
 def seed_into(conn: Conn, universe: Universe, *, tenant_id: str = TENANT_ID) -> SeedCounts:
-    """Seed inside the caller's transaction."""
+    """Seed inside the caller's transaction.
+
+    Row ids are deterministic per universe tenant, so seeding the same universe under another
+    tenant id would hit ``on conflict do nothing`` and silently load nothing: refuse it."""
     u = universe
+    if tenant_id != u.tenant_id:
+        raise ValueError(f"universe is for tenant {u.tenant_id!r}; cannot seed it as {tenant_id!r}")
     repo.ensure_tenant(conn, tenant_id, u.tenant_name, _rules_yaml(tenant_id))
     before_staff = conn.execute(
         "select count(*) as n from staff_users where tenant_id = %s", (tenant_id,)
