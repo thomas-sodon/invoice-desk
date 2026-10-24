@@ -15,6 +15,8 @@ text layer is reported in :class:`TextLayerSpan` for that purpose.
 from __future__ import annotations
 
 import contextlib
+import math
+import re
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -32,9 +34,19 @@ from invoicedesk.contracts.preprocess import (
 )
 from invoicedesk.preprocess.images import sample_background
 
-__all__ = ["PdfWord", "RenderedPage", "open_sanitized", "render_page", "text_layer_words"]
+__all__ = [
+    "MAX_TEXT_LAYER_WORDS_PER_PAGE",
+    "PdfWord",
+    "RenderedPage",
+    "open_sanitized",
+    "render_page",
+    "text_layer_words",
+]
 
 _ACTION_KEYS = ("JS", "JavaScript", "OpenAction", "AA")
+#: Active-content name tokens (not ``/JSans``-style font names: the token must end there), except
+#: keys we already set to ``null``.
+_ACTIVE_RE = re.compile(r"/(?:JavaScript|JS|Launch)(?![A-Za-z0-9#_.-])(?!\s*null\b)")
 # MuPDF stext char_flags (PyMuPDF >= 1.25): glyph is filled / stroked. Neither = invisible (Tr 3).
 _FILLED, _STROKED = 16, 32
 
@@ -55,6 +67,7 @@ def open_sanitized(data: bytes) -> tuple[pymupdf.Document, SanitizeReport]:  # n
     if doc.is_repaired:
         report.notes.append("PDF structure was damaged and repaired on open")
 
+    cat = doc.pdf_catalog()
     # JavaScript and automatic actions, in any object.
     js_hits = 0
     for xref in range(1, doc.xref_length()):
@@ -65,12 +78,21 @@ def open_sanitized(data: bytes) -> tuple[pymupdf.Document, SanitizeReport]:  # n
         for key in keys:
             if key in _ACTION_KEYS:
                 val = doc.xref_get_key(xref, key)
-                if key in ("JS", "JavaScript") or "JavaScript" in str(val):
+                if key in ("JS", "JavaScript") or _ACTIVE_RE.search(str(val)):
                     js_hits += 1
                 doc.xref_set_key(xref, key, "null")
+            elif key == "A" and _ACTIVE_RE.search(str(doc.xref_get_key(xref, "A")[1])):
+                # Direct /A action dicts (outline items, link annots) holding JS/Launch.
+                js_hits += 1
+                doc.xref_set_key(xref, "A", "null")
         if "S" in keys and doc.xref_get_key(xref, "S")[1] in ("/JavaScript", "/Launch"):
             js_hits += 1
             doc.xref_set_key(xref, "S", "/GoTo")
+    # Document-level JavaScript name tree when /Names is a direct dict inside the catalog (the
+    # per-object key scan above only sees top-level keys of indirect objects).
+    if doc.xref_get_key(cat, "Names/JavaScript")[0] != "null":
+        doc.xref_set_key(cat, "Names/JavaScript", "null")
+        js_hits += 1
     if js_hits:
         report.removed_javascript = True
         report.notes.append(f"removed {js_hits} JavaScript/launch action(s)")
@@ -95,7 +117,6 @@ def open_sanitized(data: bytes) -> tuple[pymupdf.Document, SanitizeReport]:  # n
         for link in page.get_links():
             page.delete_link(link)
             links += 1
-    cat = doc.pdf_catalog()
     if doc.xref_get_key(cat, "AcroForm")[0] != "null":
         doc.xref_set_key(cat, "AcroForm", "null")
         report.removed_forms = True
@@ -115,6 +136,16 @@ def open_sanitized(data: bytes) -> tuple[pymupdf.Document, SanitizeReport]:  # n
         out = pymupdf.open(stream=clean, filetype="pdf")
     except Exception as exc:  # pragma: no cover - MuPDF re-parsing its own output
         raise RejectedInput("The PDF could not be read.") from exc
+    # Fail closed: if any active-content marker survived (nested inline dicts we did not reach),
+    # reject rather than pass the file on.
+    for xref in range(1, out.xref_length()):
+        try:
+            obj = out.xref_object(xref, compressed=True)
+        except Exception:  # noqa: S112 - free/broken objects are skipped
+            continue
+        if _ACTIVE_RE.search(obj):
+            close_quietly(out)
+            raise RejectedInput("The PDF contains active content that could not be removed.")
     return out, report
 
 
@@ -157,6 +188,24 @@ def _rgb(color: int) -> tuple[int, int, int]:
     return ((color >> 16) & 255, (color >> 8) & 255, color & 255)
 
 
+#: Real invoices have well under 1,000 words a page; far more is a resource-exhaustion attempt.
+MAX_TEXT_LAYER_WORDS_PER_PAGE = 5000
+
+
+def _transform(
+    m: tuple[float, float, float, float, float, float], r: tuple[float, float, float, float]
+) -> tuple[float, float, float, float]:
+    """Bounding box of rect ``r`` under affine matrix ``m`` (PDF ``a b c d e f`` order)."""
+    a, b, c, d, e, f = m
+    xs: list[float] = []
+    ys: list[float] = []
+    for x in (r[0], r[2]):
+        for y in (r[1], r[3]):
+            xs.append(a * x + c * y + e)
+            ys.append(b * x + d * y + f)
+    return (min(xs), min(ys), max(xs), max(ys))
+
+
 def text_layer_words(page: pymupdf.Page, rendered: RenderedPage) -> list[PdfWord]:
     """Words of the page's text layer with size, fill colour, off-page flag and the background
     colour sampled from the render, boxes in processed-image px. Text outside the page is kept
@@ -165,8 +214,9 @@ def text_layer_words(page: pymupdf.Page, rendered: RenderedPage) -> list[PdfWord
     raw: dict[str, Any] = page.get_text(  # type: ignore[assignment]
         "rawdict", flags=flags, clip=pymupdf.INFINITE_RECT()
     )
-    rot = page.rotation_matrix
-    page_rect = page.rect
+    m = page.rotation_matrix
+    rot = (m.a, m.b, m.c, m.d, m.e, m.f)
+    px0, py0, px1, py1 = page.rect
     arr = np.asarray(rendered.image)
     out: list[PdfWord] = []
 
@@ -183,19 +233,25 @@ def text_layer_words(page: pymupdf.Page, rendered: RenderedPage) -> list[PdfWord
             ) -> None:
                 if not chars or style is None:
                     return
+                if len(out) >= MAX_TEXT_LAYER_WORDS_PER_PAGE:
+                    # Fail closed: truncating would hide text from the hidden-text detector.
+                    raise RejectedInput("The PDF has an unusually large amount of text.")
                 text = "".join(c for c, _ in chars)
-                r = pymupdf.Rect(chars[0][1])
-                for _, b in chars[1:]:
-                    r |= pymupdf.Rect(b)
-                r = r * rot  # into rotated page space (what the render shows)
-                inter = pymupdf.Rect(r) & page_rect
-                area = max(r.get_area(), 1e-9)
-                off = inter.is_empty or inter.get_area() / area < 0.5
+                x0 = min(b[0] for _, b in chars)
+                y0 = min(b[1] for _, b in chars)
+                x1 = max(b[2] for _, b in chars)
+                y1 = max(b[3] for _, b in chars)
+                # into rotated page space (what the render shows)
+                rx0, ry0, rx1, ry1 = _transform(rot, (x0, y0, x1, y1))
+                ix = min(rx1, px1) - max(rx0, px0)
+                iy = min(ry1, py1) - max(ry0, py0)
+                area = max((rx1 - rx0) * (ry1 - ry0), 1e-9)
+                off = ix <= 0 or iy <= 0 or (ix * iy) / area < 0.5
                 box: Box = (
-                    int(np.floor(r.x0 * rendered.sx)),
-                    int(np.floor(r.y0 * rendered.sy)),
-                    int(np.ceil(r.x1 * rendered.sx)),
-                    int(np.ceil(r.y1 * rendered.sy)),
+                    math.floor(rx0 * rendered.sx),
+                    math.floor(ry0 * rendered.sy),
+                    math.ceil(rx1 * rendered.sx),
+                    math.ceil(ry1 * rendered.sy),
                 )
                 bg = None if off else sample_background(arr, box)
                 size, color, _font, invisible = style

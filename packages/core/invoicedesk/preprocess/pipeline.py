@@ -17,8 +17,8 @@ Steps, in order:
    (``enhanced_words``, the faint-text detector's input).
 6. **Text layer** (PDFs): every text-layer word with font size, fill colour, ``off_page`` and the
    background colour sampled from the render, as :class:`TextLayerSpan`.
-7. **Native PDFs** (text layer with at least ``NATIVE_MIN_ALNUM`` on-page alphanumerics): text-
-   layer words *corroborated by OCR of the render* (an overlapping OCR word with similar text)
+7. **Native PDFs** (at least ``NATIVE_MIN_ALNUM`` alphanumerics of text-layer words
+   *corroborated by OCR of the render*, see ``_merge_native``): corroborated text-layer words
    replace those OCR words in ``words`` with ``origin="pdf_text"`` (exact text, exact boxes).
    Uncorroborated text-layer words (white-on-white, 2 pt, off-page, invisible render mode,
    covered) are *not* added to ``words``; they stay in ``text_layer`` only. So ``words`` is
@@ -55,7 +55,14 @@ from invoicedesk.contracts.preprocess import (
 from invoicedesk.preprocess import images, pdf
 from invoicedesk.preprocess.ocr import default_engine, reading_order
 
-__all__ = ["NATIVE_MIN_ALNUM", "DefaultPreprocessor", "render_key"]
+__all__ = [
+    "MIN_VISIBLE_DELTA_E",
+    "MIN_VISIBLE_PT",
+    "NATIVE_MIN_ALNUM",
+    "DefaultPreprocessor",
+    "delta_e76",
+    "render_key",
+]
 
 NATIVE_MIN_ALNUM = 10
 _GENERIC_MIME = {"", "application/octet-stream", "binary/octet-stream"}
@@ -63,6 +70,13 @@ _DOC_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 #: OCR corroboration: overlap (intersection / smaller box area) and text similarity thresholds.
 _OVERLAP_MIN = 0.3
 _SIMILARITY_MIN = 60.0
+#: A component's joined text-layer text must match its joined OCR text at least this well.
+_GROUP_SIMILARITY_MIN = 75.0
+#: Text-layer and OCR word heights must agree within this ratio (2 pt text on 12 pt words fails).
+_HEIGHT_RATIO_MIN = 0.5
+#: DESIGN §5.5 hidden-text thresholds: text below these is never "visible" corroboration.
+MIN_VISIBLE_PT = 4.0
+MIN_VISIBLE_DELTA_E = 5.0
 
 
 def render_key(prefix: str, document_id: str, index: int) -> str:
@@ -172,17 +186,17 @@ class DefaultPreprocessor:
                 )
 
         spans: list[TextLayerSpan] = [w.span for w in layer]
-        on_page_alnum = sum(sum(c.isalnum() for c in s.text) for s in spans if not s.off_page)
-        is_native = on_page_alnum >= NATIVE_MIN_ALNUM
-
-        words: list[OcrWord] = []
+        merged: list[OcrWord] = []
         for index, _, _ in rendered:
-            ocr_words = ocr_by_page[index]
-            if is_native:
-                page_layer = [w for w in layer if w.span.page == index]
-                words.extend(self._merge_native(page_layer, ocr_words))
-            else:
-                words.extend(ocr_words)
+            page_layer = [w for w in layer if w.span.page == index]
+            merged.extend(self._merge_native(page_layer, ocr_by_page[index]))
+        # "Usable text layer" = text-layer text the render corroborates; hidden-only layers
+        # (white, invisible, off-page, or a scan's invisible OCR layer) do not count.
+        corroborated = sum(
+            sum(c.isalnum() for c in w.text) for w in merged if w.origin == "pdf_text"
+        )
+        is_native = corroborated >= NATIVE_MIN_ALNUM
+        words = merged if is_native else [w for i in sorted(ocr_by_page) for w in ocr_by_page[i]]
         words = [w.model_copy(update={"id": i}) for i, w in enumerate(words)]
         enhanced = [w.model_copy(update={"id": len(words) + i}) for i, w in enumerate(enhanced)]
 
@@ -220,30 +234,121 @@ class DefaultPreprocessor:
 
     @staticmethod
     def _merge_native(layer: list[pdf.PdfWord], ocr_words: list[OcrWord]) -> list[OcrWord]:
-        """Swap OCR words for OCR-corroborated text-layer words (see module docstring, step 7)."""
-        accepted: list[OcrWord] = []
-        covered: set[int] = set()
+        """Swap OCR words for OCR-corroborated text-layer words (see module docstring, step 7).
+
+        A text-layer word is a candidate only if it could be visible at all (on-page, not
+        invisible, at least ``MIN_VISIBLE_PT`` and fill/background ΔE >= ``MIN_VISIBLE_DELTA_E``,
+        the hidden-text detector's thresholds) and it overlaps OCR words of a compatible height
+        with similar text. Candidates and OCR words are then grouped into connected components by
+        overlap; a component is swapped only when its text-layer words, joined, match its OCR
+        words, joined (``fuzz.ratio``). So a short hidden word sitting on a longer visible one
+        ("1" on "$1,240.00") can never replace it, and merged/split OCR words still match.
+        """
+        cands: list[TextLayerSpan] = []
+        edges: dict[int, list[int]] = {}
         for pw in layer:
             s = pw.span
-            if s.off_page or pw.invisible or not s.text.strip():
+            if pw.invisible or not _could_be_visible(s):
                 continue
-            hits = [i for i, o in enumerate(ocr_words) if _overlap(s.box, o.box) >= _OVERLAP_MIN]
+            hits = [
+                i
+                for i, o in enumerate(ocr_words)
+                if _overlap(s.box, o.box) >= _OVERLAP_MIN and _height_ok(s.box, o.box)
+            ]
             if not hits:
                 continue
             seen = " ".join(ocr_words[i].text for i in hits)
-            score = fuzz.partial_ratio(_norm(s.text), _norm(seen))
-            if score < _SIMILARITY_MIN:
+            if fuzz.partial_ratio(_norm(s.text), _norm(seen)) < _SIMILARITY_MIN:
                 continue
-            covered.update(hits)
-            accepted.append(
+            edges[len(cands)] = hits
+            cands.append(s)
+
+        # Union-find over nodes: candidates 0..C-1, OCR words C..C+O-1.
+        n_c = len(cands)
+        parent = list(range(n_c + len(ocr_words)))
+
+        def find(x: int) -> int:
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        for ci, hits in edges.items():
+            for oi in hits:
+                parent[find(ci)] = find(n_c + oi)
+        groups: dict[int, tuple[list[int], list[int]]] = {}
+        for ci in range(n_c):
+            groups.setdefault(find(ci), ([], []))[0].append(ci)
+        for oi in range(len(ocr_words)):
+            root = find(n_c + oi)
+            if root in groups:
+                groups[root][1].append(oi)
+
+        accepted: list[OcrWord] = []
+        covered: set[int] = set()
+        for c_idx, o_idx in groups.values():
+            layer_text = "".join(
+                _norm(cands[i].text) for i in sorted(c_idx, key=lambda i: _order(cands[i].box))
+            )
+            ocr_text = "".join(
+                _norm(ocr_words[i].text)
+                for i in sorted(o_idx, key=lambda i: _order(ocr_words[i].box))
+            )
+            score = fuzz.ratio(layer_text, ocr_text)
+            if score < _GROUP_SIMILARITY_MIN:
+                continue
+            covered.update(o_idx)
+            accepted.extend(
                 OcrWord(
                     id=0,
-                    page=s.page,
-                    text=s.text,
-                    box=s.box,
+                    page=cands[i].page,
+                    text=cands[i].text,
+                    box=cands[i].box,
                     conf=round(score / 100.0, 4),
                     origin="pdf_text",
                 )
+                for i in c_idx
             )
         rest = [o for i, o in enumerate(ocr_words) if i not in covered]
         return reading_order([*accepted, *rest])
+
+
+def _order(box: tuple[int, int, int, int]) -> tuple[int, int]:
+    return (box[1] // 8, box[0])
+
+
+def _height_ok(a: tuple[int, int, int, int], b: tuple[int, int, int, int]) -> bool:
+    ha, hb = max(1, a[3] - a[1]), max(1, b[3] - b[1])
+    return min(ha, hb) / max(ha, hb) >= _HEIGHT_RATIO_MIN
+
+
+def _srgb_to_lab(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
+    def lin(c: int) -> float:
+        v = c / 255.0
+        return v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4
+
+    r, g, b = (lin(c) for c in rgb)
+    x = (0.4124 * r + 0.3576 * g + 0.1805 * b) / 0.95047
+    y = 0.2126 * r + 0.7152 * g + 0.0722 * b
+    z = (0.0193 * r + 0.1192 * g + 0.9505 * b) / 1.08883
+
+    def f(t: float) -> float:
+        return t ** (1 / 3) if t > 0.008856 else 7.787 * t + 16 / 116
+
+    fx, fy, fz = f(x), f(y), f(z)
+    return (116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz))
+
+
+def delta_e76(a: tuple[int, int, int], b: tuple[int, int, int]) -> float:
+    """CIE76 colour difference of two sRGB colours."""
+    la, lb = _srgb_to_lab(a), _srgb_to_lab(b)
+    return sum((p - q) ** 2 for p, q in zip(la, lb, strict=True)) ** 0.5
+
+
+def _could_be_visible(s: TextLayerSpan) -> bool:
+    """False for text the hidden-text detector would call hidden by style (DESIGN §5.5)."""
+    if s.off_page or not s.text.strip() or s.font_size_pt < MIN_VISIBLE_PT:
+        return False
+    return s.background_rgb is None or delta_e76(s.fill_rgb, s.background_rgb) >= (
+        MIN_VISIBLE_DELTA_E
+    )

@@ -181,6 +181,8 @@ def sample_background(rgb: np.ndarray, box: Box, *, ring: int = 3) -> tuple[int,
     pixels = outer[mask.reshape(-1)]
     if len(pixels) == 0:
         pixels = rgb[iy0:iy1, ix0:ix1].reshape(-1, 3)
+    if len(pixels) > 4096:  # subsample big rings; the median barely moves
+        pixels = pixels[:: len(pixels) // 4096 + 1]
     med = np.median(pixels, axis=0)
     return (int(med[0]), int(med[1]), int(med[2]))
 
