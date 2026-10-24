@@ -342,6 +342,9 @@ def test_build_accounting_adapter_end_to_end(token_server) -> None:
         )
 
     router.post(f"{SANDBOX_API_BASE}/v3/company/{REALM}/bill").mock(side_effect=bill)
+    router.get(f"{SANDBOX_API_BASE}/v3/company/{REALM}/query").mock(
+        return_value=httpx.Response(200, json={"QueryResponse": {}})
+    )
     a = build_accounting_adapter(_settings(), store=MemoryTokenStore(), background_refresh=False)
     assert isinstance(a, QuickBooksAdapter)
     res = a.create_bill(make_bill(), idempotency_key="k1")
@@ -382,3 +385,104 @@ def test_postgres_token_store_round_trip_encrypted(pg_dsn: str) -> None:
     assert wrong.load(REALM) is None  # secret rotated -> fall back to the .env seed
     with pytest.raises(ValueError):
         PostgresTokenStore(pg_dsn, key="")
+
+
+# ---------------------------------------------------------------- several processes, one realm
+def test_second_process_adopts_rotation_instead_of_using_stale_refresh_token(
+    token_server,
+) -> None:
+    """API and worker each hold a manager. The worker refreshes (rotating the refresh token);
+    when the API's access token comes due it must use the rotated token from the store."""
+    ts, _ = token_server
+    store, clock = MemoryTokenStore(), Clock()
+    api, worker = manager(store, clock), manager(store, clock)
+    assert api.access_token() == "access-1"
+    clock.now += dt.timedelta(minutes=56)
+    assert worker.access_token() == "access-2"  # worker refreshed with refresh-1
+    # the API's token is due too: it finds the worker's fresh one and does not refresh again
+    assert api.access_token() == "access-2"
+    assert [form(r)["refresh_token"] for r in ts.requests] == ["refresh-seed", "refresh-1"]
+    clock.now += dt.timedelta(minutes=56)
+    assert api.access_token() == "access-3"
+    assert form(ts.requests[-1])["refresh_token"] == "refresh-2"  # never the stale refresh-1
+
+
+def test_force_refresh_adopts_token_another_process_stored(token_server) -> None:
+    ts, _ = token_server
+    store, clock = MemoryTokenStore(), Clock()
+    api, worker = manager(store, clock), manager(store, clock)
+    assert api.access_token() == "access-1"
+    assert worker.access_token() == "access-1"  # shared from the store, no second grant
+    assert worker.force_refresh() == "access-2"
+    assert api.force_refresh() == "access-2"  # 401 on access-1: adopt the stored one
+    assert len(ts.requests) == 2
+    assert api.force_refresh() == "access-3"  # 401 on access-2 itself: a real refresh
+    assert form(ts.requests[-1])["refresh_token"] == "refresh-2"
+
+
+def test_lost_refresh_race_retries_with_rotated_token(token_server) -> None:
+    ts, _ = token_server
+    store, clock = MemoryTokenStore(), Clock()
+    m = manager(store, clock)
+    assert m.access_token() == "access-1"
+    clock.now += dt.timedelta(minutes=56)
+
+    class RacingStore(MemoryTokenStore):
+        """load() before the grant sees refresh-1; the competing process then rotates."""
+
+        def __init__(self) -> None:
+            super().__init__()
+            self.loads = 0
+
+        def load(self, realm_id: str) -> StoredTokens | None:
+            self.loads += 1
+            if self.loads == 2:  # the reload after invalid_grant
+                rotated = TokenSet("access-x", "refresh-x", clock.now - dt.timedelta(minutes=1))
+                self._rows[realm_id] = StoredTokens(rotated, seed_fingerprint("refresh-seed"))
+            return super().load(realm_id)
+
+    racing = RacingStore()
+    racing.save(REALM, store.load(REALM))  # type: ignore[arg-type]
+    m._store = racing  # pyright: ignore[reportPrivateUsage]
+    ts.fail.append(httpx.Response(400, json={"error": "invalid_grant"}))
+    assert m.access_token() == "access-2"
+    assert [form(r)["refresh_token"] for r in ts.requests[-2:]] == ["refresh-1", "refresh-x"]
+
+
+def test_lost_race_with_fresh_stored_token_adopts_it(token_server) -> None:
+    ts, _ = token_server
+    clock = Clock()
+
+    class Store(MemoryTokenStore):
+        def __init__(self) -> None:
+            super().__init__()
+            self.loads = 0
+
+        def load(self, realm_id: str) -> StoredTokens | None:
+            self.loads += 1
+            if self.loads == 3:  # 1: first use, 2: pre-grant reload, 3: after invalid_grant
+                fresh = TokenSet("access-y", "refresh-y", clock.now + dt.timedelta(hours=1))
+                self._rows[realm_id] = StoredTokens(fresh, seed_fingerprint("refresh-seed"))
+            return super().load(realm_id)
+
+    m = manager(Store(), clock)
+    ts.fail.append(httpx.Response(400, json={"error": "invalid_grant"}))
+    assert m.access_token() == "access-y"
+    assert len(ts.requests) == 1
+
+
+def test_invalid_grant_without_newer_stored_token_is_final(token_server) -> None:
+    ts, _ = token_server
+    ts.fail.append(httpx.Response(400, json={"error": "invalid_grant"}))
+    with pytest.raises(AccountingError) as ei:
+        manager().access_token()
+    assert not ei.value.retryable and "qbo_oauth_bootstrap" in str(ei.value)
+    assert len(ts.requests) == 1
+
+
+def test_token_endpoint_non_json_200_is_a_retryable_error(token_server) -> None:
+    ts, _ = token_server
+    ts.fail.append(httpx.Response(200, text="<html>maintenance</html>"))
+    with pytest.raises(AccountingError) as ei:
+        manager().access_token()
+    assert ei.value.retryable

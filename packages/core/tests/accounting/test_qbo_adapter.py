@@ -240,20 +240,90 @@ def test_duplicate_docnumber_ours_resolves_to_already_exists(fake_qbo, transport
     again = adapter(transport, now=T0).create_bill(make_bill(), idempotency_key=KEY)
     assert again.status == "already_exists" and again.external_id == first.external_id
     assert server.effects == 1
-    q = server.requests[-1]
+    q = server.lookups[-1]
     assert q.method == "GET" and q.url.path.endswith("/query")
     assert "from Bill where DocNumber = 'INV-2231'" in q.url.params["query"]
 
 
-def test_duplicate_docnumber_not_ours_is_not_retryable(fake_qbo, transport) -> None:
+def test_same_vendor_same_docnumber_not_ours_is_refused_before_posting(fake_qbo, transport) -> None:
+    """Pre-flight: a bill keyed by someone else for this vendor + DocNumber blocks the post."""
+    server, _ = fake_qbo
+    adapter(transport).create_bill(make_bill(), idempotency_key="someone-else")
+    posts = len(server.requests)
+    with pytest.raises(QboApiError) as ei:
+        adapter(transport).create_bill(make_bill(doc_number="INV-2231"), idempotency_key=KEY)
+    assert not ei.value.retryable and "possible duplicate invoice" in str(ei.value)
+    assert server.effects == 1 and len(server.requests) == posts  # nothing was POSTed
+
+
+def test_duplicate_docnumber_6140_other_vendor_is_not_retryable(fake_qbo, transport) -> None:
+    """Another vendor used the DocNumber: pre-flight lets it through, QBO's 6140 stops it."""
     server, _ = fake_qbo
     server.duplicate_docnumber_check = True
-    adapter(transport).create_bill(make_bill(), idempotency_key="someone-else")
+    adapter(transport).create_bill(make_bill(vendor_ref="99"), idempotency_key="someone-else")
     with pytest.raises(QboApiError) as ei:
         adapter(transport).create_bill(make_bill(doc_number="INV-2231"), idempotency_key=KEY)
     assert not ei.value.retryable
     assert "6140" in ei.value.codes
     assert server.effects == 1
+    assert len(server.lookups) == 3  # pre-flight x2, then the post-6140 lookup
+
+
+def test_expired_requestid_cache_without_docnumber_check_never_double_posts(
+    fake_qbo, transport
+) -> None:
+    """QBO's default (duplicate-number warning off) + an expired requestid cache: a late retry
+    from a fresh worker must still find the original bill instead of posting a second one."""
+    server, _ = fake_qbo
+    assert server.duplicate_docnumber_check is False
+    first = adapter(transport).create_bill(make_bill(), idempotency_key=KEY)
+    server.cache.clear()
+    later = adapter(transport, now=T0 + dt.timedelta(days=3))
+    again = later.create_bill(make_bill(), idempotency_key=KEY)
+    assert again.status == "already_exists" and again.external_id == first.external_id
+    assert server.effects == 1 and len(server.bills) == 1
+    assert [r.method for r in server.requests] == ["POST"]  # the retry never POSTed
+
+
+def test_preflight_lookup_shape(fake_qbo, transport) -> None:
+    server, _ = fake_qbo
+    adapter(transport).create_bill(make_bill(), idempotency_key=KEY)
+    (q,) = server.lookups
+    assert q.method == "GET" and "requestid" not in q.url.params
+    assert q.url.params["query"] == (
+        "select Id, SyncToken, DocNumber, VendorRef, PrivateNote, TotalAmt"
+        " from Bill where DocNumber = 'INV-2231'"
+    )
+
+
+def test_other_vendor_same_docnumber_posts(fake_qbo, transport) -> None:
+    server, _ = fake_qbo
+    adapter(transport).create_bill(make_bill(vendor_ref="99"), idempotency_key="k-other")
+    res = adapter(transport).create_bill(make_bill(), idempotency_key=KEY)
+    assert res.status == "created" and server.effects == 2
+
+
+def test_preflight_found_bill_with_wrong_total_raises_mismatch(fake_qbo, transport) -> None:
+    server, _ = fake_qbo
+    first = adapter(transport).create_bill(make_bill(), idempotency_key=KEY)
+    server.cache.clear()
+    server.bills[first.external_id]["TotalAmt"] = Decimal("1339.20")
+    with pytest.raises(QboTotalMismatch) as ei:
+        adapter(transport).create_bill(make_bill(), idempotency_key=KEY)
+    assert ei.value.external_id == first.external_id and server.effects == 1
+
+
+@pytest.mark.parametrize("total", [0, -500])
+def test_non_positive_total_refused_no_http(fake_qbo, transport, total: int) -> None:
+    server, _ = fake_qbo
+    bill = make_bill(
+        lines=(BillLine(description="credit", amount_cents=total, expense_account_ref="7"),),
+        total_cents=total,
+    )
+    with pytest.raises(AccountingError) as ei:
+        adapter(transport).create_bill(bill, idempotency_key=KEY)
+    assert not ei.value.retryable
+    assert server.requests == [] and server.lookups == []
 
 
 def test_docnumber_quotes_are_escaped_in_query(fake_qbo, transport) -> None:
@@ -264,7 +334,7 @@ def test_docnumber_quotes_are_escaped_in_query(fake_qbo, transport) -> None:
     server.cache.clear()
     res = adapter(transport).create_bill(make_bill(doc_number="O'BRIEN-1"), idempotency_key=KEY)
     assert res.status == "already_exists"
-    assert "DocNumber = 'O\\'BRIEN-1'" in server.requests[-1].url.params["query"]
+    assert "DocNumber = 'O\\'BRIEN-1'" in server.lookups[-1].url.params["query"]
 
 
 def test_total_mismatch_raises_with_external_id(fake_qbo, transport) -> None:
@@ -362,19 +432,22 @@ def test_fault_in_200_body_is_an_error(fake_qbo, transport) -> None:
 
 def test_401_refreshes_once_then_succeeds(fake_qbo, tokens: StaticTokens, sleeps) -> None:
     server, _ = fake_qbo
+    server.lookups_passthrough = False
     server.valid_tokens = {"access-2"}
     t = QboTransport(realm_id=REALM, tokens=tokens, http=httpx.Client(), sleep=sleeps.append)
     res = adapter(t).create_bill(make_bill(), idempotency_key=KEY)
     assert res.status == "created" and tokens.refreshes == 1
-    assert [r.headers["authorization"] for r in server.requests] == [
-        "Bearer access-1",
-        "Bearer access-2",
+    assert [(r.method, r.headers["authorization"]) for r in server.requests] == [
+        ("GET", "Bearer access-1"),  # pre-flight lookup gets the 401
+        ("GET", "Bearer access-2"),
+        ("POST", "Bearer access-2"),
     ]
     assert sleeps == []
 
 
 def test_401_after_refresh_is_not_retryable(fake_qbo, transport, tokens) -> None:
     server, _ = fake_qbo
+    server.lookups_passthrough = False
     server.valid_tokens = set()
     with pytest.raises(AccountingError) as ei:
         adapter(transport).create_bill(make_bill(), idempotency_key=KEY)

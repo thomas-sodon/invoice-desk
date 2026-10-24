@@ -15,12 +15,21 @@ Deleting demo bills lives in :mod:`invoicedesk.accounting.sandbox_admin`, a demo
 the pipeline and MCP server never receive.
 
 **Idempotency.** QBO answers a repeated ``requestid`` with the original response instead of
-acting again, so a retried post returns the same Bill. The adapter reports ``already_exists``
-when (a) this adapter instance already posted that key, or (b) the returned Bill was created
-before this call started (minus a clock-skew allowance), i.e. a replay after a crash. If QBO's
-requestid cache has expired and the duplicate-DocNumber check fires (fault 6140), the adapter
-looks the Bill up by ``DocNumber`` and accepts it only when its ``PrivateNote`` carries this
-idempotency key; any other match is a genuine duplicate and is not retryable.
+acting again, so a retried post returns the same Bill. QBO's requestid cache is not documented
+to last forever, and its duplicate-DocNumber check (fault 6140) is a company preference that is
+off by default, so neither alone can stop a late retry from double-posting. The adapter
+therefore also does a read-only pre-flight lookup (``select ... from Bill where DocNumber =``)
+before every first post of a key in this process:
+
+* a Bill whose ``PrivateNote`` carries this key's marker (and the same vendor) is ours: the
+  adapter returns it as ``already_exists`` without posting;
+* a Bill with the same DocNumber and vendor but no matching marker is a likely duplicate
+  invoice (e.g. keyed by hand): non-retryable error, nothing posted;
+* otherwise it posts with the ``requestid``.
+
+The adapter reports ``already_exists`` when (a) the pre-flight or 6140 lookup found our Bill,
+(b) this adapter instance already posted that key, or (c) the returned Bill was created before
+this call started (minus a clock-skew allowance), i.e. a requestid replay after a crash.
 
 QBO limits ``requestid`` to 50 characters; longer keys (``idempotency_key_for`` yields 53) map to
 a deterministic UUIDv5, so a retry of the same key always sends the same ``requestid``.
@@ -153,6 +162,14 @@ class QuickBooksAdapter:
                 f"bill lines sum to {line_sum} cents but total is {bill.total_cents} cents",
                 retryable=False,
             )
+        if bill.total_cents <= 0:
+            raise AccountingError(
+                "a bill total must be positive (credits are not posted as bills)", retryable=False
+            )
+        if idempotency_key not in self.__seen:
+            found = self.__find_existing(bill, idempotency_key, None)
+            if found is not None:
+                return found
         payload = self.__bill_payload(bill, idempotency_key)
         started = self.__clock()
         try:
@@ -161,7 +178,10 @@ class QuickBooksAdapter:
             )
         except QboApiError as exc:
             if _DUPLICATE_DOCNUMBER in exc.codes:
-                return self.__resolve_duplicate(bill, idempotency_key, exc)
+                found = self.__find_existing(bill, idempotency_key, exc)
+                if found is not None:
+                    return found
+                raise self.__duplicate_error(bill, exc) from exc
             raise
         entity = resp.body.get("Bill") if isinstance(resp.body, Mapping) else None
         if not isinstance(entity, Mapping) or not entity.get("Id"):
@@ -211,22 +231,37 @@ class QuickBooksAdapter:
             payload["DueDate"] = bill.due_date.isoformat()
         return payload
 
-    def __resolve_duplicate(
-        self, bill: BillRequest, idempotency_key: str, exc: QboApiError
-    ) -> BillResult:
-        """6140 = DocNumber already used. Ours (marker matches) -> already_exists; else error."""
+    def __find_existing(
+        self, bill: BillRequest, idempotency_key: str, exc: QboApiError | None
+    ) -> BillResult | None:
+        """Look the Bill up by DocNumber. Ours (marker + vendor match) -> ``already_exists``.
+
+        Same DocNumber and vendor without our marker -> a likely duplicate invoice: raise
+        (not retryable). ``None`` when nothing relevant exists (only possible before posting;
+        after a 6140 the caller raises the duplicate error).
+        """
         doc = bill.doc_number.replace("\\", "\\\\").replace("'", "\\'")
         # QBO query language, not SQL; the string literal is escaped above.
-        cols = "Id, SyncToken, DocNumber, VendorRef, PrivateNote"
+        cols = "Id, SyncToken, DocNumber, VendorRef, PrivateNote, TotalAmt"
         query = f"select {cols} from Bill where DocNumber = '{doc}'"  # noqa: S608
         resp = self.__transport.request("GET", "query", params={"query": query})
         qr = resp.body.get("QueryResponse", {}) if isinstance(resp.body, Mapping) else {}
         marker = marker_for(idempotency_key)
-        for b in qr.get("Bill", []) or []:
-            vref = (b.get("VendorRef") or {}).get("value")
-            if marker in str(b.get("PrivateNote", "")) and str(vref) == bill.vendor_ref:
+        rows = [b for b in (qr.get("Bill", []) or []) if isinstance(b, Mapping)]
+        same_vendor = [
+            b for b in rows if str((b.get("VendorRef") or {}).get("value")) == bill.vendor_ref
+        ]
+        for b in same_vendor:
+            if marker in str(b.get("PrivateNote", "")):
                 ext = str(b["Id"])
                 self.__seen[idempotency_key] = ext
+                total = b.get("TotalAmt")
+                if total is not None and Decimal(str(total)) != cents_to_decimal(bill.total_cents):
+                    raise QboTotalMismatch(
+                        f"QBO bill {ext} total {total} != expected"
+                        f" {cents_to_decimal(bill.total_cents)}",
+                        external_id=ext,
+                    )
                 log.info("qbo bill %s already_exists (found by DocNumber + marker)", ext)
                 return BillResult(
                     system="qbo",
@@ -236,14 +271,20 @@ class QuickBooksAdapter:
                     if b.get("SyncToken") is not None
                     else None,
                 )
-        raise QboApiError(
-            f"QBO already has a bill numbered {bill.doc_number!r} that InvoiceDesk did not post"
-            " (possible duplicate invoice)",
+        if same_vendor:
+            raise self.__duplicate_error(bill, exc)
+        return None
+
+    @staticmethod
+    def __duplicate_error(bill: BillRequest, exc: QboApiError | None) -> QboApiError:
+        return QboApiError(
+            f"QBO already has a bill numbered {bill.doc_number!r} for this vendor that"
+            " InvoiceDesk did not post (possible duplicate invoice)",
             retryable=False,
-            status_code=exc.status_code,
-            faults=exc.faults,
-            intuit_tid=exc.intuit_tid,
-        ) from exc
+            status_code=exc.status_code if exc else None,
+            faults=exc.faults if exc else (),
+            intuit_tid=exc.intuit_tid if exc else None,
+        )
 
     def __status(
         self,

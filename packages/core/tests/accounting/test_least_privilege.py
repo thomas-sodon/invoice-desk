@@ -108,7 +108,7 @@ def test_http_calls_during_a_full_post(fake_qbo, transport) -> None:
     )
     allowed = {("POST", "bill"), ("POST", "upload"), ("GET", "query")}
     seen = set()
-    for r in server.requests:
+    for r in [*server.requests, *server.lookups]:
         path = r.url.path.rsplit("/", 1)[-1]
         seen.add((r.method, path))
         assert r.url.host == "sandbox-quickbooks.api.intuit.com"

@@ -5,9 +5,11 @@ Steps, all scoped to batches with ``mode = 'demo'`` for one tenant:
 1. **Plan** (always): list demo batches, their documents and the ``bills`` rows they posted.
 2. **Sandbox** (``apply`` and a :class:`QboSandboxAdmin`): delete each posted QBO bill (only
    bills carrying the InvoiceDesk marker; see :mod:`invoicedesk.accounting.sandbox_admin`).
-   Optionally sweep any other marker-carrying sandbox bills (``sweep=True``). If any delete
-   fails, the database is left untouched so a re-run can finish the job.
-3. **Database** (``apply``): in one transaction delete the demo documents' non-audit rows
+   Optionally sweep any other marker-carrying sandbox bills (``sweep=True``) that no non-demo
+   document points at. If any delete fails, the database is left untouched so a re-run can
+   finish the job.
+3. **Database** (``apply``): in one transaction, re-plan (refusing if a demo document posted
+   to QBO since step 1), then delete the demo documents' non-audit rows
    (jobs, bills, comparison results, documents and everything that cascades from them) and the
    demo batches, then append one ``demo.reset`` audit row. ``audit_log`` is never touched.
 4. **Re-seed**: call ``invoicedesk_data.seed.seed_database`` (imported lazily) so the business
@@ -56,6 +58,8 @@ class DemoResetPlan:
     #: (document_id, external_id) of bills posted to QBO by demo documents
     qbo_bills: tuple[tuple[str, str], ...]
     other_bills: int  # bills rows for demo docs in other systems (fake) or without external id
+    #: QBO bill ids that non-demo documents (any tenant) point at; ``sweep`` never deletes them
+    protected_qbo_ids: frozenset[str] = frozenset()
 
 
 @dataclass(slots=True)
@@ -121,7 +125,17 @@ def plan_demo_reset(conn: Conn, tenant_id: str) -> DemoResetPlan:
         for b in bills
         if b["system"] == "qbo" and b["external_id"] and b["status"] != "deleted"
     )
-    return DemoResetPlan(tenant_id, tuple(batches), tuple(docs), qbo, len(bills) - len(qbo))
+    protected = frozenset(
+        str(r["external_id"])
+        for r in conn.execute(
+            "select external_id from bills where system = 'qbo' and external_id is not null"
+            " and not (document_id = any(%s::uuid[]))",
+            (docs,),
+        ).fetchall()
+    )
+    return DemoResetPlan(
+        tenant_id, tuple(batches), tuple(docs), qbo, len(bills) - len(qbo), protected
+    )
 
 
 def _default_seeder(db: Database, tenant_id: str) -> Any:
@@ -177,7 +191,12 @@ def run_demo_reset(
     else:
         targets = [ext for _, ext in plan.qbo_bills]
         if sweep:
-            targets += [b.id for b in admin.list_invoicedesk_bills() if b.id not in targets]
+            # untracked marker bills only: never a bill a live (non-demo) document posted
+            targets += [
+                b.id
+                for b in admin.list_invoicedesk_bills()
+                if b.id not in targets and b.id not in plan.protected_qbo_ids
+            ]
         for ext in targets:
             out = admin.delete_bill(ext)
             result = getattr(out, "result", "deleted")
@@ -187,6 +206,17 @@ def run_demo_reset(
 
     # ---- database (one transaction, audit row inside it)
     with db.tx() as conn:
+        # Re-plan inside the delete transaction: a demo document that posted to QBO after the
+        # sandbox step would otherwise lose its row while its bill stays in the sandbox.
+        current = plan_demo_reset(conn, tenant_id)
+        posted_since = set(current.qbo_bills) - set(plan.qbo_bills)
+        if posted_since and not report.sandbox_skipped:
+            raise DemoResetError(
+                f"{len(posted_since)} demo bill(s) were posted to QBO during the reset;"
+                " nothing was deleted from the database, run demo-reset again"
+            )
+        plan = current
+        report.plan = current
         report.rows_deleted = _clear_db(conn, plan)
         audit_append(
             conn,

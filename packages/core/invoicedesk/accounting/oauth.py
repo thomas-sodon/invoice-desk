@@ -227,7 +227,12 @@ def _post_token(
         ) from exc
     if resp.status_code != 200:
         raise _token_error(resp)
-    body = resp.json()
+    try:
+        body = resp.json()
+    except ValueError as exc:
+        raise AccountingError(
+            "Intuit token response is not JSON", retryable=True, status_code=resp.status_code
+        ) from exc
     if not isinstance(body, dict) or "access_token" not in body or "refresh_token" not in body:
         raise AccountingError("Intuit token response missing tokens", retryable=False)
     return body
@@ -339,9 +344,21 @@ class QboTokenManager:
             return tokens.access_token
 
     def force_refresh(self) -> str:
-        """Called after a 401: the access token was revoked or expired early."""
+        """Called after a 401: the access token was revoked or expired early.
+
+        If another process already stored a different, still-valid access token, that one is
+        adopted instead of spending another refresh."""
         with self._lock:
-            return self._refresh_locked().access_token
+            rejected = self._tokens.access_token if self._tokens else None
+            shared = self._reload_shared()
+            if (
+                shared is not None
+                and shared.access_token != rejected
+                and not self._needs_refresh(shared)
+            ):
+                self._tokens = shared
+                return shared.access_token
+            return self._refresh_locked(reloaded=True).access_token
 
     def refresh_if_due(self) -> bool:
         with self._lock:
@@ -350,15 +367,42 @@ class QboTokenManager:
                 return True
             return False
 
-    def _refresh_locked(self) -> TokenSet:
-        current = self._current()
-        refresh_token = current.refresh_token if current else self._seed
-        body = _post_token(
+    def _reload_shared(self) -> TokenSet | None:
+        """Re-read the store: the API, worker and scripts each hold a manager for the same
+        realm, and whichever refreshes first rotates the refresh token for all of them."""
+        self._loaded = True
+        stored = self._store.load(self.realm_id)
+        if stored is not None and stored.seed_fingerprint == self._seed_fp:
+            self._tokens = stored.tokens
+        return self._tokens
+
+    def _grant(self, refresh_token: str) -> dict[str, Any]:
+        return _post_token(
             self._http,
             client_id=self._client_id,
             client_secret=self._client_secret,
             data={"grant_type": "refresh_token", "refresh_token": refresh_token},
         )
+
+    def _refresh_locked(self, *, reloaded: bool = False) -> TokenSet:
+        current = self._tokens if reloaded else self._reload_shared()
+        if not reloaded and current is not None and not self._needs_refresh(current):
+            return current  # another process refreshed (and rotated) since we last looked
+        refresh_token = current.refresh_token if current else self._seed
+        try:
+            body = self._grant(refresh_token)
+        except AccountingError as exc:
+            # Lost a race: another process rotated the refresh token between our read and our
+            # grant. Retry once with the token it stored.
+            if exc.status_code != 400:
+                raise
+            latest = self._reload_shared()
+            if latest is None or latest.refresh_token == refresh_token:
+                raise
+            if not self._needs_refresh(latest):
+                return latest
+            refresh_token = latest.refresh_token
+            body = self._grant(refresh_token)
         tokens = _token_set(body, self._clock())
         # Persist BEFORE using: Intuit may invalidate the old refresh token once rotated.
         self._store.save(self.realm_id, StoredTokens(tokens, self._seed_fp))

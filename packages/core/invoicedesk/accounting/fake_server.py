@@ -74,7 +74,14 @@ class FakeQbo:
     after: list[Callable[[httpx.Request], None]] = field(default_factory=list)
     valid_tokens: set[str] = field(default_factory=lambda: {"access-1"})
     requests: list[httpx.Request] = field(default_factory=list)
+    #: QBO's "warn if duplicate bill number" preference (off by default in QBO, so off here)
     duplicate_docnumber_check: bool = False
+    #: the adapter's DocNumber lookups (``select ... from Bill where DocNumber = ...``) are
+    #: recorded in ``lookups`` instead of ``requests`` and skip the ``before``/``after`` hooks,
+    #: so tests about the write path can reason about writes alone. Set False to treat them
+    #: like any other request.
+    lookups_passthrough: bool = True
+    lookups: list[httpx.Request] = field(default_factory=list)
 
     def _iso(self) -> str:
         return self.now.astimezone(dt.timezone(dt.timedelta(hours=-7))).isoformat()
@@ -86,9 +93,18 @@ class FakeQbo:
             headers={"content-type": "application/json", "intuit_tid": "1-abc-tid"},
         )
 
+    @staticmethod
+    def is_lookup(request: httpx.Request) -> bool:
+        return (
+            request.method == "GET"
+            and request.url.path.endswith("/query")
+            and "where DocNumber" in request.url.params.get("query", "")
+        )
+
     def handle(self, request: httpx.Request) -> httpx.Response:
-        self.requests.append(request)
-        if self.before:
+        lookup = self.lookups_passthrough and self.is_lookup(request)
+        (self.lookups if lookup else self.requests).append(request)
+        if self.before and not lookup:
             r = self.before.pop(0)(request)
             if r is not None:
                 return r
@@ -119,9 +135,10 @@ class FakeQbo:
         text = encode_json(body)
         if rid is not None and status < 500:
             self.cache[rid] = (status, text)
-        for hook in self.after:
-            hook(request)
-        self.after.clear()
+        if not lookup:
+            for hook in self.after:
+                hook(request)
+            self.after.clear()
         return httpx.Response(
             status, content=text.encode(), headers={"content-type": "application/json"}
         )

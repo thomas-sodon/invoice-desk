@@ -104,7 +104,11 @@ def test_admin_lists_marker_bills_with_paging(fake_qbo, transport, monkeypatch) 
     server.bills["1"] = {"Id": "1", "SyncToken": "0", "DocNumber": "HAND", "PrivateNote": ""}
     bills = QboSandboxAdmin(transport).list_invoicedesk_bills()
     assert sorted(b.doc_number for b in bills) == ["INV-0", "INV-1", "INV-2"]
-    queries = [r.url.params["query"] for r in server.requests if r.url.path.endswith("/query")]
+    queries = [
+        r.url.params["query"]
+        for r in server.requests
+        if r.url.path.endswith("/query") and "startposition" in r.url.params["query"]
+    ]
     assert queries == [
         "select Id, SyncToken, DocNumber, PrivateNote from Bill startposition 1 maxresults 2",
         "select Id, SyncToken, DocNumber, PrivateNote from Bill startposition 3 maxresults 2",
@@ -217,7 +221,7 @@ def test_plan_and_dry_run_change_nothing(pg_db: Database) -> None:
 def test_apply_deletes_sandbox_bills_and_demo_rows_only(pg_db: Database) -> None:
     ids = _setup(pg_db)
     audit_before = _count(pg_db, "select count(*) from audit_log")
-    admin = FakeAdmin(marker_bills=("145", "900"))
+    admin = FakeAdmin(marker_bills=("145", "900", "200"))  # 200 = the live document's bill
     seeds: list[str] = []
     report = run_demo_reset(
         pg_db, apply=True, admin=admin, sweep=True, seeder=lambda db, t: seeds.append(t) or "ok"
@@ -251,6 +255,36 @@ def test_apply_deletes_sandbox_bills_and_demo_rows_only(pg_db: Database) -> None
         assert row["after_json"]["documents"] == 3
         assert verify(conn) == (True, None)
     assert "sandbox: deleted 2" in "\n".join(report.lines())
+
+
+@pytest.mark.postgres
+def test_bill_posted_during_reset_aborts_database_step(pg_db: Database) -> None:
+    ids = _setup(pg_db)
+
+    class RacingAdmin(FakeAdmin):
+        def delete_bill(self, bill_id: str) -> DeleteOutcome:
+            if bill_id == "404":  # the worker posts the third demo document meanwhile
+                with pg_db.tx() as conn:
+                    conn.execute("delete from bills where idempotency_key = 'b2'")
+                    repo.record_bill(
+                        conn,
+                        ids["demo_docs"][2],
+                        system="qbo",
+                        idempotency_key="b2q",
+                        status="posted",
+                        external_id="146",
+                    )
+            return super().delete_bill(bill_id)
+
+    with pytest.raises(DemoResetError, match="during the reset"):
+        run_demo_reset(pg_db, apply=True, admin=RacingAdmin(), seeder=lambda d, t: None)
+    assert _count(pg_db, "select count(*) from documents") == 5
+    assert _count(pg_db, "select count(*) from audit_log where action = 'demo.reset'") == 0
+    # a re-run picks the new bill up
+    admin = FakeAdmin()
+    report = run_demo_reset(pg_db, apply=True, admin=admin, seeder=lambda d, t: None)
+    assert sorted(admin.deleted) == ["145", "146", "404"]
+    assert report.rows_deleted["documents"] == 3
 
 
 @pytest.mark.postgres

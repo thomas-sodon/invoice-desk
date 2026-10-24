@@ -223,3 +223,21 @@ don't delete entries. Mark them **closed** when resolved.
   `board:<tenant_id>` broadcast channel is not wired.
 - **Screenshots** are saved to `apps/web/screenshots/` rather than `docs/media/` (outside this
   component's paths). No demo video was recorded.
+
+## QBO adapter review (2026-10-24)
+
+- **Expired `requestid` cache (updates the QBO adapter entry above).** Relying on fault 6140
+  was not enough: QBO's duplicate-bill-number warning is off by default. The adapter now looks
+  the Bill up by DocNumber (read-only `select ... from Bill`) before the first post of each key
+  in a process. A Bill carrying this key's `InvoiceDesk ref` marker is returned as
+  `already_exists`. A same-vendor, same-DocNumber Bill without the marker is refused as a likely
+  duplicate. The 6140 lookup stays as a second check. Two workers posting the same key at the
+  same moment still rely on the `requestid` alone. Not verified against a live sandbox.
+- **Attachments after cache expiry.** `attach_file` has no lookup fallback. A retry after QBO's
+  `requestid` cache expires could attach the same file twice. No money moves, but the Bill shows
+  a duplicate attachment.
+- **Token refresh across processes.** The API, worker and scripts each run a token manager for
+  the same realm. Each re-reads `qbo_oauth_tokens` before refreshing and retries once with the
+  stored token after `invalid_grant`. Simultaneous refreshes are not serialized by a database
+  lock, and Intuit's behaviour when the same refresh token is used twice has not been checked
+  live.
