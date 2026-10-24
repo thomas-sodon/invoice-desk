@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  color-scheme: light;
+}
+
+html {
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* WRONG stamp on the comparison page */
+.stamp {
+  transform: rotate(-8deg);
+  border: 3px solid currentColor;
+  letter-spacing: 0.12em;
+}

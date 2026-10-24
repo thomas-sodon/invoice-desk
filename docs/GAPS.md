@@ -196,3 +196,30 @@ don't delete entries. Mark them **closed** when resolved.
   `data/generated/` and rebuilt by `make data-generate data-adversarial` (about 75 s,
   deterministic: the frozen-split test checks the truths and gold hashes). Only the demo batch
   (about 3.5 MB) is committed. The spec's "release asset" upload is not done.
+
+## Web app (2026-10-24)
+
+- **Mock mode is scripted, not computed.** Offline, the web app replays the 25-invoice demo from
+  fixtures built out of `data/demo` and `data/gold/demo`. Calibrated confidences, per-call costs,
+  dashboard and scorecard values are illustrative samples (labelled "sample" / "Offline demo" in
+  the UI), not measurements. Mock re-routing after a correction or approval is a small scripted
+  imitation; the real decisions come from the Python rules engine through the API. Arbitrary
+  files uploaded in mock mode are not read: they land in Needs review with an "Offline preview"
+  message rather than invented values.
+- **Not run against the real API yet.** `HttpApiClient` and the SSE reader are tested with a fake
+  `fetch` only. *Close by:* running `apps/api` with `NEXT_PUBLIC_API_BASE` set and walking the
+  board, review, approvals and try-it flows end to end.
+- **Contract additions the UI uses but the API may not serve yet:** `GET /api/v1/me` (current staff
+  id, email, role), `uploaded_by` on `DocumentDetail` (to hide approve from the uploader), optional
+  `redactions: [{page, box, label}]` on `DocumentDetail` (opaque bars over bank/account numbers
+  printed on the page image), optional `approver_name` on approvals, and optional `reliability`
+  bins on `/scorecard/latest`. Without them the UI still works: approve buttons stay visible and
+  the API's 403 `self_approval` is shown, and page images show whatever the render contains.
+  **Page renders can show full account numbers** printed on an invoice unless the API supplies
+  `redactions` or serves pre-redacted renders (invariant 9).
+- **Turnstile** is only a local stand-in checkbox in mock mode; the real widget loads from
+  `challenges.cloudflare.com` and has not been exercised against a real site key.
+- **No Supabase Realtime client.** The board uses the SSE feed only; the hosted
+  `board:<tenant_id>` broadcast channel is not wired.
+- **Screenshots** are saved to `apps/web/screenshots/` rather than `docs/media/` (outside this
+  component's paths). No demo video was recorded.
