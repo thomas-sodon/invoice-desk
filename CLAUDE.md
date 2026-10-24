@@ -23,14 +23,29 @@ This is a pre-build repo. Follow the layout in §12: `apps/web` (Next.js), `apps
 
 ## Commands (planned; keep this list true)
 
+Available now:
+
 ```bash
-make up                 # docker compose: Postgres/Supabase, api, worker, n8n, Mailpit
+make install            # uv sync (+ pnpm install once apps/web exists)
+make lint               # ruff check + ruff format --check (+ web lint)
+make typecheck          # pyright (+ web tsc)
+make test               # pytest + web typecheck/lint (Postgres tests start a throwaway cluster)
+make cov                # pytest with branch coverage for packages/core
+make up / down / logs   # docker compose: Postgres, api, worker, mcp, n8n, Mailpit
+make migrate            # apply infra/supabase/migrations to $DATABASE_URL
+make audit-verify       # recompute the audit-log hash chain
+```
+
+Planned (each component adds its target in `mk/<component>.mk`; move a line up when it exists):
+
+```bash
 make seed               # seed business universe (fixed Faker seed)
-make test               # pytest + web typecheck/lint
 make eval CONFIG=D      # run eval config (A B C D D' E F G N); costs real money
 make demo-reset         # delete sandbox demo bills, re-seed the board
 make report-card        # render AP Automation Report Card PDF from latest eval run
 ```
+
+Repo layout, shared contracts, entry points and migration ranges: `docs/foundation.md`.
 
 Tooling defaults: Python 3.12 with `uv`, `ruff` (lint and format), `pyright`, `pytest`; TypeScript strict with `pnpm`. Run lint, typecheck and the relevant unit tests before every commit.
 

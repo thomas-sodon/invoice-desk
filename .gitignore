@@ -1,0 +1,21 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+node_modules/
+.next/
+apps/web/.next/
+dist/
+build/
+var/
+*.egg-info/
+.DS_Store
+# public datasets are downloaded, never committed
+data/public/cache/
+# large generated renders (released as assets)
+data/generated/

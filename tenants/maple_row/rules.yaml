@@ -1,0 +1,35 @@
+# Maple Row Property Management: business rules (DESIGN §5.5, R1-R10).
+# Amounts are integer cents; percentages are basis points (100 bps = 1 %).
+tenant: maple_row
+amount_cap_cents: 500000          # R7: total > $5,000 -> Needs review
+hours_saved_per_invoice_min: 8    # owner dashboard assumption (stated on the dashboard)
+manual_cost_per_invoice_cents: 990  # vendor-sourced benchmark, context only
+
+vendor:                           # R1
+  fuzzy_match_min_score: 90
+  lookalike_max_edit_distance: 2
+  check_homoglyphs: true
+
+three_way:                        # R3: tolerance max(10 %, $100)
+  tolerance_bps: 1000
+  tolerance_min_cents: 10000
+
+duplicate:                        # R4
+  fuzzy_amount_bps: 100           # +/- 1 %
+  fuzzy_window_days: 7
+  phash_max_distance: 6
+
+arithmetic:                       # R5
+  rounding_slack_cents: 1
+  tax_rate_min_bps: 0
+  tax_rate_max_bps: 1200
+
+dates:                            # R8
+  max_age_days: 90
+  allow_future_days: 0
+
+confidence:                       # R9; tau values are tuned on the DEV split only
+  required_fields: [vendor_name, invoice_number, invoice_date, work_order_number, property_or_unit, total]
+  tau_field: 0.90
+  tau_hi: 0.95
+  per_field: {}

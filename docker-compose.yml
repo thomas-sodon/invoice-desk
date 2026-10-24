@@ -1,0 +1,71 @@
+# Local stack. `make up`. Offline mode by default: no paid APIs are called unless you set
+# INVOICEDESK_MODE=live and the keys in .env.
+name: invoicedesk
+
+x-python: &python
+  build: { context: ., dockerfile: infra/docker/python.Dockerfile }
+  env_file: [{ path: .env, required: false }]
+  environment:
+    DATABASE_URL: postgresql://invoicedesk:invoicedesk@db:5432/invoicedesk
+    STORAGE_LOCAL_DIR: /data/storage
+  volumes: [storage:/data/storage]
+  depends_on:
+    db: { condition: service_healthy }
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: invoicedesk
+      POSTGRES_PASSWORD: invoicedesk
+      POSTGRES_DB: invoicedesk
+    ports: ["54322:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U invoicedesk"]
+      interval: 2s
+      retries: 30
+
+  migrate:
+    <<: *python
+    command: ["invoicedesk", "migrate"]
+    restart: "no"
+
+  api:
+    <<: *python
+    command: ["uvicorn", "invoicedesk_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports: ["8000:8000"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+
+  worker:
+    <<: *python
+    command: ["invoicedesk-worker"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+
+  mcp:
+    <<: *python
+    command: ["invoicedesk-mcp"]
+    ports: ["8100:8100"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+
+  n8n:
+    image: n8nio/n8n:1.80.0
+    ports: ["5678:5678"]
+    environment:
+      N8N_SECURE_COOKIE: "false"
+      INVOICEDESK_API: http://api:8000
+    volumes:
+      - n8n:/home/node/.n8n
+      - ./integrations/n8n/workflows:/workflows:ro
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    ports: ["8025:8025", "1025:1025"]
+
+volumes:
+  pgdata:
+  storage:
+  n8n:

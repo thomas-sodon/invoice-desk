@@ -1,0 +1,125 @@
+[project]
+name = "invoicedesk-monorepo"
+version = "0.1.0"
+description = "InvoiceDesk: AI accounts-payable clerk (uv workspace root)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "invoicedesk",
+  "invoicedesk-api",
+  "invoicedesk-worker",
+  "invoicedesk-mcp",
+  "invoicedesk-evals",
+  "invoicedesk-data",
+]
+
+[project.optional-dependencies]
+# docTR pulls torch (~GBs). Kept behind an extra; the default OCR engine is RapidOCR (onnxruntime).
+doctr = ["invoicedesk[doctr]"]
+# Augraphy scan simulation (pulls numba); generator falls back to built-in OpenCV degradations.
+augraphy = ["invoicedesk-data[augraphy]"]
+azure = ["invoicedesk[azure]"]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+  "pytest-asyncio>=0.25",
+  "pytest-timeout>=2.3",
+  "hypothesis>=6.120",
+  "ruff>=0.9",
+  "pyright>=1.1.390",
+  "types-pyyaml",
+  "respx>=0.22",
+  "freezegun>=1.5",
+]
+
+[tool.uv]
+package = false
+default-groups = ["dev"]
+
+[tool.uv.workspace]
+members = [
+  "packages/core",
+  "apps/api",
+  "services/worker",
+  "services/mcp-server",
+  "evals",
+  "data",
+]
+
+[tool.uv.sources]
+invoicedesk = { workspace = true }
+invoicedesk-api = { workspace = true }
+invoicedesk-worker = { workspace = true }
+invoicedesk-mcp = { workspace = true }
+invoicedesk-evals = { workspace = true }
+invoicedesk-data = { workspace = true }
+
+# ---------------------------------------------------------------- ruff
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["apps/web", "**/node_modules", "data/public/cache", "*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "S", "PT", "DTZ", "PL", "C4", "TID"]
+ignore = [
+  "PLR0913",  # many args are fine for pure rule functions
+  "PLR2004",  # magic values in tests and thresholds
+  "S101",     # assert is fine in tests
+  "PLR0911",
+  "PLR0912",
+  "PLC0415",  # lazy imports are intentional (wiring, CLIs)
+  "RUF001", "RUF002", "RUF003",  # homoglyph tests use confusable characters on purpose
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S", "PLR", "DTZ", "PT018", "PT011", "E501", "SIM117"]
+"conftest.py" = ["S"]
+"packages/core/invoicedesk/llm/anthropic_client.py" = ["TID251"]
+"packages/core/invoicedesk/testing/**" = ["S"]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"anthropic".msg = "Import anthropic only in invoicedesk.llm.anthropic_client (single SDK boundary)."
+
+[tool.ruff.format]
+quote-style = "double"
+
+# ---------------------------------------------------------------- pyright
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+include = ["packages/core", "apps/api", "services", "evals", "data", "scripts"]
+exclude = ["**/node_modules", "**/__pycache__", "apps/web", ".venv", "data/public/cache"]
+venvPath = "."
+venv = ".venv"
+reportMissingTypeStubs = false
+reportMissingModuleSource = false
+
+# ---------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra --strict-markers --import-mode=importlib"
+testpaths = [
+  "packages/core/tests",
+  "apps/api/tests",
+  "services/worker/tests",
+  "services/mcp-server/tests",
+  "evals/tests",
+  "data/tests",
+]
+markers = [
+  "postgres: needs a throwaway Postgres cluster (skips if binaries are unavailable)",
+  "slow: slow tests (rendering, OCR)",
+  "live: calls a real external API; never run in CI (requires keys)",
+]
+timeout = 300
+filterwarnings = ["ignore::DeprecationWarning:langgraph.*"]
+
+[tool.coverage.run]
+branch = true
+source = ["packages/core/invoicedesk"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

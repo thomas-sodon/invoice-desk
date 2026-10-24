@@ -1,0 +1,25 @@
+[project]
+name = "invoicedesk-api"
+version = "0.1.0"
+description = "InvoiceDesk FastAPI gateway"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "invoicedesk",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.32",
+  "python-multipart>=0.0.18",
+  "pyjwt[crypto]>=2.10",
+  "itsdangerous>=2.2",
+  "email-validator>=2.2",
+  "sse-starlette>=2.1",
+]
+
+[tool.uv.sources]
+invoicedesk = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["invoicedesk_api"]

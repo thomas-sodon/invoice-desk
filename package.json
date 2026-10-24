@@ -1,0 +1,12 @@
+{
+  "name": "invoicedesk",
+  "private": true,
+  "packageManager": "pnpm@10.12.1",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "web:dev": "pnpm --filter web dev",
+    "web:build": "pnpm --filter web build",
+    "web:typecheck": "pnpm --filter web typecheck",
+    "web:lint": "pnpm --filter web lint"
+  }
+}

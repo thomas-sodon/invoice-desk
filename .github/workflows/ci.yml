@@ -1,0 +1,46 @@
+name: ci
+on:
+  push: { branches: [main] }
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_PASSWORD: postgres }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 2s --health-retries 30
+    env:
+      INVOICEDESK_TEST_DSN: postgresql://postgres:postgres@localhost:5432/postgres
+      INVOICEDESK_MODE: offline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: { python-version: "3.12" }
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pyright
+      - run: uv run pytest -m "not live" --cov=invoicedesk --cov-branch --cov-report=xml
+      - name: rules engine 100% branch coverage (CLAUDE.md invariant 7)
+        if: hashFiles('packages/core/tests/rules/**') != ''
+        run: >-
+          uv run pytest packages/core/tests/rules -q
+          --cov=invoicedesk.rules --cov-branch --cov-fail-under=100 --cov-report=term-missing
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: has_web
+        run: if [ -f apps/web/package.json ]; then echo "present=true" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.has_web.outputs.present == 'true'
+        uses: pnpm/action-setup@v4
+      - if: steps.has_web.outputs.present == 'true'
+        uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - if: steps.has_web.outputs.present == 'true'
+        run: pnpm install --frozen-lockfile && pnpm --filter web typecheck && pnpm --filter web lint
