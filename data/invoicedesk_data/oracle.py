@@ -250,10 +250,13 @@ def _toks(s: str) -> list[str]:
 
 
 _WORD_LINE = re.compile(r"^\s*\[?#?(\d+)\]?\s*[\t:|=]\s*(\S.*?)\s*$")
+#: ``invoicedesk.extract.userturn.ocr_words_text``: ``[12] "INV-2231" (x0,y0,x1,y1)``
+_WORD_LINE_JSON = re.compile(r'^\s*\[(\d+)\]\s+("(?:[^"\\]|\\.)*")')
 
 
 def _parse_words(text: str) -> list[tuple[int, str]]:
-    """OCR words as the extractor lists them: ``12: INV-2231``, ``[12] INV-2231`` (tab, pipe or
+    """OCR words as the extractor lists them: ``[12] "INV-2231" (x0,y0,x1,y1)`` (the
+    ``invoicedesk.extract.userturn`` format), ``12: INV-2231`` / ``[12]: INV-2231`` (tab, pipe or
     colon separated) or a JSON list of ``{"id": .., "text": ..}``."""
     words: list[tuple[int, str]] = []
     stripped = text.strip()
@@ -271,6 +274,13 @@ def _parse_words(text: str) -> list[tuple[int, str]]:
             if words:
                 return words
     for line in text.splitlines():
+        mj = _WORD_LINE_JSON.match(line)
+        if mj:
+            try:
+                words.append((int(mj.group(1)), str(json.loads(mj.group(2)))))
+                continue
+            except ValueError:
+                pass
         m = _WORD_LINE.match(line)
         if m:
             words.append((int(m.group(1)), m.group(2)))

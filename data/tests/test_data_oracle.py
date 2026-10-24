@@ -277,3 +277,35 @@ def test_record_and_replay_round_trip(tmp_path, demo_gold) -> None:
     replayed = ReplayLLM(tmp_path).parse(req, InvoiceExtraction)
     assert replayed.parsed == live.parsed
     assert json.loads((tmp_path / f"{req.replay_key()}.json").read_text())["response"]
+
+
+def test_word_refs_with_the_extractors_own_ocr_listing(core_gold) -> None:
+    """The extraction component lists words as ``[i] "text" (x0,y0,x1,y1)``."""
+    from invoicedesk.contracts.preprocess import OcrWord, PageImage, PreprocessedDocument
+    from invoicedesk.extract.userturn import ocr_words_text
+
+    rec = next(r for r in core_gold if r.medium == "native")
+    words: list[OcrWord] = []
+    for name in sorted(rec.boxes):
+        b = rec.boxes[name]
+        for tok in b.text.split():
+            words.append(OcrWord(id=len(words), page=0, text=tok, box=b.box, conf=0.99))
+    doc = PreprocessedDocument(
+        document_id="d1",
+        sha256="0" * 64,
+        mime="application/pdf",
+        is_native_pdf=True,
+        pages=[
+            PageImage(index=0, width=1237, height=1600, storage_key="k", sha256="0" * 64, scale=1.0)
+        ],
+        words=words,
+        phash="0" * 16,
+    )
+    listing = ocr_words_text(doc)
+    o = OracleLLM(core_gold, noise=OracleNoise.none())
+    resp = o.parse(_req(ModelRole.EXTRACT_T1, TextBlock(text=listing)), InvoiceExtraction)
+    ex = InvoiceExtraction.model_validate(resp.parsed)
+    assert ex.invoice_number.value == rec.truth.invoice_number
+    ids = ex.invoice_number.source.word_ids
+    assert ids and " ".join(words[i].text for i in ids) == rec.boxes["invoice_number"].text
+    assert ex.total.source.word_ids
