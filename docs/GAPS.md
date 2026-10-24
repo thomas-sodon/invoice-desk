@@ -510,3 +510,67 @@ don't delete entries. Mark them **closed** when resolved.
   request, bypassing the per-IP try-it limits despite `TRUST_FORWARDED_FOR=false`. It now runs
   with `--no-proxy-headers`, so every visitor shares the Fly proxy's address (stricter, not
   looser). *Close by:* the API reading `Fly-Client-IP` (raised for apps/api).
+
+## Integration (2026-10-24)
+
+The integration pass wired the components together and ran the whole system offline: the 25-file
+demo and the bank-change e-mail through the API, pipeline and worker on a throwaway Postgres
+(`make test-e2e`, `tests/e2e/`). Several entries above are now **closed**:
+
+- **Demo board 10/12/3 (API section) -> now 18/4/3** through the real preprocessor, screening,
+  extractor, calibrator and rules. Fixed at the three upstream causes (ADR-0007): whole-word
+  text-layer spans, the oracle citing OCR words on the value's line when OCR glued value and
+  label, and OCR agreement / handwriting calibration. `test_demo_run_settles_to_18_4_3` is no
+  longer xfail. Offline smoke gate before -> after: field F1 1.000 -> 1.000, false-STP 0 -> 0,
+  adversarial misses 0 -> 0, $/doc $0.0189 -> $0.0121. These are oracle numbers, so this is
+  evidence the harness and rules behave, not a model measurement.
+- **Stale `test_cli_missing_component_module`** now patches an unbuilt command; a new test
+  requires every registered CLI command to import.
+- **Dependencies:** httpx2 (core), httpx (worker), invoicedesk-data / httpx / pymupdf (API),
+  mcp>=2.3 (MCP server); uv.lock re-locked. pnpm build-script allow-list added.
+- **`.env.example`** lists every setting the services read; **`.dockerignore`** added.
+- **Hero score strip**: in mock mode the caption reads "sample values, not a measured run", and
+  an offline-harness scorecard reads "offline harness run, not a measurement". `hero.png` was
+  re-shot. It is still not copied to `docs/media/`, because its tiles show the DESIGN placeholder
+  figures.
+- **Per-IP limits behind Fly**: `CLIENT_IP_HEADER=Fly-Client-IP` (set in `infra/fly/api.toml`).
+- **Scorecard**: `/scorecard/latest` prefers live config-D rows and labels offline rows.
+- **Comparison mode on demo batches** is graded against the gold labels, not InvoiceDesk's
+  own findings.
+- **R4 pHash false positives** across one vendor template (the e-mailed A-3601 was flagged as a
+  duplicate of A-3600): an image hit now also needs the same or an unreadable total.
+- **HEIC originals** are attached to the QBO bill as the normalized PNG page render.
+- **`invoicedesk extract`** passes Storage to the screeners, so the ink check is active.
+- **Worker offline wiring**: without `INVOICEDESK_LLM_FALLBACK`, offline mode falls back to the
+  gold-backed oracle, so `make worker` runs with no credentials.
+- **Empty `AGENT_JWT_SECRET=`** (as copied from `.env.example`) used to load as an empty HS256
+  key. Blank now means "agent facade off", and secrets under 32 characters are refused.
+
+Still open after integration:
+
+- **Nothing live.** No Claude call, QBO sandbox post, Supabase project, Langfuse trace, Turnstile
+  site key, n8n run or deploy has happened. Every number is from the offline oracle.
+- **The calibrator is still heuristic-v1** (now with the handwriting and OCR-agreement changes in
+  ADR-0007). Fit it on a live dev run (`calibrate.fit_calibrator(..., split="dev")`), re-choose
+  `tau_field`/`tau_hi` with `make eval-fit-thresholds`, and record that the artifact was fitted
+  on dev (FittedCalibrator does not store its split yet).
+- **E2E uploader check uses a direct DB update.** E-mail ingest has no staff uploader, so
+  `test_r6_cannot_be_cleared_by_the_uploader` records the forwarding staff member with an SQL
+  update on `documents.uploaded_by`. The self-approval refusal itself is the production code path.
+- **QBO refusals stay in ReadyToPay.** A `QboTotalMismatch` or a "possible duplicate invoice"
+  refusal records the bill as `failed` and fails the job permanently; nothing is posted, but the
+  card does not move to Needs review, because §4.3 allows ReadyToPay -> Posted only. Changing
+  that needs a state-machine decision (ADR).
+- **Follow-up webhook to n8n is unsigned** (relies on private networking), as recorded above.
+- **R4 cannot match unresolved vendors by invoice number** (PriorInvoice has no normalized
+  vendor name), **R3 reports out-of-scope lines in details only**, and **R10 has no separate
+  wording for a classifier outage** ("could not be screened"). All recorded for the rules owner.
+- **Contract tweaks not made:** `Preprocessor.preprocess(storage_prefix=)` and
+  `TextLayerSpan.invisible` (preprocess), `ModelRole.INJECTION_CLASSIFIER_T2` (guardrails),
+  `LLMCallError.response` and replay-key file-id normalization (extraction), a per-tenant QBO
+  expense account (pipeline). Each is a shared-contract change with no failing behaviour today.
+- **Core `mask_text` does not mask digit runs glued to letters** (`ACCT123456789`), because it
+  also runs over hashes and ids; bank fields are masked by key. The web masker is stricter. It
+  now leaves decimal fractions and `*_cents` / `*_usd` amount strings alone.
+- **pnpm still warns about ignored build scripts** in an existing `node_modules`; the allow-list
+  applies on a fresh install.

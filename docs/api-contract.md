@@ -40,7 +40,7 @@ approve). The approver must never be the uploader (enforced by the API **and** a
   "source": "upload|email|seed|mcp", "status": "NeedsReview", "column": "needs_review",
   "vendor_name": "Rapid Rooter Plumbing LLC|null", "invoice_number": "INV-2231|null",
   "total_cents": 124000, "headline": "$340.00 over approved estimate for Unit 12B (WO-1187)",
-  "badges": ["over_estimate"],      // duplicate|bank_change|hidden_text|faint_text|injection|over_cap|new_vendor|lookalike|low_confidence|handwriting|over_estimate|arithmetic|date
+  "badges": ["over_estimate"],      // duplicate|bank_change|hidden_text|faint_text|injection|over_cap|new_vendor|lookalike|blocked_vendor|identity_mismatch|work_order|low_confidence|handwriting|over_estimate|arithmetic|date
   "cost_usd": "0.0112", "thumbnail_url": "signed url",
   "created_at": "...", "updated_at": "..."
 }
@@ -56,7 +56,7 @@ approve). The approver must never be the uploader (enforced by the API **and** a
 
 // RuleResult
 { "rule_id": "R3", "name": "three_way_match", "passed": false, "severity": "pass|review|flag",
-  "message": "Rapid Rooter invoice is $340.00 over the approved estimate ($3,400.00) for Unit 12B, WO-1187.",
+  "message": "Rapid Rooter Plumbing invoice is $340.00 over the approved estimate ($3,200.00) for Unit 12B, WO-1187.",
   "fields": ["total"], "details": {} }
 
 // ScreenResult
@@ -130,6 +130,50 @@ posted (`status.transition` refuses).
 | `POST /agent/uploads` | `invoices:write` | multipart `file` | `201 { "upload_handle" }` |
 | `GET /agent/documents/{id}/validation` | `invoices:read` | none | `{ "status", "rule_results": [RuleResult], "variance_explanations": ["..."] }` |
 | `POST /agent/documents/{id}/post-bill` | `bills:post` | `{ "confirmation": { "vendor_name", "total_cents", "confirmed_by_human": true } }` | `200 { "bill_id", "system": "qbo", "status": "Posted" }`; `409 illegal_transition` unless `ReadyToPay` (always refused for Flagged); `422 confirmation_mismatch` if vendor or total differ from the stored values. Idempotent. |
+
+## Additions made while building (integration, 2026-10-24)
+
+These are implemented and tested; they extend the tables above.
+
+- **Card headline.** `details.headline` of the first failing rule, flags first in the order
+  R6 > R10 > R4 > rule order, else the rule message without its trailing period. A held total
+  that was not read at all reads `Total unreadable: please confirm`; a quarantined document whose
+  screening found a bank-change attempt reads `Hidden instruction detected: attempted
+  bank-account change, blocked`. R1 (new vendor), R3 and R6 carry short `details.headline`
+  values (R6: `Bank-detail change requested[ in the e-mail]: needs two approvers`).
+- **RuleResult.details.badge** may also be `blocked_vendor`, `identity_mismatch` or `work_order`.
+- **`GET /me`** returns `{ "id", "email", "display_name", "role" }` for the signed-in staff user.
+- **DocumentDetail** adds `uploaded_by` (staff id or null) and `redactions: [{ "page", "box",
+  "label" }]` (regions of printed bank numbers to cover on page images). `extractions[].tier` is
+  an integer 1-3. Approval rows add `approver_name`.
+- **`POST /ingest/email`** also returns `rejected: [{ "filename", "error" }]`.
+- **`POST /documents`** returns `409 illegal_batch` for demo and try-it batches.
+- **`POST /demo/run`** is anonymous for the public demo (rate-limited per IP; offline or
+  anonymous runs use the recorded oracle run). It clears the previous demo batch first, or
+  returns `409 demo_reset_required` when that batch already posted bills. Demo batch reads
+  (`GET /batches/{id}`, `/documents?batch_id=`, `/documents/{id}`, `/events?batch_id=`,
+  `/batches/{id}/comparison`) are anonymous too, with remit details, the original file, the trace
+  and approvals withheld.
+- **Approvals.** `403 forbidden` for clerks (only approver or owner roles vote), `403
+  self_approval` for the uploader, `409 duplicate_vote` for a second vote on the same hold, `409
+  illegal_transition` for a bank-change approval without `callback_attested`. A Flagged release
+  counts only votes cast during the current hold; an R6 hold counts only `kind=bank_change`
+  votes; any reject vote blocks release. A quarantined document (never read) cannot be released,
+  only rejected.
+- **Comparison.** Adds `label`. On a demo batch both pipelines are graded against the gold
+  labels in `data/demo/expected.json`; otherwise against InvoiceDesk's own deterministic findings.
+- **`GET /scorecard/latest`** picks the latest finished live run of config D, else the latest
+  live run, else the latest offline run with label `benchmark on synthetic data (offline harness
+  run, not a live model measurement)`. `reliability: [{ "confidence", "accuracy", "count" }]` is
+  optional.
+- **Try-it** session and status responses carry a `banner` string.
+- **Follow-ups** return `422 no_vendor` / `422 no_vendor_email` when the vendor master has no
+  match or no address.
+- **Agent facade.** `POST /agent/extract` runs the whole pipeline synchronously (validation
+  included) and returns `embedded_instructions` as a count. Validation `rule_results` replace
+  spans, screen spans and embedded instructions with `*_count` fields, omit `remit_to_masked`, and
+  R10's message is rebuilt from detector names. `POST .../post-bill` returns `422
+  confirmation_required` unless `confirmed_by_human` is true.
 
 ## Realtime
 

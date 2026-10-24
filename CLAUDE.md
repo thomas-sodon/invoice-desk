@@ -19,30 +19,39 @@ If code and the design doc disagree, raise it. Don't silently diverge. Record re
 
 ## Status
 
-This is a pre-build repo. Follow the layout in §12: `apps/web` (Next.js), `apps/api` (FastAPI), `packages/core` (the Python library everything imports), `services/worker`, `services/mcp-server`, `data/`, `evals/`, `tenants/`, `infra/`. Before calling a `make` target below, check that it exists. Add targets as you build them.
+The MVP components are built and wired, following the layout in §12: `apps/web` (Next.js), `apps/api` (FastAPI), `packages/core` (the Python library everything imports), `services/worker`, `services/mcp-server`, `data/`, `evals/`, `tenants/`, `infra/`, plus `tests/e2e` (offline end-to-end demo). Nothing has run against a live model, QBO sandbox or Supabase yet, and nothing is deployed: `docs/GAPS.md` lists every gap. Add new targets in `mk/<component>.mk` and keep the list below true.
 
-## Commands (planned; keep this list true)
+## Commands (keep this list true)
 
-Available now:
+Every target below exists (`make help` lists them; components add theirs in `mk/<component>.mk`).
+Offline mode (`INVOICEDESK_MODE=offline`, the default) needs no keys and calls no paid API.
 
 ```bash
-make install            # uv sync (+ pnpm install once apps/web exists)
-make lint               # ruff check + ruff format --check (+ web lint)
-make typecheck          # pyright (+ web tsc)
-make test               # pytest + web typecheck/lint (Postgres tests start a throwaway cluster)
+make install            # uv sync + pnpm install
+make lint               # ruff check + ruff format --check + web eslint
+make typecheck          # pyright + web tsc
+make test               # pytest (incl. tests/e2e, Postgres via throwaway cluster) + web typecheck/lint/vitest
 make cov                # pytest with branch coverage for packages/core
 make up / down / logs   # docker compose: Postgres, api, worker, mcp, n8n, Mailpit
 make migrate            # apply infra/supabase/migrations to $DATABASE_URL
 make audit-verify       # recompute the audit-log hash chain
-```
-
-Planned (each component adds its target in `mk/<component>.mk`; move a line up when it exists):
-
-```bash
-make seed               # seed business universe (fixed Faker seed)
-make eval CONFIG=D      # run eval config (A B C D D' E F G N); costs real money
-make demo-reset         # delete sandbox demo bills, re-seed the board
+make seed               # seed business universe (fixed Faker seed); seed-csv writes CSVs only
+make api / worker / worker-once / mcp   # run a service locally (offline fakes unless live)
+make mcp-devtoken       # offline only: dev JWKS + bearer token for the MCP server
+make purge              # delete try-it uploads older than 24h (audit rows stay)
+make demo-reset         # delete sandbox demo bills, re-seed the board (dry run; APPLY=1 to apply)
+make qbo-bootstrap      # one-time QBO sandbox OAuth (prints QBO_REALM_ID / QBO_REFRESH_TOKEN)
+make validate EX=extraction.json TD=tenant_data.json   # run R1-R10 on JSON
+make eval CONFIG=D      # run eval config (A B C D Dp E F G N; Dp = D'); costs real money when live
+make eval-offline       # $0 D + N on dev+adversarial with the oracle (n=3) + Report Card
+make eval-smoke         # $0 offline smoke run + the PR gate vs evals/baselines/smoke-offline.json
+make eval-fit-thresholds / eval-estimate   # tau on DEV only; live cost estimate
 make report-card        # render AP Automation Report Card PDF from latest eval run
+make data-all           # (re)build seed CSVs, synthetic-core, adversarial set, demo batch
+make data-generate / data-adversarial / data-demo / data-splits / data-verify / data-eval-examples / data-public
+make web-dev / web-build / web-fixtures / web-screenshots
+make test-e2e           # offline end-to-end demo (board 18/4/3, R6 holds, idempotent posting)
+make test-rules / test-pipeline / test-api / test-mcp / test-accounting / test-data / test-evals / test-web
 ```
 
 Repo layout, shared contracts, entry points and migration ranges: `docs/foundation.md`.

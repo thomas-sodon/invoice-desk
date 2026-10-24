@@ -176,7 +176,8 @@ storage is local.
 
 ```bash
 make install                 # uv sync + pnpm install
-make test                    # pytest (throwaway Postgres clusters) + web typecheck/lint
+make test                    # pytest (throwaway Postgres clusters) + web typecheck/lint/tests
+make test-e2e                # the 25-invoice demo + bank-change e-mail end to end, offline
 make lint typecheck
 
 # UI only, in the browser's mock mode (no backend needed):
@@ -213,6 +214,8 @@ Diagrams with the real module names and the full state machine are in
 - [ADR-0003: Claude model routing and API specifics](docs/adr/0003-claude-routing.md)
 - [ADR-0004: OCR engine, word-ID anchoring, 1,600 px pages](docs/adr/0004-ocr-anchoring.md)
 - [ADR-0005: guardrails as architecture](docs/adr/0005-guardrails.md)
+- [ADR-0006: crash-safe pipeline steps and hold-scoped release](docs/adr/0006-pipeline-state-and-release.md)
+- [ADR-0007: demo numbers, calibration and board headlines](docs/adr/0007-demo-calibration-and-board.md)
 
 Stack: Python 3.12 (FastAPI, LangGraph, Pydantic v2, psycopg, PyMuPDF, RapidOCR), the official
 `anthropic` SDK with structured outputs, Next.js 15 + TypeScript, Postgres (Supabase-compatible
