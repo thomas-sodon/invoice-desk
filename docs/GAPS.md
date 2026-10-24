@@ -310,3 +310,47 @@ don't delete entries. Mark them **closed** when resolved.
 - **Supabase Realtime broadcast not wired.** Board events go through `pg_notify`
   (`invoicedesk_events`, read by the API's SSE). The hosted Supabase broadcast channel is not
   published to by the pipeline.
+
+## API gateway (2026-10-24)
+
+- **The demo batch does not settle 18 / 4 / 3 through the full pipeline.** Run through the API
+  (real preprocessor and RapidOCR, real guardrails, extractor, heuristic calibrator and rules,
+  the gold-backed `OracleLLM`), the 25 files settle to **10 Ready to pay / 12 Needs review /
+  3 Flagged**. The 3 Flagged and the 4 designed Needs-review cards are exactly as labelled; the
+  8 extra holds fail **only R9**, for two upstream reasons:
+  1. The oracle finds no OCR word refs for some fields, so `ocr_agreement` is 0 and calibrated
+     confidence falls to about 0.63. Causes: native-PDF text-layer words come out fragmented on
+     some templates (`"B","rus","h","stro","ke"` for "Brushstroke"; the vendor name interleaved
+     with the "Invoice" title), and RapidOCR merges words on scans (`"WorkorderWO-1180"`,
+     `"Re:Cedar"`, `"No.7100"`), which `oracle._find_ids` cannot match.
+  2. The legible handwritten carbon copy scores just under `tau_field` (0.88 to 0.89, the
+     heuristic calibrator's x0.9 handwriting factor).
+  `test_demo_run_settles_to_18_4_3` is marked `xfail` with this reason.
+  `test_demo_board_matches_expected_except_r9_word_ref_holds` pins the cause: R9 is the only
+  failing rule on every extra hold. *Close by:* merging text-layer glyph runs in
+  `preprocess.pdf.text_layer_words`, letting `_find_ids` match target tokens inside merged OCR
+  tokens, and fitting the calibrator on dev. Then remove the `xfail`.
+- **Supabase Storage adapter only tested against a mock.** `SupabaseStorage` follows the Storage
+  REST API (upload with `x-upsert`, authenticated download, `HEAD`, prefix delete, folder list,
+  sign). It is tested with `httpx.MockTransport` only, not against a live project.
+- **Supabase Auth and Cloudflare Turnstile not exercised live.** Staff JWTs are HS256 tokens
+  minted in tests with the configured secret. Supabase projects using asymmetric (JWKS) signing
+  keys need a JWKS verifier. Turnstile live verification is tested against a mocked `siteverify`.
+  Offline mode accepts only Cloudflare's always-pass test secret.
+- **`file_url` fetch has no DNS pinning.** `/agent/extract` refuses non-https URLs, non-default
+  ports, credentials, redirects and hosts that resolve to non-public addresses, and caps bodies
+  at 10 MB. httpx resolves the host again on connect, so a DNS-rebinding race remains. Offline
+  mode never fetches.
+- **`/agent/extract` runs validation in the same graph run.** The contract says "then enqueues
+  validation". The LangGraph pipeline has no stop-after-extraction edge, so the synchronous call
+  (60 s timeout) runs the whole graph and reports the routed status.
+- **n8n follow-up send only tested with a mock.** `POST /followups/{id}/approve` calls
+  `N8N_FOLLOWUP_WEBHOOK_URL` when it is set; with no URL (the offline default) nothing is sent.
+  Neither n8n nor Mailpit was run.
+- **The spend cap reserves headroom for one document.** The pipeline meters visitor spend after
+  each LLM call, so the gateway treats the cap as reached once spend plus
+  `TRYIT_COST_RESERVE_USD` (default $0.07, about one Opus-only document) would exceed
+  `PUBLIC_DAILY_SPEND_CAP_USD`. Concurrent in-flight uploads can still overshoot the cap by a
+  few cents.
+- **No real deployment.** The purge script (`make purge`) was not scheduled anywhere. Fly.io
+  and Vercel were not deployed.
